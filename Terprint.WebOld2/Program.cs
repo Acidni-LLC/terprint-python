@@ -1,26 +1,23 @@
-using Terprint.components;
 using Terprint.Web;
 using Terprint.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add service defaults & Aspire components.
+// Add service defaults & Aspire Components.
 builder.AddServiceDefaults();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddRazorPages();
 builder.Services.AddOutputCache();
-builder.Services.AddSingleton<components>();
 
-builder.Services.AddHttpClient<WeatherApiClient>(client =>
-    {
-        // This URL uses "https+http://" to indicate HTTPS is preferred over HTTP.
-        // Learn more about service discovery scheme resolution at https://aka.ms/dotnet/sdschemes.
-        client.BaseAddress = new("https+http://apiservice");
-    });
+//builder.Services.AddHttpClient<WeatherApiClient>(client =>
+//    {
+//        // This URL uses "https+http://" to indicate HTTPS is preferred over HTTP.
+//        // Learn more about service discovery scheme resolution at https://aka.ms/dotnet/sdschemes.
+//        client.BaseAddress = new("https+http://apiservice");
+//    });
 
 var app = builder.Build();
 
@@ -40,12 +37,6 @@ app.UseOutputCache();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
-
-
-
-app.UseRouting();
-app.UseAntiforgery();
-app.MapRazorPages();
 
 app.MapDefaultEndpoints();
 
