@@ -30,10 +30,10 @@
 </form>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-6">
-            <p class="lead">@Model.c.strain @Model.c.batch</p>
+        <div class="col-6 col-sm-12">
+            <p class="lead">@Model.c.strain</p> <cite>@Model.c.batch</cite>
         </div> 
-        <div class="col-6">
+        <div class="col-6 col-sm-12">
             <p class="lead">  @Model.c.currentTerpenes  Terpenes  @Math.Round(Model.c.currentStrain.Where(t => t.Value > 0).Select(t => t.Value * .1).Sum(), 4) % </p>
         </div>
     </div>

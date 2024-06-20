@@ -2,11 +2,32 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 using Terprint_3.Pages;
+using static Terprint_3.Components;
+using System.Linq;
 
 namespace Terprint_3
 {
+    public static class Strains
+    {
+        public static List<string> GetStrains()
+        {
+            Components c = new Components();
+            c.loadStrains();
+            return c.TerpValues.Select(t=> t.Strain ).OrderBy(t=>t).Distinct().ToList();
+
+        }
+        public static List<string> GetBatches(string strain = "")
+        {
+            Components c = new Components();
+            c.loadStrains();
+            return c.TerpValues.Where(t=>t.Strain==strain).Select(t => t.Batch).OrderBy(t => t).Distinct().ToList();
+
+        }
+        
+    }
     public class Components : PageModel
     {
+       
         public Microsoft.AspNetCore.Html.HtmlString outputrows { get; set; }
 
         [FromQuery(Name = "strain")]
@@ -637,14 +658,14 @@ namespace Terprint_3
             }
             else if (size == "Medium")
             {
-                width = "width: 100px;height: 25px;";
-                temprows += "<table style='width: 100%' ><tr>";
+                width = "width: 50px;height: 50px;";
+                temprows += "<table ><tr>";
                 // temprows += "<table style='width: 300px'><tr>";
             }
             else if (size == "Large")
             {
-                width = "width: 250px;height: 50px;";
-                temprows += "<table style='width: 100%'><tr>";
+                width = "width: 100px;height: 100px;";
+                temprows += "<table ><tr>";
             };
             List<matrixes> localmatrix = Matrixes;
             // if(sortorder =="name")

@@ -45,7 +45,8 @@
 
                 <div class="float-start">
                     <a href="@link">
-                        @strain.Strain
+                        @strain.Strain 
+                        
                     </a>
                     <br />
                     @r
@@ -69,7 +70,7 @@
                 <div class="float-end">
                     @{
 
-                        Model.c.terprintTable(@r,"name");
+                        Model.c.terprintTable(@r, "name");
                     }
                     @Html.Raw(Model.c.outputrows)
 
