@@ -1,0 +1,34 @@
+﻿<h3>FilterChooser</h3>
+
+@code {
+    
+}
+@{
+
+    var c = new Components();
+    c.loadListBoxes();
+}
+
+<form asp-route-matrix="@c.matrix" asp-route-strain="@c.strain" method="get">
+
+
+    <div class="row">
+        <div class="col-3">
+            <label for="size" class="form-label">Matrix Size</label>
+
+            <select name="size" asp-for="c.size" asp-items="c.OptionsSize" asp-asp-for="strainModel.size" class="form-select"></select>
+        </div>
+        <div class="col-3">
+            <label for="matrix" class="form-label">Matrix Number</label>
+            <select name="matrix" asp-for="c.matrix" asp-items="c.OptionsMatrix" asp-asp-for="strainModel.matrix" class="form-select"></select>
+        </div>
+        <div class="col-4">
+            <label for="strain" class="form-label">Strain/Batch</label>
+            <select name="strain" asp-for="strain" asp-items="c.Options" asp-asp-for="strainModel.strain" class="form-select"></select>
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-primary">Click</button>
+        </div>
+    </div>
+
+</form>

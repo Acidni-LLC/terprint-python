@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 using Terprint_3.Pages;
-using static Terprint_3.Components;
+//using static Terprint_3.Components;
 using System.Linq;
 
 namespace Terprint_3
