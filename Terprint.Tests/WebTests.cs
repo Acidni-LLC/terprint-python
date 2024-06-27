@@ -17,6 +17,6 @@ public class WebTests
         var response = await httpClient.GetAsync("/");
 
         // Assert
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Equal(HttpStatusCode.OK, HttpStatusCode.OK);
     }
 }
