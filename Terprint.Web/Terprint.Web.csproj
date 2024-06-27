@@ -12,8 +12,5 @@
   </ItemGroup>
 
 
-  <ItemGroup>
-    <None Include="Components\Pages\FilterChooser.razor" />
-  </ItemGroup>
 
 </Project>
