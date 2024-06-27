@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Terprint_3</RootNamespace>
+    <ApplicationInsightsResourceId>/subscriptions/a85bdc2a-8431-4256-ad92-e4fd8b2a4bcb/resourceGroups/rg-dev-terprint/providers/microsoft.insights/components/Terprint3Web</ApplicationInsightsResourceId>
+    <UserSecretsId>93c8889e-fcd9-467e-9ad4-18100bf042da</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +21,8 @@
 
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="5.3.3" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" Version="6.0.31" />
     <PackageReference Include="popper.js" Version="1.16.1">
       <GeneratePathProperty>False</GeneratePathProperty>
     </PackageReference>

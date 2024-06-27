@@ -1,11 +1,18 @@
 ﻿@page
+@using Terprint_3.Pages.Shared
 @model IndexModel
 @{
+    
     ViewData["Title"] = "Home page";
+
 }
+
+
+
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>  <a href="/List?size=Micro&matrix=2">List 1</a>  <a href="/Table?size=Medium&matrix=1">Matrix 1</a>  <a href="/Table?size=Medium&matrix=2">Matrix 2</a>  <a href="/Table?size=Medium&matrix=3">Matrix 3</a></p>
 
+    @* <component type="typeof(Terprint_3.Pages.Shared.)" render-mode="ServerPrerendered" /> *@
 </div>
