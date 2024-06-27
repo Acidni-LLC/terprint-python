@@ -72,8 +72,9 @@
                     @{
 
                         Model.c.terprintTable(@r, "name");
+                        Html.Raw(Model.c.outputrows);
                     }
-                    @Html.Raw(Model.c.outputrows)
+                    
 
                 </div>
             </div>
