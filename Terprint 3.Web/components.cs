@@ -118,12 +118,14 @@ namespace Terprint_3
                 Strain = strain;
                 Batch = batch;
                 Ratings = r.UserRatings.Where(t => t.batch == batch).ToList();
+                Rating = (double)r.UserRatings.Where(t => t.batch == batch).Select(t=>t.OverallRating).FirstOrDefault();
             }
             List<components.Ratings.UserRating> Ratings;
             public double Value;
             public string TerpName;
             public string Strain;
             public string Batch;
+            public double Rating;
         }
         public void OnGet()
         {
@@ -263,25 +265,26 @@ namespace Terprint_3
                 TerpValues.Add(new terpValue(0, "γ-Terpinene", "Purple Eclipse", "5152 6368 4561 8754"));
                 TerpValues.Add(new terpValue(0.89, "δ-Limonene", "Purple Eclipse", "5152 6368 4561 8754"));
                 TerpValues.Add(new terpValue(7.603, "(R)-(+)-Limonene", "Krypto Chronic", "56966_0005029379"));
-                TerpValues.Add(new terpValue(2.287, "Borneol", "Krypto Chronic", "56966_0005029379"));
+                TerpValues.Add(new terpValue(2.287, "Borneol", "Krypto Chronic2", "56966_0005029379"));
                 TerpValues.Add(new terpValue(0.713, "Fenchyl Alcohol", "Krypto Chronic", "56966_0005029379"));
                 TerpValues.Add(new terpValue(2.651, "Linalool", "Krypto Chronic", "56966_0005029379"));
                 TerpValues.Add(new terpValue(3.919, "trans-Caryophyllene", "Krypto Chronic", "56966_0005029379"));
                 TerpValues.Add(new terpValue(0.92, "α-Humulene", "Krypto Chronic", "56966_0005029379"));
                 TerpValues.Add(new terpValue(0.655, "α-Pinene", "Krypto Chronic", "56966_0005029379"));
                 TerpValues.Add(new terpValue(1.303, "β-Myrcene", "Krypto Chronic", "56966_0005029379"));
-                TerpValues.Add(new terpValue(0.914, "β-Pinene", "Krypto Chronic", "56966_0005029379"));
-                TerpValues.Add(new terpValue(0.00769, "(R)-(+)-Limonene", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.0026, "Borneol", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.00069, "Fenchyl Alcohol", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.00469, "Linalool", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.01585, "trans-Caryophyllene", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.00086, "α-Bisabolol", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.00363, "α-Humulene", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.00055, "α-Pinene", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.00616, "β-Myrcene", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.00082, "β-Pinene", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(5.11, "(R)-(+)-Limonene", "DieselDough", "63424_0004931218"));
+                TerpValues.Add(new terpValue(0.914, "β-Pinene", "Krypto Chronic", "56966_0005029379")); 
+                TerpValues.Add(new terpValue(0.7689, "(R)-(+)-Limonene", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.2604, "Borneol", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.0692, "Fenchyl Alcohol", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.4693, "Linalool", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(1.5846, "trans-Caryophyllene", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.0855, "α-Bisabolol", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.3631, "α-Humulene", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.0551, "α-Pinene", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.6157, "β-Myrcene", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.0821, "β-Pinene", "Space Age Cake", "59727_0005068301"));
+
+
                 TerpValues.Add(new terpValue(2.374, "Borneol", "DieselDough", "63424_0004931218"));
                 TerpValues.Add(new terpValue(0.64, "Fenchyl", "DieselDough", "63424_0004931218"));
                 TerpValues.Add(new terpValue(1.44, "Guaiol", "DieselDough", "63424_0004931218"));
@@ -647,7 +650,7 @@ namespace Terprint_3
             if (size == "Micro")
             {
                 width = "width: 10px; height: 10px;";
-                temprows += "<table><tr>";
+                temprows += "<table border=\"1 px gray;\"><tr>";
                 //  temprows += "<table style='width: 15px'><tr>";
             }
             if (size == "Small")
