@@ -18,12 +18,12 @@
 
     <div class="row">
         <div class="col-3">
-            <label for="size" class="form-label">Matrix Size</label>
+            <label for="size" class="form-label">Size</label>
 
             <select name="size" asp-for="c.size" asp-items="c.OptionsSize" asp-asp-for="strainModel.size" class="form-select"></select>
         </div>
         <div class="col-3">
-            <label for="matrix" class="form-label">Matrix Number</label>
+            <label for="matrix" class="form-label">Number</label>
             <select name="matrix" asp-for="c.matrix" asp-items="c.OptionsMatrix" asp-asp-for="strainModel.matrix" class="form-select"></select>
         </div>
         <div class="col-4">
@@ -31,6 +31,7 @@
             <select name="strain" asp-for="strain" asp-items="c.Options" asp-asp-for="strainModel.strain" class="form-select"></select>
         </div>
         <div class="col-2">
+            
             <button type="submit" class="btn btn-primary">Click</button>
         </div>
     </div>
