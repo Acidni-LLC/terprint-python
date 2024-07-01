@@ -112,6 +112,7 @@ namespace Terprint_3
         {
             public terpValue(double value, string terpName, string strain, string batch)
             {
+               // Date = date;
                 components.Ratings r = new components.Ratings();
                 Value = value;
                 TerpName = terpName;
@@ -126,6 +127,7 @@ namespace Terprint_3
             public string Strain;
             public string Batch;
             public double Rating;
+            public DateOnly Date;
         }
         public void OnGet()
         {
@@ -265,7 +267,7 @@ namespace Terprint_3
                 TerpValues.Add(new terpValue(0, "γ-Terpinene", "Purple Eclipse", "5152 6368 4561 8754"));
                 TerpValues.Add(new terpValue(0.89, "δ-Limonene", "Purple Eclipse", "5152 6368 4561 8754"));
                 TerpValues.Add(new terpValue(7.603, "(R)-(+)-Limonene", "Krypto Chronic", "56966_0005029379"));
-                TerpValues.Add(new terpValue(2.287, "Borneol", "Krypto Chronic2", "56966_0005029379"));
+                TerpValues.Add(new terpValue(2.287, "Borneol", "Krypto Chronic", "56966_0005029379"));
                 TerpValues.Add(new terpValue(0.713, "Fenchyl Alcohol", "Krypto Chronic", "56966_0005029379"));
                 TerpValues.Add(new terpValue(2.651, "Linalool", "Krypto Chronic", "56966_0005029379"));
                 TerpValues.Add(new terpValue(3.919, "trans-Caryophyllene", "Krypto Chronic", "56966_0005029379"));
@@ -487,6 +489,10 @@ namespace Terprint_3
 
                 #endregion
             }
+
+        }
+        private void replaceCharacters()
+        {
 
         }
         public void loadmatrix(string strain = "")
