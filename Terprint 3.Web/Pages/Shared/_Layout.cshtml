@@ -2,6 +2,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5M0625NPF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-C5M0625NPF');
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Terptastic</title>
@@ -14,7 +23,7 @@
 </head>
 <body>
     <header>
-      
+
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Terptastic</a>
@@ -55,7 +64,7 @@
                                                 string urlencoded = System.Web.HttpUtility.UrlEncode(@strain + "|" + @batch);
                                                 <li><a class="dropdown-item" href="/Table?size=Medium&matrix=1&strain=@urlencoded">@batch</a></li>
                                             }
-                                            
+
                                         </ul>
                                     </li>
                                 }

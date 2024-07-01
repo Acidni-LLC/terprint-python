@@ -40,20 +40,22 @@
         {
 
             var strain = Model.c.TerpValues.Where(t => t.Batch == r).FirstOrDefault();
+            var terps = Model.c.TerpValues.Where(t => t.Batch == r).ToList();
             var urlpart = System.Net.WebUtility.UrlEncode(strain.Strain + "|" + strain.Batch);
-            var link = "/Table?size=Medium&matrix=1&strain=" + urlpart;
+            var link = "/Table?size=Medium&matrix=2&strain=" + urlpart;
             var rating = Convert.ToInt32(Model.c.ratings.UserRatings.Where(t => t.batch == strain.Batch).Select(t => t.OverallRating).FirstOrDefault().ToString());
             var counter = 1;
             Model.c.terprintTable(@r, "name");
             <div class="col-12 col-xxl-4 col-xl-4 col-lg-4 col-md-6">
                 <div class="row">
                     <div class="col-6 p-3">
-                        <a href="@link">
-                            @strain.Strain
+                        <a href="@link">@strain.Strain</a><br />
+                        <small>                            @(Math.Round((terps.Select(t => t.Value).Sum() * .1), 2))% - @terps.Count </small>
 
-                        </a>
                         <br />
-                        @r
+                        <small>
+                            @r
+                        </small>
                         <br />
 
                         @while (counter < 11)
@@ -71,7 +73,7 @@
                             counter++;
                         }
                     </div>
-                    <div class="col-6 p-3">
+                    <div class="col-2 p-3">
                         <div class="float-end">
                             <table style="border:solid 1px;">
                                 @{
