@@ -1,0 +1,121 @@
+﻿@page "/TerpeneValues/edit"
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+@inject NavigationManager NavigationManager
+@using Microsoft.EntityFrameworkCore
+
+<PageTitle>Edit</PageTitle>
+
+<h1>Edit</h1>
+
+<h4>TerpeneValues</h4>
+<hr />
+@if (TerpeneValues is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="TerpeneValues" OnValidSubmit="UpdateTerpeneValues" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <input type="hidden" name="TerpeneValues.Id" value="@TerpeneValues.Id" />
+                <div class="mb-3">
+                    <label for="grower" class="form-label">Grower:</label>
+                    <InputText id="grower" @bind-Value="TerpeneValues.Grower" class="form-control" />
+                    <ValidationMessage For="() => TerpeneValues.Grower" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="type" class="form-label">Type:</label>
+                    <InputText id="type" @bind-Value="TerpeneValues.Type" class="form-control" />
+                    <ValidationMessage For="() => TerpeneValues.Type" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="value" class="form-label">Value:</label>
+                    <InputNumber id="value" @bind-Value="TerpeneValues.Value" class="form-control" />
+                    <ValidationMessage For="() => TerpeneValues.Value" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="material" class="form-label">Material:</label>
+                    <InputText id="material" @bind-Value="TerpeneValues.Material" class="form-control" />
+                    <ValidationMessage For="() => TerpeneValues.Material" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="terpname" class="form-label">TerpName:</label>
+                    <InputText id="terpname" @bind-Value="TerpeneValues.TerpName" class="form-control" />
+                    <ValidationMessage For="() => TerpeneValues.TerpName" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="strain" class="form-label">Strain:</label>
+                    <InputText id="strain" @bind-Value="TerpeneValues.Strain" class="form-control" />
+                    <ValidationMessage For="() => TerpeneValues.Strain" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="rating" class="form-label">Rating:</label>
+                    <InputNumber id="rating" @bind-Value="TerpeneValues.Rating" class="form-control" />
+                    <ValidationMessage For="() => TerpeneValues.Rating" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="date" class="form-label">Date:</label>
+                    <InputDate id="date" @bind-Value="TerpeneValues.Date" class="form-control" />
+                    <ValidationMessage For="() => TerpeneValues.Date" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </EditForm>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="/terpenevalues">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromQuery]
+    public int Id { get; set; }
+
+    [SupplyParameterFromForm]
+    public TerpeneValues? TerpeneValues { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        TerpeneValues ??= await DB.TerpeneValues.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (TerpeneValues is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more details, see https://aka.ms/RazorPagesCRUD.
+    public async Task UpdateTerpeneValues()
+    {
+        DB.Attach(TerpeneValues!).State = EntityState.Modified;
+
+        try
+        {
+            await DB.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!TerpeneValuesExists(TerpeneValues!.Id))
+            {
+                NavigationManager.NavigateTo("notfound");
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        NavigationManager.NavigateTo("/terpenevalues");
+    }
+
+    bool TerpeneValuesExists(int id)
+    {
+        return DB.TerpeneValues.Any(e => e.Id == id);
+    }
+}

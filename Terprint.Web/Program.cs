@@ -1,6 +1,11 @@
 using Terprint.components;
 using Terprint.Web;
 using Terprint.Web.Components;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+//using Terprint.Web.Data;
+using Microsoft.AspNetCore.Identity;
+using Terprint.Web.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +17,11 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<TerprintWebContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TerprintWebContext") ?? throw new InvalidOperationException("Connection string 'TerprintWebContext' not found.")));
+
+
+builder.Services.AddQuickGridEntityFrameworkAdapter();;
 builder.Services.AddOutputCache();
 builder.Services.AddSingleton<Terprint.common.Components>();
 

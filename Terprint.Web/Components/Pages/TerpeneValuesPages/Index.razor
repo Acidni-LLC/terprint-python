@@ -1,0 +1,29 @@
+﻿@page "/terpenevalues"
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="terpenevalues/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="DB.TerpeneValues">
+    <PropertyColumn Property="terpenevalues => terpenevalues.Grower" />
+    <PropertyColumn Property="terpenevalues => terpenevalues.Type" />
+    <PropertyColumn Property="terpenevalues => terpenevalues.Value" />
+    <PropertyColumn Property="terpenevalues => terpenevalues.Material" />
+    <PropertyColumn Property="terpenevalues => terpenevalues.TerpName" />
+    <PropertyColumn Property="terpenevalues => terpenevalues.Strain" />
+    <PropertyColumn Property="terpenevalues => terpenevalues.Rating" />
+    <PropertyColumn Property="terpenevalues => terpenevalues.Date" />
+
+    <TemplateColumn Context="terpenevalues">
+        <a href="@($"terpenevalues/edit?id={terpenevalues.Id}")">Edit</a> |
+        <a href="@($"terpenevalues/details?id={terpenevalues.Id}")">Details</a> |
+        <a href="@($"terpenevalues/delete?id={terpenevalues.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
