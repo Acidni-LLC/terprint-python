@@ -1,14 +1,181 @@
 ﻿@page "/table"
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.WebUtilities
 @rendermode InteractiveServer
 @inject Terprint.common.Components c;
+@inject NavigationManager nm
 
 @code {
-    // Terprint.components.components c = new components.components();
-   // components.components c1 = new components.components();
-   
+    [FromQuery(Name = "strain")]
+    public string? strain
+    {
+        get
+        {
+            try
+            {
+                var uri = nm.ToAbsoluteUri(nm.Uri);
+                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("strain", out var _strain))
+                {
+                    return _strain.ToString().Split("|")[0];
+
+                    //   currentCount = Convert.ToInt32(_initialCount);
+                }
+                else
+                {
+
+                    if (c.currentStrain != null)
+                    {
+
+                        return c.currentStrain[0].Strain;
+
+                    }
+                    else { return ""; }
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        set { }
+    }
+
+
+
+    public string? batch
+    {
+        get
+        {
+
+            try
+            {
+
+                var uri = nm.ToAbsoluteUri(nm.Uri);
+                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("strain", out var _strain))
+                {
+                    return _strain.ToString().Split("|")[1];
+
+                    //   currentCount = Convert.ToInt32(_initialCount);
+                }
+                else
+                {
+                    if (c.currentStrain != null)
+                    {
+                        return c.currentStrain[0].Batch;
+                    }
+                    else { return null; }
+
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
+
+            }
+        }
+        set { }
+    }
+    [FromQuery(Name = "matrix")]
+    public int? matrix
+    {
+        get
+        {
+            try
+            {
+                var uri = nm.ToAbsoluteUri(nm.Uri);
+                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("matrix", out var _matrix))
+                {
+                    return Convert.ToInt32(_matrix);
+                    //   currentCount = Convert.ToInt32(_initialCount);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        set { }
+    }
+
+    [FromQuery(Name = "size")]
+    public string? size
+    {
+        get
+        {
+            try
+            {
+                var uri = nm.ToAbsoluteUri(nm.Uri);
+                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("size", out var _size))
+                {
+                    return _size;
+                    //   currentCount = Convert.ToInt32(_initialCount);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        set { }
+    }
+
+    public void OnPost()
+    {
+        //strain = Request.Form["strain"].ToString();
+        c.setCurrentStrain();
+    }
+    public void OnGet()
+    {
+
+        //   loadData();
+
+    }
+    public void loadData()
+    {
+        try
+        {
+
+            c.size = size;
+            c.matrix = matrix;
+            c.strain = strain;
+            c.batch = batch;
+            c.loadmatrix();
+            c.loadRatings();
+
+            c.loadStrains();
+            c.loadListBoxes();
+            c.setCurrentStrain();
+            if (c.currentStrain.Count == 0)
+            {
+                c.terprintTable(c.Options[0].Value.Split('|')[1]);
+            }
+            else
+            {
+                c.terprintTable(batch);
+            }
+
+        }
+
+
+        catch
+        {
+
+        }
+    }
+
+
 }
   @{
-    c.loadData();
+    loadData();
     var optionssize = c.OptionsSize;
     var optionsmatrix = c.OptionsMatrix;
     var size = c.OptionsSize;
@@ -18,22 +185,54 @@
 <form asp-route-matrix="@c.matrix" asp-route-strain="@c.strain" method="get">
 </form>
 
-    <div class="row">
-        <div class="col-3">
-            <label for="size" class="form-label">Matrix Size</label>
 
-        <select name="size" asp-for="size" asp-items="optionssize" class="form-select"></select>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 col-sm-12">
+            <p class="lead">@c.strain</p> <cite>@c.batch</cite>
         </div>
-        <div class="col-3">
-            <label for="matrix" class="form-label">Matrix Number</label>
-            <select name="matrix" asp-for="c.matrix" asp-items="c.OptionsMatrix" asp-asp-for="c.strainModel.matrix" class="form-select"></select>
-        </div>
-        <div class="col-4">
-            <label for="strain" class="form-label">Strain/Batch</label>
-            <select name="strain" asp-for="strain" asp-items="c.Options" asp-asp-for="c.strainModel.strain" class="form-select"></select>
-        </div>
-        <div class="col-2">
-            <button type="submit" class="btn btn-primary">Click</button>
+        <div class="col-6 col-sm-12">
+            <p class="lead">  @c.currentTerpenes  Terpenes  @Math.Round(c.currentStrain.Where(t => t.Value > 0).Select(t => t.Value * .1).Sum(), 4) % </p>
         </div>
     </div>
+    <div class="row">
+
+        <div class="col-12 ">
+            @{
+                int i = 0;
+                string sep = "";
+                MarkupString o = new MarkupString();
+                string terps = "";
+                foreach( var t in c.currentStrain.Where(t => t.Value > 0).OrderByDescending(t => t.Value).ToList())
+                {
+                    if (i>0)
+                    { sep = ", "; }
+                    string terpcolor = c.Matrixes.Where(t1 => t1.Name == t.TerpName).Select(t => t.Color).FirstOrDefault();
+                    terps = terps + sep+ "<font color='"+terpcolor+"'>"+ t.TerpName + "</font> " + Math.Round(t.Value * .1, 4) + "%" ;
+                    i++;
+                }
+                o = (MarkupString)terps;
+            }
+            <p>@o</p>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-12">
+            @{
+                @((MarkupString)myMarkup)
+
+                @functions {
+                    MarkupString myMarkup = (MarkupString)"";
+
+                }
+                myMarkup = c.outputrows;
+
+            }
+            @myMarkup
+        </div>
+    </div>
+</div>
 

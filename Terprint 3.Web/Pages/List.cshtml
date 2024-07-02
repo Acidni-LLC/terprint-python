@@ -1,6 +1,7 @@
 ﻿@page
 @model Terprint_3.Pages.ListModel
 @{
+
     // Terprint_3.Pages.TableModel tm = new Terprint_3.Pages.TableModel();
     Model.loadData();
 }
@@ -77,7 +78,6 @@
                         <div class="float-end">
                             <table style="border:solid 1px;">
                                 @{
-
                                     @Html.Raw(Model.c.outputrows)
                                     ;
                                 }

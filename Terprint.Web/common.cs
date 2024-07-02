@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Components;
 
 
 namespace Terprint.common
@@ -27,7 +28,7 @@ namespace Terprint.common
     public class Components : PageModel
     {
 
-        public Microsoft.AspNetCore.Html.HtmlString outputrows { get; set; }
+        public MarkupString outputrows { get; set; }
 
         [FromQuery(Name = "strain")]
         public string? strain
@@ -647,7 +648,7 @@ namespace Terprint.common
                 //test
             }
             string temprow = "";
-            string temprows = "";
+             string temprows = "";
             int currentRow = 1;
             int maxRow = Matrixes.Max(t => t.Row);
             Random rnd = new Random();
@@ -764,7 +765,7 @@ namespace Terprint.common
 
             temprows += "</tr></table>";
 
-            outputrows = new Microsoft.AspNetCore.Html.HtmlString(temprows);
+            outputrows =  (MarkupString)temprows ;
             // batchin = "";
 
 
