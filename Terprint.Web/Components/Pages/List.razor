@@ -1,9 +1,225 @@
 ﻿@page "/list"
-@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.WebUtilities
 
+@rendermode InteractiveServer
 <PageTitle>List</PageTitle>
-<h3>List</h3>
-<Terprint.Web.Components.Layout.FilterChooser></Terprint.Web.Components.Layout.FilterChooser>
+@inject Terprint.common.Components c;
+<PageTitle>List</PageTitle>
+@inject NavigationManager nm
+
+
 @code {
+    [FromQuery(Name = "strain")]
+    public string? strain
+    {
+        get
+        {
+            try
+            {
+                var uri = nm.ToAbsoluteUri(nm.Uri);
+                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("strain", out var _strain))
+                {
+                    return (_strain);
+                    //   currentCount = Convert.ToInt32(_initialCount);
+                }
+                else
+                {
+
+                    if (c.currentStrain != null)
+                    {
+
+                        return c.currentStrain[0].Strain;
+
+                    }
+                    else { return ""; }
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        set { }
+    }
+
+
+    public string? batch
+    {
+        get;
+        set;
+    }
+    [FromQuery(Name = "matrix")]
+    public int? matrix
+    {
+        get
+        {
+            try
+            {
+                var uri = nm.ToAbsoluteUri(nm.Uri);
+                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("matrix", out var _matrix))
+                {
+                    return Convert.ToInt32(_matrix);
+                    //   currentCount = Convert.ToInt32(_initialCount);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        set { }
+    }
+
+    [FromQuery(Name = "size")]
+    public string? size
+    {
+        get
+        {
+            try
+            {
+                var uri = nm.ToAbsoluteUri(nm.Uri);
+                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("size", out var _size))
+                {
+                    return _size;
+                    //   currentCount = Convert.ToInt32(_initialCount);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        set { }
+    }
+
+    public void OnPost()
+    {
+        //strain = Request.Form["strain"].ToString();
+        c.setCurrentStrain();
+    }
+    public void OnGet()
+    {
+
+        //   loadData();
+
+    }
+    public void loadData()
+    {
+        try
+        {
+
+            c.size = size;
+            c.matrix = matrix;
+            c.strain = strain;
+            c.batch = batch;
+            c.loadmatrix();
+            c.loadRatings();
+
+            c.loadStrains();
+            c.loadListBoxes();
+            c.setCurrentStrain();
+            if (c.currentStrain.Count == 0)
+            {
+                c.terprintTable(c.Options[0].Value.Split('|')[1]);
+            }
+            else
+            {
+                c.terprintTable();
+            }
+
+        }
+
+
+        catch
+        {
+
+        }
+    }
+
 
 }
+  @{
+    loadData();
+    var optionssize = c.OptionsSize;
+    var optionsmatrix = c.OptionsMatrix;
+    var size = c.OptionsSize;
+}
+<div class="container-fluid">
+
+    <div class="row gx-5">
+        @{
+            //c.size = size;
+
+        }
+
+
+        @foreach (var r in c.TerpValues
+        .OrderByDescending(t => t.Rating)
+        .Select(t => t.Batch)
+        .Distinct()
+        .ToList())
+        {
+
+            var strain = c.TerpValues.Where(t => t.Batch == r).FirstOrDefault();
+            var terps = c.TerpValues.Where(t => t.Batch == r).ToList();
+            var urlpart = System.Net.WebUtility.UrlEncode(strain.Strain + "|" + strain.Batch);
+            var link = "/Table?size=Medium&matrix=2&strain=" + urlpart;
+            var rating = Convert.ToInt32(c.ratings.UserRatings.Where(t => t.batch == strain.Batch).Select(t => t.OverallRating).FirstOrDefault().ToString());
+            var counter = 1;
+            c.terprintTable(@r, "name");
+            <div class="col-12 col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                <div class="row">
+                    <div class="col-6 p-3">
+                        <a href="@link">@strain.Strain</a><br />
+                        <small>                            @(Math.Round((terps.Select(t => t.Value).Sum() * .1), 2))% - @terps.Count </small>
+
+                        <br />
+                        <small>
+                            @r
+                        </small>
+                        <br />
+
+                        @while (counter < 11)
+                        {
+                            if (rating >= counter)
+                            {
+
+                                <span class="fa fa-star checked w3-large"></span>
+
+                            }
+                            else
+                            {
+                                <span class="fa fa-star"></span>
+                            }
+                            counter++;
+                        }
+                    </div>
+                    <div class="col-2 p-3">
+                        <div class="float-end">
+                            <table style="border:solid 1px;">
+                                @{
+                                    @c.outputrows
+                                    
+                                }
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+
