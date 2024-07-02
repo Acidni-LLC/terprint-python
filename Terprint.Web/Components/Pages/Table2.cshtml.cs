@@ -12,7 +12,7 @@ namespace Terprint.Pages
     public class TableModel : PageModel
     {
 
-        public Terprint.components.components c { get; set; }
+        public Terprint.common.Components c { get; set; }
 
         [FromQuery(Name = "strain")]
         public string? strain
@@ -106,7 +106,7 @@ namespace Terprint.Pages
         {
             try
             {
-                c = new components.components();
+                c = new Terprint.common.Components();
                 c.size = size;
                 c.matrix = matrix;
                 c.strain = strain;

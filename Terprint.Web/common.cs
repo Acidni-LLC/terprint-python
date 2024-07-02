@@ -3,10 +3,30 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace Terprint.components
+namespace Terprint.common
 {
-    public class components : PageModel
+
+    public static class Strains
     {
+        public static List<string> GetStrains()
+        {
+            Components c = new Components();
+            c.loadStrains();
+            return c.TerpValues.Select(t => t.Strain).OrderBy(t => t).Distinct().ToList();
+
+        }
+        public static List<string> GetBatches(string strain = "")
+        {
+            Components c = new Components();
+            c.loadStrains();
+            return c.TerpValues.Where(t => t.Strain == strain).Select(t => t.Batch).OrderBy(t => t).Distinct().ToList();
+
+        }
+
+    }
+    public class Components : PageModel
+    {
+
         public Microsoft.AspNetCore.Html.HtmlString outputrows { get; set; }
 
         [FromQuery(Name = "strain")]
@@ -47,8 +67,8 @@ namespace Terprint.components
         [FromQuery(Name = "matrix")]
         public int? matrix { get; set; }
 
-        public Ratings ratings { get; set; }
         [FromQuery(Name = "size")]
+        public components.Ratings ratings { get; set; }
         public string? size { get; set; }
         public string? RequestId { get; set; }
         public int currentTerpenes { get; set; }
@@ -86,23 +106,27 @@ namespace Terprint.components
             public int Matrix;
             public string Color;
         }
-      
+
         public class terpValue
         {
             public terpValue(double value, string terpName, string strain, string batch)
             {
-                Ratings r = new Ratings();
+                // Date = date;
+                components.Ratings r = new components.Ratings();
                 Value = value;
                 TerpName = terpName;
                 Strain = strain;
                 Batch = batch;
                 Ratings = r.UserRatings.Where(t => t.batch == batch).ToList();
+                Rating = (double)r.UserRatings.Where(t => t.batch == batch).Select(t => t.OverallRating).FirstOrDefault();
             }
-            List<Ratings.UserRating> Ratings;
+            List<components.Ratings.UserRating> Ratings;
             public double Value;
             public string TerpName;
             public string Strain;
             public string Batch;
+            public double Rating;
+            public DateOnly Date;
         }
         public void OnGet()
         {
@@ -141,7 +165,7 @@ namespace Terprint.components
         }
         public void loadRatings()
         {
-            ratings = new Ratings();
+            ratings = new components.Ratings();
             //  ratings.UserRatings = new List<Ratings.UserRating>();
 
         }
@@ -250,17 +274,18 @@ namespace Terprint.components
                 TerpValues.Add(new terpValue(0.655, "α-Pinene", "Krypto Chronic", "56966_0005029379"));
                 TerpValues.Add(new terpValue(1.303, "β-Myrcene", "Krypto Chronic", "56966_0005029379"));
                 TerpValues.Add(new terpValue(0.914, "β-Pinene", "Krypto Chronic", "56966_0005029379"));
-                TerpValues.Add(new terpValue(0.00769, "(R)-(+)-Limonene", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.0026, "Borneol", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.00069, "Fenchyl Alcohol", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.00469, "Linalool", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.01585, "trans-Caryophyllene", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.00086, "α-Bisabolol", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.00363, "α-Humulene", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.00055, "α-Pinene", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.00616, "β-Myrcene", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(0.00082, "β-Pinene", "Space Age Cake", "59727_0005068301"));
-                TerpValues.Add(new terpValue(5.11, "(R)-(+)-Limonene", "DieselDough", "63424_0004931218"));
+                TerpValues.Add(new terpValue(0.7689, "(R)-(+)-Limonene", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.2604, "Borneol", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.0692, "Fenchyl Alcohol", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.4693, "Linalool", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(1.5846, "trans-Caryophyllene", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.0855, "α-Bisabolol", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.3631, "α-Humulene", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.0551, "α-Pinene", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.6157, "β-Myrcene", "Space Age Cake", "59727_0005068301"));
+                TerpValues.Add(new terpValue(0.0821, "β-Pinene", "Space Age Cake", "59727_0005068301"));
+
+
                 TerpValues.Add(new terpValue(2.374, "Borneol", "DieselDough", "63424_0004931218"));
                 TerpValues.Add(new terpValue(0.64, "Fenchyl", "DieselDough", "63424_0004931218"));
                 TerpValues.Add(new terpValue(1.44, "Guaiol", "DieselDough", "63424_0004931218"));
@@ -465,6 +490,10 @@ namespace Terprint.components
             }
 
         }
+        private void replaceCharacters()
+        {
+
+        }
         public void loadmatrix(string strain = "")
         {
             if (Matrixes == null)
@@ -626,7 +655,7 @@ namespace Terprint.components
             if (size == "Micro")
             {
                 width = "width: 10px; height: 10px;";
-                temprows += "<table><tr>";
+                temprows += "<table border=\"1 px gray;\"><tr>";
                 //  temprows += "<table style='width: 15px'><tr>";
             }
             if (size == "Small")
@@ -637,14 +666,14 @@ namespace Terprint.components
             }
             else if (size == "Medium")
             {
-                width = "width: 100px;height: 25px;";
-                temprows += "<table style='width: 100%' ><tr>";
+                width = "width: 50px;height: 50px;";
+                temprows += "<table ><tr>";
                 // temprows += "<table style='width: 300px'><tr>";
             }
             else if (size == "Large")
             {
-                width = "width: 250px;height: 50px;";
-                temprows += "<table style='width: 100%'><tr>";
+                width = "width: 100px;height: 100px;";
+                temprows += "<table ><tr>";
             };
             List<matrixes> localmatrix = Matrixes;
             // if(sortorder =="name")
@@ -696,7 +725,7 @@ namespace Terprint.components
                         }
                         //set writing
 
-                        if (size == "Micro"|| size == "Small" )
+                        if (size == "Micro" || size == "Small")
                         {
 
                             temprow += string.Format(" ", opp, o.Name);
@@ -755,7 +784,7 @@ namespace Terprint.components
             else
             {
 
-                currentStrain = TerpValues.Where(t => t.Strain == Options.First().Value  ).ToList();
+                currentStrain = TerpValues.Where(t => t.Strain == Options.First().Value).ToList();
                 strain = Options.First().Value;
                 currentTerpenes = currentStrain.Where(t => t.Value > 0).ToList().Count;
 

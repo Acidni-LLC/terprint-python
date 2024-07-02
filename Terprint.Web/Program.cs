@@ -13,7 +13,7 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddRazorPages();
 builder.Services.AddOutputCache();
-builder.Services.AddSingleton<components>();
+builder.Services.AddSingleton<Terprint.common.Components>();
 
 builder.Services.AddHttpClient<WeatherApiClient>(client =>
     {
