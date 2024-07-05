@@ -1,0 +1,31 @@
+﻿
+using NuGet.Common;
+using System.ComponentModel.DataAnnotations;
+
+namespace Terprint.Web.Models
+{
+    public class Batch
+    {
+        public int BatchId { get; set; }
+        [Required]
+        //Terpene	Matrix	Row	Column	Color
+        public string Name { get; set; }
+        public string Type
+        { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
+        public DateTime Date { get; set; }
+        public ICollection<TerpeneValue> TerpeneValues { get;  }
+        public ICollection<Rating> Ratings { get; }
+        public ICollection<THCLevel> THCLevels { get; }
+        public Grower? Grower { get; set; }
+
+
+    public Batch()
+        {
+           // Grower = new Grower();
+            Date =  DateTime.Now;
+        }
+    }
+}

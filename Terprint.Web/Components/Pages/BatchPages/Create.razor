@@ -1,0 +1,70 @@
+﻿@page "/batches/create"
+@inject Terprint.Web.Data.TerprintWebContext DB
+@inject Terprint.Web.Data.TerprintWebContext DB2
+@using Terprint.Web.Models
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h4>Batch</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Batch" OnValidSubmit="AddBatch" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" />
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label> 
+                <InputText id="name" @bind-Value="Batch.Name" class="form-control" /> 
+                <ValidationMessage For="() => Batch.Name" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="type" class="form-label">Type:</label> 
+                <InputText id="type" @bind-Value="Batch.Type" class="form-control" /> 
+                <ValidationMessage For="() => Batch.Type" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="date" class="form-label">Date:</label> 
+                <InputDate id="date" @bind-Value="Batch.Date" class="form-control" /> 
+                <ValidationMessage For="() => Batch.Date" class="text-danger" /> 
+            </div>
+            <div class="mb-3">
+                <label for="grower" class="form-label">Grower:</label>
+                @{
+                   
+                   // var Growers = DB.Grower.ToList();
+                }
+                <InputSelect id="grower1" class="m-0 form-control edit-active"   @bind-Value="Batch.Grower">
+                    <option selected disabled>Select Grower</option>
+                    @foreach (Grower g in DB2.Grower)
+                    {
+                        <option value=@g.GrowerId  >@g.Name</option>
+                    }
+                </InputSelect>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/batches">Back to List</a>
+</div>
+
+@code {
+
+    [SupplyParameterFromForm]
+    public Batch Batch { get; set; } = new();
+    //public List<Grower> Growers { get; set; } = new();
+
+    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+    public async Task AddBatch()
+    {
+        
+        DB.Batch.Add(Batch);
+        await DB.SaveChangesAsync();
+        NavigationManager.NavigateTo("/batches");
+    }
+}

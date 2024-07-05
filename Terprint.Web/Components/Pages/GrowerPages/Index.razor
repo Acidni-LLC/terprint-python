@@ -1,0 +1,22 @@
+﻿@page "/growers"
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="growers/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="DB.Grower">
+    <PropertyColumn Property="grower => grower.Name" />
+
+    <TemplateColumn Context="grower">
+        <a href="@($"growers/edit?growerid={grower.GrowerId}")">Edit</a> |
+        <a href="@($"growers/details?growerid={grower.GrowerId}")">Details</a> |
+        <a href="@($"growers/delete?growerid={grower.GrowerId}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>

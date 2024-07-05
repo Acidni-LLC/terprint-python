@@ -12,14 +12,20 @@
   <ItemGroup>
     <ProjectReference Include="..\Terprint 3.Web\Terprint 3.Web.csproj" />
     <ProjectReference Include="..\Terprint.ApiService\Terprint.ApiService.csproj" />
+    <ProjectReference Include="..\Terprint.Web\Terprint.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.0" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>

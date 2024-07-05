@@ -1,10 +1,12 @@
-﻿namespace Terprint.Web.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Terprint.Web.Models
 {
-    public class Ratings
+    public class Rating
     {
-        public int Id { get; set; }
+        public int RatingId { get; set; }
         public string userid { get; set; }
-        public string batch { get; set; }
+        [Required]
         public int? OverallRating
  { get; set; }
         public int? Taste
