@@ -1,4 +1,7 @@
-﻿namespace Terprint.Web.Models
+﻿
+using System.ComponentModel.DataAnnotations;
+
+namespace Terprint.Web.Models
 {
     public class Matrixes
     {

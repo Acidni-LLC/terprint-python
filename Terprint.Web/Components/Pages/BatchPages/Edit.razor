@@ -1,0 +1,96 @@
+﻿@page "/Batches/edit"
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+@inject NavigationManager NavigationManager
+@using Microsoft.EntityFrameworkCore
+
+<PageTitle>Edit</PageTitle>
+
+<h1>Edit</h1>
+
+<h4>Batch</h4>
+<hr />
+@if (Batch is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="Batch" OnValidSubmit="UpdateBatch" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <input type="hidden" name="Batch.BatchId" value="@Batch.BatchId" />
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <InputText id="name" @bind-Value="Batch.Name" class="form-control" />
+                    <ValidationMessage For="() => Batch.Name" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="type" class="form-label">Type:</label>
+                    <InputText id="type" @bind-Value="Batch.Type" class="form-control" />
+                    <ValidationMessage For="() => Batch.Type" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="date" class="form-label">Date:</label>
+                    <InputDate id="date" @bind-Value="Batch.Date" class="form-control" />
+                    <ValidationMessage For="() => Batch.Date" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </EditForm>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="/batches">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromQuery]
+    public int BatchId { get; set; }
+
+    [SupplyParameterFromForm]
+    public Batch? Batch { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Batch ??= await DB.Batch.FirstOrDefaultAsync(m => m.BatchId == BatchId);
+
+        if (Batch is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more details, see https://aka.ms/RazorPagesCRUD.
+    public async Task UpdateBatch()
+    {
+        DB.Attach(Batch!).State = EntityState.Modified;
+
+        try
+        {
+            await DB.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!BatchExists(Batch!.BatchId))
+            {
+                NavigationManager.NavigateTo("notfound");
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        NavigationManager.NavigateTo("/batches");
+    }
+
+    bool BatchExists(int batchid)
+    {
+        return DB.Batch.Any(e => e.BatchId == batchid);
+    }
+}

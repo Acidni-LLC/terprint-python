@@ -1,0 +1,61 @@
+﻿@page "/batches/delete"
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+@inject NavigationManager NavigationManager
+@using Microsoft.EntityFrameworkCore
+
+<PageTitle>Delete</PageTitle>
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Batch</h4>
+    <hr />
+    @if (batch is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">Name</dt>
+            <dd class="col-sm-10">@batch.Name</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">Type</dt>
+            <dd class="col-sm-10">@batch.Type</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">Date</dt>
+            <dd class="col-sm-10">@batch.Date</dd>
+        </dl>
+        <EditForm method="post" Model="batch" OnValidSubmit="DeleteBatch" FormName="delete" Enhance>
+            <button type="submit" class="btn btn-danger" disabled="@(batch is null)">Delete</button> |
+            <a href="/batches">Back to List</a>
+        </EditForm>
+    }
+</div>
+
+@code {
+    Batch? batch;
+
+    [SupplyParameterFromQuery]
+    public int BatchId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        batch = await DB.Batch.FirstOrDefaultAsync(m => m.BatchId == BatchId);
+
+        if (batch is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    public async Task DeleteBatch()
+    {
+        DB.Batch.Remove(batch!);
+        await DB.SaveChangesAsync();
+        NavigationManager.NavigateTo("/batches");
+    }
+}

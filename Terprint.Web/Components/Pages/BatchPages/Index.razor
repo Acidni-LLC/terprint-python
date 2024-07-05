@@ -1,0 +1,25 @@
+﻿@page "/batches"
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="batches/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="DB.Batch">
+    <PropertyColumn Property="batch => batch.Name" />
+    <PropertyColumn Property="batch => batch.Type" />
+    <PropertyColumn Property="batch => batch.Date" />
+    <PropertyColumn Property="batch => batch.Grower.Name" />
+
+    <TemplateColumn Context="batch">
+        <a href="@($"batches/edit?batchid={batch.BatchId}")">Edit</a> |
+        <a href="@($"batches/details?batchid={batch.BatchId}")">Details</a> |
+        <a href="@($"batches/delete?batchid={batch.BatchId}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
