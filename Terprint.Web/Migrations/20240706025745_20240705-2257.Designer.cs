@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Terprint.Web.Data;
 
@@ -11,9 +12,11 @@ using Terprint.Web.Data;
 namespace Terprint.Web.Migrations
 {
     [DbContext(typeof(TerprintWebContext))]
-    partial class TerprintWebContextModelSnapshot : ModelSnapshot
+    [Migration("20240706025745_20240705-2257")]
+    partial class _202407052257
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -267,17 +270,35 @@ namespace Terprint.Web.Migrations
 
             modelBuilder.Entity("Terprint.Web.Models.TerpeneValue", b =>
                 {
-                    b.Property<int>("TerpeneValueId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TerpeneValueId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("BatchID")
-                        .IsRequired()
+                    b.Property<int>("BatchID")
                         .HasColumnType("int");
 
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Grower")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Material")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
                     b.Property<string>("Scale")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Strain")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TerpeneName")
@@ -287,7 +308,7 @@ namespace Terprint.Web.Migrations
                     b.Property<double>("Value")
                         .HasColumnType("float");
 
-                    b.HasKey("TerpeneValueId");
+                    b.HasKey("Id");
 
                     b.HasIndex("BatchID");
 

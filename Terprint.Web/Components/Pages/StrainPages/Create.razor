@@ -1,0 +1,48 @@
+﻿@page "/strains/create"
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h4>Strain</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Strain" OnValidSubmit="AddStrain" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" />
+            <div class="mb-3">
+                <label for="strainname" class="form-label">StrainName:</label> 
+                <InputText id="strainname" @bind-Value="Strain.StrainName" class="form-control" /> 
+                <ValidationMessage For="() => Strain.StrainName" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="straindescription" class="form-label">StrainDescription:</label> 
+                <InputText id="straindescription" @bind-Value="Strain.StrainDescription" class="form-control" /> 
+                <ValidationMessage For="() => Strain.StrainDescription" class="text-danger" /> 
+            </div>        
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/strains">Back to List</a>
+</div>
+
+@code {
+
+    [SupplyParameterFromForm]
+    public Strain Strain { get; set; } = new();
+
+    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+    public async Task AddStrain()
+    {
+        DB.Strain.Add(Strain);
+        await DB.SaveChangesAsync();
+        NavigationManager.NavigateTo("/strains");
+    }
+}

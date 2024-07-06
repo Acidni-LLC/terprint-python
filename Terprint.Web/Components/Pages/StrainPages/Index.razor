@@ -1,0 +1,23 @@
+﻿@page "/strains"
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="strains/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="DB.Strain">
+    <PropertyColumn Property="strain => strain.StrainName" />
+    <PropertyColumn Property="strain => strain.StrainDescription" />
+
+    <TemplateColumn Context="strain">
+        <a href="@($"strains/edit?strainid={strain.StrainId}")">Edit</a> |
+        <a href="@($"strains/details?strainid={strain.StrainId}")">Details</a> |
+        <a href="@($"strains/delete?strainid={strain.StrainId}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
