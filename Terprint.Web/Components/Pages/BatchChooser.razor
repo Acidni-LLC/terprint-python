@@ -6,7 +6,7 @@
 <div class="mb-3">
     <label for="batch" class="form-label">Batch:</label>
 
-    <InputSelect id="batch" class="m-0 form-control edit-active" @bind-Value="TerpeneValue.BatchID">
+    <InputSelect id="batch" class="m-0 form-control edit-active" @bind-Value="@TerpeneValue.BatchID">
         <option selected disabled>Select Batch</option>
         @foreach (var b in Batches)
         {
@@ -19,6 +19,7 @@
 @code {
 
     public TerpeneValue TerpeneValue { get; set; } = new();
+    public THCValue THCValue { get; set; } = new();
 
     public IList<Batch> Batches
     {

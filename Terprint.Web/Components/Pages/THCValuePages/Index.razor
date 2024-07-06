@@ -3,19 +3,24 @@
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 
-<PageTitle>Index</PageTitle>
+<PageTitle>THC Values</PageTitle>
 
-<h1>Index</h1>
+<h1>THC Values</h1>
 
 <p>
     <a href="thcvalues/create">Create New</a>
 </p>
 
 <QuickGrid Class="table" Items="DB.THCValues">
-    <PropertyColumn Property="thcvalue => thcvalue.BatchID" />
-    <PropertyColumn Property="thcvalue => thcvalue.Name" />
-    <PropertyColumn Property="thcvalue => thcvalue.Value" />
-    <PropertyColumn Property="thcvalue => thcvalue.Scale" />
+
+    <PropertyColumn Title="Batch" Property="thcvalue => DB.Batch.Where(t=>t.BatchId== thcvalue.BatchID).FirstOrDefault().Name" />
+    <PropertyColumn Title="Strain" Property="thcvalue => DB.Strain.Where(t1=>t1.StrainId== DB.Batch.Where(t=>t.BatchId== thcvalue.BatchID).FirstOrDefault().StrainID).FirstOrDefault().StrainName" />
+    <PropertyColumn Property="thcvalue => thcvalue.Analyte" />
+    <PropertyColumn Property="thcvalue => thcvalue.Dilution" />
+    <PropertyColumn Property="thcvalue => thcvalue.LOD" />
+    <PropertyColumn Property="thcvalue => thcvalue.LOQ" />
+    <PropertyColumn Property="thcvalue => thcvalue.Result" />s
+    <PropertyColumn Property="thcvalue => thcvalue.Percent" />
 
     <TemplateColumn Context="thcvalue">
         <a href="@($"thcvalues/edit?thcvalueid={thcvalue.THCValueId}")">Edit</a> |

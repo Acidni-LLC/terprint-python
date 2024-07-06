@@ -13,13 +13,13 @@
 <EditForm method="post" Model="@tv" OnValidSubmit="AddValues" FormName="create" Enhance>
     <div class="form-group">
         @{
-           // terpeneValues = DB2.TerpeneValues.ToList();
-            
+            // terpeneValues = DB2.TerpeneValues.ToList();
+
         }
         <Terprint.Web.Components.Pages.BatchChooser></Terprint.Web.Components.Pages.BatchChooser>
 
         <label class="control-label">Terpene Values</label>
-        <InputTextArea id="tva" @bind-Value="@tv" class="form-control" rows="10" >@string.Join("\n ", DB2.THCValues.Select(t => t.Name).ToList())</InputTextArea>
+        <InputTextArea id="tva" @bind-Value="@tv" class="form-control" rows="10">@string.Join("\n ", DB2.THCValues.Select(t => t.Analyte).ToList())</InputTextArea>
     </div>
     <button type="submit" class="btn btn-primary">Add Values</button>
 </EditForm>
@@ -30,7 +30,10 @@
     [SupplyParameterFromForm]
     public IList<THCValue> THCValues { get; set; } = new List<THCValue>();
     [SupplyParameterFromForm]
-    public string tv { get; set; } = new ("");
+    public string tv { get; set; } = new("");
+
+    [SupplyParameterFromForm]
+    public TerpeneValue TerpeneValue { get; set; } = new();
 
     public IList<Batch> Batches
     {
@@ -57,19 +60,46 @@
     private void ParseValues()
     {
         var longlist = tv;
-        var result = tv.Split(new[] {  '\n' });
+        var result = tv.Split(new[] { '\n' });
         THCValues = new List<THCValue>();
-        foreach(string s in result)
+        foreach (string s in result)
         {
-            int index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
-            string name = s.Substring(0, index);
-            string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
-            string secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
-            string thirddnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
-            string fourthnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
-            THCValues.Add(new THCValue() { Name = name, Value = Convert.ToDouble(secondnum), BatchID = THCValue.BatchID });
-            THCValues.Add(new THCValue() { Name = name, Value = Convert.ToDouble(secondnum), BatchID = THCValue.BatchID });
-            THCValues.Add(new THCValue() { Name = name, Value = Convert.ToDouble(secondnum), BatchID = THCValue.BatchID });
+            if (s.Length > 0)
+            {
+                string sl = s;
+                int index = 0;
+                if (s.Contains("Delta-9"))
+                {
+                    sl = s.Replace("Delta-9", "Delta-N");
+                    index = sl.IndexOf(sl.FirstOrDefault(char.IsNumber));
+
+
+                }
+                else if (s.Contains("Delta-8"))
+                {
+                    sl = s.Replace("Delta-8", "Delta-E");
+                    index = sl.IndexOf(sl.FirstOrDefault(char.IsNumber));
+
+                }
+                else
+                {
+                    index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
+
+                }
+                string name = s.Substring(0, index);
+                string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
+                string secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
+                string thirddnum = s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", "");
+                string fourthnum = s.Substring(index, s.Length - index).Split(" ")[3].Replace("%", "");
+                string fifthnum = s.Substring(index, s.Length - index).Split(" ")[4].Replace("%", "");
+                THCValue THCValue = new THCValue() { Analyte = name, Dilution = firstnum, LOD = secondnum, LOQ = thirddnum, Result = fourthnum, Percent = fifthnum, BatchID = TerpeneValue.BatchID };
+
+                THCValues.Add(new THCValue() { Analyte = name, Dilution = firstnum, LOD = secondnum, LOQ = thirddnum, Result = fourthnum, Percent = fifthnum, BatchID = TerpeneValue.BatchID });
+                // THCValues.Add(new THCValue() { Name = name, Value = Convert.ToDouble(secondnum), BatchID = THCValue.BatchID });
+                //THCValues.Add(new THCValue() { Name = name, Value = Convert.ToDouble(secondnum), BatchID = THCValue.BatchID });
+
+
+            }
         }
 
     }

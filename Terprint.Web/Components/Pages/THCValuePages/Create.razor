@@ -14,22 +14,36 @@
         <EditForm method="post" Model="THCValue" OnValidSubmit="AddTHCValue" FormName="create" Enhance>
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" />
-
-            <Terprint.Web.Components.Pages.BatchChooser></Terprint.Web.Components.Pages.BatchChooser>
+           <BatchChooser></BatchChooser>      
             <div class="mb-3">
-                <label for="name" class="form-label">Name:</label> 
-                <InputText id="name" @bind-Value="THCValue.Name" class="form-control" /> 
-                <ValidationMessage For="() => THCValue.Name" class="text-danger" /> 
+                <label for="analyte" class="form-label">Analyte:</label> 
+                <InputText id="analyte" @bind-Value="THCValue.Analyte" class="form-control" /> 
+                <ValidationMessage For="() => THCValue.Analyte" class="text-danger" /> 
             </div>        
             <div class="mb-3">
-                <label for="value" class="form-label">Value:</label> 
-                <InputNumber id="value" @bind-Value="THCValue.Value" class="form-control" /> 
-                <ValidationMessage For="() => THCValue.Value" class="text-danger" /> 
+                <label for="dilution" class="form-label">Dilution:</label> 
+                <InputText id="dilution" @bind-Value="THCValue.Dilution" class="form-control" /> 
+                <ValidationMessage For="() => THCValue.Dilution" class="text-danger" /> 
             </div>        
             <div class="mb-3">
-                <label for="scale" class="form-label">Scale:</label> 
-                <InputText id="scale" @bind-Value="THCValue.Scale" class="form-control" /> 
-                <ValidationMessage For="() => THCValue.Scale" class="text-danger" /> 
+                <label for="lod" class="form-label">LOD:</label> 
+                <InputText id="lod" @bind-Value="THCValue.LOD" class="form-control" /> 
+                <ValidationMessage For="() => THCValue.LOD" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="loq" class="form-label">LOQ:</label> 
+                <InputText id="loq" @bind-Value="THCValue.LOQ" class="form-control" /> 
+                <ValidationMessage For="() => THCValue.LOQ" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="result" class="form-label">Result:</label> 
+                <InputText id="result" @bind-Value="THCValue.Result" class="form-control" /> 
+                <ValidationMessage For="() => THCValue.Result" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="percent" class="form-label">Percent:</label> 
+                <InputText id="percent" @bind-Value="THCValue.Percent" class="form-control" /> 
+                <ValidationMessage For="() => THCValue.Percent" class="text-danger" /> 
             </div>        
             <button type="submit" class="btn btn-primary">Create</button>
         </EditForm>
