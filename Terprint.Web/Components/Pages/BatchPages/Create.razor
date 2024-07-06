@@ -1,6 +1,7 @@
 ﻿@page "/batches/create"
 @inject Terprint.Web.Data.TerprintWebContext DB
-@inject Terprint.Web.Data.TerprintWebContext DB2
+@inject Terprint.Web.Data.TerprintWebContext2 DB2
+@using Microsoft.EntityFrameworkCore
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
 
@@ -16,32 +17,35 @@
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" />
             <div class="mb-3">
-                <label for="name" class="form-label">Name:</label> 
-                <InputText id="name" @bind-Value="Batch.Name" class="form-control" /> 
-                <ValidationMessage For="() => Batch.Name" class="text-danger" /> 
-            </div>        
+                <label for="name" class="form-label">Name:</label>
+                <InputText id="name" @bind-Value="Batch.Name" class="form-control" />
+                <ValidationMessage For="() => Batch.Name" class="text-danger" />
+            </div>
             <div class="mb-3">
-                <label for="type" class="form-label">Type:</label> 
-                <InputText id="type" @bind-Value="Batch.Type" class="form-control" /> 
-                <ValidationMessage For="() => Batch.Type" class="text-danger" /> 
-            </div>        
+                <label for="type" class="form-label">Type:</label>
+                <InputText id="type" @bind-Value="Batch.Type" class="form-control" />
+                <ValidationMessage For="() => Batch.Type" class="text-danger" />
+            </div>
             <div class="mb-3">
-                <label for="date" class="form-label">Date:</label> 
-                <InputDate id="date" @bind-Value="Batch.Date" class="form-control" /> 
-                <ValidationMessage For="() => Batch.Date" class="text-danger" /> 
+                <label for="date" class="form-label">Date:</label>
+                <InputDate id="date" @bind-Value="Batch.Date" class="form-control" />
+                <ValidationMessage For="() => Batch.Date" class="text-danger" />
             </div>
             <div class="mb-3">
                 <label for="grower" class="form-label">Grower:</label>
                 @{
-                   
-                   // var Growers = DB.Grower.ToList();
+
+                    Growers = DB2.Grower.ToList();
                 }
-                <InputSelect id="grower1" class="m-0 form-control edit-active"   @bind-Value="Batch.Grower">
+                <InputSelect id="grower1" class="m-0 form-control edit-active" @bind-Value="Batch.GrowerID">
                     <option selected disabled>Select Grower</option>
-                    @foreach (Grower g in DB2.Grower)
+                     @foreach (var gg in Growers)
                     {
-                        <option value=@g.GrowerId  >@g.Name</option>
-                    }
+                        
+                        <option value=@gg.GrowerId @onselect="() => Batch.GrowerID = gg.GrowerId">@gg.Name</option>
+
+                    }  
+
                 </InputSelect>
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
@@ -55,15 +59,38 @@
 
 @code {
 
+
+    public Grower Grower { get; set; } = new();
     [SupplyParameterFromForm]
     public Batch Batch { get; set; } = new();
-    //public List<Grower> Growers { get; set; } = new();
 
+    public IList<Grower> Growers
+    {
+        get
+        {
+            grower = DB2.Grower.ToList();
+            return  grower;
+        }
+        set{ grower = value; }
+    }
+
+    private IList<Grower> grower { get; set; } 
+    private Grower g { get; set; } = new();
+
+    private async Task<List<Grower>> GetGrower()
+    {
+        return await DB.Grower
+                    //.Include(c => c.)
+                    .AsNoTracking()
+                    .ToListAsync();
+    }
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task AddBatch()
     {
+        //Batch.Grower = Grower;
+        //DB2.DisposeAsync();   
         
-        DB.Batch.Add(Batch);
+        DB.Batch.AddAsync(Batch);
         await DB.SaveChangesAsync();
         NavigationManager.NavigateTo("/batches");
     }

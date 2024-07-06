@@ -49,7 +49,7 @@ else
 
 @code {
     [SupplyParameterFromQuery]
-    public int BatchId { get; set; }
+    public int? BatchId { get; set; }
 
     [SupplyParameterFromForm]
     public Batch? Batch { get; set; }
@@ -76,20 +76,20 @@ else
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!BatchExists(Batch!.BatchId))
-            {
-                NavigationManager.NavigateTo("notfound");
-            }
-            else
-            {
-                throw;
-            }
+            // if (!BatchExists(Batch!.BatchId))
+            // {
+            //     NavigationManager.NavigateTo("notfound");
+            // }
+            // else
+            // {
+            //     throw;
+            // }
         }
 
         NavigationManager.NavigateTo("/batches");
     }
 
-    bool BatchExists(int batchid)
+    bool BatchExists(int? batchid)
     {
         return DB.Batch.Any(e => e.BatchId == batchid);
     }

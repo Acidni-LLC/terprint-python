@@ -19,6 +19,8 @@ builder.Services.AddRazorComponents()
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<TerprintWebContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("TerprintWebContext") ?? throw new InvalidOperationException("Connection string 'TerprintWebContext' not found.")));
+builder.Services.AddDbContext<TerprintWebContext2>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TerprintWebContext") ?? throw new InvalidOperationException("Connection string 'TerprintWebContext' not found.")));
 
 
 builder.Services.AddQuickGridEntityFrameworkAdapter();;
