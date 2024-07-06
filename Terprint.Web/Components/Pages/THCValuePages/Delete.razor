@@ -22,16 +22,28 @@
             <dd class="col-sm-10">@thcvalue.BatchID</dd>
         </dl>
         <dl class="row">
-            <dt class="col-sm-2">Name</dt>
-            <dd class="col-sm-10">@thcvalue.Name</dd>
+            <dt class="col-sm-2">Analyte</dt>
+            <dd class="col-sm-10">@thcvalue.Analyte</dd>
         </dl>
         <dl class="row">
-            <dt class="col-sm-2">Value</dt>
-            <dd class="col-sm-10">@thcvalue.Value</dd>
+            <dt class="col-sm-2">Dilution</dt>
+            <dd class="col-sm-10">@thcvalue.Dilution</dd>
         </dl>
         <dl class="row">
-            <dt class="col-sm-2">Scale</dt>
-            <dd class="col-sm-10">@thcvalue.Scale</dd>
+            <dt class="col-sm-2">LOD</dt>
+            <dd class="col-sm-10">@thcvalue.LOD</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">LOQ</dt>
+            <dd class="col-sm-10">@thcvalue.LOQ</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">Result</dt>
+            <dd class="col-sm-10">@thcvalue.Result</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">Percent</dt>
+            <dd class="col-sm-10">@thcvalue.Percent</dd>
         </dl>
         <EditForm method="post" Model="thcvalue" OnValidSubmit="DeleteTHCValue" FormName="delete" Enhance>
             <button type="submit" class="btn btn-danger" disabled="@(thcvalue is null)">Delete</button> |

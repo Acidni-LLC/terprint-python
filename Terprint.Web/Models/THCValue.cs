@@ -10,9 +10,14 @@ namespace Terprint.Web.Models
         [Required]
         public int? BatchID { get; set; }
 
-        public string Name { get; set; }
-        public double Value { get; set; }
-        public string Scale { get; set; }
+        public string Analyte { get; set; }
+        public string Dilution { get; set; }
+        public string LOD { get; set; }
+        public string LOQ { get; set; }
+
+        public string Result { get; set; }
+
+        public string Percent { get; set; }
 
 
     }
