@@ -7,10 +7,33 @@ using Terprint.Web.Models;
 
 namespace Terprint.Web.Data
 {
+        public class TerprintWebContext2 : TerprintWebContext
+    {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder
+                .EnableSensitiveDataLogging()
+
+                // .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test;ConnectRetryCount=0")
+                ;
+        }
+        public TerprintWebContext2(DbContextOptions<TerprintWebContext> options)
+            : base(options)
+        {
+        }
+    }
     public class TerprintWebContext : DbContext
     {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder
+                .EnableSensitiveDataLogging()
+               
+               // .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test;ConnectRetryCount=0")
+                ;
+        }
         public TerprintWebContext (DbContextOptions<TerprintWebContext> options)
-            : base(options)
+            : base(options )
         {
         }
 

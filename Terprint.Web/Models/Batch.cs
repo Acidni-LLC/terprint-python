@@ -6,7 +6,7 @@ namespace Terprint.Web.Models
 {
     public class Batch
     {
-        public int BatchId { get; set; }
+        public int? BatchId { get; set; }
         [Required]
         //Terpene	Matrix	Row	Column	Color
         public string Name { get; set; }
@@ -20,11 +20,14 @@ namespace Terprint.Web.Models
         public ICollection<Rating> Ratings { get; }
         public ICollection<THCLevel> THCLevels { get; }
         public Grower? Grower { get; set; }
+        public int? GrowerID { get; set; }
 
 
-    public Batch()
+
+        public Batch()
         {
-           // Grower = new Grower();
+            BatchId = null;
+            Grower = new Grower();
             Date =  DateTime.Now;
         }
     }
