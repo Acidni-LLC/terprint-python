@@ -1,0 +1,25 @@
+﻿@page "/ratingcategories"
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="ratingcategories/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="DB.RatingCategory">
+    <PropertyColumn Property="ratingcategory => ratingcategory.RatingCategoryType" />
+    <PropertyColumn Property="ratingcategory => ratingcategory.CategoryName" />
+    <PropertyColumn Property="ratingcategory => ratingcategory.CategoryDescription" />
+    <PropertyColumn Property="ratingcategory => ratingcategory.CategoryTitle" />
+
+    <TemplateColumn Context="ratingcategory">
+        <a href="@($"ratingcategories/edit?ratingcategoryid={ratingcategory.RatingCategoryId}")">Edit</a> |
+        <a href="@($"ratingcategories/details?ratingcategoryid={ratingcategory.RatingCategoryId}")">Details</a> |
+        <a href="@($"ratingcategories/delete?ratingcategoryid={ratingcategory.RatingCategoryId}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>

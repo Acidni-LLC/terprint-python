@@ -8,9 +8,9 @@ namespace Terprint.Web.Models
         [Required]
         public string Name
         { get; set; }
-        public ICollection<States> States
+        public IList<States> States
         { get; set; }
-        public ICollection<Batch> Batches { get; } 
+        public IList<Batch> Batches { get; } 
 
     }
 }
