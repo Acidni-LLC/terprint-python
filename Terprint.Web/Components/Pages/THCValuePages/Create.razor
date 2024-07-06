@@ -1,0 +1,55 @@
+﻿@page "/thcvalues/create"
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h4>THCValue</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="THCValue" OnValidSubmit="AddTHCValue" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" />
+
+            <Terprint.Web.Components.Pages.BatchChooser></Terprint.Web.Components.Pages.BatchChooser>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label> 
+                <InputText id="name" @bind-Value="THCValue.Name" class="form-control" /> 
+                <ValidationMessage For="() => THCValue.Name" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="value" class="form-label">Value:</label> 
+                <InputNumber id="value" @bind-Value="THCValue.Value" class="form-control" /> 
+                <ValidationMessage For="() => THCValue.Value" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="scale" class="form-label">Scale:</label> 
+                <InputText id="scale" @bind-Value="THCValue.Scale" class="form-control" /> 
+                <ValidationMessage For="() => THCValue.Scale" class="text-danger" /> 
+            </div>        
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/thcvalues">Back to List</a>
+</div>
+
+@code {
+
+    [SupplyParameterFromForm]
+    public THCValue THCValue { get; set; } = new();
+
+    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+    public async Task AddTHCValue()
+    {
+        DB.THCValues.Add(THCValue);
+        await DB.SaveChangesAsync();
+        NavigationManager.NavigateTo("/thcvalues");
+    }
+}

@@ -1,0 +1,51 @@
+﻿@page "/thcvalues/details"
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+@inject NavigationManager NavigationManager
+@using Microsoft.EntityFrameworkCore
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h4>THCValue</h4>
+    <hr />
+    @if (thcvalue is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">BatchID</dt>
+            <dd class="col-sm-10">@thcvalue.BatchID</dd>
+            <dt class="col-sm-2">Name</dt>
+            <dd class="col-sm-10">@thcvalue.Name</dd>
+            <dt class="col-sm-2">Value</dt>
+            <dd class="col-sm-10">@thcvalue.Value</dd>
+            <dt class="col-sm-2">Scale</dt>
+            <dd class="col-sm-10">@thcvalue.Scale</dd>
+        </dl>
+        <div>
+            <a href="@($"/thcvalues/edit?thcvalueid={thcvalue.THCValueId}")">Edit</a> |
+            <a href="@($"/thcvalues")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    THCValue? thcvalue;
+
+    [SupplyParameterFromQuery]
+    public int THCValueId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        thcvalue = await DB.THCValues.FirstOrDefaultAsync(m => m.THCValueId == THCValueId);
+
+        if (thcvalue is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}

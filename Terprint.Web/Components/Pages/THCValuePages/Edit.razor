@@ -1,0 +1,101 @@
+﻿@page "/THCValues/edit"
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+@inject NavigationManager NavigationManager
+@using Microsoft.EntityFrameworkCore
+
+<PageTitle>Edit</PageTitle>
+
+<h1>Edit</h1>
+
+<h4>THCValue</h4>
+<hr />
+@if (THCValue is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="THCValue" OnValidSubmit="UpdateTHCValue" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <input type="hidden" name="THCValue.THCValueId" value="@THCValue.THCValueId" />
+                <div class="mb-3">
+                    <label for="batchid" class="form-label">BatchID:</label>
+                    <InputNumber id="batchid" @bind-Value="THCValue.BatchID" class="form-control" />
+                    <ValidationMessage For="() => THCValue.BatchID" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <InputText id="name" @bind-Value="THCValue.Name" class="form-control" />
+                    <ValidationMessage For="() => THCValue.Name" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="value" class="form-label">Value:</label>
+                    <InputNumber id="value" @bind-Value="THCValue.Value" class="form-control" />
+                    <ValidationMessage For="() => THCValue.Value" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="scale" class="form-label">Scale:</label>
+                    <InputText id="scale" @bind-Value="THCValue.Scale" class="form-control" />
+                    <ValidationMessage For="() => THCValue.Scale" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </EditForm>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="/thcvalues">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromQuery]
+    public int THCValueId { get; set; }
+
+    [SupplyParameterFromForm]
+    public THCValue? THCValue { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        THCValue ??= await DB.THCValues.FirstOrDefaultAsync(m => m.THCValueId == THCValueId);
+
+        if (THCValue is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more details, see https://aka.ms/RazorPagesCRUD.
+    public async Task UpdateTHCValue()
+    {
+        DB.Attach(THCValue!).State = EntityState.Modified;
+
+        try
+        {
+            await DB.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!THCValueExists(THCValue!.THCValueId))
+            {
+                NavigationManager.NavigateTo("notfound");
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        NavigationManager.NavigateTo("/thcvalues");
+    }
+
+    bool THCValueExists(int thcvalueid)
+    {
+        return DB.THCValues.Any(e => e.THCValueId == thcvalueid);
+    }
+}
