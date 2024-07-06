@@ -1,0 +1,80 @@
+﻿@page "/terpenevalues/paste"
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject Terprint.Web.Data.TerprintWebContext DB
+@inject Terprint.Web.Data.TerprintWebContext2 DB2
+@inject NavigationManager NavigationManager
+@using Terprint.Web.Models
+<h3>PasteTerpeneValues</h3>
+
+<EditForm method="post" Model="@tv" OnValidSubmit="AddValues" FormName="create" Enhance>
+    <div class="form-group">
+        <label class="control-label">TerpeneValues</label>
+        <textarea name="TerpeneValuesSample" class="form-control" style="height:200px">@string.Join("\n ", DB2.TerpeneValues.Select(t => t.TerpeneName).ToList())</textarea>
+        @{
+           // terpeneValues = DB2.TerpeneValues.ToList();
+            
+        }
+
+        <div class="mb-3">
+            <label for="batch" class="form-label">Batch:</label>
+
+            <InputSelect id="batch" class="m-0 form-control edit-active" @bind-Value="TerpeneValue.BatchID">
+                <option selected disabled>Select Batch</option>
+                @foreach (var b in Batches)
+                {
+                    <option value=@b.BatchId @onselect="() => TerpeneValue.BatchID = b.BatchId">@DB2.Strain.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName  @b.Date  @b.Name</option>
+                }
+
+            </InputSelect>
+        </div>
+        <InputTextArea id="tva" @bind-Value="@tv" class="form-control" rows="10" >@string.Join("\n ", DB2.TerpeneValues.Select(t => t.TerpeneName).ToList())</InputTextArea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Values</button>
+</EditForm>
+@code {
+
+    [SupplyParameterFromForm]
+    public TerpeneValue TerpeneValue { get; set; } = new();
+    [SupplyParameterFromForm]
+    public IList<TerpeneValue> terpeneValues { get; set; } = new List<TerpeneValue>();
+    [SupplyParameterFromForm]
+    public string tv { get; set; } = new ("");
+
+    public IList<Batch> Batches
+    {
+        get
+        {
+            batch = DB2.Batch.ToList();
+            return batch;
+        }
+        set { batch = value; }
+    }
+
+    private IList<Batch> batch { get; set; }
+
+    public async Task AddValues()
+    {
+        //Batch.Grower = Grower;
+        //DB2.DisposeAsync();
+
+        ParseValues();
+        await DB.TerpeneValues.AddRangeAsync(terpeneValues);
+        await DB.SaveChangesAsync();
+        NavigationManager.NavigateTo("/terpenevalues");
+    }
+    private void ParseValues()
+    {
+        var longlist = tv;
+        var result = tv.Split(new[] {  '\n' });
+        terpeneValues = new List<TerpeneValue>();
+        foreach(string s in result)
+        {
+            int index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
+            string name = s.Substring(0, index);
+            string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
+            string secondnum =  s.Substring(index, s.Length - index).Split(" ")[1].Replace("%","");
+            terpeneValues.Add(new TerpeneValue() { TerpeneName = name, Value = Convert.ToDouble(secondnum), BatchID = TerpeneValue .BatchID});
+        }
+
+    }
+}

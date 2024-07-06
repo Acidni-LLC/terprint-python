@@ -33,18 +33,25 @@
             </div>
             <div class="mb-3">
                 <label for="grower" class="form-label">Grower:</label>
-                @{
 
-                    Growers = DB2.Grower.ToList();
-                }
-                <InputSelect id="grower1" class="m-0 form-control edit-active" @bind-Value="Batch.GrowerID">
+                <InputSelect id="grower" class="m-0 form-control edit-active" @bind-Value="Batch.GrowerID">
                     <option selected disabled>Select Grower</option>
-                     @foreach (var gg in Growers)
+                    @foreach (var g in Growers)
                     {
-                        
-                        <option value=@gg.GrowerId @onselect="() => Batch.GrowerID = gg.GrowerId">@gg.Name</option>
+                        <option value=@g.GrowerId @onselect="() => Batch.GrowerID = g.GrowerId">@g.Name</option>
+                    }
 
-                    }  
+                </InputSelect>
+            </div>
+            <div class="mb-3">
+                <label for="grower" class="form-label">Strain:</label>
+
+                <InputSelect id="grower1" class="m-0 form-control edit-active" @bind-Value="Batch.StrainID">
+                    <option selected disabled>Select Strain</option>
+                    @foreach (var s in Strains)
+                    {
+                        <option value=@s.StrainId @onselect="() => Batch.StrainID = s.StrainId">@s.StrainName</option>
+                    }
 
                 </InputSelect>
             </div>
@@ -69,27 +76,30 @@
         get
         {
             grower = DB2.Grower.ToList();
-            return  grower;
+            return grower;
         }
-        set{ grower = value; }
+        set { grower = value; }
+    }
+    public IList<Strain> Strains
+    {
+        get
+        {
+            strain = DB2.Strain.ToList();
+            return strain;
+        }
+        set { strain = value; }
     }
 
-    private IList<Grower> grower { get; set; } 
+    private IList<Grower> grower { get; set; }
+    private IList<Strain> strain { get; set; }
     private Grower g { get; set; } = new();
 
-    private async Task<List<Grower>> GetGrower()
-    {
-        return await DB.Grower
-                    //.Include(c => c.)
-                    .AsNoTracking()
-                    .ToListAsync();
-    }
+
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task AddBatch()
     {
         //Batch.Grower = Grower;
-        //DB2.DisposeAsync();   
-        
+        //DB2.DisposeAsync();
         DB.Batch.AddAsync(Batch);
         await DB.SaveChangesAsync();
         NavigationManager.NavigateTo("/batches");

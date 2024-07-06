@@ -15,12 +15,13 @@ namespace Terprint.Web.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
-        public DateTime Date { get; set; }
+        public DateOnly Date { get; set; }
         public ICollection<TerpeneValue> TerpeneValues { get;  }
         public ICollection<Rating> Ratings { get; }
         public ICollection<THCLevel> THCLevels { get; }
         public Grower? Grower { get; set; }
         public int? GrowerID { get; set; }
+        public int? StrainID { get; set; }
 
 
 
@@ -28,7 +29,7 @@ namespace Terprint.Web.Models
         {
             BatchId = null;
             Grower = new Grower();
-            Date =  DateTime.Now;
+            Date =  new DateOnly( DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day);
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Terprint.Web.Data;
 
@@ -11,9 +12,11 @@ using Terprint.Web.Data;
 namespace Terprint.Web.Migrations
 {
     [DbContext(typeof(TerprintWebContext))]
-    partial class TerprintWebContextModelSnapshot : ModelSnapshot
+    [Migration("20240706032620_20240705-2325")]
+    partial class _202407052325
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -273,11 +276,14 @@ namespace Terprint.Web.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TerpeneValueId"));
 
-                    b.Property<int?>("BatchID")
-                        .IsRequired()
+                    b.Property<int>("BatchID")
                         .HasColumnType("int");
 
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
                     b.Property<string>("Scale")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TerpeneName")
