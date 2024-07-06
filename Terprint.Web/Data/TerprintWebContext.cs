@@ -44,7 +44,7 @@ namespace Terprint.Web.Data
         public DbSet<Terprint.Web.Models.RatingCategory> RatingCategory { get; set; } = default!;
         public DbSet<Terprint.Web.Models.Strain> Strain { get; set; } = default!;
         public DbSet<Terprint.Web.Models.Batch> Batch { get; set; } = default!;
-        public DbSet<Terprint.Web.Models.THCLevel> THCLevels { get; set; } = default!;
+        public DbSet<Terprint.Web.Models.THCValue> THCValues { get; set; } = default!;
         public DbSet<Terprint.Web.Models.States> States { get; set; } = default!;
     }
 }

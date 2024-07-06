@@ -3,10 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Terprint.Web.Models
 {
-    public class THCLevel
+    public class THCValue
     {
 
-        public int Id { get; set; }
+        public int THCValueId { get; set; }
+        [Required]
+        public int? BatchID { get; set; }
 
         public string Name { get; set; }
         public double Value { get; set; }

@@ -1,0 +1,58 @@
+﻿@page "/ratingcategories/create"
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h4>RatingCategory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="RatingCategory" OnValidSubmit="AddRatingCategory" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" />
+            <div class="mb-3">
+                <label for="ratingcategorytype" class="form-label">RatingCategoryType:</label> 
+                <InputText id="ratingcategorytype" @bind-Value="RatingCategory.RatingCategoryType" class="form-control" /> 
+                <ValidationMessage For="() => RatingCategory.RatingCategoryType" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="categoryname" class="form-label">CategoryName:</label> 
+                <InputText id="categoryname" @bind-Value="RatingCategory.CategoryName" class="form-control" /> 
+                <ValidationMessage For="() => RatingCategory.CategoryName" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="categorydescription" class="form-label">CategoryDescription:</label> 
+                <InputText id="categorydescription" @bind-Value="RatingCategory.CategoryDescription" class="form-control" /> 
+                <ValidationMessage For="() => RatingCategory.CategoryDescription" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="categorytitle" class="form-label">CategoryTitle:</label> 
+                <InputText id="categorytitle" @bind-Value="RatingCategory.CategoryTitle" class="form-control" /> 
+                <ValidationMessage For="() => RatingCategory.CategoryTitle" class="text-danger" /> 
+            </div>        
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/ratingcategories">Back to List</a>
+</div>
+
+@code {
+
+    [SupplyParameterFromForm]
+    public RatingCategory RatingCategory { get; set; } = new();
+
+    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+    public async Task AddRatingCategory()
+    {
+        DB.RatingCategory.Add(RatingCategory);
+        await DB.SaveChangesAsync();
+        NavigationManager.NavigateTo("/ratingcategories");
+    }
+}
