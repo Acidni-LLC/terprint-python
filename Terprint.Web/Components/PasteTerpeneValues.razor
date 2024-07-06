@@ -14,19 +14,8 @@
            // terpeneValues = DB2.TerpeneValues.ToList();
             
         }
-
-        <div class="mb-3">
-            <label for="batch" class="form-label">Batch:</label>
-
-            <InputSelect id="batch" class="m-0 form-control edit-active" @bind-Value="TerpeneValue.BatchID">
-                <option selected disabled>Select Batch</option>
-                @foreach (var b in Batches)
-                {
-                    <option value=@b.BatchId @onselect="() => TerpeneValue.BatchID = b.BatchId">@DB2.Strain.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName  @b.Date  @b.Name</option>
-                }
-
-            </InputSelect>
-        </div>
+        <Terprint.Web.Components.Pages.BatchChooser></Terprint.Web.Components.Pages.BatchChooser>
+       
         <InputTextArea id="tva" @bind-Value="@tv" class="form-control" rows="10" >@string.Join("\n ", DB2.TerpeneValues.Select(t => t.TerpeneName).ToList())</InputTextArea>
     </div>
     <button type="submit" class="btn btn-primary">Add Values</button>

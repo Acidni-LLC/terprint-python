@@ -1,0 +1,34 @@
+﻿@inject Terprint.Web.Data.TerprintWebContext DB
+@inject Terprint.Web.Data.TerprintWebContext2 DB2
+@using Terprint.Web.Models
+@inject NavigationManager NavigationManager
+
+<div class="mb-3">
+    <label for="batch" class="form-label">Batch:</label>
+
+    <InputSelect id="batch" class="m-0 form-control edit-active" @bind-Value="TerpeneValue.BatchID">
+        <option selected disabled>Select Batch</option>
+        @foreach (var b in Batches)
+        {
+            <option value=@b.BatchId @onselect="() => TerpeneValue.BatchID = b.BatchId">@DB2.Strain.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName  @b.Date  @b.Name</option>
+        }
+
+    </InputSelect>
+</div>
+
+@code {
+
+    public TerpeneValue TerpeneValue { get; set; } = new();
+
+    public IList<Batch> Batches
+    {
+        get
+        {
+            batch = DB2.Batch.ToList();
+            return batch;
+        }
+        set { batch = value; }
+    }
+
+    private IList<Batch> batch { get; set; }
+}
