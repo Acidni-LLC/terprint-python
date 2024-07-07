@@ -5,7 +5,7 @@ namespace Terprint.Web.Models
     public class RatingCategory
     {
         public int RatingCategoryId { get; set; }
-        [Display(Name = "Category Name Type"), DataType(DataType.Text)]
+        [Display(Name = "Rating Category Type"), DataType(DataType.Text)]
         public string RatingCategoryType { get; set; }
         [Required]
         [Display(Name = "Category Name"), DataType(DataType.Text)]

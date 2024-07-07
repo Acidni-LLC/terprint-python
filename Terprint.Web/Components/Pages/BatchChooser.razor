@@ -17,15 +17,19 @@
 </div>
 
 @code {
-
-    public TerpeneValue TerpeneValue { get; set; } = new();
-    public THCValue THCValue { get; set; } = new();
+    public int? BatchID { get; set; } = new();
+    public TerpeneValue TerpeneValue
+    { get; set; } = new();
+    private TerpeneValue tv { get; set; } = new();
 
     public IList<Batch> Batches
     {
         get
         {
-            batch = DB2.Batch.ToList();
+            if (batch is null)
+            {
+                batch = DB2.Batch.ToList();
+            }
             return batch;
         }
         set { batch = value; }
