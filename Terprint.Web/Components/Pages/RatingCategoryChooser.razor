@@ -1,0 +1,35 @@
+﻿@inject Terprint.Web.Data.TerprintWebContext DB
+@inject Terprint.Web.Data.TerprintWebContext2 DB2
+@using Terprint.Web.Models
+@using Terprint.common
+@inject NavigationManager NavigationManager
+
+<h3>RatingCategoryChooser</h3>
+
+@{
+
+}
+
+<InputSelect id="batch" class="m-0 form-control edit-active" @bind-Value="@ratingCategory.RatingCategoryId">
+    <option selected disabled>Select Category</option>
+    @foreach (var b in ratingCategories)
+    {
+        if (b.RatingCategoryType == "")
+        {
+
+        }
+        else if (b.RatingCategoryType == "")
+        {
+
+        }
+        <option value=@b.RatingCategoryId @onselect="() => ratingCategory.RatingCategoryId = b.RatingCategoryId">@b.CategoryName</option>
+    }
+
+</InputSelect>
+@code {
+    [Parameter] public EventCallback<string> OnClick { get; set; }
+
+    public RatingCategory ratingCategory { get; set; } = new();
+    public IList<RatingCategory> ratingCategories { get { return DB.RatingCategory.ToList(); } set { } }
+
+}

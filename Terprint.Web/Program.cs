@@ -26,7 +26,9 @@ builder.Services.AddDbContext<TerprintWebContext2>(options =>
 builder.Services.AddQuickGridEntityFrameworkAdapter();;
 builder.Services.AddOutputCache();
 builder.Services.AddSingleton<Terprint.common.Components>();
+builder.Services.AddSingleton<Terprint.Web.Components.Pages.BatchChooser>();
 builder.Services.AddSingleton<Terprint.Web.Components.Pages.BatchPages.Create >();
+
 
 builder.Services.AddHttpClient<WeatherApiClient>(client =>
     {

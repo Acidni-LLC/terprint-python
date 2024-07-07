@@ -10,8 +10,7 @@
 <p>
     <a href="thcvalues/create">Create New</a>
 </p>
-
-<QuickGrid Class="table" Items="DB.THCValues">
+<QuickGrid  Items="@DB.THCValues.AsQueryable()" Class="table" >
 
     <PropertyColumn Title="Batch" Property="thcvalue => DB.Batch.Where(t=>t.BatchId== thcvalue.BatchID).FirstOrDefault().Name" />
     <PropertyColumn Title="Strain" Property="thcvalue => DB.Strain.Where(t1=>t1.StrainId== DB.Batch.Where(t=>t.BatchId== thcvalue.BatchID).FirstOrDefault().StrainID).FirstOrDefault().StrainName" />
@@ -19,7 +18,7 @@
     <PropertyColumn Property="thcvalue => thcvalue.Dilution" />
     <PropertyColumn Property="thcvalue => thcvalue.LOD" />
     <PropertyColumn Property="thcvalue => thcvalue.LOQ" />
-    <PropertyColumn Property="thcvalue => thcvalue.Result" />s
+    <PropertyColumn Property="thcvalue => thcvalue.Result" />
     <PropertyColumn Property="thcvalue => thcvalue.Percent" />
 
     <TemplateColumn Context="thcvalue">
@@ -28,3 +27,13 @@
         <a href="@($"thcvalues/delete?thcvalueid={thcvalue.THCValueId}")">Delete</a>
     </TemplateColumn>
 </QuickGrid>
+
+<Paginator State="@pagination" />
+@code {
+    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+    IQueryable<THCValue>? itemsQueryable;
+    protected override async Task OnInitializedAsync()
+    {
+       // itemsQueryable = await DB.THCValues.as DB.THCValues.AsQueryable();
+    }
+}

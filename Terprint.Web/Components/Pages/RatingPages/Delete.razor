@@ -1,0 +1,73 @@
+﻿@page "/ratings/delete"
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+@inject NavigationManager NavigationManager
+@using Microsoft.EntityFrameworkCore
+
+<PageTitle>Delete</PageTitle>
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Rating</h4>
+    <hr />
+    @if (rating is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">Growerid</dt>
+            <dd class="col-sm-10">@rating.Growerid</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">userid</dt>
+            <dd class="col-sm-10">@rating.userid</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">RatingCategoryID</dt>
+            <dd class="col-sm-10">@rating.RatingCategoryID</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">Value</dt>
+            <dd class="col-sm-10">@rating.Value</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">Notes</dt>
+            <dd class="col-sm-10">@rating.Notes</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">BatchID</dt>
+            <dd class="col-sm-10">@rating.BatchID</dd>
+        </dl>
+        <EditForm method="post" Model="rating" OnValidSubmit="DeleteRating" FormName="delete" Enhance>
+            <button type="submit" class="btn btn-danger" disabled="@(rating is null)">Delete</button> |
+            <a href="/ratings">Back to List</a>
+        </EditForm>
+    }
+</div>
+
+@code {
+    Rating? rating;
+
+    [SupplyParameterFromQuery]
+    public int RatingId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        rating = await DB.Rating.FirstOrDefaultAsync(m => m.RatingId == RatingId);
+
+        if (rating is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    public async Task DeleteRating()
+    {
+        DB.Rating.Remove(rating!);
+        await DB.SaveChangesAsync();
+        NavigationManager.NavigateTo("/ratings");
+    }
+}

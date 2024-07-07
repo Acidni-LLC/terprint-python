@@ -14,7 +14,7 @@
         <EditForm method="post" Model="RatingCategory" OnValidSubmit="AddRatingCategory" FormName="create" Enhance>
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" />
-            <div class="mb-3">
+            <div class="mb-3">                               2
                 <label for="ratingcategorytype" class="form-label">RatingCategoryType:</label> 
                 <InputText id="ratingcategorytype" @bind-Value="RatingCategory.RatingCategoryType" class="form-control" /> 
                 <ValidationMessage For="() => RatingCategory.RatingCategoryType" class="text-danger" /> 

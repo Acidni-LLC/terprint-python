@@ -1,0 +1,51 @@
+﻿@page "/ratings/create"
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h4>Rating</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Rating" OnValidSubmit="AddRating" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" />
+          <RatingCategoryChooser></RatingCategoryChooser>
+                  
+            <div class="mb-3">
+                <label for="value" class="form-label">Value:</label> 
+                <InputNumber id="value" @bind-Value="Rating.Value" class="form-control" /> 
+                <ValidationMessage For="() => Rating.Value" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="notes" class="form-label">Notes:</label> 
+                <InputText id="notes" @bind-Value="Rating.Notes" class="form-control" /> 
+                <ValidationMessage For="() => Rating.Notes" class="text-danger" /> 
+            </div>   
+
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/ratings">Back to List</a>
+</div>
+
+@code {
+
+    [SupplyParameterFromForm]
+    public Rating Rating { get; set; } = new();
+
+    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+    public async Task AddRating()
+    {
+        DB.Rating.Add(Rating);
+        await DB.SaveChangesAsync();
+        NavigationManager.NavigateTo("/ratings");
+    }
+}
