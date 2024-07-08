@@ -2,11 +2,12 @@
 @inject Terprint.Web.Data.TerprintWebContext2 DB2
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
+@rendermode InteractiveServer
 
 <div class="mb-3">
     <label for="batch" class="form-label">Batch:</label>
-
-    <InputSelect id="batch" class="m-0 form-control edit-active" @bind-Value="@TerpeneValue.BatchID">
+    <input type="text" spellcheck="false" @oninput="OnBatchIdChanged" />
+    <InputSelect id="batch" class="m-0 form-control edit-active" @bind-Value="@TerpeneValue.BatchID" onselect="OnBatchIdChanged()">
         <option selected disabled>Select Batch</option>
         @foreach (var b in Batches)
         {
@@ -17,11 +18,19 @@
 </div>
 
 @code {
+    [Parameter] public int BatchId { get; set; }
+    [Parameter] public EventCallback<int> BatchIdChanged { get; set; }
+    private Task OnBatchIdChanged(ChangeEventArgs e)
+    {
+        BatchId = int.Parse(e.Value.ToString());
+        return BatchIdChanged.InvokeAsync((int)BatchId);
+    }
+
     [Parameter]
-    public int? Value { get { return BatchID; } set { BatchID = value; } }
+    public int Value { get { return BatchId; } set { BatchId = value; } }
     [Parameter]
     public EventCallback<int?> ValueChanged { get; set; }
-    public int? BatchID { get; set; } = new();
+    
     public TerpeneValue TerpeneValue
     { get; set; } = new();
     private TerpeneValue tv { get; set; } = new();

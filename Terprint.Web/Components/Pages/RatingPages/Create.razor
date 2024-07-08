@@ -19,7 +19,7 @@
             <ValidationSummary class="text-danger" />
 
             <Terprint.Web.Components.Pages.RatingCategoryChooser></Terprint.Web.Components.Pages.RatingCategoryChooser>
-            <Terprint.Web.Components.Pages.BatchChooser @bind-Value="Rating.BatchID"></Terprint.Web.Components.Pages.BatchChooser>
+            <Terprint.Web.Components.Pages.BatchChooser   @bind-BatchId="SuppliedPosition"></Terprint.Web.Components.Pages.BatchChooser>
             <div class="mb-3">
                 <label for="BatchId" class="form-label">BatchId:</label>
                 <InputNumber id="BatchId" @bind-Value="Rating.BatchID" class="form-control" />
@@ -46,14 +46,14 @@
 </div>
 
 @code {
-
+    private int SuppliedPosition { get; set; }
     [SupplyParameterFromForm]
     public Rating Rating { get; set; } = new();
 
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task AddRating()
     {
-        Rating.BatchID = batchChooser.BatchID;
+       // Rating.BatchID = SuppliedPosition;
         Rating.RatingCategoryID = ratingCategoryChooser.ratingCategory.RatingCategoryId;
 
         DB.Rating.Add(Rating);
