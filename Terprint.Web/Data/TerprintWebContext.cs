@@ -22,6 +22,21 @@ namespace Terprint.Web.Data
         {
         }
     }
+    public class TerprintWebContext3 : TerprintWebContext
+    {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder
+                .EnableSensitiveDataLogging()
+
+                // .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test;ConnectRetryCount=0")
+                ;
+        }
+        public TerprintWebContext3(DbContextOptions<TerprintWebContext> options)
+            : base(options)
+        {
+        }
+    }
     public class TerprintWebContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

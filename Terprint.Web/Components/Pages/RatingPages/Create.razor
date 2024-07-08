@@ -2,20 +2,29 @@
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
+@inject Terprint.Web.Components.Pages.BatchChooser batchChooser
+@inject Terprint.Web.Components.Pages.RatingCategoryChooser ratingCategoryChooser
+
 
 <PageTitle>Create</PageTitle>
 
 <h1>Create</h1>
 
-<h4>Rating</h4>
+<h5>Rating</h5>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <EditForm method="post" Model="Rating" OnValidSubmit="AddRating" FormName="create" Enhance>
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" />
-          <RatingCategoryChooser></RatingCategoryChooser>
-                  
+
+            <Terprint.Web.Components.Pages.RatingCategoryChooser></Terprint.Web.Components.Pages.RatingCategoryChooser>
+            <Terprint.Web.Components.Pages.BatchChooser @bind-Value="Rating.BatchID"></Terprint.Web.Components.Pages.BatchChooser>
+            <div class="mb-3">
+                <label for="BatchId" class="form-label">BatchId:</label>
+                <InputNumber id="BatchId" @bind-Value="Rating.BatchID" class="form-control" />
+                <ValidationMessage For="() => Rating.BatchID" class="text-danger" />
+            </div>
             <div class="mb-3">
                 <label for="value" class="form-label">Value:</label> 
                 <InputNumber id="value" @bind-Value="Rating.Value" class="form-control" /> 
@@ -44,6 +53,9 @@
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task AddRating()
     {
+        Rating.BatchID = batchChooser.BatchID;
+        Rating.RatingCategoryID = ratingCategoryChooser.ratingCategory.RatingCategoryId;
+
         DB.Rating.Add(Rating);
         await DB.SaveChangesAsync();
         NavigationManager.NavigateTo("/ratings");
