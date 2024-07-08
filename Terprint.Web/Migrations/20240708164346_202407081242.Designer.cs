@@ -12,8 +12,8 @@ using Terprint.Web.Data;
 namespace Terprint.Web.Migrations
 {
     [DbContext(typeof(TerprintWebContext))]
-    [Migration("20240708005249_newlaptop")]
-    partial class newlaptop
+    [Migration("20240708164346_202407081242")]
+    partial class _202407081242
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -142,8 +142,9 @@ namespace Terprint.Web.Migrations
                     b.Property<int>("RatingCategoryID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Value")
-                        .HasColumnType("int");
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("userid")
                         .IsRequired()

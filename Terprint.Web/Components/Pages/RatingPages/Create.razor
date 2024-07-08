@@ -19,9 +19,9 @@
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" />
 
-            <Terprint.Web.Components.Pages.RatingCategoryChooser @bind-RatingCategoryId="RatingCategoryId"></Terprint.Web.Components.Pages.RatingCategoryChooser>
+            <Terprint.Web.Components.Pages.RatingCategoryChooser @bind-RatingCategoryId="RatingCategoryId" @bind-RatingValue="RatingValue"></Terprint.Web.Components.Pages.RatingCategoryChooser>
             <Terprint.Web.Components.Pages.BatchChooser @bind-BatchId="BatchId"></Terprint.Web.Components.Pages.BatchChooser>
-            <div class="mb-3">
+           @*  <div class="mb-3">
                 <label for="BatchId" class="form-label">BatchId:</label>
                 <InputNumber id="BatchID" @bind-Value="BatchId" class="form-control" />
                 <ValidationMessage For="() => Rating.BatchID" class="text-danger" />
@@ -29,12 +29,13 @@
                 <label for="BatchId" class="form-label">RatingCategoryId:</label>
                 <InputNumber id="BatchId" @bind-Value="RatingCategoryId" class="form-control" />
                 <ValidationMessage For="() => RatingCategoryId" class="text-danger" />
-            </div>
+            </div> 
             <div class="mb-3">
                 <label for="value" class="form-label">Value:</label>
                 <InputNumber id="value" @bind-Value="Rating.Value" class="form-control" />
                 <ValidationMessage For="() => Rating.Value" class="text-danger" />
             </div>
+            *@
             <div class="mb-3">
                 <label for="notes" class="form-label">Notes:</label>
                 <InputText id="notes" @bind-Value="Rating.Notes" class="form-control" />
@@ -51,6 +52,7 @@
 </div>
 
 @code {
+    private string RatingValue { get; set; }
     private int RatingCategoryId { get; set; }
     private int BatchId
     {
@@ -58,7 +60,7 @@
         {
             if (Rating.BatchID is null)
             { return 0; }
-            else 
+            else
             { return (int)Rating.BatchID; }
         }
         set { Rating.BatchID = value; }
@@ -73,6 +75,7 @@
         Rating.BatchID = BatchId;
         Rating.RatingCategoryID = RatingCategoryId;
         Rating.userid = "jgill@savitas.net";
+        Rating.Value =  RatingValue;
 
         DB.Rating.Add(Rating);
         await DB.SaveChangesAsync();

@@ -22,7 +22,29 @@
 
     </InputSelect>
 </div>
+@if (RatingCategoryId == 1)
+{
+    <input type="number" @bind-value="@RatingValue" @oninput="OnRatingValueChanged" max="10" min="0" class="form-control" />
+
+}
+else if (RatingCategoryId == 2)
+{
+    <input type="checkbox" @bind-value="@RatingValue" @oninput="OnRatingValueChanged" class="form-check form-control" />
+
+}
+
+
+
 @code {
+    [Parameter] public string RatingValue { get; set; }
+    [Parameter] public EventCallback<string> RatingValueChanged { get; set; }
+    private Task OnRatingValueChanged(ChangeEventArgs e)
+    {
+        RatingValue =  e.Value.ToString();
+        return RatingValueChanged.InvokeAsync(RatingValue);
+    }
+    
+
     [Parameter] public int RatingCategoryId { get; set; }
     [Parameter] public EventCallback<int> RatingCategoryIdChanged { get; set; }
     private Task OnRatingCategoryIdChanged(ChangeEventArgs e)
