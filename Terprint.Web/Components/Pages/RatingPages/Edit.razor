@@ -22,11 +22,7 @@ else
                 <DataAnnotationsValidator />
                 <ValidationSummary />
                 <input type="hidden" name="Rating.RatingId" value="@Rating.RatingId" />
-                <div class="mb-3">
-                    <label for="growerid" class="form-label">Growerid:</label>
-                    <InputNumber id="growerid" @bind-Value="Rating.Growerid" class="form-control" />
-                    <ValidationMessage For="() => Rating.Growerid" class="text-danger" />
-                </div>
+                 
                 <div class="mb-3">
                     <label for="userid" class="form-label">userid:</label>
                     <InputText id="userid" @bind-Value="Rating.userid" class="form-control" />
