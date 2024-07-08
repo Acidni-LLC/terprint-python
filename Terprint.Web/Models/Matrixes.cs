@@ -5,6 +5,7 @@ namespace Terprint.Web.Models
 {
     public class Matrixes
     {
+        public DateTime created { get; set; } = DateTime.Now;
         public int Id { get; set; }
         //Terpene	Matrix	Row	Column	Color
         public string Terpene { get; set; }

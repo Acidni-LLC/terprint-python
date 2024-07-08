@@ -5,6 +5,7 @@
 @inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
+@inject common.AppState appstate
 
 @{
 
@@ -50,6 +51,7 @@ else if (RatingCategoryId == 2)
     private Task OnRatingCategoryIdChanged(ChangeEventArgs e)
     {
         RatingCategoryId = int.Parse(e.Value.ToString());
+        appstate.ratingcategoryid = RatingCategoryId;
         return RatingCategoryIdChanged.InvokeAsync((int)RatingCategoryId);
     }
 

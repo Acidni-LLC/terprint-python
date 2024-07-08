@@ -4,6 +4,8 @@
 @inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
+@inject common.AppState appstate
+
 <div class="mb-3">
     <label for="batch" class="form-label">Batch:</label>
     <InputSelect id="batch" class="m-0 form-control" @bind-Value="@TerpeneValue.BatchID" @oninput="OnBatchIdChanged" >
@@ -22,6 +24,7 @@
     private Task OnBatchIdChanged(ChangeEventArgs e)
     {
         BatchId = int.Parse(e.Value.ToString());
+        appstate.batchid = BatchId;
         return BatchIdChanged.InvokeAsync((int)BatchId);
     }
      

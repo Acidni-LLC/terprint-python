@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Terprint.Web.Data;
 
@@ -11,9 +12,11 @@ using Terprint.Web.Data;
 namespace Terprint.Web.Migrations
 {
     [DbContext(typeof(TerprintWebContext))]
-    partial class TerprintWebContextModelSnapshot : ModelSnapshot
+    [Migration("20240708211342_202407081713")]
+    partial class _202407081713
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,9 +65,6 @@ namespace Terprint.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("created")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("BatchId");
 
                     b.HasIndex("GrowerID");
@@ -85,9 +85,6 @@ namespace Terprint.Web.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("created")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("GrowerId");
 
@@ -118,9 +115,6 @@ namespace Terprint.Web.Migrations
                     b.Property<string>("Terpene")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("created")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -189,9 +183,6 @@ namespace Terprint.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("created")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("RatingCategoryId");
 
                     b.ToTable("RatingCategory");
@@ -242,9 +233,6 @@ namespace Terprint.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("created")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("StrainId");
 
                     b.ToTable("Strain");
@@ -267,12 +255,15 @@ namespace Terprint.Web.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Dilution")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LOD")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LOQ")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Percent")
@@ -282,9 +273,6 @@ namespace Terprint.Web.Migrations
                     b.Property<string>("Result")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("created")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("THCValueId");
 
@@ -314,9 +302,6 @@ namespace Terprint.Web.Migrations
 
                     b.Property<double>("Value")
                         .HasColumnType("float");
-
-                    b.Property<DateTime>("created")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("TerpeneValueId");
 

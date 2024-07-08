@@ -5,6 +5,7 @@
 @inject Terprint.Web.Components.Pages.BatchChooser batchChooser
 @inject Terprint.Web.Components.Pages.RatingCategoryChooser ratingCategoryChooser
 @rendermode InteractiveServer
+@inject common.AppState appstate
 
 
 <PageTitle>Create</PageTitle>
@@ -18,9 +19,11 @@
         <EditForm method="post" Model="Rating" OnValidSubmit="AddRating" FormName="create" Enhance>
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" />
-
-            <Terprint.Web.Components.Pages.RatingCategoryChooser @bind-RatingCategoryId="RatingCategoryId" @bind-RatingValue="RatingValue"></Terprint.Web.Components.Pages.RatingCategoryChooser>
             <Terprint.Web.Components.Pages.BatchChooser @bind-BatchId="BatchId"></Terprint.Web.Components.Pages.BatchChooser>
+
+            <Terprint.Web.Components.Pages.RatingCategoryChooser @bind-RatingCategoryId="RatingCategoryId" @bind-RatingValue="RatingValue">
+
+            </Terprint.Web.Components.Pages.RatingCategoryChooser>
            @*  <div class="mb-3">
                 <label for="BatchId" class="form-label">BatchId:</label>
                 <InputNumber id="BatchID" @bind-Value="BatchId" class="form-control" />
@@ -72,10 +75,12 @@
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task AddRating()
     {
+        int batchid = appstate.batchid;
         Rating.BatchID = BatchId;
         Rating.RatingCategoryID = RatingCategoryId;
         Rating.userid = "jgill@savitas.net";
         Rating.Value =  RatingValue;
+
 
         DB.Rating.Add(Rating);
         await DB.SaveChangesAsync();
