@@ -4,6 +4,7 @@
 @inject NavigationManager NavigationManager
 @inject Terprint.Web.Components.Pages.BatchChooser batchChooser
 @inject Terprint.Web.Components.Pages.RatingCategoryChooser ratingCategoryChooser
+@rendermode InteractiveServer
 
 
 <PageTitle>Create</PageTitle>
@@ -18,23 +19,27 @@
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" />
 
-            <Terprint.Web.Components.Pages.RatingCategoryChooser></Terprint.Web.Components.Pages.RatingCategoryChooser>
-            <Terprint.Web.Components.Pages.BatchChooser   @bind-BatchId="SuppliedPosition"></Terprint.Web.Components.Pages.BatchChooser>
+            <Terprint.Web.Components.Pages.RatingCategoryChooser @bind-RatingCategoryId="RatingCategoryId"></Terprint.Web.Components.Pages.RatingCategoryChooser>
+            <Terprint.Web.Components.Pages.BatchChooser @bind-BatchId="BatchId"></Terprint.Web.Components.Pages.BatchChooser>
             <div class="mb-3">
                 <label for="BatchId" class="form-label">BatchId:</label>
-                <InputNumber id="BatchId" @bind-Value="Rating.BatchID" class="form-control" />
+                <InputNumber id="BatchID" @bind-Value="BatchId" class="form-control" />
                 <ValidationMessage For="() => Rating.BatchID" class="text-danger" />
+            </div> <div class="mb-3">
+                <label for="BatchId" class="form-label">RatingCategoryId:</label>
+                <InputNumber id="BatchId" @bind-Value="RatingCategoryId" class="form-control" />
+                <ValidationMessage For="() => RatingCategoryId" class="text-danger" />
             </div>
             <div class="mb-3">
-                <label for="value" class="form-label">Value:</label> 
-                <InputNumber id="value" @bind-Value="Rating.Value" class="form-control" /> 
-                <ValidationMessage For="() => Rating.Value" class="text-danger" /> 
-            </div>        
+                <label for="value" class="form-label">Value:</label>
+                <InputNumber id="value" @bind-Value="Rating.Value" class="form-control" />
+                <ValidationMessage For="() => Rating.Value" class="text-danger" />
+            </div>
             <div class="mb-3">
-                <label for="notes" class="form-label">Notes:</label> 
-                <InputText id="notes" @bind-Value="Rating.Notes" class="form-control" /> 
-                <ValidationMessage For="() => Rating.Notes" class="text-danger" /> 
-            </div>   
+                <label for="notes" class="form-label">Notes:</label>
+                <InputText id="notes" @bind-Value="Rating.Notes" class="form-control" />
+                <ValidationMessage For="() => Rating.Notes" class="text-danger" />
+            </div>
 
             <button type="submit" class="btn btn-primary">Create</button>
         </EditForm>
@@ -46,15 +51,28 @@
 </div>
 
 @code {
-    private int SuppliedPosition { get; set; }
+    private int RatingCategoryId { get; set; }
+    private int BatchId
+    {
+        get
+        {
+            if (Rating.BatchID is null)
+            { return 0; }
+            else 
+            { return (int)Rating.BatchID; }
+        }
+        set { Rating.BatchID = value; }
+    }
+
     [SupplyParameterFromForm]
     public Rating Rating { get; set; } = new();
 
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task AddRating()
     {
-       // Rating.BatchID = SuppliedPosition;
-        Rating.RatingCategoryID = ratingCategoryChooser.ratingCategory.RatingCategoryId;
+        Rating.BatchID = BatchId;
+        Rating.RatingCategoryID = RatingCategoryId;
+        Rating.userid = "jgill@savitas.net";
 
         DB.Rating.Add(Rating);
         await DB.SaveChangesAsync();

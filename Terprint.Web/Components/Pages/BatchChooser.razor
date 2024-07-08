@@ -6,12 +6,11 @@
 
 <div class="mb-3">
     <label for="batch" class="form-label">Batch:</label>
-    <input type="text" spellcheck="false" @oninput="OnBatchIdChanged" />
-    <InputSelect id="batch" class="m-0 form-control edit-active" @bind-Value="@TerpeneValue.BatchID" onselect="OnBatchIdChanged()">
+    <InputSelect id="batch" class="m-0 form-control" @bind-Value="@TerpeneValue.BatchID" @oninput="OnBatchIdChanged" >
         <option selected disabled>Select Batch</option>
         @foreach (var b in Batches)
         {
-            <option value=@b.BatchId @onselect="() => TerpeneValue.BatchID = b.BatchId">@DB2.Strain.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName  @b.Date  @b.Name</option>
+            <option value=@b.BatchId  @onselect="() => TerpeneValue.BatchID = b.BatchId">@DB2.Strain.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName  @b.Date  @b.Name</option>
         }
 
     </InputSelect>
@@ -25,11 +24,7 @@
         BatchId = int.Parse(e.Value.ToString());
         return BatchIdChanged.InvokeAsync((int)BatchId);
     }
-
-    [Parameter]
-    public int Value { get { return BatchId; } set { BatchId = value; } }
-    [Parameter]
-    public EventCallback<int?> ValueChanged { get; set; }
+     
     
     public TerpeneValue TerpeneValue
     { get; set; } = new();

@@ -3,30 +3,33 @@
 @using Terprint.Web.Models
 @using Terprint.common
 @inject NavigationManager NavigationManager
+@rendermode InteractiveServer
 
 
 @{
 
 }
 
-<InputSelect id="batch" class="m-0 form-control edit-active" @bind-Value="@ratingCategory.RatingCategoryId">
-    <option selected disabled>Select Category</option>
-    @foreach (var b in ratingCategories)
-    {
-        if (b.RatingCategoryType == "")
+<div class="mb-3">
+    <label for="ratingCategoryID" class="form-label">Rating Type:</label>
+    <InputSelect id="ratingCategoryID" class="m-0 form-control" @bind-Value="@ratingCategory.RatingCategoryId" @oninput="OnRatingCategoryIdChanged">
+        <option selected disabled>Select Category</option>
+        @foreach (var b in ratingCategories)
         {
 
+            <option value=@b.RatingCategoryId @onselect="() => ratingCategory.RatingCategoryId = b.RatingCategoryId">@b.CategoryName</option>
         }
-        else if (b.RatingCategoryType == "")
-        {
 
-        }
-        <option value=@b.RatingCategoryId @onselect="() => ratingCategory.RatingCategoryId = b.RatingCategoryId">@b.CategoryName</option>
-    }
-
-</InputSelect>
+    </InputSelect>
+</div>
 @code {
-    [Parameter] public EventCallback<string> OnClick { get; set; }
+    [Parameter] public int RatingCategoryId { get; set; }
+    [Parameter] public EventCallback<int> RatingCategoryIdChanged { get; set; }
+    private Task OnRatingCategoryIdChanged(ChangeEventArgs e)
+    {
+        RatingCategoryId = int.Parse(e.Value.ToString());
+        return RatingCategoryIdChanged.InvokeAsync((int)RatingCategoryId);
+    }
 
     public RatingCategory ratingCategory { get; set; } = new();
     public IList<RatingCategory> ratingCategories { get { return DB3.RatingCategory.ToList(); } set { } }
