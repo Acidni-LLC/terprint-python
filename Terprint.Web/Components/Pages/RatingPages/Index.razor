@@ -13,10 +13,11 @@
 
 <QuickGrid Class="table" Items="DB.Rating"> 
     <PropertyColumn Property="rating => rating.userid" />
-    <PropertyColumn Property="rating => rating.RatingCategoryID" />
+    <PropertyColumn Property="rating => DB.RatingCategory.Where(t=>t.RatingCategoryId== rating.RatingCategoryID).FirstOrDefault().CategoryName" />
     <PropertyColumn Property="rating => rating.Value" />
     <PropertyColumn Property="rating => rating.Notes" />
     <PropertyColumn Property="rating => rating.BatchID" />
+    <PropertyColumn Property="rating => DB.Strain.Where(t=>t.StrainId==DB.Batch.Where(t=>t.BatchId==rating.BatchID).FirstOrDefault().StrainID).FirstOrDefault().StrainName" />
 
     <TemplateColumn Context="rating">
         <a href="@($"ratings/edit?ratingid={rating.RatingId}")">Edit</a> |

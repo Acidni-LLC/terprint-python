@@ -28,6 +28,7 @@ builder.Services.AddDbContext<TerprintWebContext3>(options =>
 builder.Services.AddQuickGridEntityFrameworkAdapter();;
 builder.Services.AddOutputCache();
 builder.Services.AddSingleton<Terprint.common.Components>();
+builder.Services.AddSingleton<Terprint.common.AppState>();
 builder.Services.AddSingleton<Terprint.Web.Components.Pages.BatchChooser>();
 builder.Services.AddSingleton<Terprint.Web.Components.Pages.RatingCategoryChooser>();
 builder.Services.AddSingleton<Terprint.Web.Components.Pages.BatchPages.Create >();

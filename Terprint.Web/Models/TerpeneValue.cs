@@ -6,6 +6,7 @@ namespace Terprint.Web.Models
     public class TerpeneValue
     {
 
+        public DateTime created { get; set; } = DateTime.Now;
         public int TerpeneValueId { get; set; }
         
         [Required]

@@ -10,16 +10,10 @@ namespace Terprint.common
     public class AppState
     {
         public RatingCategory ratingCategory { get; set; }
+        public int batchid { get; set; }
+        public int ratingcategoryid { get; set; }
 
-        public event Action OnChange;
 
-        public void SetRatingCateogry(RatingCategory c)
-        {
-            ratingCategory = c;
-            NotifyStateChanged();
-        }
-
-        private void NotifyStateChanged() => OnChange?.Invoke();
     }
     public static class Strains
     {

@@ -4,6 +4,7 @@ namespace Terprint.Web.Models
 {
     public class RatingCategory
     {
+        public DateTime created { get; set; } = DateTime.Now;
         public int RatingCategoryId { get; set; }
         [Display(Name = "Rating Category Type"), DataType(DataType.Text)]
         public string RatingCategoryType { get; set; }

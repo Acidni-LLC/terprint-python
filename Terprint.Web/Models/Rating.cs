@@ -4,7 +4,7 @@ namespace Terprint.Web.Models
 {
     public class Rating
     {
-
+        public DateTime created { get; set; } = DateTime.Now;
         public int RatingId { get; set; }
         public string userid { get; set; }
         [Required]
