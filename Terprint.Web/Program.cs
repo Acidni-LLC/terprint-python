@@ -21,12 +21,15 @@ builder.Services.AddDbContext<TerprintWebContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("TerprintWebContext") ?? throw new InvalidOperationException("Connection string 'TerprintWebContext' not found.")));
 builder.Services.AddDbContext<TerprintWebContext2>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("TerprintWebContext") ?? throw new InvalidOperationException("Connection string 'TerprintWebContext' not found.")));
+builder.Services.AddDbContext<TerprintWebContext3>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TerprintWebContext") ?? throw new InvalidOperationException("Connection string 'TerprintWebContext' not found.")));
 
 
 builder.Services.AddQuickGridEntityFrameworkAdapter();;
 builder.Services.AddOutputCache();
 builder.Services.AddSingleton<Terprint.common.Components>();
 builder.Services.AddSingleton<Terprint.Web.Components.Pages.BatchChooser>();
+builder.Services.AddSingleton<Terprint.Web.Components.Pages.RatingCategoryChooser>();
 builder.Services.AddSingleton<Terprint.Web.Components.Pages.BatchPages.Create >();
 
 

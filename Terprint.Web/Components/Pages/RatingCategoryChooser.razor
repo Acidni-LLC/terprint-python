@@ -1,10 +1,9 @@
 ﻿@inject Terprint.Web.Data.TerprintWebContext DB
-@inject Terprint.Web.Data.TerprintWebContext2 DB2
+@inject Terprint.Web.Data.TerprintWebContext3 DB3
 @using Terprint.Web.Models
 @using Terprint.common
 @inject NavigationManager NavigationManager
 
-<h3>RatingCategoryChooser</h3>
 
 @{
 
@@ -30,6 +29,6 @@
     [Parameter] public EventCallback<string> OnClick { get; set; }
 
     public RatingCategory ratingCategory { get; set; } = new();
-    public IList<RatingCategory> ratingCategories { get { return DB.RatingCategory.ToList(); } set { } }
+    public IList<RatingCategory> ratingCategories { get { return DB3.RatingCategory.ToList(); } set { } }
 
 }
