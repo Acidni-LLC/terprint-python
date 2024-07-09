@@ -94,7 +94,7 @@
                     index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
 
                 }
-                string name = s.Substring(0, index);
+                string name = s.Substring(0, index).Trim();
                 string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
                 string secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
                 string thirddnum = s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", "");

@@ -58,7 +58,7 @@
         foreach(string s in result)
         {
             int index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
-            string name = s.Substring(0, index);
+            string name = s.Substring(0, index).Trim();
             string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
             string secondnum =  s.Substring(index, s.Length - index).Split(" ")[1].Replace("%","");
             terpeneValues.Add(new TerpeneValue() { TerpeneName = name, Value = Convert.ToDouble(secondnum), BatchID = TerpeneValue .BatchID});

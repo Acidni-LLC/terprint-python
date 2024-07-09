@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Components;
 using Terprint.Web.Models;
+using System.Numerics;
+using System.Drawing.Drawing2D;
 
 
 namespace Terprint.common
@@ -90,7 +92,7 @@ namespace Terprint.common
         public int currentTerpenes { get; set; }
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
-       // private readonly ILogger<ErrorModel> _logger;
+        // private readonly ILogger<ErrorModel> _logger;
 
         //public ListModel(ILogger<ErrorModel> logger)
         //{
@@ -103,9 +105,11 @@ namespace Terprint.common
         public List<terpValue>? currentStrain { get; set; }
         public List<terpValue>? TerpValues { get; set; }
         public List<matrixes>? Matrixes { get; set; }
+
+
         public class matrixes
         {
-            public matrixes(int a, string b, int c, int d, int e, string color, string name2 ="")
+            public matrixes(int a, string b, int c, int d, int e, string color, string name2 = "")
             {
                 Id = a;
                 Name = b;
@@ -530,7 +534,7 @@ namespace Terprint.common
                 Matrixes.Add(new matrixes(9, "Linalool", 1, 2, 3, "#FF7C80"));
                 Matrixes.Add(new matrixes(10, "Menthol", 1, 2, 4, "#CC0000"));
                 Matrixes.Add(new matrixes(11, "δ-Limonene", 1, 2, 5, "#99FF33", "D-Limonene"));
-                Matrixes.Add(new matrixes(12, "Terpineol", 1, 2, 6, "#0066FF"));
+                Matrixes.Add(new matrixes(12, "Terpineol", 1, 2, 6, "#0066FF", "Total Terpineol"));
                 Matrixes.Add(new matrixes(13, "Terpinolene", 1, 3, 1, "#FF6699"));
                 Matrixes.Add(new matrixes(14, "Valencene", 1, 3, 2, "#7030A0"));
                 Matrixes.Add(new matrixes(15, "cis-Nerolidol", 1, 3, 3, "#339966"));
@@ -640,10 +644,59 @@ namespace Terprint.common
                 Matrixes.Add(new matrixes(117, "β-Pinene", 4, 27, 1, "#FFC000"));
                 Matrixes.Add(new matrixes(118, "γ-Terpinene", 4, 28, 1, "#FF0000"));
                 Matrixes.Add(new matrixes(119, "δ-3-Carene", 4, 29, 1, "#C00000"));
-                Matrixes.Add(new matrixes(120, "Borneol", 4, 30, 1, "#99FF33"));
+                Matrixes.Add(new matrixes(120, "Borneol", 4, 30, 1, "#99FF33")); 
+                Matrixes.Add(new matrixes(121, "(R)-(+)-Limonene", 5, 1, 1, "#008000"));
+                Matrixes.Add(new matrixes(122, "Camphene", 5, 1, 2, "#33CC33"));
+                Matrixes.Add(new matrixes(123, "Caryophyllene Oxide", 5, 1, 3, "#66FF66"));
+                Matrixes.Add(new matrixes(124, "Eucalyptol", 5, 1, 4, "#CCFFCC"));
+                Matrixes.Add(new matrixes(125, "Fenchyl Alcohol", 5, 1, 5, "#FFCCFF"));
+                Matrixes.Add(new matrixes(126, "Geraniol", 5, 1, 6, "#FF99FF"));
+                Matrixes.Add(new matrixes(127, "Guaiol", 5, 1, 7, "#CC00CC"));
+                Matrixes.Add(new matrixes(128, "Isopulegol", 5, 1, 8, "#FFCCCC"));
+                Matrixes.Add(new matrixes(129, "Linalool", 5, 1, 9, "#FF7C80"));
+                Matrixes.Add(new matrixes(130, "Menthol", 5, 1, 10, "#CC0000"));
+                Matrixes.Add(new matrixes(131, "δ-Limonene", 5, 1, 11, "#66CCFF"));
+                Matrixes.Add(new matrixes(132, "Terpineol", 5, 1, 12, "#0066FF"));
+                Matrixes.Add(new matrixes(133, "Terpinolene", 5, 1, 13, "#FF6699"));
+                Matrixes.Add(new matrixes(134, "Valencene", 5, 1, 14, "#7030A0"));
+                Matrixes.Add(new matrixes(135, "cis-Nerolidol", 5, 1, 15, "#339966"));
+                Matrixes.Add(new matrixes(136, "cis-Ocimene", 5, 1, 16, "#00CC00"));
+                Matrixes.Add(new matrixes(137, "p-Cymene", 5, 1, 17, "#FF6699"));
+                Matrixes.Add(new matrixes(138, "trans-Caryophyllene", 5, 1, 18, "#FF3399"));
+                Matrixes.Add(new matrixes(139, "trans-Nerolidol", 5, 1, 19, "#CC3399"));
+                Matrixes.Add(new matrixes(140, "trans-Ocimene", 5, 1, 20, "#7030A0"));
+                Matrixes.Add(new matrixes(141, "α-Bisabolol", 5, 1, 21, "#002060"));
+                Matrixes.Add(new matrixes(142, "α-Humulene", 5, 1, 22, "#0070C0"));
+                Matrixes.Add(new matrixes(143, "α-Pinene", 5, 1, 23, "#00B0F0"));
+                Matrixes.Add(new matrixes(144, "α-Terpinene", 5, 1, 24, "#00B050"));
+                Matrixes.Add(new matrixes(145, "β-Caryophyllene", 5, 1, 25, "#92D050"));
+                Matrixes.Add(new matrixes(146, "β-Myrcene", 5, 1, 26, "#FFFF00"));
+                Matrixes.Add(new matrixes(147, "β-Pinene", 5, 1, 27, "#FFC000"));
+                Matrixes.Add(new matrixes(148, "γ-Terpinene", 5, 1, 28, "#FF0000"));
+                Matrixes.Add(new matrixes(149, "δ-3-Carene", 5, 1, 29, "#C00000"));
+                Matrixes.Add(new matrixes(150, "Borneol", 5, 1, 30, "#99FF33"));
+
 
                 #endregion
+                #region add alternace names
 
+                foreach (matrixes m in Matrixes)
+                {
+
+                    if (m.Name == "Fenchyl Alcohol") { m.name2 = "Endo-Fenchyl Alcohol"; }
+                    else if (m.Name == "δ-Limonene") { m.name2 = "D-Limonene"; }
+                    else if (m.Name == "Terpineol") { m.name2 = "Total Terpineol"; }
+                    else if (m.Name == "cis-Ocimene") { m.name2 = "Ocimenes"; }
+                    else if (m.Name == "α-Bisabolol") { m.name2 = "alpha-Bisabolol"; }
+                    else if (m.Name == "α-Humulene") { m.name2 = "alpha-Humulene"; }
+                    else if (m.Name == "α-Pinene") { m.name2 = "alpha-Pinene"; }
+                    else if (m.Name == "β-Caryophyllene") { m.name2 = "E-Caryophyllene"; }
+                    else if (m.Name == "β-Myrcene") { m.name2 = "beta-Myrcene"; }
+                    else if (m.Name == "β-Pinene") { m.name2 = "beta-Pinene"; }
+
+                }
+
+                #endregion
             }
 
         }
@@ -667,7 +720,7 @@ namespace Terprint.common
                 //test
             }
             string temprow = "";
-             string temprows = "";
+            string temprows = "";
             int currentRow = 1;
             int maxRow = Matrixes.Max(t => t.Row);
             Random rnd = new Random();
@@ -784,7 +837,7 @@ namespace Terprint.common
 
             temprows += "</tr></table>";
 
-            outputrows =  (MarkupString)temprows ;
+            outputrows = (MarkupString)temprows;
             // batchin = "";
 
 
