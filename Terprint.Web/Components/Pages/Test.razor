@@ -10,15 +10,15 @@
 @using Microsoft.AspNetCore.WebUtilities
 
 
-<h3>Test</h3>
-
 @{
-
+    
 }
-<BatchChooser></BatchChooser>
+<BatchChooser @bind-BatchId="@batchid" @bind-batch="@batch" @bind-batchdata="@batchData"></BatchChooser>
 
-<TerprintTable @bind-batch="@batchid" @bind-matrix="@matrix" @bind-size="@size"></TerprintTable>
+<TerprintTable @bind-batch="@batch" @bind-matrix="@matrix" @bind-size="@size" @bind-strain="@strain" @bind-batchData="@batchData"></TerprintTable>
+
 @code {
+
     protected override void OnInitialized()
     {
         var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
@@ -30,13 +30,35 @@
         {
             size = _size;
         }
-        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("batchid", out var _batchid))
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("batch", out var _batchid))
         {
-            batchid = _batchid;
+            batch = _batchid;
+            batchData = new BatchChooser.BatchData();
+            batchData.batch = batch;
         }
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("strain", out var _strain))
+        {
+            strain = _strain;
+        }
+    }
+    private void setbatch()
+    {
+
     }
     public int? matrix { get; set; } = 1;
     public string? size { get; set; } = "small";
-    public string batchid { get; set; } = "59731_0006122581";
-   // batchid == "4281 4009 89411502";
+    public int batchid
+    {
+        get; set;
+    } = 0;
+    public BatchChooser.BatchData batchData
+    {
+
+        get; set;
+    }
+    private BatchChooser.BatchData batchdata { get; set; }
+    public string batch { get; set; } = "";
+    public string strain { get; set; } = "";
+
+    // batchid == "4281 4009 89411502";
 }
