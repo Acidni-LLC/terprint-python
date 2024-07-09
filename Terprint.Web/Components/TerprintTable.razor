@@ -13,7 +13,12 @@
 
     if (loadData() && TerpeneValues is not null && TerpeneValues.Count > 0)
     {
-        if (rendermode == renderMode.tableandheader)
+        if (rendermode == renderMode.tableandtitle)
+        {
+
+            <h3>@strain <small>@batchData.batch</small></h3>
+        }
+        else if (rendermode == renderMode.tableandheader)
         {
 
             <h3>@strain</h3>
@@ -44,9 +49,15 @@
 
 }
 @code {
-    public enum renderMode { table, tableandheader };
+    public enum renderMode { table, tableandheader, tableandtitle };
+    [Parameter] public renderMode? rendermode { get; set; }
+    [Parameter] public EventCallback<renderMode> rendermodeChanged { get; set; }
+    private Task OnrendermodeChanged(ChangeEventArgs e)
+    {
+        rendermode = (renderMode)e.Value;
+        return rendermodeChanged.InvokeAsync((renderMode)rendermode);
+    }
 
-    public renderMode rendermode { get; set; } = renderMode.tableandheader;
     common.AppState appState = new common.AppState();
 
     #region properties
