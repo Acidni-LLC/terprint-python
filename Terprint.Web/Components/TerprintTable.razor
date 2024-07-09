@@ -1,0 +1,238 @@
+﻿@using Microsoft.AspNetCore.Mvc
+@inject common.AppState appstate
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.WebUtilities
+@rendermode InteractiveServer
+@inject Terprint.common.Components c;
+@inject NavigationManager nm
+@inject Terprint.Web.Data.TerprintWebContext DB
+
+<h3>TerprintTable</h3>
+@{
+    
+    appstate = appState;
+
+    var optionssize = c.OptionsSize;
+    var optionsmatrix = c.OptionsMatrix;
+    var size = c.OptionsSize;
+
+    @((MarkupString)myMarkup)
+
+    @functions {
+        MarkupString myMarkup = (MarkupString)"";
+
+    }
+
+
+}
+
+@if (TerpeneValues is not null)
+{
+
+}
+else
+{
+    loadData();
+    
+    <div>@TerpeneValues.Count Terpenes at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%</div>
+    <div>@myMarkup</div>
+}
+@code {
+    common.AppState appState = new common.AppState();
+
+    
+    public List<Models.TerpeneValue>? TerpeneValues { get; set; }
+    public MarkupString outputrows { get; set; }
+    [FromQuery(Name = "strain")]
+    public string? strain { get; set; }
+    [Parameter]
+    public string? batch { get; set; }
+    [Parameter] public EventCallback<string> batchChanged { get; set; }
+    private Task OnbatchChanged(ChangeEventArgs e)
+    {
+        batch = e.Value.ToString();
+        return batchChanged.InvokeAsync(batch);
+    }
+    [Parameter]
+    public int? matrix { get; set; }
+    [Parameter] public EventCallback<int?> matrixChanged { get; set; }
+    private Task OnmatrixChanged(ChangeEventArgs e)
+    {
+        matrix = int.Parse(e.Value.ToString());
+        return matrixChanged.InvokeAsync(matrix);
+    }
+    [Parameter]
+    public string?size { get; set; }
+    [Parameter] public EventCallback<string?> sizeChanged { get; set; }
+    private Task Onsizehanged(ChangeEventArgs e)
+    {
+        size = e.Value.ToString();
+        return sizeChanged.InvokeAsync(size);
+    }
+
+    public void loadData()
+    {
+        try
+        {
+            terprintTable(batch);
+        }
+        catch
+        {
+
+        }
+    }
+
+    public List<common.Components.matrixes> Matrixes { get; set; }
+    public void terprintTable(string batchin = "", string sortorder = "")
+    {
+
+        c.loadmatrix();
+        Matrixes = c.Matrixes;
+        if (batchin != "")
+
+        {
+            int batchid = (int)DB.Batch.Where(t => t.Name == batchin).FirstOrDefault().BatchId;
+            TerpeneValues = DB.TerpeneValues.Where(t => t.BatchID == batchid).ToList();
+            
+        }
+        else
+        {
+
+            // size = Request.Form["size"].ToString();
+            // strain = Request.Form["strain"].ToString();
+            //  matrix = Convert.ToInt32(Request.Form["matrix"].ToString());
+            //test
+        }
+        string temprow = "";
+        string temprows = "";
+        int currentRow = 1;
+        int maxRow = Matrixes.Max(t => t.Row);
+        Random rnd = new Random();
+        string width = "";
+        if (size == "micro")
+        {
+            width = "width: 10px; height: 10px;";
+            temprows += "<table border=\"1 px gray;\"><tr>";
+            //  temprows += "<table style='width: 15px'><tr>";
+        }
+        if (size == "small")
+        {
+            width = "width: 25px;height: 25px;";
+            temprows += "<table ><tr>";
+            //  temprows += "<table style='width: 15px'><tr>";
+        }
+        else if (size == "medium")
+        {
+            width = "width: 50px;height: 50px;";
+            temprows += "<table ><tr>";
+            // temprows += "<table style='width: 300px'><tr>";
+        }
+        else if (size == "large")
+        {
+            width = "width: 100px;height: 100px;";
+            temprows += "<table ><tr>";
+        };
+        List<common.Components.matrixes> localmatrix = Matrixes;
+        // if(sortorder =="name")
+        {
+            //    localmatrix = Matrixes.Where(t => t.Matrix == matrix).OrderBy(t=>t.Name).ToList();
+        }
+        // else
+        {
+            localmatrix = Matrixes.Where(t => t.Matrix == matrix).OrderBy(t => t.Column).OrderBy(t => t.Row).ToList();
+        }
+        foreach (var matrixrow in localmatrix)
+        {
+            if (matrixrow.Matrix == matrix)
+            {
+                if (matrixrow.Row > currentRow)
+                {
+                    currentRow += 1;
+                    temprows += "</tr>";
+                    temprows += "<tr>";
+                }
+                bool terpvalue = TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name).FirstOrDefault() is not null;
+                bool terpname = TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name).ToList().Count > 0;
+                if (terpvalue && terpname)
+                {
+                    ///not zero value output formatted cell
+
+                    string terpnamecurrent = matrixrow.Name;
+                    string terpnamestrain = TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name).FirstOrDefault().TerpeneName;
+
+                    double op = TerpeneValues.Where(t => t.TerpeneName.Trim().ToLower() == matrixrow.Name.ToLower()).FirstOrDefault().Value;
+
+
+
+                    string opp = Math.Round((op * .1), 4).ToString() + "%";
+                    double opacity = Math.Round((op * .1), 3);
+                    double opacitynondec = Math.Round((op * 10), 2);
+                    temprow = "";
+
+                    string tooltip = matrixrow.Name + " " + opp;
+
+                    //set table cell colors and sizes
+                    if (size != "micro")
+                    {
+                        temprow += string.Format("<td title=\"{5}\" style='{3}border:solid;border-color:{1};background-color:{1};opacity:{2}'> <div  style=\"z-index:{4};opacity:1\"> ", matrixrow.Id, matrixrow.Color, opacity, width, opacitynondec, tooltip);
+                    }
+                    else
+                    {
+                        temprow += string.Format("<td title=\"{5}\" style='{3}background-color:{1};opacity:{2}'>  ", matrixrow.Id, matrixrow.Color, opacity, width, opacitynondec, tooltip);
+
+
+                    }
+                    //set writing
+
+                    if (size == "micro" || size == "small")
+                    {
+
+                        temprow += string.Format(" ", opp, matrixrow.Name);
+                    }
+                    else
+                    {
+                        temprow += string.Format("<span style=\"z-index:100\" class='badge bg-black text-bg-info'>{0}</span>", matrixrow.Name, opacity, matrixrow.Color);
+
+                        temprow += string.Format("<span class=\"badge bg-black rounded-pill text-bg-info\">{1}</span>", op, opp);
+
+                    }
+
+                    temprow += "</td>";
+
+                }
+
+                else
+                {
+                    ///zero value output blank cell
+                    temprow = "";
+                    //temprow += string.Format("<tr >", matrixrow.Color);// "<tr bgcolor="">";
+                    temprow += string.Format("<td  style='{3}opacity:{2}'>  ", matrixrow.Id, matrixrow.Color, 0, width);
+                    //temprow += string.Format(" {0}   ", o.Name);
+                    //temprow += string.Format(" {0} , ", o.Matrix);
+                    //  temprow += string.Format(" Row {0}, Column {1} ", o.Row,o.Column );
+                    //temprow += string.Format(" {0} , ", o.Column);
+                    //temprow += string.Format(" {0} ", o.Color);
+
+                    temprow += string.Format("  </td>", "");
+                }
+
+                temprows = temprows + temprow;
+
+            }
+        }
+
+        temprows += "</tr></table>";
+
+        outputrows = (MarkupString)temprows;
+        // batchin = "";
+
+        myMarkup = outputrows;
+
+
+
+
+    }
+
+
+
+}

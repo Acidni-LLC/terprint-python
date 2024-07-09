@@ -1,0 +1,42 @@
+﻿@page "/test"
+@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+@inject NavigationManager NavManager
+@inject Terprint.Web.Components.Pages.BatchChooser batchChooser
+@inject Terprint.Web.Components.Pages.RatingCategoryChooser ratingCategoryChooser
+@rendermode InteractiveServer
+@inject common.AppState appstate
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.WebUtilities
+
+
+<h3>Test</h3>
+
+@{
+
+}
+<BatchChooser></BatchChooser>
+
+<TerprintTable @bind-batch="@batchid" @bind-matrix="@matrix" @bind-size="@size"></TerprintTable>
+@code {
+    protected override void OnInitialized()
+    {
+        var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("matrix", out var _out))
+        {
+            matrix = Convert.ToInt32(_out);
+        }
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("size", out var _size))
+        {
+            size = _size;
+        }
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("batchid", out var _batchid))
+        {
+            batchid = _batchid;
+        }
+    }
+    public int? matrix { get; set; } = 1;
+    public string? size { get; set; } = "small";
+    public string batchid { get; set; } = "59731_0006122581";
+   // batchid == "4281 4009 89411502";
+}
