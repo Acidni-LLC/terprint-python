@@ -13,35 +13,40 @@
 
     if (loadData() && TerpeneValues is not null && TerpeneValues.Count > 0)
     {
-        <h3>@strain</h3>
-        <small>@batch</small>
-        <div><strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%</div>
-        <div class="col-12 ">
-            @{
-                int i = 1;
-                string sep = "";
-                MarkupString o = new MarkupString();
-                string terps = "";
-                foreach (var t in TerpeneValues.Where(t => t.Value > 0).OrderByDescending(t => t.Value).ToList())
-                {
-                    if (i > 1)
-                    { sep = ", "; }
-                    string terpcolor = Matrixes.Where(t1 => t1.Name.Trim().ToLower() == t.TerpeneName.Trim().ToLower() || t1.name2.Trim().ToLower() == t.TerpeneName.Trim().ToLower()).Select(t => t.Color).FirstOrDefault();
-                    terps = terps + sep + "<font color='" + terpcolor + "'>" + i + ". " + t.TerpeneName + "</font> " + Math.Round(t.Value * .1, 4) + "%";
-                    i++;
+        if (rendermode == renderMode.tableandheader)
+        {
+
+            <h3>@strain</h3>
+            <small>@batchData.batch</small>
+            <div><strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%</div>
+            <div class="col-12 ">
+                @{
+                    int i = 1;
+                    string sep = "";
+                    MarkupString o = new MarkupString();
+                    string terps = "";
+                    foreach (var t in TerpeneValues.Where(t => t.Value > 0).OrderByDescending(t => t.Value).ToList())
+                    {
+                        if (i > 1)
+                        { sep = ", "; }
+                        string terpcolor = Matrixes.Where(t1 => t1.Name.Trim().ToLower() == t.TerpeneName.Trim().ToLower() || t1.name2.Trim().ToLower() == t.TerpeneName.Trim().ToLower()).Select(t => t.Color).FirstOrDefault();
+                        terps = terps + sep + "<font color='" + terpcolor + "'>" + i + ". " + t.TerpeneName + "</font> " + Math.Round(t.Value * .1, 4) + "%";
+                        i++;
+                    }
+                    o = (MarkupString)terps;
                 }
-                o = (MarkupString)terps;
-            }
-            <p>@o</p>
-        </div>
+                <p>@o</p>
+            </div>
+        }
         <div>@myMarkup</div>
 
     }
 
 }
 @code {
+    public enum renderMode { table, tableandheader };
 
-
+    public renderMode rendermode { get; set; } = renderMode.tableandheader;
     common.AppState appState = new common.AppState();
 
     #region properties
@@ -137,7 +142,7 @@
         if (batchin != "")
 
         {
-            Models.Batch batch = DB.Batch.Where(t => t.Name == batchin).FirstOrDefault();
+            Models.Batch batch = DB.Batch.Where(t => t.Name.Trim() == batchin).FirstOrDefault();
             strain = DB.Strain.Where(t => t.StrainId == DB.Batch.Where(t => t.BatchId == batch.BatchId).FirstOrDefault().StrainID).FirstOrDefault().StrainName;
             TerpeneValues = DB.TerpeneValues.Where(t => t.BatchID == batch.BatchId).OrderByDescending(t => t.Value).ToList();
 

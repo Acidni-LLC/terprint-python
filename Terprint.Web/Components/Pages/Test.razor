@@ -33,6 +33,8 @@
         if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("batch", out var _batchid))
         {
             batch = _batchid;
+            batchData = new BatchChooser.BatchData();
+            batchData.batch = batch;
         }
         if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("strain", out var _strain))
         {

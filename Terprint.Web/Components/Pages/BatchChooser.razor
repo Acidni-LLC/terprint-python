@@ -9,16 +9,48 @@
 <div class="mb-3">
     <label for="batch" class="form-label">Batch:</label>
     <InputSelect id="batch" class="m-0 form-control" @bind-Value="@TerpeneValue.BatchID" @oninput="OnBatchIdChanged">
+        @if (batch is not null && batch.Length > 0)
+        {
+            if (Batches.Where(t => t.Name.Trim() == batch.Trim()).FirstOrDefault() is null)
+            {
+                <option selected disabled>Select Batch</option>
+            }
+            else
+            {
+                batchin = true;
+            }
+        }
+
         <option selected disabled>Select Batch</option>
         @foreach (var b in Batches)
         {
-            <option value=@b.BatchId @onselect="() => TerpeneValue.BatchID = b.BatchId">@DB2.Strain.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName  @b.Date  @b.Name</option>
+
+            if (batchin && batch.Trim() == b.Name.Trim())
+            {
+                <option selected value=@b.BatchId @onselect="() => BatchId = (int)b.BatchId">@DB2.Strain.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName  @b.Date  @b.Name</option>
+
+                {
+                    BatchId =(int) b.BatchId;
+                }
+
+            }
+            else
+            {
+                <option value=@b.BatchId @onselect="() => BatchId = (int)b.BatchId">@DB2.Strain.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName  @b.Date  @b.Name</option>
+
+            }
+
+        }
+        @if(batchin)
+        {
+            
         }
 
     </InputSelect>
 </div>
 
 @code {
+    private bool batchin = false;
     [Parameter] public int BatchId { get; set; }
     [Parameter] public EventCallback<int> BatchIdChanged { get; set; }
     private Task OnBatchIdChanged(ChangeEventArgs e)
@@ -27,8 +59,9 @@
         appstate.batchid = BatchId;
         batch = Batches.Where(t => t.BatchId == BatchId).FirstOrDefault().Name;
         batchdata = new() { batchId = BatchId, batch = batch };
-        
+
         return batchdataChanged.InvokeAsync((BatchData)batchdata);
+        batchin = false;
     }
     [Parameter] public string batch { get; set; }
     [Parameter] public EventCallback<string> batchChanged { get; set; }
