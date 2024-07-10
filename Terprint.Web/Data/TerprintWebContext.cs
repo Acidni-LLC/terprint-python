@@ -2,28 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Terprint.Web.Models;
 
 namespace Terprint.Web.Data
 {
-    public class ApplicationDbContext : TerprintWebContext
+    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<ApplicationUser>(options)
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder
-                .EnableSensitiveDataLogging()
-
-                // .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test;ConnectRetryCount=0")
-                ;
-        }
-        public ApplicationDbContext(DbContextOptions<TerprintWebContext> options)
-            : base(options)
-        {
-        }
-
     }
-        public class TerprintWebContext2 : TerprintWebContext
+    public class TerprintWebContext2 : TerprintWebContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
