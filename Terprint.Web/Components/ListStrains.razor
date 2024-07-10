@@ -1,0 +1,15 @@
+﻿@inject Terprint.Web.Data.TerprintWebContext DB
+
+@{
+    foreach(Models.Strain s in  DB.Strain
+    .OrderBy(t => t.StrainName)
+    
+    .ToList())
+    {
+        <span> <a href="StrainProfile?strain=@s.StrainName">@s.StrainName</a>,</span>
+    }
+}
+@code {
+    
+}
+

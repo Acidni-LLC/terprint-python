@@ -527,6 +527,57 @@ namespace Terprint.common
         {
 
         }
+        public  string GetTerpeneColor(string terpene)
+        {
+            string color = "";
+
+            loadmatrix();
+            
+            var r = Matrixes.Where(t => t.Name == terpene).FirstOrDefault();
+            if(r is not null)
+            {
+                color = r.Color;
+            }
+            else
+            {
+                var x = Matrixes.Where(t => t.name2 == terpene).FirstOrDefault();
+                color = x.Color;
+            }
+            return color;
+
+        }
+        public List<string> GetTerpeneList()
+        {
+            List<string> terpenes = new List<string>();
+
+            loadmatrix();
+
+            terpenes = Matrixes.Select(t => t.Name).Distinct().ToList();
+
+            return terpenes;
+
+        }
+        public string GetDBTerpName(string terpene)
+        {
+            string terpenes ;
+
+            loadmatrix();
+            if(Matrixes
+                .Where(t => t.Name == terpene && t.name2.Length>0)
+                .Count()>0 )
+            {
+                terpenes = Matrixes
+                .Where(t => t.Name == terpene)
+                .FirstOrDefault().name2;
+            }
+            else
+            {
+                terpenes = terpene;
+            }
+
+            return terpenes;
+
+        }
         public void loadmatrix(string strain = "")
         {
             if (Matrixes == null)
@@ -655,7 +706,7 @@ namespace Terprint.common
                 Matrixes.Add(new matrixes(117, "β-Pinene", 4, 27, 1, "#FFC000"));
                 Matrixes.Add(new matrixes(118, "γ-Terpinene", 4, 28, 1, "#FF0000"));
                 Matrixes.Add(new matrixes(119, "δ-3-Carene", 4, 29, 1, "#C00000"));
-                Matrixes.Add(new matrixes(120, "Borneol", 4, 30, 1, "#99FF33")); 
+                Matrixes.Add(new matrixes(120, "Borneol", 4, 30, 1, "#99FF33"));
                 Matrixes.Add(new matrixes(121, "(R)-(+)-Limonene", 5, 1, 1, "#008000"));
                 Matrixes.Add(new matrixes(122, "Camphene", 5, 1, 2, "#33CC33"));
                 Matrixes.Add(new matrixes(123, "Caryophyllene Oxide", 5, 1, 3, "#66FF66"));

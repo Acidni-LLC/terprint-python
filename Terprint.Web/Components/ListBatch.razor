@@ -1,0 +1,16 @@
+﻿@inject Terprint.Web.Data.TerprintWebContext DB
+@using Terprint.Web.Models
+@inject Terprint.Web.Data.TerprintWebContext DB
+
+@{
+    foreach (Models.Batch s in DB.Batch
+    .OrderByDescending(t => t.Date)
+
+    .ToList())
+    {
+        <span><a href="BatchProfile?batch=@s.Name"> @s.Name</a>,</span>
+    }
+}
+@code {
+
+}

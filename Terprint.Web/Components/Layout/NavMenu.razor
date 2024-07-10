@@ -13,8 +13,8 @@
 
                 <li class="nav-item"><a class="nav-link" href="/">Home </a> </li>
                 <li class="nav-item"><a class="nav-link" href="#"> About </a></li>
-                <li class="nav-item"><a class="nav-link" href="/List2"> List </a></li>
-                <li class="nav-item"><a class="nav-link" href="/Table"> Matrix </a></li>
+                <li class="nav-item"><a class="nav-link" href="/List"> List </a></li>
+                <li class="nav-item"><a class="nav-link" href="/BatchProfile">Batch Profile </a></li>
                 <li class="nav-item dropdown" id="myDropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Strains menu  </a>
                     <ul class="dropdown-menu">
@@ -50,7 +50,7 @@
                                     @foreach (var batch in GetBatches(strain))
                                     {
                                         string urlencoded = System.Web.HttpUtility.UrlEncode(@batch);
-                                        string path = "/Table?size=medium&matrix=1&batch=" + @urlencoded;
+                                        string path = "/BatchProfile?size=medium&matrix=1&batch=" + @urlencoded;
                                         <li>
                                             <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@batch</NavLink>
                                         </li>

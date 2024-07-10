@@ -2,12 +2,57 @@
 
 <PageTitle>@common.config.appname - Home</PageTitle>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    Ratings
-
-    <a href="/ratingscomponent">Ratings</a>"
-    <p><a href="/test?size=small&matrix=5&batch=PRPFLW100054-2405-28099">New Table</a>
-   <a href="/list2">New List</a>  <a href="/list?size=micro&matrix=2">List 1</a>  <a href="/table?size=Medium&matrix=1">Matrix 1</a>  <a href="/Table?size=Medium&matrix=2">Matrix 2</a>  <a href="/Table?size=Medium&matrix=3">Matrix 3</a></p>
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 ">
+            <div class="card">
+                <div class="card-body text-center">
+                    <p class="display-6">Welcome to Terptastic</p>
+                    <p class="display-8"><i>helping you know cannabis</i></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12  text-center">
+            <div class="card">
+                <div class="card-header text-center">
+                    <a href="/ratingscomponent">Terpenes</a>
+                </div>
+                <div class="card-body">
+                    <ListTerpenes></ListTerpenes>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-6 text-center">
+            <div class="card">
+                <div class="card-header text-center">
+                    <a href="/ratingscomponent">Strains</a>
+                </div>
+                <div class="card-body">
+                    <ListStrains></ListStrains>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 text-center">
+            <div class="card">
+                <div class="card-header text-center">
+                    <a href="/">Batches</a>
+                </div>
+                <div class="card-body">
+                    <ListBatch></ListBatch>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-6 text-center">
+            <div class="card">
+                <div class="card-body text-center">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -2,7 +2,7 @@
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
-@inject BatchChooser BatchChooser
+@inject ChooserBatch ChooserBatch
 
 <PageTitle>Create</PageTitle>
 
@@ -15,7 +15,7 @@
         <EditForm method="post" Model="THCValue" OnValidSubmit="AddTHCValue" FormName="create" Enhance>
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" />
-            <BatchChooser></BatchChooser>
+            <ChooserBatch></ChooserBatch>
             <div class="mb-3">
                 <label for="analyte" class="form-label">Analyte:</label> 
                 <InputText id="analyte" @bind-Value="THCValue.Analyte" class="form-control" /> 

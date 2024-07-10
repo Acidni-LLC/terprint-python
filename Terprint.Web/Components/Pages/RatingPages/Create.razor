@@ -2,8 +2,8 @@
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
-@inject Terprint.Web.Components.Pages.BatchChooser batchChooser
-@inject Terprint.Web.Components.Pages.RatingCategoryChooser ratingCategoryChooser
+@inject Terprint.Web.Components.ChooserBatch ChooserBatch
+@inject Terprint.Web.Components.ChooserRatingCategory ChooserRatingCategory
 @rendermode InteractiveServer
 @inject common.AppState appstate
 
@@ -19,11 +19,11 @@
         <EditForm method="post" Model="Rating" OnValidSubmit="AddRating" FormName="create" Enhance>
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" />
-            <Terprint.Web.Components.Pages.BatchChooser @bind-BatchId="BatchId"></Terprint.Web.Components.Pages.BatchChooser>
+            <Terprint.Web.Components.ChooserBatch @bind-BatchId="BatchId"></Terprint.Web.Components.ChooserBatch>
 
-            <Terprint.Web.Components.Pages.RatingCategoryChooser @bind-RatingCategoryId="RatingCategoryId" @bind-RatingValue="RatingValue">
+            <Terprint.Web.Components.ChooserRatingCategory @bind-RatingCategoryId="RatingCategoryId" @bind-RatingValue="RatingValue">
 
-            </Terprint.Web.Components.Pages.RatingCategoryChooser>
+            </Terprint.Web.Components.ChooserRatingCategory>
            @*  <div class="mb-3">
                 <label for="BatchId" class="form-label">BatchId:</label>
                 <InputNumber id="BatchID" @bind-Value="BatchId" class="form-control" />

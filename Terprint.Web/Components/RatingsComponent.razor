@@ -38,13 +38,13 @@
     }
     public List<Models.Rating> ratings { get; set; }
 
-    public Pages.BatchChooser.BatchData batchData { get; set; }
-    [Parameter] public EventCallback<Pages.BatchChooser.BatchData> batchDataChanged { get; set; }
+    public ChooserBatch.BatchData batchData { get; set; }
+    [Parameter] public EventCallback<ChooserBatch.BatchData> batchDataChanged { get; set; }
     private Task OnbatchdataChanged(ChangeEventArgs e)
     {
 
-        batchData = (Pages.BatchChooser.BatchData)e.Value;
-        return batchDataChanged.InvokeAsync((Pages.BatchChooser.BatchData)batchData);
+        batchData = (ChooserBatch.BatchData)e.Value;
+        return batchDataChanged.InvokeAsync((ChooserBatch.BatchData)batchData);
     }
     
 
@@ -60,7 +60,7 @@
             }
             else
             {
-                if (batchData is null) { batchData = new Pages.BatchChooser.BatchData(); }
+                if (batchData is null) { batchData = new ChooserBatch.BatchData(); }
                 batchData.batch = "";
             }
         }

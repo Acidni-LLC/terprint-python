@@ -20,7 +20,7 @@
             <option value="1">1 [Analyte][ ][Dilution (1:n)][ ][LOD (%)][ ][LOQ (%)][ ][Result (mg/g)]{ ][(%)] </option>
             <option value="2">2 [Analyte][ ][LOD (MG/G)][ ][RESULT (MG/G)][ ][RESULT % (TOTAL)]</option>
         </InputSelect>
-        <Terprint.Web.Components.Pages.BatchChooser></Terprint.Web.Components.Pages.BatchChooser>
+        <Terprint.Web.Components.ChooserBatch></Terprint.Web.Components.ChooserBatch>
 
         <label class="control-label">Terpene Values</label>
         <InputTextArea id="tva" @bind-Value="@tv" class="form-control" rows="10">@string.Join("\n ", DB2.THCValues.Select(t => t.Analyte).ToList())</InputTextArea>

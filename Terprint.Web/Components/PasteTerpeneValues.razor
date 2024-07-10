@@ -12,7 +12,7 @@
            // terpeneValues = DB2.TerpeneValues.ToList();
             
         }
-        <Terprint.Web.Components.Pages.BatchChooser></Terprint.Web.Components.Pages.BatchChooser>
+        <Terprint.Web.Components.ChooserBatch></Terprint.Web.Components.ChooserBatch>
 
         <label class="control-label">Terpene Values</label>
         <InputTextArea id="tva" @bind-Value="@tv" class="form-control" rows="10" >@string.Join("\n ", DB2.TerpeneValues.Select(t => t.TerpeneName).ToList())</InputTextArea>
