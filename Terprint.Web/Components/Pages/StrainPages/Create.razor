@@ -33,6 +33,13 @@
     <a href="/strains">Back to List</a>
 </div>
 
+<AuthorizeView>
+    <Authorized>
+        @{
+            Strain.createdby = context.User.Identity?.Name;
+        }
+    </Authorized>
+</AuthorizeView>
 @code {
 
     [SupplyParameterFromForm]

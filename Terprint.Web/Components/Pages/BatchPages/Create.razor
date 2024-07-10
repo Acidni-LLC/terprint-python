@@ -63,7 +63,13 @@
 <div>
     <a href="/batches">Back to List</a>
 </div>
-
+<AuthorizeView>
+    <Authorized>
+        @{
+            Batch.createdby = context.User.Identity?.Name;
+        }
+    </Authorized>
+</AuthorizeView>
 @code {
 
 
@@ -101,6 +107,7 @@
         //Batch.Grower = Grower;
         //DB2.DisposeAsync();
         Batch.Name = Batch.Name.Trim();
+        //Batch.createdby = User.Identity?.Name;
         DB.Batch.AddAsync(Batch);
         await DB.SaveChangesAsync();
         NavigationManager.NavigateTo("/batches");

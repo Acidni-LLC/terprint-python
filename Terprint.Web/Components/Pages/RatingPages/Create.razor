@@ -54,6 +54,13 @@
     <a href="/ratings">Back to List</a>
 </div>
 
+<AuthorizeView>
+    <Authorized>
+        @{
+            Rating.createdby = context.User.Identity?.Name;
+        }
+    </Authorized>
+</AuthorizeView>
 @code {
     private string RatingValue { get; set; }
     private int RatingCategoryId { get; set; }

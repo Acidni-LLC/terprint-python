@@ -27,7 +27,16 @@
     </div>
     <button type="submit" class="btn btn-primary">Add Values</button>
 </EditForm>
+
+<AuthorizeView>
+    <Authorized>
+        @{
+            userid = context.User.Identity?.Name;
+        }
+    </Authorized>
+</AuthorizeView>
 @code {
+    public string userid { get; set; }
     [SupplyParameterFromForm]
     public string inputformat { get; set; } = new("");
 
@@ -104,15 +113,15 @@
 
                     string fourthnum = s.Substring(index, s.Length - index).Split(" ")[3].Replace("%", "");
                     string fifthnum = s.Substring(index, s.Length - index).Split(" ")[4].Replace("%", "");
-                     THCValue = new THCValue() { Analyte = name, Dilution = firstnum, LOD = secondnum, LOQ = thirddnum, Result = fourthnum, Percent = fifthnum, BatchID = TerpeneValue.BatchID };
+                    THCValue = new THCValue() { Analyte = name, Dilution = firstnum, LOD = secondnum, LOQ = thirddnum, Result = fourthnum, Percent = fifthnum, BatchID = TerpeneValue.BatchID };
                 }
                 else if (inputformat=="2")
                 {
 
                     THCValue = new THCValue() { Analyte = name,   LOD = firstnum,   Result = secondnum, Percent = thirddnum, BatchID = TerpeneValue.BatchID };
                 }
-                 
 
+                THCValue.createdby = userid;
                 THCValues.Add(THCValue);
                 // THCValues.Add(new THCValue() { Name = name, Value = Convert.ToDouble(secondnum), BatchID = THCValue.BatchID });
                 //THCValues.Add(new THCValue() { Name = name, Value = Convert.ToDouble(secondnum), BatchID = THCValue.BatchID });
