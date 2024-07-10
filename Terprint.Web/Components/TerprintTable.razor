@@ -1,22 +1,41 @@
 ﻿@using Microsoft.AspNetCore.Mvc
-@inject common.AppState appstate
 @using Microsoft.AspNetCore.Mvc
 @using Microsoft.AspNetCore.WebUtilities
-@rendermode InteractiveServer
+@inject common.AppState appstate
 @inject Terprint.common.Components c;
 @inject NavigationManager nm
 @inject Terprint.Web.Data.TerprintWebContext DB
 
+@rendermode InteractiveServer
 
 
 @{
 
+   
     if (loadData() && TerpeneValues is not null && TerpeneValues.Count > 0)
     {
-        if (rendermode == renderMode.tableandheader)
+        if (rendermode == renderMode.tableandtitle)
+        {
+            <table>
+                <tr>
+                    <td> <div class="container"><h5>@strain </h5></div></td>
+                    <td> <div class="container"><small class="">@batchData.batch</small></div></td>
+                    <td>
+                        <div class="container">
+                            <small class="">
+                                <div><strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%</div>
+                            </small>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+
+        }
+        else if (rendermode == renderMode.tableandheader)
         {
 
-            <h3>@strain</h3>
+            <h5>@strain</h5>
             <small>@batchData.batch</small>
             <div><strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%</div>
             <div class="col-12 ">
@@ -39,14 +58,20 @@
             </div>
         }
         <div>@myMarkup</div>
-
+        
     }
 
 }
-@code {
-    public enum renderMode { table, tableandheader };
+@code { 
+    public enum renderMode { table, tableandheader, tableandtitle };
+    [Parameter] public renderMode? rendermode { get; set; }
+    [Parameter] public EventCallback<renderMode> rendermodeChanged { get; set; }
+    private Task OnrendermodeChanged(ChangeEventArgs e)
+    {
+        rendermode = (renderMode)e.Value;
+        return rendermodeChanged.InvokeAsync((renderMode)rendermode);
+    }
 
-    public renderMode rendermode { get; set; } = renderMode.tableandheader;
     common.AppState appState = new common.AppState();
 
     #region properties
@@ -288,6 +313,6 @@
 
     }
 
-
-
+     
+    
 }

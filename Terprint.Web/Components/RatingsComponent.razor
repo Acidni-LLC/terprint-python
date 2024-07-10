@@ -1,0 +1,79 @@
+﻿@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.WebUtilities
+@inject common.AppState appstate
+@inject Terprint.common.Components c;
+@inject NavigationManager nm
+@inject Terprint.Web.Data.TerprintWebContext DB
+
+@page "/ratingscomponent"
+<h3>RatingsComponent</h3>
+
+@code {
+
+    [FromQuery(Name = "batch")]
+    public string? batch
+    {
+        get
+        {
+            try
+            {
+                var uri = nm.ToAbsoluteUri(nm.Uri);
+                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("batch", out var _batch))
+                {
+                    return _batch;
+                    //   currentCount = Convert.ToInt32(_initialCount);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        set { }
+    }
+    public List<Models.Rating> ratings { get; set; }
+
+    public Pages.BatchChooser.BatchData batchData { get; set; }
+    [Parameter] public EventCallback<Pages.BatchChooser.BatchData> batchDataChanged { get; set; }
+    private Task OnbatchdataChanged(ChangeEventArgs e)
+    {
+
+        batchData = (Pages.BatchChooser.BatchData)e.Value;
+        return batchDataChanged.InvokeAsync((Pages.BatchChooser.BatchData)batchData);
+    }
+    
+
+}
+<div>
+    @{
+
+        if (batchData is null || batchData.batch is null || batchData.batch.Length == 0)
+        {
+            if (batch is not null && batch.Length > 0)
+            {
+                batchData.batch = batch;
+            }
+            else
+            {
+                if (batchData is null) { batchData = new Pages.BatchChooser.BatchData(); }
+                batchData.batch = "";
+            }
+        }
+        else if (batchData.batch is null || batchData.batch.Length == 0)
+        {
+
+        }
+        ratings = DB.Rating
+        .Where(t => t.BatchID == batchData.batchId)
+        .ToList();
+        foreach (var rating in ratings.Select(t => new { t.Value, t.RatingCategoryID }).ToList())
+        {
+            <p>@rating.Value</p>
+        }
+    }
+</div>

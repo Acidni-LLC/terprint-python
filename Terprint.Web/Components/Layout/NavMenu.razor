@@ -1,4 +1,5 @@
-﻿
+﻿@inject Terprint.Web.Data.TerprintWebContext DB
+@inject NavigationManager _navigationManager
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
@@ -11,7 +12,7 @@
                 <li class="nav-item"><a class="nav-link" href="/"></a> </li>
                 <li class="nav-item"><a class="nav-link" href="/">Home </a> </li>
                 <li class="nav-item"><a class="nav-link" href="#"> About </a></li>
-                <li class="nav-item"><a class="nav-link" href="/List"> List </a></li>
+                <li class="nav-item"><a class="nav-link" href="/List2"> List </a></li>
                 <li class="nav-item"><a class="nav-link" href="/Table"> Matrix </a></li>
                 <li class="nav-item dropdown" id="myDropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Strains menu  </a>
@@ -21,14 +22,22 @@
                             {
                                 // e.g. Put a database call here
 
-                                return Terprint.common.Strains.GetStrains();
+                                return DB.Strain.Select(t => t.StrainName).ToList();
+                                // Terprint.common.Strains.GetStrains();
 
                             }
                             List<string> GetBatches(string strain)
                             {
                                 // e.g. Put a database call here
 
-                                return Terprint.common.Strains.GetBatches(strain);
+                                return DB.Batch.Where(
+                                    t => t.StrainID == DB.Strain
+                                    .Where(t1 => t1.StrainName == strain)
+                                    .Select(t => t.StrainId)
+                                    .FirstOrDefault())
+                                    .Select(t => t.Name)
+                                    .ToList();
+                                //return Terprint.common.Strains.GetBatches(strain);
 
                             }
                         }
@@ -39,8 +48,9 @@
                                 <ul class="submenu dropdown-menu">
                                     @foreach (var batch in GetBatches(strain))
                                     {
-                                        string urlencoded = System.Web.HttpUtility.UrlEncode(@strain + "|" + @batch);
-                                        <li><a class="dropdown-item" href="/Table?size=Medium&matrix=1&strain=@urlencoded">@batch</a></li>
+                                        string urlencoded = System.Web.HttpUtility.UrlEncode(@batch);
+                                        string path = "/Table?size=medium&matrix=1&batch=" + @urlencoded;
+                                        <li><NavLink class="dropdown-item" href="@path">@batch</NavLink></li>
                                     }
 
                                 </ul>
@@ -111,3 +121,10 @@
     </div>
     <!-- container-fluid.// -->
 </nav>
+@code {
+
+    void NevigateToYourUrl(string path)
+    {
+        _navigationManager.NavigateTo(path);
+    }
+}

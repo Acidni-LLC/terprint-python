@@ -68,10 +68,12 @@ else
     // For more details, see https://aka.ms/RazorPagesCRUD.
     public async Task UpdateBatch()
     {
+            Batch.Name = Batch.Name.Trim();
         DB.Attach(Batch!).State = EntityState.Modified;
 
         try
         {
+
             await DB.SaveChangesAsync();
         }
         catch (DbUpdateConcurrencyException)
