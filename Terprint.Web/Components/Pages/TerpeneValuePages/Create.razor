@@ -51,6 +51,13 @@
     <a href="/terpenevalues">Back to List</a>
 </div>
 
+<AuthorizeView>
+    <Authorized>
+        @{
+            TerpeneValue.createdby = context.User.Identity?.Name;
+        }
+    </Authorized>
+</AuthorizeView>
 @code {
 
     [SupplyParameterFromForm]

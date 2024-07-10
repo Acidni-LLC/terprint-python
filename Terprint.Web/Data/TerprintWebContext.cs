@@ -10,16 +10,26 @@ namespace Terprint.Web.Data
 {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<ApplicationUser>(options)
     {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+
+            optionsBuilder
+              //.EnableSensitiveDataLogging()
+
+              .UseSqlServer(@"Data Source=terprintwebdbserver.database.windows.net;Initial Catalog=Terprint.Web_db;User ID=savitas;Password=sql1234%;Connect Timeout=60;Encrypt=True;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
+              ;
+        }
     }
     public class TerprintWebContext2 : TerprintWebContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder
-                .EnableSensitiveDataLogging()
 
-                // .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test;ConnectRetryCount=0")
-                ;
+            optionsBuilder
+              //.EnableSensitiveDataLogging()
+
+              .UseSqlServer(@"Data Source=terprintwebdbserver.database.windows.net;Initial Catalog=Terprint.Web_db;User ID=savitas;Password=sql1234%;Connect Timeout=60;Encrypt=True;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
+              ;
         }
         public TerprintWebContext2(DbContextOptions<TerprintWebContext> options)
             : base(options)
@@ -30,11 +40,13 @@ namespace Terprint.Web.Data
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder
-                .EnableSensitiveDataLogging()
 
-                // .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test;ConnectRetryCount=0")
-                ;
+
+            optionsBuilder
+               //.EnableSensitiveDataLogging()
+
+               .UseSqlServer(@"Data Source=terprintwebdbserver.database.windows.net;Initial Catalog=Terprint.Web_db;User ID=savitas;Password=sql1234%;Connect Timeout=60;Encrypt=True;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
+               ;
         }
         public TerprintWebContext3(DbContextOptions<TerprintWebContext> options)
             : base(options)
@@ -46,9 +58,9 @@ namespace Terprint.Web.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .EnableSensitiveDataLogging()
-               
-               // .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test;ConnectRetryCount=0")
+                //.EnableSensitiveDataLogging()
+
+                .UseSqlServer(@"Data Source=terprintwebdbserver.database.windows.net;Initial Catalog=Terprint.Web_db;User ID=savitas;Password=sql1234%;Connect Timeout=60;Encrypt=True;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
                 ;
         }
         public TerprintWebContext (DbContextOptions<TerprintWebContext> options)

@@ -11,14 +11,14 @@
 
 @{
 
-   
+
     if (loadData() && TerpeneValues is not null && TerpeneValues.Count > 0)
     {
         if (rendermode == renderMode.tableandtitle)
         {
             <table>
                 <tr>
-                    <td> <div class="container"> <h5><a href="/Table?size=medium&matrix=1&batch=@batchData.batch">@strain</a></h5></div></td>
+                    <td> <div class="container"> <h5> <a href="/StrainProfile?strain=@strain">@strain</a></h5></div></td>
                     <td> <div class="container"><small class="">@batchData.batch</small></div></td>
                     <td>
                         <div class="container">
@@ -32,10 +32,14 @@
             <div>@myMarkup</div>
 
         }
-        else if (rendermode == renderMode.tableandheader)
+        else if (rendermode == renderMode.tableandheader || rendermode == renderMode.nostrain)
         {
 
-            <h5>@strain</h5>
+            @if (rendermode != renderMode.nostrain)
+            {
+                <h5><a href="/StrainProfile?strain=@strain">@strain</a></h5>
+            }
+
             <small>@batchData.batch</small>
             <div><strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%</div>
             <div class="col-12 ">
@@ -58,16 +62,16 @@
             </div>
             <div>@myMarkup</div>
         }
-        else if (rendermode == renderMode.tableandheader)
+        else if (rendermode == renderMode.table)
         {
             <div>@myMarkup</div>
         }
-        
+
     }
 
 }
-@code { 
-    public enum renderMode { table, tableandheader, tableandtitle };
+@code {
+    public enum renderMode { table, tableandheader, tableandtitle, nostrain };
     [Parameter] public renderMode? rendermode { get; set; }
     [Parameter] public EventCallback<renderMode> rendermodeChanged { get; set; }
     private Task OnrendermodeChanged(ChangeEventArgs e)
@@ -100,20 +104,20 @@
         return batchChanged.InvokeAsync(batch);
     }
 
-    private Pages.BatchChooser.BatchData batchdata { get; set; }
+    private ChooserBatch.BatchData batchdata { get; set; }
 
     [Parameter]
-    public Pages.BatchChooser.BatchData batchData
+    public ChooserBatch.BatchData batchData
     {
         get;
         set;
     }
-    [Parameter] public EventCallback<Pages.BatchChooser.BatchData> batchDataChanged { get; set; }
+    [Parameter] public EventCallback<ChooserBatch.BatchData> batchDataChanged { get; set; }
     private Task OnbatchdataChanged(ChangeEventArgs e)
     {
 
-        batchData = (Pages.BatchChooser.BatchData)e.Value;
-        return batchDataChanged.InvokeAsync((Pages.BatchChooser.BatchData)batchData);
+        batchData = (ChooserBatch.BatchData)e.Value;
+        return batchDataChanged.InvokeAsync((ChooserBatch.BatchData)batchData);
     }
 
     [Parameter]
@@ -259,7 +263,7 @@
                     //set table cell colors and sizes
                     if (size != "micro")
                     {
-                        temprow += string.Format("<td title=\"{5}\" style='{3}border:solid;border-color:{1};background-color:{1};opacity:{2}'> <div  style=\"z-index:{4};opacity:1\"> ", matrixrow.Id, matrixrow.Color, opacity, width, opacitynondec, tooltip);
+                        temprow += string.Format("<td title=\"{5}\" style='{3}border:solid;border-color:{1};background-color:{1};opacity:{2}'> <div  style=\"z-index:{4};opacity:1\">", matrixrow.Id, matrixrow.Color, opacity, width, opacitynondec, tooltip, matrixrow.Name);
                     }
                     else
                     {
@@ -271,12 +275,13 @@
 
                     if (size == "micro" || size == "small")
                     {
+                        MarkupString navman = new MarkupString();
 
-                        temprow += string.Format(" ", opp, matrixrow.Name);
+                        temprow += string.Format("<a href=\"/TerpeneProfile?terpene={1}\">&nbsp;</a>", opp, matrixrow.Name);
                     }
                     else
                     {
-                        temprow += string.Format("<span style=\"z-index:100\" class='badge bg-black text-bg-info'>{3}. {0}</span>", matrixrow.Name, opacity, matrixrow.Color, terpindex);
+                        temprow += string.Format("<span style=\"z-index:100\" class='badge bg-black text-bg-info'>{3}. <a href=\"/TerpeneProfile?terpene={0}\">{0}</a></span>", matrixrow.Name, opacity, matrixrow.Color, terpindex);
 
                         temprow += string.Format("<span class=\"badge bg-black rounded-pill text-bg-info\">{1}</span>", op, opp);
 
@@ -317,6 +322,6 @@
 
     }
 
-     
-    
+
+
 }

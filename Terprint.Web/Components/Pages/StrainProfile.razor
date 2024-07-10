@@ -1,0 +1,79 @@
+﻿@page "/StrainProfile"
+
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.WebUtilities
+@using Terprint.Web.Models
+@inject NavigationManager NavManager
+@inject Terprint.Web.Data.TerprintWebContext DB
+@inject Terprint.Web.Components.ChooserBatch ChooserBatch
+@inject Terprint.Web.Components.ChooserRatingCategory ChooserRatingCategory
+@inject common.AppState appstate
+@rendermode InteractiveServer
+
+<PageTitle>@common.config.appname - Strain Profile - @strain</PageTitle>
+<div class="pil"><p class="display-6"> @strain Profile</p></div>
+
+@code {
+    public Components.ChooserBatch.BatchData bd = new ChooserBatch.BatchData();
+
+    public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.nostrain;
+
+    [FromQuery(Name = "strain")]
+    public string? strain
+    {
+        get
+        {
+            try
+            {
+                var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
+                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("strain", out var _strain))
+                {
+                    return _strain;
+                    //   currentCount = Convert.ToInt32(_initialCount);
+                }
+                else
+                {
+                    return "";
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        set { }
+    }
+
+    public int? matrix { get; set; } = 5;
+    public string? size { get; set; } = "small";
+
+    public ChooserBatch.BatchData batchData
+    {
+
+        get; set;
+    }
+    private ChooserBatch.BatchData batchdata { get; set; }
+}
+
+@{
+    int strainid = DB.Strain
+                    .Where(t => t.StrainName == strain)
+                    .Select(t => t.StrainId).FirstOrDefault();
+
+    foreach (var batch in DB.Batch
+        .OrderByDescending(t => t.StrainID)
+        .Where(t => t.StrainID == strainid)
+        .ToList())
+    {
+
+        { bd = new ChooserBatch.BatchData() { batch = batch.Name, batchId = (int)batch.BatchId }; }
+        <div class="card">
+            <div class="card-body">
+                <TerprintTable @bind-batch="@batch.Name" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+            </div>
+        </div>
+
+    }
+
+}

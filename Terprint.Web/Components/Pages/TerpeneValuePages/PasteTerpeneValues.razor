@@ -12,14 +12,22 @@
            // terpeneValues = DB2.TerpeneValues.ToList();
             
         }
-        <Terprint.Web.Components.Pages.BatchChooser></Terprint.Web.Components.Pages.BatchChooser>
+        <Terprint.Web.Components.ChooserBatch></Terprint.Web.Components.ChooserBatch>
 
         <label class="control-label">Terpene Values</label>
         <InputTextArea id="tva" @bind-Value="@tv" class="form-control" rows="10" >@string.Join("\n ", DB2.TerpeneValues.Select(t => t.TerpeneName).ToList())</InputTextArea>
     </div>
     <button type="submit" class="btn btn-primary">Add Values</button>
 </EditForm>
+<AuthorizeView>
+    <Authorized>
+        @{
+            userid = context.User.Identity?.Name;
+        }
+    </Authorized>
+</AuthorizeView>
 @code {
+    public string userid { get; set; }
 
     [SupplyParameterFromForm]
     public TerpeneValue TerpeneValue { get; set; } = new();
@@ -61,7 +69,7 @@
             string name = s.Substring(0, index).Trim();
             string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
             string secondnum =  s.Substring(index, s.Length - index).Split(" ")[1].Replace("%","");
-            terpeneValues.Add(new TerpeneValue() { TerpeneName = name, Value = Convert.ToDouble(secondnum), BatchID = TerpeneValue .BatchID});
+            terpeneValues.Add(new TerpeneValue() { TerpeneName = name, Value = Convert.ToDouble(secondnum), BatchID = TerpeneValue .BatchID, createdby=userid});
         }
 
     }

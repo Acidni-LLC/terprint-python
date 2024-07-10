@@ -7,6 +7,7 @@ namespace Terprint.Web.Models
     public class Batch
     {
         public DateTime created { get; set; } = DateTime.Now;
+        public string? createdby { get; set; } 
         public int? BatchId { get; set; }
         [Required]
         //Terpene	Matrix	Row	Column	Color

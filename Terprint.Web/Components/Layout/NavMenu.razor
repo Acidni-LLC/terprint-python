@@ -13,8 +13,8 @@
 
                 <li class="nav-item"><a class="nav-link" href="/">Home </a> </li>
                 <li class="nav-item"><a class="nav-link" href="#"> About </a></li>
-                <li class="nav-item"><a class="nav-link" href="/List2"> List </a></li>
-                <li class="nav-item"><a class="nav-link" href="/Table"> Matrix </a></li>
+                <li class="nav-item"><a class="nav-link" href="/List"> List </a></li>
+                <li class="nav-item"><a class="nav-link" href="/BatchProfile">Batch Profile </a></li>
                 <li class="nav-item dropdown" id="myDropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Strains menu  </a>
                     <ul class="dropdown-menu">
@@ -50,7 +50,7 @@
                                     @foreach (var batch in GetBatches(strain))
                                     {
                                         string urlencoded = System.Web.HttpUtility.UrlEncode(@batch);
-                                        string path = "/Table?size=medium&matrix=1&batch=" + @urlencoded;
+                                        string path = "/BatchProfile?size=medium&matrix=1&batch=" + @urlencoded;
                                         <li>
                                             <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@batch</NavLink>
                                         </li>
@@ -62,12 +62,42 @@
 
                     </ul>
                 </li>
+                <li class="nav-item dropdown" id="myDropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Terpenes   </a>
+                    <ul class="dropdown-menu">
+                        @{
+
+                            List<string> GetTerpenes()
+                            {
+                                // e.g. Put a database call here
+
+                                Terprint.common.Components c = new Terprint.common.Components();
+                                return c.GetTerpeneList();
+
+                                //return Terprint.common.Strains.GetBatches(strain);
+
+                            }
+                        }
+                        @{Terprint.common.Components c = new Terprint.common.Components();}
+                        @foreach (var terpene in GetTerpenes())
+                        {
+                            string terpcolor = c.GetTerpeneColor(terpene);
+                            string urlencoded = System.Web.HttpUtility.UrlEncode(@terpene);
+                            string path = "/TerpeneProfile?terpene=" + @urlencoded;
+                            <li style="background-color: @terpcolor">
+                                <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@terpene</NavLink>
+                                
+                            </li>
+                        }
+
+                    </ul>
+                </li>
 
                 <AuthorizeView>
 
                     <Authorized>
                         <li class="nav-item dropdown">
-                            <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Admin </a>
+                            <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Admin   @context.User.Identity?.Name</a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li>
                                     <a class="dropdown-item" href="#">Growers » </a>
@@ -121,6 +151,18 @@
                                     </ul>
                                 </li>
                             </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <div class="nav-item px-3">
+                                <form action="Account/Logout" method="post">
+                                    <AntiforgeryToken />
+                                    <input type="hidden" name="ReturnUrl" value="/" />
+                                    <button type="submit" class="nav-link">
+                                        Logout
+                                    </button>
+                                </form>
+                            </div>
                         </li>
                     </Authorized>
 

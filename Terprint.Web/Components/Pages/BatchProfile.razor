@@ -1,20 +1,22 @@
-﻿@page "/Table"
+﻿@page "/BatchProfile"
+
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavManager
-@inject Terprint.Web.Components.Pages.BatchChooser batchChooser
-@inject Terprint.Web.Components.Pages.RatingCategoryChooser ratingCategoryChooser
+@inject Terprint.Web.Components.ChooserBatch ChooserBatch
+@inject Terprint.Web.Components.ChooserRatingCategory ChooserRatingCategory
 @rendermode InteractiveServer
 @inject common.AppState appstate
 @using Microsoft.AspNetCore.Mvc
 @using Microsoft.AspNetCore.WebUtilities
 
 
+<PageTitle>@common.config.appname - Batch Profile - @batch</PageTitle>
 @{
 
     //   NavManager.Refresh();
 }
-<BatchChooser @bind-BatchId="@batchid" @bind-batch="@batch" @bind-batchdata="@batchData"></BatchChooser>
+<ChooserBatch @bind-BatchId="@batchid" @bind-batch="@batch" @bind-batchdata="@batchData"></ChooserBatch>
 
 <TerprintTable @bind-batch="@batch" @bind-matrix="@matrix" @bind-size="@size" @bind-strain="@strain" @bind-batchData="@batchData" @bind-rendermode="@rm"></TerprintTable>
 
@@ -26,7 +28,7 @@
         //    NavManager.NavigateTo(NavManager.Uri, true);
         
     }
-    public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandtitle;
+    public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandheader;
     protected override void OnInitialized()
     {
         var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
@@ -41,7 +43,7 @@
         if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("batch", out var _batchid))
         {
             batch = _batchid;
-            batchData = new BatchChooser.BatchData();
+            batchData = new ChooserBatch.BatchData();
             batchData.batch = batch;
         }
         if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("strain", out var _strain))
@@ -59,12 +61,12 @@
     {
         get; set;
     } = 0;
-    public BatchChooser.BatchData batchData
+    public ChooserBatch.BatchData batchData
     {
 
         get; set;
     }
-    private BatchChooser.BatchData batchdata { get; set; }
+    private ChooserBatch.BatchData batchdata { get; set; }
     public string batch { get; set; } = "";
     public string strain { get; set; } = "";
 

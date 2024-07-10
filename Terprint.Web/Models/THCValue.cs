@@ -6,6 +6,7 @@ namespace Terprint.Web.Models
     public class THCValue
     {
         public DateTime created { get; set; } = DateTime.Now;
+        public string? createdby { get; set; }
 
         public int THCValueId { get; set; }
         [Required]

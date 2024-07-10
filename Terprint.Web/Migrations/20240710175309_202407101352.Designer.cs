@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Terprint.Web.Data;
 
 #nullable disable
 
-namespace Terprint.Web.Migrations
+namespace Terprint.Web.Migrations.TerprintWeb
 {
     [DbContext(typeof(TerprintWebContext))]
-    partial class TerprintWebContextModelSnapshot : ModelSnapshot
+    [Migration("20240710175309_202407101352")]
+    partial class _202407101352
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

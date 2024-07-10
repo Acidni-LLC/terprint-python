@@ -1,0 +1,99 @@
+﻿@page "/TerpeneProfile"
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.WebUtilities
+@using Terprint.Web.Models
+@inject NavigationManager NavManager
+@inject Terprint.Web.Data.TerprintWebContext DB
+@inject Terprint.Web.Components.ChooserBatch ChooserBatch
+@inject Terprint.Web.Components.ChooserRatingCategory ChooserRatingCategory
+@inject common.AppState appstate
+@rendermode InteractiveServer
+
+<PageTitle>@common.config.appname - Terpene Profile - @terpene</PageTitle>
+@{
+    common.Components c = new common.Components();
+    terpcolor = c.GetTerpeneColor(terpene);
+}
+<div class="card">
+    <div class="card-header" style="background-color: @terpcolor">
+        <h5 class="card-title">@terpene Profile</h5>
+    </div>
+    <div class="card-body">
+        <h7 class="card-title">@c.GetTerpeneDescription(terpene)</h7>
+    </div>
+</div>
+@code {
+    public Components.ChooserBatch.BatchData bd = new ChooserBatch.BatchData();
+
+    public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandheader;
+    public string terpcolor { get; set; }
+    [FromQuery(Name = "terpene")]
+    public string? terpene
+    {
+        get
+        {
+            try
+            {
+                var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
+                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("terpene", out var _out))
+                {
+                    return _out;
+                    //   currentCount = Convert.ToInt32(_initialCount);
+                }
+                else
+                {
+                    return "";
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        set { }
+    }
+
+    public int? matrix { get; set; } = 5;
+    public string? size { get; set; } = "small";
+
+    public ChooserBatch.BatchData batchData
+    {
+
+        get; set;
+    }
+    private ChooserBatch.BatchData batchdata { get; set; }
+}
+
+@{
+
+    string dbterpname = c.GetDBTerpName(terpene);
+
+
+    List<int?> terpenevalueslist = DB.TerpeneValues
+                    .Where(t => t.TerpeneName == dbterpname)
+        .OrderByDescending(t => t.Value)
+                    .Select(t => t.BatchID)
+                    .Distinct()
+                    .ToList();
+    int i = 1;
+    
+        var batches = DB.Batch
+            .OrderByDescending(t => t.StrainID)
+            .Where(t => terpenevalueslist.Contains(t.BatchId))
+            .ToList();
+    
+    <h6>@batches.Count Batches</h6>
+    foreach (var batch in batches)
+    {
+        { bd = new ChooserBatch.BatchData() { batch = batch.Name, batchId = (int)batch.BatchId }; }
+        <div class="card">
+            <div class="card-body">
+                <TerprintTable @bind-batch="@batch.Name" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+            </div>
+        </div>
+        i++;
+    }
+
+
+}
