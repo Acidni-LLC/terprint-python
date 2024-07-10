@@ -2,10 +2,12 @@
 using Terprint.Web;
 using Terprint.Web.Components;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 //using Terprint.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Terprint.Web.Data;
+using Terprint.Web.Components.Account;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,17 +16,40 @@ builder.AddServiceDefaults();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
+    .AddInteractiveServerComponents()
+    .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddCascadingAuthenticationState();
+builder.Services.AddScoped<IdentityUserAccessor>();
+builder.Services.AddScoped<IdentityRedirectManager>();
+builder.Services.AddScoped<AuthenticationStateProvider, PersistingRevalidatingAuthenticationStateProvider>();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = IdentityConstants.ApplicationScheme;
+    options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
+})
+    .AddIdentityCookies();
 
 builder.Services.AddRazorPages();
+
 builder.Services.AddDbContext<TerprintWebContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("TerprintWebContext") ?? throw new InvalidOperationException("Connection string 'TerprintWebContext' not found.")));
 builder.Services.AddDbContext<TerprintWebContext2>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("TerprintWebContext") ?? throw new InvalidOperationException("Connection string 'TerprintWebContext' not found.")));
 builder.Services.AddDbContext<TerprintWebContext3>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("TerprintWebContext") ?? throw new InvalidOperationException("Connection string 'TerprintWebContext' not found.")));
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TerprintWebContext") ?? throw new InvalidOperationException("Connection string 'TerprintWebContext' not found.")));
 
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddSignInManager()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 builder.Services.AddQuickGridEntityFrameworkAdapter();;
 builder.Services.AddOutputCache();
 builder.Services.AddSingleton<Terprint.common.Components>();
@@ -41,8 +66,14 @@ builder.Services.AddHttpClient<WeatherApiClient>(client =>
         // Learn more about service discovery scheme resolution at https://aka.ms/dotnet/sdschemes.
         client.BaseAddress = new("https+http://apiservice");
     });
+builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions
+{
+    ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]
+});
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 if (!app.Environment.IsDevelopment())
 {
@@ -59,8 +90,8 @@ app.UseAntiforgery();
 app.UseOutputCache();
 
 app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
-
+    .AddInteractiveServerRenderMode()
+    .AddInteractiveWebAssemblyRenderMode();
 
 
 app.UseRouting();
@@ -68,5 +99,7 @@ app.UseAntiforgery();
 app.MapRazorPages();
 
 app.MapDefaultEndpoints();
+
+app.MapAdditionalIdentityEndpoints();
 
 app.Run();

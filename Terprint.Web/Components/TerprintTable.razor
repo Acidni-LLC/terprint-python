@@ -18,7 +18,7 @@
         {
             <table>
                 <tr>
-                    <td> <div class="container"><h5>@strain </h5></div></td>
+                    <td> <div class="container"> <h5><a href="/Table?size=medium&matrix=1&batch=@batchData.batch">@strain</a></h5></div></td>
                     <td> <div class="container"><small class="">@batchData.batch</small></div></td>
                     <td>
                         <div class="container">
@@ -29,7 +29,7 @@
                     </td>
                 </tr>
             </table>
-
+            <div>@myMarkup</div>
 
         }
         else if (rendermode == renderMode.tableandheader)
@@ -56,8 +56,12 @@
                 }
                 <p>@o</p>
             </div>
+            <div>@myMarkup</div>
         }
-        <div>@myMarkup</div>
+        else if (rendermode == renderMode.tableandheader)
+        {
+            <div>@myMarkup</div>
+        }
         
     }
 
