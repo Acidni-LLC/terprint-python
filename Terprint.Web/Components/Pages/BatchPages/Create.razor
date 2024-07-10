@@ -100,6 +100,7 @@
     {
         //Batch.Grower = Grower;
         //DB2.DisposeAsync();
+        Batch.Name = Batch.Name.Trim();
         DB.Batch.AddAsync(Batch);
         await DB.SaveChangesAsync();
         NavigationManager.NavigateTo("/batches");

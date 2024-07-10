@@ -1,0 +1,85 @@
+﻿@using Microsoft.AspNetCore.WebUtilities
+@using Microsoft.AspNetCore.Mvc
+@using Terprint.Web.Models
+
+@inject NavigationManager nm
+@inject Terprint.Web.Data.TerprintWebContext DB
+
+@rendermode InteractiveServer
+
+@page "/list2"
+
+@code {
+    public Components.Pages.BatchChooser.BatchData bd = new Pages.BatchChooser.BatchData();
+
+    public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandtitle;
+
+    [FromQuery(Name = "matrix")]
+    public int? matrix
+    {
+        get
+        {
+            try
+            {
+                var uri = nm.ToAbsoluteUri(nm.Uri);
+                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("matrix", out var _matrix))
+                {
+                    return Convert.ToInt32(_matrix);
+                    //   currentCount = Convert.ToInt32(_initialCount);
+                }
+                else
+                {
+                    return 5;
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        set { }
+    }
+
+    [FromQuery(Name = "size")]
+    public string? size
+    {
+        get
+        {
+            try
+            {
+                var uri = nm.ToAbsoluteUri(nm.Uri);
+                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("size", out var _size))
+                {
+                    return _size;
+                    //   currentCount = Convert.ToInt32(_initialCount);
+                }
+                else
+                {
+                    return "small";
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        set { }
+    }
+}
+
+@{
+    foreach (var batch in DB.Batch.ToList())
+    {
+
+        { bd = new Pages.BatchChooser.BatchData() { batch = batch.Name, batchId = (int)batch.BatchId }; }
+        <div class="card">
+            <div class="card-body">
+                <TerprintTable @bind-batch="@batch.Name" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+            </div>
+        </div>
+
+    }
+
+}

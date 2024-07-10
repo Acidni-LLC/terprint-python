@@ -9,6 +9,13 @@ using System.Drawing.Drawing2D;
 
 namespace Terprint.common
 {
+    public static class Overrides
+    {
+        public static void ReloadPage(this NavigationManager manager)
+        {
+            manager.NavigateTo(manager.Uri, true);
+        }
+    }
     public class AppState
     {
         public RatingCategory ratingCategory { get; set; }

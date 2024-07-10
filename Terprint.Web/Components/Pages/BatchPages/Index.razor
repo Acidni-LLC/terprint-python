@@ -12,7 +12,7 @@
 </p>
 
 <QuickGrid Class="table" Items="DB.Batch">
-    <PropertyColumn Property="batch => batch.Name" />
+    <PropertyColumn Property="batch => batch.Name" Sortable="true"/>
     <PropertyColumn Property="batch => batch.Type" />
     <PropertyColumn Property="batch => batch.Date" />
     <PropertyColumn Property="batch => DB.Grower.Where(t=>t.GrowerId== batch.GrowerID).FirstOrDefault().Name" />

@@ -1,4 +1,4 @@
-﻿@page "/test"
+﻿@page "/Table"
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavManager
@@ -11,14 +11,16 @@
 
 
 @{
-    
+
+    //   NavManager.Refresh();
 }
 <BatchChooser @bind-BatchId="@batchid" @bind-batch="@batch" @bind-batchdata="@batchData"></BatchChooser>
 
-<TerprintTable @bind-batch="@batch" @bind-matrix="@matrix" @bind-size="@size" @bind-strain="@strain" @bind-batchData="@batchData"></TerprintTable>
+<TerprintTable @bind-batch="@batch" @bind-matrix="@matrix" @bind-size="@size" @bind-strain="@strain" @bind-batchData="@batchData" @bind-rendermode="@rm"></TerprintTable>
 
 @code {
-
+    
+    public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandtitle;
     protected override void OnInitialized()
     {
         var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
@@ -61,4 +63,7 @@
     public string strain { get; set; } = "";
 
     // batchid == "4281 4009 89411502";
+   
+    
+    
 }
