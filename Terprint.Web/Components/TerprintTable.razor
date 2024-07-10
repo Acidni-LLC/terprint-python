@@ -263,7 +263,7 @@
                     //set table cell colors and sizes
                     if (size != "micro")
                     {
-                        temprow += string.Format("<td title=\"{5}\" style='{3}border:solid;border-color:{1};background-color:{1};opacity:{2}'> <div  style=\"z-index:{4};opacity:1\"> ", matrixrow.Id, matrixrow.Color, opacity, width, opacitynondec, tooltip);
+                        temprow += string.Format("<td title=\"{5}\" style='{3}border:solid;border-color:{1};background-color:{1};opacity:{2}'> <div  style=\"z-index:{4};opacity:1\">", matrixrow.Id, matrixrow.Color, opacity, width, opacitynondec, tooltip, matrixrow.Name);
                     }
                     else
                     {
@@ -275,12 +275,13 @@
 
                     if (size == "micro" || size == "small")
                     {
+                        MarkupString navman = new MarkupString();
 
-                        temprow += string.Format(" ", opp, matrixrow.Name);
+                        temprow += string.Format("<a href=\"/TerpeneProfile?terpene={1}\">&nbsp;</a>", opp, matrixrow.Name);
                     }
                     else
                     {
-                        temprow += string.Format("<span style=\"z-index:100\" class='badge bg-black text-bg-info'>{3}. {0}</span>", matrixrow.Name, opacity, matrixrow.Color, terpindex);
+                        temprow += string.Format("<span style=\"z-index:100\" class='badge bg-black text-bg-info'>{3}. <a href=\"/TerpeneProfile?terpene={0}\">{0}</a></span>", matrixrow.Name, opacity, matrixrow.Color, terpindex);
 
                         temprow += string.Format("<span class=\"badge bg-black rounded-pill text-bg-info\">{1}</span>", op, opp);
 

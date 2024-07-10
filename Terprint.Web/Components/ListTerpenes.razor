@@ -12,7 +12,7 @@
     foreach (string s in c.GetTerpeneList())
     {
         string color = c.GetTerpeneColor(s);
-        <div class="badge" style="background-color: @color"> <a href="/TerpeneProfile?terpene=@s">@s</a></div>
+        <div class="badge" style="background-color: @color"> <h6><a href="/TerpeneProfile?terpene=@s">@s</a></h6></div>
     }
 }
 @code {

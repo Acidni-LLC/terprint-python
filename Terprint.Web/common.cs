@@ -120,7 +120,7 @@ namespace Terprint.common
 
         public class matrixes
         {
-            public matrixes(int a, string b, int c, int d, int e, string color, string name2 = "")
+            public matrixes(int a, string b, int c, int d, int e, string color, string name2 = "",string description="")
             {
                 Id = a;
                 Name = b;
@@ -130,6 +130,7 @@ namespace Terprint.common
                 Color = "";
                 Color = color;
                 this.name2 = name2;
+                this.description = description;
             }
             public int Row;
             public int Column;
@@ -138,6 +139,7 @@ namespace Terprint.common
             public int Matrix;
             public string Color;
             public string name2;
+            public string description;
         }
 
         public class terpValue
@@ -546,6 +548,26 @@ namespace Terprint.common
             return color;
 
         }
+        public string GetTerpeneDescription(string terpene)
+        {
+            string details = "";
+
+            loadmatrix();
+
+            var r = Matrixes.Where(t => t.Name == terpene).FirstOrDefault();
+            if (r is not null)
+            {
+                details = r.description;
+            }
+            else
+            {
+                var x = Matrixes.Where(t => t.name2 == terpene).FirstOrDefault();
+                details = x.description;
+            }
+            return details;
+
+        }
+        
         public List<string> GetTerpeneList()
         {
             List<string> terpenes = new List<string>();
@@ -584,33 +606,32 @@ namespace Terprint.common
             {
                 Matrixes = new List<matrixes>();
                 #region data matrix
-
                 Matrixes.Add(new matrixes(1, "(R)-(+)-Limonene", 1, 1, 1, "#008000"));
                 Matrixes.Add(new matrixes(2, "Camphene", 1, 1, 2, "#33CC33"));
                 Matrixes.Add(new matrixes(3, "Caryophyllene Oxide", 1, 1, 3, "#66FF66"));
-                Matrixes.Add(new matrixes(4, "Eucalyptol", 1, 1, 4, "#CCFFCC"));
+                Matrixes.Add(new matrixes(4, "Eucalyptol", 1, 1, 4, "#CCFFCC","","Minty, camphor aroma"));
                 Matrixes.Add(new matrixes(5, "Fenchyl Alcohol", 1, 1, 5, "#FFCCFF", "Endo-Fenchyl Alcohol"));
-                Matrixes.Add(new matrixes(6, "Geraniol", 1, 1, 6, "#FF99FF"));
+                Matrixes.Add(new matrixes(6, "Geraniol", 1, 1, 6, "#FF99FF","","Tobacco like aroma"));
                 Matrixes.Add(new matrixes(7, "Guaiol", 1, 2, 1, "#CC00CC"));
                 Matrixes.Add(new matrixes(8, "Isopulegol", 1, 2, 2, "#FFCCCC"));
-                Matrixes.Add(new matrixes(9, "Linalool", 1, 2, 3, "#FF7C80"));
+                Matrixes.Add(new matrixes(9, "Linalool", 1, 2, 3, "#FF7C80","","Floral, lavender aroma"));
                 Matrixes.Add(new matrixes(10, "Menthol", 1, 2, 4, "#CC0000"));
-                Matrixes.Add(new matrixes(11, "δ-Limonene", 1, 2, 5, "#99FF33", "D-Limonene"));
-                Matrixes.Add(new matrixes(12, "Terpineol", 1, 2, 6, "#0066FF", "Total Terpineol"));
+                Matrixes.Add(new matrixes(11, "δ-Limonene", 1, 2, 5, "#99FF33", "D-Limonene","Second most abundant, citrus"));
+                Matrixes.Add(new matrixes(12, "Terpineol", 1, 2, 6, "#0066FF", "Total Terpineol","Lilac, floral aroma"));
                 Matrixes.Add(new matrixes(13, "Terpinolene", 1, 3, 1, "#FF6699"));
-                Matrixes.Add(new matrixes(14, "Valencene", 1, 3, 2, "#7030A0"));
+                Matrixes.Add(new matrixes(14, "Valencene", 1, 3, 2, "#7030A0","","Tropical, citrus aroma"));
                 Matrixes.Add(new matrixes(15, "cis-Nerolidol", 1, 3, 3, "#339966"));
-                Matrixes.Add(new matrixes(16, "cis-Ocimene", 1, 3, 4, "#99FF33", "Ocimenes"));
+                Matrixes.Add(new matrixes(16, "cis-Ocimene", 1, 3, 4, "#99FF33", "Ocimenes","Tropical, musky aroma"));
                 Matrixes.Add(new matrixes(17, "p-Cymene", 1, 3, 5, "#FF6699"));
                 Matrixes.Add(new matrixes(18, "trans-Caryophyllene", 1, 3, 6, "#FF3399"));
                 Matrixes.Add(new matrixes(19, "trans-Nerolidol", 1, 4, 1, "#CC3399"));
                 Matrixes.Add(new matrixes(20, "trans-Ocimene", 1, 4, 2, "#7030A0"));
                 Matrixes.Add(new matrixes(21, "α-Bisabolol", 1, 4, 3, "#002060", "alpha-Bisabolol"));
-                Matrixes.Add(new matrixes(22, "α-Humulene", 1, 4, 4, "#0070C0", "alpha-Humulene"));
-                Matrixes.Add(new matrixes(23, "α-Pinene", 1, 4, 5, "#00B0F0", "alpha-Pinene"));
+                Matrixes.Add(new matrixes(22, "α-Humulene", 1, 4, 4, "#0070C0", "alpha-Humulene","foppy, herbal aroma"));
+                Matrixes.Add(new matrixes(23, "α-Pinene", 1, 4, 5, "#00B0F0", "alpha-Pinene","Pine, fir aroma"));
                 Matrixes.Add(new matrixes(24, "α-Terpinene", 1, 4, 6, "#99FF33"));
-                Matrixes.Add(new matrixes(25, "β-Caryophyllene", 1, 5, 1, "#92D050", "E-Caryophyllene"));
-                Matrixes.Add(new matrixes(26, "β-Myrcene", 1, 5, 2, "#FFFF00", "beta-Myrcene"));
+                Matrixes.Add(new matrixes(25, "β-Caryophyllene", 1, 5, 1, "#92D050", "E-Caryophyllene","Spicy, peppery aroma"));
+                Matrixes.Add(new matrixes(26, "β-Myrcene", 1, 5, 2, "#FFFF00", "beta-Myrcene", "The most abundant terpene in modern commercial cannabis and gives it a peppery, spicy, balsam fragrance."));
                 Matrixes.Add(new matrixes(27, "β-Pinene", 1, 5, 3, "#FFC000", "beta-Pinene"));
                 Matrixes.Add(new matrixes(28, "γ-Terpinene", 1, 5, 4, "#99FF33"));
                 Matrixes.Add(new matrixes(29, "δ-3-Carene", 1, 5, 5, "#C00000"));
@@ -744,8 +765,9 @@ namespace Terprint.common
 
                 foreach (matrixes m in Matrixes)
                 {
-
+                   
                     if (m.Name == "Fenchyl Alcohol") { m.name2 = "Endo-Fenchyl Alcohol"; }
+                    else if (m.Name == "(R)-(+)-Limonene") { m.name2 = "(R)-( )-Limonene"; }
                     else if (m.Name == "δ-Limonene") { m.name2 = "D-Limonene"; }
                     else if (m.Name == "Terpineol") { m.name2 = "Total Terpineol"; }
                     else if (m.Name == "cis-Ocimene") { m.name2 = "Ocimenes"; }
