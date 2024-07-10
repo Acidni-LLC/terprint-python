@@ -19,7 +19,13 @@
 <TerprintTable @bind-batch="@batch" @bind-matrix="@matrix" @bind-size="@size" @bind-strain="@strain" @bind-batchData="@batchData" @bind-rendermode="@rm"></TerprintTable>
 
 @code {
-    
+    protected override async Task OnParametersSetAsync()
+    {
+        // This event will fire when the parameters change
+        // Put your code here. 
+        //    NavManager.NavigateTo(NavManager.Uri, true);
+        
+    }
     public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandtitle;
     protected override void OnInitialized()
     {

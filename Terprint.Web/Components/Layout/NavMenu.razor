@@ -31,12 +31,12 @@
                                 // e.g. Put a database call here
 
                                 return DB.Batch.Where(
-                                    t => t.StrainID == DB.Strain
-                                    .Where(t1 => t1.StrainName == strain)
-                                    .Select(t => t.StrainId)
-                                    .FirstOrDefault())
-                                    .Select(t => t.Name)
-                                    .ToList();
+                                t => t.StrainID == DB.Strain
+                                .Where(t1 => t1.StrainName == strain)
+                                .Select(t => t.StrainId)
+                                .FirstOrDefault())
+                                .Select(t => t.Name)
+                                .ToList();
                                 //return Terprint.common.Strains.GetBatches(strain);
 
                             }
@@ -50,7 +50,9 @@
                                     {
                                         string urlencoded = System.Web.HttpUtility.UrlEncode(@batch);
                                         string path = "/Table?size=medium&matrix=1&batch=" + @urlencoded;
-                                        <li><NavLink class="dropdown-item" href="@path">@batch</NavLink></li>
+                                        <li>
+                                            <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@batch</NavLink>
+                                        </li>
                                     }
 
                                 </ul>
@@ -125,6 +127,6 @@
 
     void NevigateToYourUrl(string path)
     {
-        _navigationManager.NavigateTo(path);
+        _navigationManager.NavigateTo(path, true);
     }
 }
