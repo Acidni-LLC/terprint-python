@@ -9,6 +9,10 @@ using System.Drawing.Drawing2D;
 
 namespace Terprint.common
 {
+    public static class config
+    {
+        public static string appname = "Terptastic";
+    }
     public static class Overrides
     {
         public static void ReloadPage(this NavigationManager manager)
