@@ -9,13 +9,13 @@
 <EditForm method="post" Model="@tv" OnValidSubmit="AddValues" FormName="create" Enhance>
     <div class="form-group">
         @{
-           // terpeneValues = DB2.TerpeneValues.ToList();
-            
+            // terpeneValues = DB2.TerpeneValues.ToList();
+
         }
         <Terprint.Web.Components.ChooserBatch></Terprint.Web.Components.ChooserBatch>
 
         <label class="control-label">Terpene Values</label>
-        <InputTextArea id="tva" @bind-Value="@tv" class="form-control" rows="10" >@string.Join("\n ", DB2.TerpeneValues.Select(t => t.TerpeneName).ToList())</InputTextArea>
+        <InputTextArea id="tva" @bind-Value="@tv" class="form-control" rows="10">@string.Join("\n ", DB2.TerpeneValues.Select(t => t.TerpeneName).ToList())</InputTextArea>
     </div>
     <button type="submit" class="btn btn-primary">Add Values</button>
 </EditForm>
@@ -34,7 +34,7 @@
     [SupplyParameterFromForm]
     public IList<TerpeneValue> terpeneValues { get; set; } = new List<TerpeneValue>();
     [SupplyParameterFromForm]
-    public string tv { get; set; } = new ("");
+    public string tv { get; set; } = new("");
 
     public IList<Batch> Batches
     {
@@ -61,15 +61,19 @@
     private void ParseValues()
     {
         var longlist = tv;
-        var result = tv.Split(new[] {  '\n' });
+        var result = tv.Split(new[] { '\n' });
         terpeneValues = new List<TerpeneValue>();
-        foreach(string s in result)
+        foreach (string s in result)
         {
-            int index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
-            string name = s.Substring(0, index).Trim();
-            string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
-            string secondnum =  s.Substring(index, s.Length - index).Split(" ")[1].Replace("%","");
-            terpeneValues.Add(new TerpeneValue() { TerpeneName = name, Value = Convert.ToDouble(secondnum), BatchID = TerpeneValue .BatchID, createdby=userid});
+            if (s.Length > 0)
+            {
+s
+                int index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
+                string name = s.Substring(0, index).Trim();
+                string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
+                string secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
+                terpeneValues.Add(new TerpeneValue() { TerpeneName = name, Value = Convert.ToDouble(secondnum), BatchID = TerpeneValue.BatchID, createdby = userid });
+            }
         }
 
     }

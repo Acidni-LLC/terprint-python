@@ -3,13 +3,6 @@
     "secrets1": {
       "type": "secrets.user"
     },
-    "appInsights1": {
-      "secretStore": "LocalSecretsFile",
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/microsoft.insights/components/Terprint3Web",
-      "type": "appInsights.azure",
-      "connectionId": "APPLICATIONINSIGHTS_CONNECTION_STRING",
-      "dynamicId": null
-    },
     "mssql2": {
       "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.ServiceLinker/locations/eastus/connectors/azuresqlterprintdev_8A2743AB8D",
       "secretStore": "LocalSecretsFile",
@@ -24,6 +17,12 @@
       "resourceId": null,
       "type": "mssql.local",
       "connectionId": "ConnectionStrings:TerprintWebContext"
+    },
+    "appInsights1": {
+      "secretStore": "LocalSecretsFile",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/microsoft.insights/components/Terprint3Web",
+      "type": "appInsights.azure",
+      "connectionId": "APPLICATIONINSIGHTS_CONNECTION_STRING"
     }
   }
 }

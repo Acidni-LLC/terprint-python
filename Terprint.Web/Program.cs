@@ -95,6 +95,7 @@ app.MapRazorComponents<App>()
 
 
 app.UseRouting();
+app.UseAuthorization();
 app.UseAntiforgery();
 app.MapRazorPages();
 
