@@ -16,51 +16,92 @@
     {
         if (rendermode == renderMode.tableandtitle)
         {
-            <table>
-                <tr>
-                    <td> <div class="container"> <h5> <a href="/StrainProfile?strain=@strain">@strain</a></h5></div></td>
-                    <td> <div class="container"><small class="">@batchData.batch</small><small class="">@batchDB.Date</small></div></td>
-                    <td>
-                        <div class="container">
-                            <small class="">
-                                <div><strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%</div>
-                            </small>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <div>@myMarkup</div>
+            <div class="container-fluid">
+                <div class="col-4">
+                    <h5> <a href="/StrainProfile?strain=@System.Web.HttpUtility.UrlEncode(strain)">@strain</a></h5>
+                </div>
+                <div class="col-4 text-center">
+                    <small class="">
+                        <div><strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%</div>
+                    </small>
+                </div>
+                <div class="col-4 float-end text-end">
+                    <small class="">@batchData.batch</small> - <small class="">@batchDB.Date</small>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 ">
+                        @myMarkup
+                    </div>
+                </div>
+            </div>
 
         }
         else if (rendermode == renderMode.tableandheader || rendermode == renderMode.nostrain)
         {
 
-            @if (rendermode != renderMode.nostrain)
-            {
-                <h5><a href="/StrainProfile?strain=@strain">@strain</a></h5>
-            }
-
-            <small>@batchData.batch</small> <small class="">@batchDB.Date</small>
-            <div><strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%</div>
-            <div class="col-12 ">
-                @{
-                    int i = 1;
-                    string sep = "";
-                    MarkupString o = new MarkupString();
-                    string terps = "";
-                    foreach (var t in TerpeneValues.Where(t => t.Value > 0).OrderByDescending(t => t.Value).ToList())
+            <div class="container-fluid">
+                <div class="row">
+                    @if (rendermode != renderMode.nostrain)
                     {
-                        if (i > 1)
-                        { sep = ", "; }
-                        string terpcolor = Matrixes.Where(t1 => t1.Name.Trim().ToLower() == t.TerpeneName.Trim().ToLower() || t1.name2.Trim().ToLower() == t.TerpeneName.Trim().ToLower()).Select(t => t.Color).FirstOrDefault();
-                        terps = terps + sep + "<font color='" + terpcolor + "'>" + i + ". " + t.TerpeneName + "</font> " + Math.Round(t.Value * .1, 4) + "%";
-                        i++;
+
+                        <div class="col-12  col-sm-3">
+                            <h5><a href="/StrainProfile?strain=@System.Web.HttpUtility.UrlEncode(strain)">@strain</a></h5>
+                        </div>
+
+                        <div class="col-12 col-sm-3 text-center">
+                            <strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%
+                        </div>
+                        <div class="col-12 col-sm-3 float-end text-end">
+                            <small>@batchData.batch</small> - <small class="">@batchDB.Date</small>
+                        </div>
+                        <div class="col-12 col-sm-3 float-end text-end">
+                            <strong>@growerDB.Name</strong>
+                        </div>
                     }
-                    o = (MarkupString)terps;
-                }
-                <p>@o</p>
+                    else
+                    {
+
+                        <div class="col-12 col-sm-4">
+                            <strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%
+                        </div>
+                        <div class="col-12 col-sm-4 float-end text-end">
+                            <small>@batchData.batch</small> - <small class="">@batchDB.Date</small>
+                        </div>
+                        <div class="col-12 col-sm-4 float-end text-end">
+                            <strong>@growerDB.Name</strong> 
+                        </div>
+                    }
+                </div>
+
+                <div class="row">
+                    <div class="col-12 ">
+
+                        @{
+                            int i = 1;
+                            string sep = "";
+                            MarkupString o = new MarkupString();
+                            string terps = "";
+                            foreach (var t in TerpeneValues.Where(t => t.Value > 0).OrderByDescending(t => t.Value).ToList())
+                            {
+                                if (i > 1)
+                                { sep = ", "; }
+                                string terpcolor = Matrixes.Where(t1 => t1.Name.Trim().ToLower() == t.TerpeneName.Trim().ToLower() || t1.name2.Trim().ToLower() == t.TerpeneName.Trim().ToLower()).Select(t => t.Color).FirstOrDefault();
+                                terps = terps + sep + "<font color='" + terpcolor + "'>" + i + ". " + t.TerpeneName + "</font> " + Math.Round(t.Value * .1, 4) + "%";
+                                i++;
+                            }
+                            o = (MarkupString)terps;
+                        }
+                        <p>@o</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 ">
+                        @myMarkup
+                    </div>
+                </div>
             </div>
-            <div>@myMarkup</div>
         }
         else if (rendermode == renderMode.table)
         {
@@ -83,7 +124,8 @@
     common.AppState appState = new common.AppState();
 
     #region properties
-    public  Models.Batch batchDB { get; set; }
+    public Models.Batch batchDB { get; set; }
+    public Models.Grower growerDB { get; set; }
     public MarkupString myMarkup { get; set; }
     public List<Models.TerpeneValue>? TerpeneValues { get; set; }
     public MarkupString outputrows { get; set; }
@@ -176,6 +218,7 @@
 
         {
             batchDB = DB.Batch.Where(t => t.Name.Trim() == batchin).FirstOrDefault();
+            growerDB = DB.Grower.Where(t => t.GrowerId == batchDB.GrowerID).FirstOrDefault();
             strain = DB.Strain.Where(t => t.StrainId == DB.Batch.Where(t => t.BatchId == batchDB.BatchId).FirstOrDefault().StrainID).FirstOrDefault().StrainName;
             TerpeneValues = DB.TerpeneValues.Where(t => t.BatchID == batchDB.BatchId).OrderByDescending(t => t.Value).ToList();
 
@@ -321,7 +364,4 @@
 
 
     }
-
-
-
 }

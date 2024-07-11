@@ -1,0 +1,91 @@
+﻿@page "/GrowerProfile"
+
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.WebUtilities
+@using Terprint.Web.Models
+@inject NavigationManager NavManager
+@inject Terprint.Web.Data.TerprintWebContext DB
+@inject Terprint.Web.Components.ChooserBatch ChooserBatch
+@inject Terprint.Web.Components.ChooserRatingCategory ChooserRatingCategory
+@inject common.AppState appstate
+@rendermode InteractiveServer
+
+<PageTitle>@title</PageTitle>
+@code {
+    private string title = "";
+    public Components.ChooserBatch.BatchData bd = new ChooserBatch.BatchData();
+
+    public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandheader;
+
+    [FromQuery(Name = "grower")]
+    public string? grower
+    {
+        get
+        {
+            try
+            {
+                var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
+                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("grower", out var _grower))
+                {
+
+                    string title = common.config.appname + " - grower Profile - " + _grower;
+                    return _grower;
+                    //   currentCount = Convert.ToInt32(_initialCount);
+                }
+                else
+                {
+                    return "";
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        set { }
+    }
+
+    public int? matrix { get; set; } = 5;
+    public string? size { get; set; } = "small";
+
+    public ChooserBatch.BatchData batchData
+    {
+
+        get; set;
+    }
+    private ChooserBatch.BatchData batchdata { get; set; }
+}
+
+@{
+    int growerid = DB.Grower
+                    .Where(t => t.Name == grower)
+                    .Select(t => t.GrowerId).FirstOrDefault();
+    var batches = DB.Batch
+        .OrderByDescending(t => t.Date)
+        .Where(t => t.GrowerID == growerid)
+        .ToList();
+
+}
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title" style="mix-blend-mode:difference;color:white">@grower Profile</h5>
+    </div>
+    <div class="card-body">
+        <h6>@batches.Count() Batches</h6>
+    </div>
+</div>
+@{
+    foreach (var batch in batches)
+    {
+
+        { bd = new ChooserBatch.BatchData() { batch = batch.Name, batchId = (int)batch.BatchId }; }
+        <div class="card">
+            <div class="card-body">
+                <TerprintTable @bind-batch="@batch.Name" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+            </div>
+        </div>
+
+    }
+}
