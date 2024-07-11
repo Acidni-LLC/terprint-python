@@ -10,10 +10,9 @@
 @inject common.AppState appstate
 @rendermode InteractiveServer
 
-<PageTitle>@common.config.appname - Strain Profile - @strain</PageTitle>
-<div class="pil"><p class="display-6"> @strain Profile</p></div>
-
+<PageTitle>@title</PageTitle>
 @code {
+    private string title = "";
     public Components.ChooserBatch.BatchData bd = new ChooserBatch.BatchData();
 
     public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.nostrain;
@@ -28,6 +27,8 @@
                 var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
                 if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("strain", out var _strain))
                 {
+
+                    string title = common.config.appname + " - Strain Profile - " + _strain;
                     return _strain;
                     //   currentCount = Convert.ToInt32(_initialCount);
                 }
@@ -60,11 +61,23 @@
     int strainid = DB.Strain
                     .Where(t => t.StrainName == strain)
                     .Select(t => t.StrainId).FirstOrDefault();
-
-    foreach (var batch in DB.Batch
-        .OrderByDescending(t => t.StrainID)
+    var batches = DB.Batch
+        .OrderByDescending(t => t.Date)
         .Where(t => t.StrainID == strainid)
-        .ToList())
+        .ToList();
+
+}
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title" style="mix-blend-mode:difference;color:white">@strain Profile</h5>
+    </div>
+    <div class="card-body">
+        <h6>@batches.Count() Batches</h6>
+    </div>
+</div>
+@{
+    foreach (var batch in batches)
     {
 
         { bd = new ChooserBatch.BatchData() { batch = batch.Name, batchId = (int)batch.BatchId }; }
@@ -75,5 +88,4 @@
         </div>
 
     }
-
 }

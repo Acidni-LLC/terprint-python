@@ -44,9 +44,9 @@
                 </InputSelect>
             </div>
             <div class="mb-3">
-                <label for="grower" class="form-label">Strain:</label>
+                <label for="strain" class="form-label">Strain:</label>
 
-                <InputSelect id="grower1" class="m-0 form-control edit-active" @bind-Value="Batch.StrainID">
+                <InputSelect id="strain" class="m-0 form-control edit-active" @bind-Value="Batch.StrainID">
                     <option selected disabled>Select Strain</option>
                     @foreach (var s in Strains)
                     {

@@ -28,9 +28,9 @@
     <input type="number" @bind-value="@RatingValue" @oninput="OnRatingValueChanged" max="10" min="0" class="form-control" />
 
 }
-else if (RatingCategoryId == 2)
+else if (RatingCategoryId == 3 || RatingCategoryId == 2)
 {
-    <input type="checkbox" @bind-value="@RatingValue" @oninput="OnRatingValueChanged" class="form-check form-control" />
+    <input type="checkbox" @bind-value="@RatingValue" @oninput="OnRatingValueChanged" class="form-check" title="" />
 
 }
 

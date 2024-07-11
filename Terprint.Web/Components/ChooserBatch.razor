@@ -22,7 +22,7 @@
         }
 
         <option selected disabled>Select Batch</option>
-        @foreach (var b in Batches)
+        @foreach (var b in Batches.OrderBy(t=>t.StrainID))
         {
 
             if (batchin && batch.Trim() == b.Name.Trim())
@@ -59,7 +59,7 @@
         appstate.batchid = BatchId;
         batch = Batches.Where(t => t.BatchId == BatchId).FirstOrDefault().Name;
         batchdata = new() { batchId = BatchId, batch = batch };
-
+        TerpeneValue.BatchID = BatchId;
         return batchdataChanged.InvokeAsync((BatchData)batchdata);
         batchin = false;
     }
@@ -84,17 +84,18 @@
     public class BatchData
     {
         public string batch { get; set; }
-
+        public DateOnly? batchDate { get; set; }
         public int batchId { get; set; }
         public BatchData()
-        {
+        { 
             batch = "";
             batchId = 0;
         }
     }
 
     public TerpeneValue TerpeneValue
-    { get; set; } = new();
+    { get;
+        set; } = new();
     private TerpeneValue tv { get; set; } = new();
 
     public IList<Batch> Batches

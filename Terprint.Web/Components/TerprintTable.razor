@@ -19,7 +19,7 @@
             <table>
                 <tr>
                     <td> <div class="container"> <h5> <a href="/StrainProfile?strain=@strain">@strain</a></h5></div></td>
-                    <td> <div class="container"><small class="">@batchData.batch</small></div></td>
+                    <td> <div class="container"><small class="">@batchData.batch</small><small class="">@batchDB.Date</small></div></td>
                     <td>
                         <div class="container">
                             <small class="">
@@ -40,7 +40,7 @@
                 <h5><a href="/StrainProfile?strain=@strain">@strain</a></h5>
             }
 
-            <small>@batchData.batch</small>
+            <small>@batchData.batch</small> <small class="">@batchDB.Date</small>
             <div><strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%</div>
             <div class="col-12 ">
                 @{
@@ -83,7 +83,7 @@
     common.AppState appState = new common.AppState();
 
     #region properties
-
+    public  Models.Batch batchDB { get; set; }
     public MarkupString myMarkup { get; set; }
     public List<Models.TerpeneValue>? TerpeneValues { get; set; }
     public MarkupString outputrows { get; set; }
@@ -175,9 +175,9 @@
         if (batchin != "")
 
         {
-            Models.Batch batch = DB.Batch.Where(t => t.Name.Trim() == batchin).FirstOrDefault();
-            strain = DB.Strain.Where(t => t.StrainId == DB.Batch.Where(t => t.BatchId == batch.BatchId).FirstOrDefault().StrainID).FirstOrDefault().StrainName;
-            TerpeneValues = DB.TerpeneValues.Where(t => t.BatchID == batch.BatchId).OrderByDescending(t => t.Value).ToList();
+            batchDB = DB.Batch.Where(t => t.Name.Trim() == batchin).FirstOrDefault();
+            strain = DB.Strain.Where(t => t.StrainId == DB.Batch.Where(t => t.BatchId == batchDB.BatchId).FirstOrDefault().StrainID).FirstOrDefault().StrainName;
+            TerpeneValues = DB.TerpeneValues.Where(t => t.BatchID == batchDB.BatchId).OrderByDescending(t => t.Value).ToList();
 
         }
         else

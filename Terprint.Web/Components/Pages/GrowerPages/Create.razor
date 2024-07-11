@@ -43,6 +43,7 @@
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task AddGrower()
     {
+        Grower.Name = Grower.Name.Trim();
         DB.Grower.Add(Grower);
         await DB.SaveChangesAsync();
         NavigationManager.NavigateTo("/growers");

@@ -41,7 +41,7 @@
     public string inputformat { get; set; } = new("");
 
     [SupplyParameterFromForm]
-    public THCValue THCValue { get; set; } = new();
+    public THCValue thcvalue { get; set; } = new();
     [SupplyParameterFromForm]
     public IList<THCValue> THCValues { get; set; } = new List<THCValue>();
     [SupplyParameterFromForm]
@@ -113,12 +113,12 @@
 
                     string fourthnum = s.Substring(index, s.Length - index).Split(" ")[3].Replace("%", "");
                     string fifthnum = s.Substring(index, s.Length - index).Split(" ")[4].Replace("%", "");
-                    THCValue = new THCValue() { Analyte = name, Dilution = firstnum, LOD = secondnum, LOQ = thirddnum, Result = fourthnum, Percent = fifthnum, BatchID = TerpeneValue.BatchID };
+                    THCValue = new THCValue() { Analyte = name, Dilution = firstnum, LOD = secondnum, LOQ = thirddnum, Result = fourthnum, Percent = fifthnum, BatchID = thcvalue.BatchID };
                 }
                 else if (inputformat=="2")
                 {
 
-                    THCValue = new THCValue() { Analyte = name,   LOD = firstnum,   Result = secondnum, Percent = thirddnum, BatchID = TerpeneValue.BatchID };
+                    THCValue = new THCValue() { Analyte = name, LOD = firstnum, Result = secondnum, Percent = thirddnum, BatchID = TerpeneValue.BatchID };
                 }
 
                 THCValue.createdby = userid;

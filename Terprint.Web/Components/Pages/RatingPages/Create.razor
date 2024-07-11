@@ -19,24 +19,24 @@
         <EditForm method="post" Model="Rating" OnValidSubmit="AddRating" FormName="create" Enhance>
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" />
-            <Terprint.Web.Components.ChooserBatch @bind-BatchId="BatchId"></Terprint.Web.Components.ChooserBatch>
+            <Terprint.Web.Components.ChooserBatch @bind-BatchId="BatchId" @bind-batchdata="batchdata"></Terprint.Web.Components.ChooserBatch>
 
             <Terprint.Web.Components.ChooserRatingCategory @bind-RatingCategoryId="RatingCategoryId" @bind-RatingValue="RatingValue">
 
             </Terprint.Web.Components.ChooserRatingCategory>
-           @*  <div class="mb-3">
+            @* <div class="mb-3" style="visibility:hidden">
                 <label for="BatchId" class="form-label">BatchId:</label>
-                <InputNumber id="BatchID" @bind-Value="BatchId" class="form-control" />
+                <InputNumber id="BatchID" @bind-Value="@batchdata.batchId" class="form-control" />
                 <ValidationMessage For="() => Rating.BatchID" class="text-danger" />
-            </div> <div class="mb-3">
-                <label for="BatchId" class="form-label">RatingCategoryId:</label>
-                <InputNumber id="BatchId" @bind-Value="RatingCategoryId" class="form-control" />
-                <ValidationMessage For="() => RatingCategoryId" class="text-danger" />
-            </div> 
+            </div>  <div class="mb-3">
+            <label for="BatchId" class="form-label">RatingCategoryId:</label>
+            <InputNumber id="BatchId" @bind-Value="RatingCategoryId" class="form-control" />
+            <ValidationMessage For="() => RatingCategoryId" class="text-danger" />
+            </div>
             <div class="mb-3">
-                <label for="value" class="form-label">Value:</label>
-                <InputNumber id="value" @bind-Value="Rating.Value" class="form-control" />
-                <ValidationMessage For="() => Rating.Value" class="text-danger" />
+            <label for="value" class="form-label">Value:</label>
+            <InputNumber id="value" @bind-Value="Rating.Value" class="form-control" />
+            <ValidationMessage For="() => Rating.Value" class="text-danger" />
             </div>
             *@
             <div class="mb-3">
@@ -64,6 +64,22 @@
 @code {
     private string RatingValue { get; set; }
     private int RatingCategoryId { get; set; }
+
+    private ChooserBatch.BatchData bd = new ChooserBatch.BatchData();
+    public ChooserBatch.BatchData batchdata
+    {
+        get {return bd; } 
+        set { 
+            bd = value;
+            Rating.BatchID=value.batchId; }
+    }  
+    [SupplyParameterFromForm]
+    public TerpeneValue TerpeneValue
+    {
+        get;
+        set;
+    } = new();
+    [SupplyParameterFromForm]
     private int BatchId
     {
         get
@@ -83,10 +99,10 @@
     public async Task AddRating()
     {
         int batchid = appstate.batchid;
-        Rating.BatchID = BatchId;
+        //Rating.BatchID = TerpeneValue.BatchID;
         Rating.RatingCategoryID = RatingCategoryId;
-        Rating.userid = "jgill@savitas.net";
-        Rating.Value =  RatingValue;
+        Rating.userid =  Rating.createdby; ;
+        Rating.Value = RatingValue;
 
 
         DB.Rating.Add(Rating);
