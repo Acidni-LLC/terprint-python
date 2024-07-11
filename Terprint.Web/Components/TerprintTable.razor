@@ -281,18 +281,18 @@
                     temprows += "</tr>";
                     temprows += "<tr>";
                 }
-                bool terpvalue = TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name || t.TerpeneName.Trim() == matrixrow.name2).FirstOrDefault() is not null;
-                bool terpname = TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name || t.TerpeneName.Trim() == matrixrow.name2).ToList().Count > 0;
+                bool terpvalue = TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name || matrixrow.NamesOther.Contains(t.TerpeneName.Trim())).FirstOrDefault() is not null;
+                bool terpname = TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name || matrixrow.NamesOther.Contains(t.TerpeneName.Trim())).ToList().Count > 0;
                 if (terpvalue && terpname)
                 {
-                    int terpindex = TerpeneValues.IndexOf(TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name || t.TerpeneName.Trim() == matrixrow.name2).FirstOrDefault()) + 1;
+                    int terpindex = TerpeneValues.IndexOf(TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name   || matrixrow.NamesOther.Contains(t.TerpeneName.Trim())).FirstOrDefault()) + 1;
                     ///not zero value output formatted cell
 
                     terpenecounter++;
                     string terpnamecurrent = matrixrow.Name;
-                    string terpnamestrain = TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name || t.TerpeneName.Trim() == matrixrow.name2).FirstOrDefault().TerpeneName;
+                    string terpnamestrain = TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name || matrixrow.NamesOther.Contains(t.TerpeneName.Trim())).FirstOrDefault().TerpeneName;
 
-                    double op = TerpeneValues.Where(t => t.TerpeneName.Trim().ToLower() == matrixrow.Name.ToLower() || t.TerpeneName.Trim().ToLower() == matrixrow.name2.ToLower()).FirstOrDefault().Value;
+                    double op = TerpeneValues.Where(t => t.TerpeneName.Trim().ToLower() == matrixrow.Name.ToLower() || matrixrow.NamesOther.Contains(t.TerpeneName.Trim())).FirstOrDefault().Value;
 
 
 
