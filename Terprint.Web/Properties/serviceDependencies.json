@@ -3,11 +3,6 @@
     "secrets1": {
       "type": "secrets"
     },
-    "appInsights1": {
-      "type": "appInsights",
-      "connectionId": "APPLICATIONINSIGHTS_CONNECTION_STRING",
-      "dynamicId": null
-    },
     "mssql2": {
       "type": "mssql",
       "connectionId": "azure-sql-terprint-dev",
@@ -16,6 +11,10 @@
     "mssql1": {
       "type": "mssql",
       "connectionId": "ConnectionStrings:TerprintWebContext"
+    },
+    "appInsights1": {
+      "type": "appInsights",
+      "connectionId": "APPLICATIONINSIGHTS_CONNECTION_STRING"
     }
   }
 }
