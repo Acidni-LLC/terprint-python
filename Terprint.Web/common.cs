@@ -779,7 +779,7 @@ namespace Terprint.common
 
 
                 #endregion
-                #region add alternace names
+                #region add alternate names
                 foreach (matrixes m in Matrixes)
                 {
 
