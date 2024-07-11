@@ -5,10 +5,12 @@ using Microsoft.AspNetCore.Components;
 using Terprint.Web.Models;
 using System.Numerics;
 using System.Drawing.Drawing2D;
+using Microsoft.Identity.Client;
 
 
 namespace Terprint.common
 {
+    public enum TerpeneList {   };
     public static class config
     {
         public static string appname = "Terptastic";
@@ -120,7 +122,7 @@ namespace Terprint.common
 
         public class matrixes
         {
-            public matrixes(int a, string b, int c, int d, int e, string color, string name2 = "",string description="")
+            public matrixes(int a, string b, int c, int d, int e, string color, string name2 = "", string description = "")
             {
                 Id = a;
                 Name = b;
@@ -131,7 +133,9 @@ namespace Terprint.common
                 Color = color;
                 this.name2 = name2;
                 this.description = description;
+                NamesOther = new List<string>();
             }
+            public List<string> NamesOther;
             public int Row;
             public int Column;
             public string Name;
@@ -529,21 +533,27 @@ namespace Terprint.common
         {
 
         }
-        public  string GetTerpeneColor(string terpene)
+        public string GetTerpeneColor(string terpene)
         {
             string color = "";
 
             loadmatrix();
-            
-            var r = Matrixes.Where(t => t.Name == terpene).FirstOrDefault();
-            if(r is not null)
+            try
             {
-                color = r.Color;
+                var r = Matrixes.Where(t => t.Name == terpene.Trim() ||   t.NamesOther.Contains(terpene.Trim())).FirstOrDefault();
+                if (r is not null)
+                {
+                    color = r.Color;
+                }
+                else
+                {
+                    ; Console.WriteLine ( "Add terpene->" +terpene);
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                var x = Matrixes.Where(t => t.name2 == terpene).FirstOrDefault();
-                color = x.Color;
+
             }
             return color;
 
@@ -553,21 +563,27 @@ namespace Terprint.common
             string details = "";
 
             loadmatrix();
+            try
+            {
+                var r = Matrixes.Where(t => t.Name == terpene.Trim() || t.NamesOther.Contains(terpene.Trim())).FirstOrDefault();
+                if (r is not null)
+                {
+                    details = r.description;
+                }
+                else
+                {
+                    ; Console.WriteLine("Add terpene->" + terpene);
+                }
+            }
+            catch (Exception ex)
+            {
 
-            var r = Matrixes.Where(t => t.Name == terpene).FirstOrDefault();
-            if (r is not null)
-            {
-                details = r.description;
             }
-            else
-            {
-                var x = Matrixes.Where(t => t.name2 == terpene).FirstOrDefault();
-                details = x.description;
-            }
+            
             return details;
 
         }
-        
+
         public List<string> GetTerpeneList()
         {
             List<string> terpenes = new List<string>();
@@ -581,12 +597,15 @@ namespace Terprint.common
         }
         public string GetDBTerpName(string terpene)
         {
-            string terpenes ;
+            string terpenes ="";
 
             loadmatrix();
-            if(Matrixes
-                .Where(t => t.Name == terpene && t.name2.Length>0)
-                .Count()>0 )
+            
+                var r = Matrixes.Where(t => t.Name == terpene.Trim() || t.NamesOther.Contains(terpene.Trim())).FirstOrDefault();
+                if (r is not null)
+            if (Matrixes
+                .Where(t => t.Name == terpene && t.name2.Length > 0)
+                .Count() > 0)
             {
                 terpenes = Matrixes
                 .Where(t => t.Name == terpene)
@@ -596,7 +615,6 @@ namespace Terprint.common
             {
                 terpenes = terpene;
             }
-
             return terpenes;
 
         }
@@ -609,28 +627,28 @@ namespace Terprint.common
                 Matrixes.Add(new matrixes(1, "(R)-(+)-Limonene", 1, 1, 1, "#008000"));
                 Matrixes.Add(new matrixes(2, "Camphene", 1, 1, 2, "#33CC33"));
                 Matrixes.Add(new matrixes(3, "Caryophyllene Oxide", 1, 1, 3, "#66FF66"));
-                Matrixes.Add(new matrixes(4, "Eucalyptol", 1, 1, 4, "#CCFFCC","","Minty, camphor aroma"));
+                Matrixes.Add(new matrixes(4, "Eucalyptol", 1, 1, 4, "#CCFFCC", "", "Minty, camphor aroma"));
                 Matrixes.Add(new matrixes(5, "Fenchyl Alcohol", 1, 1, 5, "#FFCCFF", "Endo-Fenchyl Alcohol"));
-                Matrixes.Add(new matrixes(6, "Geraniol", 1, 1, 6, "#FF99FF","","Tobacco like aroma"));
+                Matrixes.Add(new matrixes(6, "Geraniol", 1, 1, 6, "#FF99FF", "", "Tobacco like aroma"));
                 Matrixes.Add(new matrixes(7, "Guaiol", 1, 2, 1, "#CC00CC"));
                 Matrixes.Add(new matrixes(8, "Isopulegol", 1, 2, 2, "#FFCCCC"));
-                Matrixes.Add(new matrixes(9, "Linalool", 1, 2, 3, "#FF7C80","","Floral, lavender aroma"));
+                Matrixes.Add(new matrixes(9, "Linalool", 1, 2, 3, "#FF7C80", "", "Floral, lavender aroma"));
                 Matrixes.Add(new matrixes(10, "Menthol", 1, 2, 4, "#CC0000"));
-                Matrixes.Add(new matrixes(11, "δ-Limonene", 1, 2, 5, "#99FF33", "D-Limonene","Second most abundant, citrus"));
-                Matrixes.Add(new matrixes(12, "Terpineol", 1, 2, 6, "#0066FF", "Total Terpineol","Lilac, floral aroma"));
+                Matrixes.Add(new matrixes(11, "δ-Limonene", 1, 2, 5, "#99FF33", "D-Limonene", "Second most abundant, citrus"));
+                Matrixes.Add(new matrixes(12, "Terpineol", 1, 2, 6, "#0066FF", "Total Terpineol", "Lilac, floral aroma"));
                 Matrixes.Add(new matrixes(13, "Terpinolene", 1, 3, 1, "#FF6699"));
-                Matrixes.Add(new matrixes(14, "Valencene", 1, 3, 2, "#7030A0","","Tropical, citrus aroma"));
+                Matrixes.Add(new matrixes(14, "Valencene", 1, 3, 2, "#7030A0", "", "Tropical, citrus aroma"));
                 Matrixes.Add(new matrixes(15, "cis-Nerolidol", 1, 3, 3, "#339966"));
-                Matrixes.Add(new matrixes(16, "cis-Ocimene", 1, 3, 4, "#99FF33", "Ocimenes","Tropical, musky aroma"));
+                Matrixes.Add(new matrixes(16, "cis-Ocimene", 1, 3, 4, "#99FF33", "Ocimenes", "Tropical, musky aroma"));
                 Matrixes.Add(new matrixes(17, "p-Cymene", 1, 3, 5, "#FF6699"));
                 Matrixes.Add(new matrixes(18, "trans-Caryophyllene", 1, 3, 6, "#FF3399"));
                 Matrixes.Add(new matrixes(19, "trans-Nerolidol", 1, 4, 1, "#CC3399"));
                 Matrixes.Add(new matrixes(20, "trans-Ocimene", 1, 4, 2, "#7030A0"));
                 Matrixes.Add(new matrixes(21, "α-Bisabolol", 1, 4, 3, "#002060", "alpha-Bisabolol"));
-                Matrixes.Add(new matrixes(22, "α-Humulene", 1, 4, 4, "#0070C0", "alpha-Humulene","foppy, herbal aroma"));
-                Matrixes.Add(new matrixes(23, "α-Pinene", 1, 4, 5, "#00B0F0", "alpha-Pinene","Pine, fir aroma"));
+                Matrixes.Add(new matrixes(22, "α-Humulene", 1, 4, 4, "#0070C0", "alpha-Humulene", "foppy, herbal aroma"));
+                Matrixes.Add(new matrixes(23, "α-Pinene", 1, 4, 5, "#00B0F0", "alpha-Pinene", "Pine, fir aroma"));
                 Matrixes.Add(new matrixes(24, "α-Terpinene", 1, 4, 6, "#99FF33"));
-                Matrixes.Add(new matrixes(25, "β-Caryophyllene", 1, 5, 1, "#92D050", "E-Caryophyllene","Spicy, peppery aroma"));
+                Matrixes.Add(new matrixes(25, "β-Caryophyllene", 1, 5, 1, "#92D050", "E-Caryophyllene", "Spicy, peppery aroma"));
                 Matrixes.Add(new matrixes(26, "β-Myrcene", 1, 5, 2, "#FFFF00", "beta-Myrcene", "The most abundant terpene in modern commercial cannabis and gives it a peppery, spicy, balsam fragrance."));
                 Matrixes.Add(new matrixes(27, "β-Pinene", 1, 5, 3, "#FFC000", "beta-Pinene"));
                 Matrixes.Add(new matrixes(28, "γ-Terpinene", 1, 5, 4, "#99FF33"));
@@ -762,21 +780,22 @@ namespace Terprint.common
 
                 #endregion
                 #region add alternace names
-
                 foreach (matrixes m in Matrixes)
                 {
-                   
-                    if (m.Name == "Fenchyl Alcohol") { m.name2 = "Endo-Fenchyl Alcohol"; }
-                    else if (m.Name == "(R)-(+)-Limonene") { m.name2 = "(R)-( )-Limonene"; }
-                    else if (m.Name == "δ-Limonene") { m.name2 = "D-Limonene"; }
-                    else if (m.Name == "Terpineol") { m.name2 = "Total Terpineol"; }
-                    else if (m.Name == "cis-Ocimene") { m.name2 = "Ocimenes"; }
-                    else if (m.Name == "α-Bisabolol") { m.name2 = "alpha-Bisabolol"; }
-                    else if (m.Name == "α-Humulene") { m.name2 = "alpha-Humulene"; }
-                    else if (m.Name == "α-Pinene") { m.name2 = "alpha-Pinene"; }
-                    else if (m.Name == "β-Caryophyllene") { m.name2 = "E-Caryophyllene"; }
-                    else if (m.Name == "β-Myrcene") { m.name2 = "beta-Myrcene"; }
-                    else if (m.Name == "β-Pinene") { m.name2 = "beta-Pinene"; }
+
+                    if (m.Name == "Fenchyl Alcohol") { m.NamesOther.Add("Endo-Fenchyl Alcohol"); }
+                    else if (m.Name == "cis-Nerolidol") { m.NamesOther.Add("E-Nerolidol"); }
+                    
+                    else if (m.Name == "(R)-(+)-Limonene") { m.NamesOther.Add("(R)-( )-Limonene"); }
+                    else if (m.Name == "δ-Limonene") { m.NamesOther.Add("D-Limonene"); }
+                    else if (m.Name == "Terpineol") { m.NamesOther.Add("Total Terpineol"); }
+                    else if (m.Name == "cis-Ocimene") { m.NamesOther.AddRange([ "Ocimenes","Ocimene"]); }
+                    else if (m.Name == "α-Bisabolol") { m.NamesOther.Add("alpha-Bisabolol"); }
+                    else if (m.Name == "α-Humulene") { m.NamesOther.Add("alpha-Humulene"); }
+                    else if (m.Name == "α-Pinene") { m.NamesOther.Add("alpha-Pinene"); }
+                    else if (m.Name == "β-Caryophyllene") { m.NamesOther.Add("E-Caryophyllene"); }
+                    else if (m.Name == "β-Myrcene") { m.NamesOther.Add("beta-Myrcene"); }
+                    else if (m.Name == "β-Pinene") { m.NamesOther.Add("beta-Pinene"); }
 
                 }
 
