@@ -1,4 +1,4 @@
-﻿@inject Terprint.Web.Data.TerprintWebContext3 DB
+﻿@inject Data.TerprintWebContext3 DB
 @inject NavigationManager _navigationManager
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -15,6 +15,7 @@
                 <li class="nav-item"><a class="nav-link" href="#"> About </a></li>
                 <li class="nav-item"><a class="nav-link" href="/List"> List </a></li>
                 <li class="nav-item"><a class="nav-link" href="/BatchProfile">Batch Profile </a></li>
+                <li class="nav-item"><a class="nav-link" href="/ratingslist">Ratings </a></li>
                 <li class="nav-item dropdown" id="myDropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Strains menu  </a>
                     <ul class="dropdown-menu">
@@ -72,7 +73,7 @@
                             {
                                 // e.g. Put a database call here
 
-                                Terprint.common.Components c = new Terprint.common.Components();
+                                common.Components c = new common.Components();
                                 return c.GetTerpeneList();
 
                                 //return Terprint.common.Strains.GetBatches(strain);
@@ -80,7 +81,7 @@
                             }
                         }
                         @{
-                            Terprint.common.Components c = new Terprint.common.Components();
+                             common.Components c = new common.Components();
                         }
                         @foreach (var terpene in GetTerpenes())
                         {

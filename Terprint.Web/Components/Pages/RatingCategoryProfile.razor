@@ -1,0 +1,16 @@
+﻿@page "/ratingcategoryprofile"
+
+
+@inject NavigationManager NavManager
+@{
+
+    string title = @common.config.appname + " - Rating Category Details - " + common.GetQueryValue("ratingcategory", NavManager);
+}
+<PageTitle>@title</PageTitle>
+
+<h3>RatingCategory</h3>
+
+
+@code {
+    public string ratingcategory {get;set;}
+}

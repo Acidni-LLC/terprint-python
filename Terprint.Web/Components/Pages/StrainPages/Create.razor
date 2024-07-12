@@ -1,4 +1,5 @@
-﻿@page "/strains/create"
+﻿@attribute [Authorize]
+@page "/strains/create"
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager

@@ -8,7 +8,20 @@
 
 <div class="mb-3">
     <label for="batch" class="form-label">Batch:</label>
+    @{
+        var Batches = DB2.Batch
+        .Select(t => new
+        {
+            t.BatchId,
+            t.Name,
+            StrainName = DB2.Strain.Where(t1 => t1.StrainId == t.StrainID).FirstOrDefault().StrainName,
+            t.StrainID,
+            t.Date
+        }
+        ).ToList();
+    }
     <InputSelect id="batch" class="m-0 form-control" @bind-Value="@TerpeneValue.BatchID" @oninput="OnBatchIdChanged">
+       
         @if (batch is not null && batch.Length > 0)
         {
             if (Batches.Where(t => t.Name.Trim() == batch.Trim()).FirstOrDefault() is null)
@@ -22,7 +35,7 @@
         }
 
         <option selected disabled>Select Batch</option>
-        @foreach (var b in Batches.OrderBy(t=>t.StrainID))
+        @foreach (var b in Batches.OrderBy(t => t.StrainName))
         {
 
             if (batchin && batch.Trim() == b.Name.Trim())
@@ -30,7 +43,7 @@
                 <option selected value=@b.BatchId @onselect="() => BatchId = (int)b.BatchId">@DB2.Strain.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName  @b.Date  @b.Name</option>
 
                 {
-                    BatchId =(int) b.BatchId;
+                    BatchId = (int)b.BatchId;
                 }
 
             }
@@ -41,9 +54,9 @@
             }
 
         }
-        @if(batchin)
+        @if (batchin)
         {
-            
+
         }
 
     </InputSelect>
@@ -57,7 +70,7 @@
     {
         BatchId = int.Parse(e.Value.ToString());
         appstate.batchid = BatchId;
-        batch = Batches.Where(t => t.BatchId == BatchId).FirstOrDefault().Name;
+       // batch = Batches.Where(t => t.BatchId == BatchId).FirstOrDefault().Name;
         batchdata = new() { batchId = BatchId, batch = batch };
         TerpeneValue.BatchID = BatchId;
         return batchdataChanged.InvokeAsync((BatchData)batchdata);
@@ -87,29 +100,20 @@
         public DateOnly? batchDate { get; set; }
         public int batchId { get; set; }
         public BatchData()
-        { 
+        {
             batch = "";
             batchId = 0;
         }
     }
 
     public TerpeneValue TerpeneValue
-    { get;
-        set; } = new();
+    {
+        get;
+        set;
+    } = new();
     private TerpeneValue tv { get; set; } = new();
 
-    public IList<Batch> Batches
-    {
-        get
-        {
-            if (batches is null)
-            {
-                batches = DB2.Batch.ToList();
-            }
-            return batches;
-        }
-        set { batches = value; }
-    }
+    
     private IList<Batch> batches { get; set; }
 
 

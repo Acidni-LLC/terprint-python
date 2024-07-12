@@ -11,7 +11,11 @@
 @using Microsoft.AspNetCore.WebUtilities
 
 
-<PageTitle>@common.config.appname - Batch Profile - @batch</PageTitle>
+@{
+
+    string title = common.config.appname +" - Batch Profile - "+@batch;
+}
+<PageTitle>@title</PageTitle>
 @{
 
     //   NavManager.Refresh();

@@ -1,7 +1,9 @@
 ﻿@page "/"
+@{
+    string title = common.config.appname + " - Home";
+}
 
-<PageTitle>@common.config.appname - Home</PageTitle>
-
+<PageTitle >@title</PageTitle>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 ">
@@ -49,7 +51,17 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12   text-center">
+        <div class="col-6   text-center">
+            <div class="card">
+                <div class="card-header text-center">
+                    <p class="display-6"> Ratings</p>
+                </div>
+                <div class="card-body text-center">
+                    <ListRatings></ListRatings>
+                </div>
+            </div>
+        </div>
+        <div class="col-6   text-center">
             <div class="card">
                 <div class="card-header text-center">
                     <p class="display-6"> Batches</p>
@@ -58,6 +70,7 @@
                     <ListBatch></ListBatch>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

@@ -1,0 +1,14 @@
+﻿@page "/rating"
+
+
+@inject NavigationManager NavManager
+@{
+
+    string title = @common.config.appname + " - Rating Details - " + common.GetQueryValue("ratingid", NavManager);
+}
+<PageTitle>@title</PageTitle>
+
+<DetailRating></DetailRating>
+@code {
+
+}

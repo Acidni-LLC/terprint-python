@@ -10,6 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Components\Pages\RatingCategoryProfile.razor" />
+    <Content Remove="Components\Pages\rc.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.10.3" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.7" />
@@ -29,6 +34,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.3" />
     <PackageReference Include="popper.js" Version="1.16.1" />
+    <PackageReference Include="Quick.AspNetCore.Components.Web.Extensions" Version="6.0.2" />
   </ItemGroup>
  
 
@@ -39,6 +45,12 @@
 
   <ItemGroup>
     <Folder Include="Components\Pages\Admin\" />
+  </ItemGroup>
+ 
+
+  <ItemGroup>
+    <None Include="Components\Pages\rc.razor" />
+    <None Include="Components\Pages\RatingCategoryProfile.razor" />
   </ItemGroup>
 
 

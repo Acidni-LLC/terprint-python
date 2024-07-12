@@ -1,4 +1,6 @@
-﻿@page "/ratings/create"
+﻿@attribute [Authorize]
+
+@page "/ratings/create"
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
@@ -7,8 +9,11 @@
 @rendermode InteractiveServer
 @inject common.AppState appstate
 
+@{
 
-<PageTitle>Create</PageTitle>
+    string title = common.config.appname + " - Create Rating - " + batchdata.batch ;
+}
+<PageTitle>@title</PageTitle>
 
 <h1>Create</h1>
 

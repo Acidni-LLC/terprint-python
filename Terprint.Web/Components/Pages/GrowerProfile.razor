@@ -10,9 +10,12 @@
 @inject common.AppState appstate
 @rendermode InteractiveServer
 
+@{
+
+    string title = common.config.appname + " - grower Profile - " + grower;
+}
 <PageTitle>@title</PageTitle>
-@code {
-    private string title = "";
+@code { 
     public Components.ChooserBatch.BatchData bd = new ChooserBatch.BatchData();
 
     public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandheader;
@@ -28,7 +31,6 @@
                 if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("grower", out var _grower))
                 {
 
-                    string title = common.config.appname + " - grower Profile - " + _grower;
                     return _grower;
                     //   currentCount = Convert.ToInt32(_initialCount);
                 }

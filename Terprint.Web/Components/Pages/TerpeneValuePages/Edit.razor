@@ -1,4 +1,5 @@
-﻿@page "/TerpeneValues/edit"
+﻿@attribute [Authorize]
+@page "/TerpeneValues/edit"
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager

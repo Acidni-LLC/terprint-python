@@ -10,6 +10,10 @@
 @inject common.AppState appstate
 @rendermode InteractiveServer
 
+@{
+
+    string title = common.config.appname + " - Strain Profile - " + strain;
+}
 <PageTitle>@title</PageTitle>
 @code {
     private string title = "";
@@ -28,7 +32,6 @@
                 if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("strain", out var _strain))
                 {
 
-                    string title = common.config.appname + " - Strain Profile - " + _strain;
                     return _strain;
                     //   currentCount = Convert.ToInt32(_initialCount);
                 }

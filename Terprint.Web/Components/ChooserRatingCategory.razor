@@ -1,7 +1,5 @@
 ﻿@inject Terprint.Web.Data.TerprintWebContext DB
 @inject Terprint.Web.Data.TerprintWebContext3 DB3
-@using Terprint.Web.Models
-@using Terprint.common
 @inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
@@ -23,12 +21,12 @@
 
     </InputSelect>
 </div>
-@if (RatingCategoryId == 1)
+@if (ratingCategory.RatingCategoryType == "Scale 1-10")
 {
     <input type="number" @bind-value="@RatingValue" @oninput="OnRatingValueChanged" max="10" min="0" class="form-control" />
 
 }
-else if (RatingCategoryId == 3 || RatingCategoryId == 2)
+else if (ratingCategory.RatingCategoryType == "Yes/No")
 {
     <input type="checkbox" @bind-value="@RatingValue" @oninput="OnRatingValueChanged" class="form-check" title="" />
 
@@ -41,16 +39,17 @@ else if (RatingCategoryId == 3 || RatingCategoryId == 2)
     [Parameter] public EventCallback<string> RatingValueChanged { get; set; }
     private Task OnRatingValueChanged(ChangeEventArgs e)
     {
-        RatingValue =  e.Value.ToString();
+        RatingValue = e.Value.ToString();
         return RatingValueChanged.InvokeAsync(RatingValue);
     }
-    
+
 
     [Parameter] public int RatingCategoryId { get; set; }
     [Parameter] public EventCallback<int> RatingCategoryIdChanged { get; set; }
     private Task OnRatingCategoryIdChanged(ChangeEventArgs e)
     {
         RatingCategoryId = int.Parse(e.Value.ToString());
+        ratingCategory = ratingCategories.Where(t => t.RatingCategoryId == RatingCategoryId).FirstOrDefault();
         appstate.ratingcategoryid = RatingCategoryId;
         return RatingCategoryIdChanged.InvokeAsync((int)RatingCategoryId);
     }

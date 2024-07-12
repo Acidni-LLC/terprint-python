@@ -9,9 +9,13 @@
 @inject common.AppState appstate
 @rendermode InteractiveServer
 
-<PageTitle>@common.config.appname - Terpene Profile - @terpene</PageTitle>
+
 @{
+
+    string title = @common.config.appname + " - Terpene Profile - " + @terpene;
 }
+<PageTitle>@title</PageTitle>
+ 
 @code {
     public Components.ChooserBatch.BatchData bd = new ChooserBatch.BatchData();
 
