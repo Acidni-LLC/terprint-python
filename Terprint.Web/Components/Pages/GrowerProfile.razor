@@ -1,4 +1,4 @@
-﻿@page "/StrainProfile"
+﻿@page "/GrowerProfile"
 
 @using Microsoft.AspNetCore.Mvc
 @using Microsoft.AspNetCore.WebUtilities
@@ -12,27 +12,26 @@
 
 @{
 
-    string title = common.config.appname + " - Strain Profile - " + strain;
+    string title = common.config.appname + " - grower Profile - " + grower;
 }
 <PageTitle>@title</PageTitle>
-@code {
-    private string title = "";
+@code { 
     public Components.ChooserBatch.BatchData bd = new ChooserBatch.BatchData();
 
-    public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.nostrain;
+    public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandheader;
 
-    [FromQuery(Name = "strain")]
-    public string? strain
+    [FromQuery(Name = "grower")]
+    public string? grower
     {
         get
         {
             try
             {
                 var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
-                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("strain", out var _strain))
+                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("grower", out var _grower))
                 {
 
-                    return _strain;
+                    return _grower;
                     //   currentCount = Convert.ToInt32(_initialCount);
                 }
                 else
@@ -61,19 +60,19 @@
 }
 
 @{
-    int strainid = DB.Strain
-                    .Where(t => t.StrainName == strain)
-                    .Select(t => t.StrainId).FirstOrDefault();
+    int growerid = DB.Grower
+                    .Where(t => t.Name == grower)
+                    .Select(t => t.GrowerId).FirstOrDefault();
     var batches = DB.Batch
         .OrderByDescending(t => t.Date)
-        .Where(t => t.StrainID == strainid)
+        .Where(t => t.GrowerID == growerid)
         .ToList();
 
 }
 
 <div class="card">
     <div class="card-header">
-        <h5 class="card-title" style="mix-blend-mode:difference;color:white">@strain Profile</h5>
+        <h5 class="card-title" style="mix-blend-mode:difference;color:white">@grower Profile</h5>
     </div>
     <div class="card-body">
         <h6>@batches.Count() Batches</h6>

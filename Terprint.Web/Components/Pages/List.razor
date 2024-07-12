@@ -9,7 +9,11 @@
 
 @page "/list"
 
-<PageTitle>@common.config.appname - Strain List</PageTitle>
+@{
+
+    string title = @common.config.appname + " - Strain List";
+}
+<PageTitle>@title</PageTitle>
 @code {
     public Components.ChooserBatch.BatchData bd = new ChooserBatch.BatchData();
 

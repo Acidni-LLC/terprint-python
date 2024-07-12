@@ -1,4 +1,4 @@
-﻿@inject Terprint.Web.Data.TerprintWebContext DB
+﻿@inject Data.TerprintWebContext3 DB
 @inject NavigationManager _navigationManager
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -15,6 +15,7 @@
                 <li class="nav-item"><a class="nav-link" href="#"> About </a></li>
                 <li class="nav-item"><a class="nav-link" href="/List"> List </a></li>
                 <li class="nav-item"><a class="nav-link" href="/BatchProfile">Batch Profile </a></li>
+                <li class="nav-item"><a class="nav-link" href="/ratingslist">Ratings </a></li>
                 <li class="nav-item dropdown" id="myDropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Strains menu  </a>
                     <ul class="dropdown-menu">
@@ -23,7 +24,7 @@
                             {
                                 // e.g. Put a database call here
 
-                                return DB.Strain.Select(t => t.StrainName).ToList();
+                                return DB.Strain.Select(t => t.StrainName).OrderBy(t => t).ToList();
                                 // Terprint.common.Strains.GetStrains();
 
                             }
@@ -44,13 +45,14 @@
                         }
                         @foreach (var strain in GetStrains())
                         {
+                            string path = "/StrainProfile?strain=" + strain;
                             <li>
-                                <a class="dropdown-item" href="#"> @strain &raquo; </a>
+                                <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@strain &raquo;</NavLink>
                                 <ul class="submenu dropdown-menu">
                                     @foreach (var batch in GetBatches(strain))
                                     {
                                         string urlencoded = System.Web.HttpUtility.UrlEncode(@batch);
-                                        string path = "/BatchProfile?size=medium&matrix=1&batch=" + @urlencoded;
+                                        path = "/BatchProfile?size=medium&matrix=1&batch=" + @urlencoded;
                                         <li>
                                             <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@batch</NavLink>
                                         </li>
@@ -71,14 +73,16 @@
                             {
                                 // e.g. Put a database call here
 
-                                Terprint.common.Components c = new Terprint.common.Components();
+                                common.Components c = new common.Components();
                                 return c.GetTerpeneList();
 
                                 //return Terprint.common.Strains.GetBatches(strain);
 
                             }
                         }
-                        @{Terprint.common.Components c = new Terprint.common.Components();}
+                        @{
+                             common.Components c = new common.Components();
+                        }
                         @foreach (var terpene in GetTerpenes())
                         {
                             string terpcolor = c.GetTerpeneColor(terpene);
@@ -86,7 +90,7 @@
                             string path = "/TerpeneProfile?terpene=" + @urlencoded;
                             <li style="background-color: @terpcolor">
                                 <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@terpene</NavLink>
-                                
+
                             </li>
                         }
 
@@ -97,31 +101,31 @@
 
                     <Authorized>
                         <li class="nav-item dropdown">
-                            <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Admin   @context.User.Identity?.Name</a>
+                            <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Admin </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li>
-                                    <a class="dropdown-item" href="#">Growers » </a>
+                                    <a class="dropdown-item" href="/growers">Growers » </a>
                                     <ul class="submenu submenu-left dropdown-menu">
                                         <li><a class="dropdown-item" href="/growers">View</a></li>
                                         <li><a class="dropdown-item" href="/growers/create">Enter Grower</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">Strains » </a>
+                                    <a class="dropdown-item" href="/strains">Strains » </a>
                                     <ul class="submenu submenu-left dropdown-menu">
                                         <li><a class="dropdown-item" href="/strains">View</a></li>
                                         <li><a class="dropdown-item" href="/strains/create">Enter Strain</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">Batches » </a>
+                                    <a class="dropdown-item" href="/batches">Batches » </a>
                                     <ul class="submenu submenu-left dropdown-menu">
                                         <li><a class="dropdown-item" href="/batches">View</a></li>
                                         <li><a class="dropdown-item" href="/batches/create">Enter Batch</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">Terpene Values » </a>
+                                    <a class="dropdown-item" href="/terpenevalues">Terpene Values » </a>
                                     <ul class="submenu submenu-left dropdown-menu">
                                         <li><a class="dropdown-item" href="/terpenevalues">View</a></li>
                                         <li><a class="dropdown-item" href="/terpenevalues/create">Enter Values</a></li>
@@ -129,7 +133,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">THC Values » </a>
+                                    <a class="dropdown-item" href="/thcvalues">THC Values » </a>
                                     <ul class="submenu submenu-left dropdown-menu">
                                         <li><a class="dropdown-item" href="/thcvalues">View</a></li>
                                         <li><a class="dropdown-item" href="/thcvalues/create">Enter Values</a></li>
@@ -137,14 +141,14 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">Rating Categories » </a>
+                                    <a class="dropdown-item" href="/ratingcategories">Rating Categories » </a>
                                     <ul class="submenu submenu-left dropdown-menu">
                                         <li><a class="dropdown-item" href="/ratingcategories">View</a></li>
                                         <li><a class="dropdown-item" href="/ratingcategories/create">Enter Values</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">Ratings » </a>
+                                    <a class="dropdown-item" href="/ratings">Ratings » </a>
                                     <ul class="submenu submenu-left dropdown-menu">
                                         <li><a class="dropdown-item" href="/ratings">View</a></li>
                                         <li><a class="dropdown-item" href="/ratings/create">Enter Values</a></li>
@@ -153,16 +157,12 @@
                             </ul>
                         </li>
 
+
                         <li class="nav-item">
-                            <div class="nav-item px-3">
-                                <form action="Account/Logout" method="post">
-                                    <AntiforgeryToken />
-                                    <input type="hidden" name="ReturnUrl" value="/" />
-                                    <button type="submit" class="nav-link">
-                                        Logout
-                                    </button>
-                                </form>
-                            </div>
+                            @{
+                                var returnUrl = $"/";
+                                <NavLink title="Logout" class="nav-link" href=@($"Logout?redirectUri={returnUrl}") Match="NavLinkMatch.Prefix">Logout   @context.User.Identity?.Name</NavLink>
+                            }
                         </li>
                     </Authorized>
 

@@ -1,0 +1,48 @@
+﻿@inject Terprint.Web.Data.TerprintWebContext DB
+
+@{
+    List<Rating> ratings = DB.Rating
+    .OrderByDescending(t => t.created)
+    .ToList();
+    List<RatingCategory> ratingCategories = DB.RatingCategory.ToList();
+    List<Batch> batches = DB.Batch
+    .Where(t1 => ratings
+    .Select(t => t.BatchID)
+    .ToList().Contains(t1.BatchId))
+    .ToList();
+    List<Strain> strains = DB.Strain
+    .Where(t1 => batches.Select(t => t.StrainID).ToList().Contains(t1.StrainId))
+    .ToList();
+
+}
+
+<div class="container-fluid">
+    @foreach (Models.Rating r in ratings)
+    {
+        Batch batch = batches.Where(t => t.BatchId == r.BatchID).FirstOrDefault();
+        Strain strain = strains.Where(t => t.StrainId == batch.StrainID).FirstOrDefault();
+        RatingCategory rc = ratingCategories.Where(t => t.RatingCategoryId == r.RatingCategoryID).FirstOrDefault();
+
+        MarkupString link = new MarkupString(common.CreateRatingCategoryLink(rc.CategoryTitle, (int)rc.RatingCategoryId));
+
+        <div class="row">
+
+            <div class="col-3 text-start" >
+                <a href="rating?ratingid=@r.RatingId">@strain.StrainName</a>
+            </div>
+            <div class="col-7">
+                @link ->
+                @r.Value
+            </div>
+            <div class="col-2 text-end">
+                @r.created.Date.ToShortDateString()
+            </div>
+        </div>
+
+    }
+</div>
+@code {
+
+    }
+
+

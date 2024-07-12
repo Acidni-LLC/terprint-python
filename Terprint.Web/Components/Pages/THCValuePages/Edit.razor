@@ -1,4 +1,5 @@
-﻿@page "/THCValues/edit"
+﻿@attribute [Authorize]
+@page "/THCValues/edit"
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager

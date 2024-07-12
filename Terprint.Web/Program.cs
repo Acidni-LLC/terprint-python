@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using Terprint.Web.Data;
 using Terprint.Web.Components.Account;
+using Microsoft.AspNetCore.Components.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,8 +53,9 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 builder.Services.AddQuickGridEntityFrameworkAdapter();;
 builder.Services.AddOutputCache();
-builder.Services.AddSingleton<Terprint.common.Components>();
-builder.Services.AddSingleton<Terprint.common.AppState>();
+builder.Services.AddSingleton<Terprint.Web.common>();
+builder.Services.AddSingleton<Terprint.Web.common.Components>();
+builder.Services.AddSingleton<Terprint.Web.common.AppState>();
 builder.Services.AddSingleton<Terprint.Web.Components.TerprintTable>();
 builder.Services.AddSingleton<Terprint.Web.Components.ChooserBatch>();
 builder.Services.AddSingleton<Terprint.Web.Components.ChooserRatingCategory>();

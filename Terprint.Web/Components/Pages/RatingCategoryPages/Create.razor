@@ -1,4 +1,6 @@
-﻿@page "/ratingcategories/create"
+﻿@attribute [Authorize]
+ 
+@page "/ratingcategories/create"
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager

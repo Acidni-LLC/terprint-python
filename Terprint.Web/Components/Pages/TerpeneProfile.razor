@@ -9,9 +9,13 @@
 @inject common.AppState appstate
 @rendermode InteractiveServer
 
-<PageTitle>@common.config.appname - Terpene Profile - @terpene</PageTitle>
+
 @{
+
+    string title = @common.config.appname + " - Terpene Profile - " + @terpene;
 }
+<PageTitle>@title</PageTitle>
+ 
 @code {
     public Components.ChooserBatch.BatchData bd = new ChooserBatch.BatchData();
 
@@ -61,20 +65,18 @@
     string dbterpname = c.GetDBTerpName(terpene);
 
 
-    List<int?> terpenevalueslist = DB.TerpeneValues
+    var terpenevalueslist = DB.TerpeneValues
                     .Where(t => t.TerpeneName == dbterpname)
         .OrderByDescending(t => t.Value)
-                    .Select(t => t.BatchID)
+                    .Select(t => new 
+                        { batchid = t.BatchID, 
+                            Name = DB.Batch.Where(t1 => t1.BatchId == t.BatchID).Select(t2 => t2.Name).FirstOrDefault() ,
+                        Value=t.Value,
+                        dbterpname=dbterpname})
                     .Distinct()
                     .ToList();
     int i = 1;
-    
-        var batches = DB.Batch
-            .OrderByDescending(t => t.StrainID)
-            .Where(t => terpenevalueslist.Contains(t.BatchId))
-            .ToList();
-
-
+     
     terpcolor = c.GetTerpeneColor(terpene);
 
     <div class="card">
@@ -85,15 +87,15 @@
             <h7 class="card-title">@c.GetTerpeneDescription(terpene)</h7>
         </div>
         <div class="card-body">
-            <h6>@batches.Count Batches</h6>
+            <h6>@terpenevalueslist.Count Batches</h6>
         </div>
     </div>
-    foreach (var batch in batches)
+    foreach (var t in terpenevalueslist.OrderByDescending(t=>t.Value))
     {
-        { bd = new ChooserBatch.BatchData() { batch = batch.Name, batchId = (int)batch.BatchId }; }
+        { bd = new ChooserBatch.BatchData() { batch = t.Name, batchId = (int)t.batchid }; }
         <div class="card">
             <div class="card-body">
-                <TerprintTable @bind-batch="@batch.Name" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+                <TerprintTable   @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
             </div>
         </div>
         i++;

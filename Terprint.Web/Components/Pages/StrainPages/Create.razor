@@ -1,4 +1,5 @@
-﻿@page "/strains/create"
+﻿@attribute [Authorize]
+@page "/strains/create"
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
@@ -48,6 +49,7 @@
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task AddStrain()
     {
+        Strain.StrainName = Strain.StrainName.Trim();
         DB.Strain.Add(Strain);
         await DB.SaveChangesAsync();
         NavigationManager.NavigateTo("/strains");

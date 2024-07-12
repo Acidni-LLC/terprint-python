@@ -1,0 +1,14 @@
+﻿@inject Terprint.Web.Data.TerprintWebContext DB
+
+@{
+    foreach (Models.Grower s in DB.Grower
+    .OrderBy(t => t.Name)
+
+    .ToList())
+    {
+        <div class="badge"> <a href="GrowerProfile?grower=@System.Web.HttpUtility.UrlEncode(s.Name) ">@s.Name</a>,</div>
+    }
+}
+@code {
+
+}

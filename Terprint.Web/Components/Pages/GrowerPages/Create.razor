@@ -1,4 +1,5 @@
-﻿@page "/growers/create"
+﻿@attribute [Authorize]
+@page "/growers/create"
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
@@ -43,6 +44,7 @@
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task AddGrower()
     {
+        Grower.Name = Grower.Name.Trim();
         DB.Grower.Add(Grower);
         await DB.SaveChangesAsync();
         NavigationManager.NavigateTo("/growers");

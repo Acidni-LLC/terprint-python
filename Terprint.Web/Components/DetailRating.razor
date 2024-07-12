@@ -1,0 +1,67 @@
+﻿@inject Terprint.Web.Data.TerprintWebContext DB
+@inject NavigationManager NavigationManager
+
+@{
+    ratingid = int.Parse(common.GetQueryValue("ratingid", NavigationManager));
+    List<Rating> ratings = DB.Rating.Where(t => t.RatingId == ratingid)
+    .OrderByDescending(t => t.created)
+    .ToList();
+    List<RatingCategory> ratingCategories = DB.RatingCategory.ToList();
+    List<Batch> batches = DB.Batch
+    .Where(t1 => ratings
+    .Select(t => t.BatchID)
+    .ToList().Contains(t1.BatchId))
+    .ToList();
+    Strain strain = DB.Strain
+    .Where(t1 => t1.StrainId == batches.FirstOrDefault().StrainID)
+    .FirstOrDefault();
+
+    Batch batch = batches.FirstOrDefault();
+    Rating r = ratings.FirstOrDefault();
+    RatingCategory rc = ratingCategories.Where(t => t.RatingCategoryId == r.RatingCategoryID).FirstOrDefault();
+    batchid = batch.BatchId.Value;
+    batchData = new ChooserBatch.BatchData() { batchId = batch.BatchId.Value, batch = batch.Name };
+    MarkupString link = new MarkupString(common.CreateStrainLink(strain.StrainName));
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">@link </h1>
+                </div>
+                <div class="card-header">
+                    <h2 class="card-subtitle mb-2 text-muted"> @rc.CategoryDescription</h2>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h2>  @r.Value </h2>
+                    </div>
+                </div>
+                <div class="card-body">  @r.createdby<br /> @r.created.Date.ToShortDateString() 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+
+            <TerprintTable @bind-batch="@batch.Name" @bind-batchData="@batchData" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    public string size { get; set; } = "small";
+    public int? matrix { get; set; } = 5;
+    public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.nostrain;
+    public int ratingid { get; set; } = 0;
+    public int batchid { get; set; } = 0;
+    public ChooserBatch.BatchData batchData { get; set; }
+
+}
+
+
