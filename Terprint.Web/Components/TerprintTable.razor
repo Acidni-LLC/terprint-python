@@ -14,54 +14,58 @@
 
     if (loadData() && TerpeneValues is not null && TerpeneValues.Count > 0)
     {
-        if (rendermode == renderMode.tableandtitle)
-        {
-            <div class="container-fluid">
-                <div class="col-4">
-                    <h5> <a href="/StrainProfile?strain=@System.Web.HttpUtility.UrlEncode(strain)">@strain</a></h5>
-                </div>
-                <div class="col-4 text-center">
-                    <small class="">
-                        <div><strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%</div>
-                    </small>
-                </div>
-                <div class="col-4 float-end text-end">
-                    <small class="">@batchData.batch</small> - <small class="">@batchDB.Date</small>
-                </div>
 
+
+        <div class="container-fluid">
+            @if (rendermode == renderMode.tableandtitle)
+            {
+                <div class="row">
+                    <div class="col-12 col-lg-4">
+                        <h5> <a href="/StrainProfile?strain=@System.Web.HttpUtility.UrlEncode(strain)">@strain</a></h5>
+                    </div>
+                    <div class="col-12 col-lg-4 text-center">
+                        <small class="">
+                            <div><strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%</div>
+                        </small>
+                    </div>
+                    <div class="col-12 col-lg-4 float-end text-end">
+                        <small class="">@batchData.batch</small> - <small class="">@batchDB.Date</small>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-12 ">
                         @myMarkup
                     </div>
                 </div>
-            </div>
 
-        }
-        else if (rendermode == renderMode.tableandheader || rendermode == renderMode.nostrain)
-        {
+            }
+            else if (rendermode == renderMode.tableandheader || rendermode == renderMode.nostrain)
+            {
 
-            <div class="container-fluid">
-                <div class="row">
-                    @if (rendermode != renderMode.nostrain)
-                    {
+                @if (rendermode != renderMode.nostrain)
+                {
 
-                        <div class="col-12  col-sm-3">
+                    <div class="row">
+                        <div class="col-12  col-lg-3">
                             <h5><a href="/StrainProfile?strain=@System.Web.HttpUtility.UrlEncode(strain)">@strain</a></h5>
                         </div>
 
-                        <div class="col-12 col-sm-3 text-center">
+                        <div class="col-12 col-lg-3 text-center">
                             <strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%
                         </div>
-                        <div class="col-12 col-sm-3 float-end text-end">
+                        <div class="col-12 col-lg-3 float-end text-end">
                             <small>@batchData.batch</small> - <small class="">@batchDB.Date</small>
                         </div>
-                        <div class="col-12 col-sm-3 float-end text-end">
+                        <div class="col-12 col-lg-3 float-end text-end">
                             <strong>@growerDB.Name</strong>
                         </div>
-                    }
-                    else
-                    {
 
+                    </div>
+                }
+                else
+                {
+
+                    <div class="row">
                         <div class="col-12 col-sm-4">
                             <strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%
                         </div>
@@ -69,10 +73,11 @@
                             <small>@batchData.batch</small> - <small class="">@batchDB.Date</small>
                         </div>
                         <div class="col-12 col-sm-4 float-end text-end">
-                            <strong>@growerDB.Name</strong> 
+                            <strong>@growerDB.Name</strong>
                         </div>
-                    }
-                </div>
+                    </div>
+
+                }
 
                 <div class="row">
                     <div class="col-12 ">
@@ -101,13 +106,17 @@
                         @myMarkup
                     </div>
                 </div>
-            </div>
-        }
-        else if (rendermode == renderMode.table)
-        {
-            <div>@myMarkup</div>
-        }
+            }
+            else if (rendermode == renderMode.table)
+            {
+                <div class="row">
+                    <div class="col-12 ">
+                        @myMarkup
+                    </div>
+                </div>
+            }
 
+        </div>
     }
 
 }
@@ -285,7 +294,7 @@
                 bool terpname = TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name || matrixrow.NamesOther.Contains(t.TerpeneName.Trim())).ToList().Count > 0;
                 if (terpvalue && terpname)
                 {
-                    int terpindex = TerpeneValues.IndexOf(TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name   || matrixrow.NamesOther.Contains(t.TerpeneName.Trim())).FirstOrDefault()) + 1;
+                    int terpindex = TerpeneValues.IndexOf(TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name || matrixrow.NamesOther.Contains(t.TerpeneName.Trim())).FirstOrDefault()) + 1;
                     ///not zero value output formatted cell
 
                     terpenecounter++;
