@@ -8,55 +8,58 @@
 
 <h1>Terpene Values</h1>
 
-<a href="terpenevalues/create">Create New</a>
-<a href="terpenevalues/paste">Paste Values</a>
-<Grid @ref="grid" TItem="TerpeneValue"
+<p>
+    <a href="terpenevalues/create">Create New</a>
+    <a href="terpenevalues/paste">Paste Values</a>
+</p>
+
+
+<Grid TItem="TerpeneValue"
       Class="table table-hover table-bordered table-striped"
-      DataProvider="EmployeesDataProvider"
+      DataProvider="TerpeneValueDataProvider"
       AllowFiltering="true"
       AllowPaging="true"
+      PageSize="25"
       AllowSorting="true"
+      AllowSelection="true"
+      SelectionMode="GridSelectionMode.Multiple"
+      SelectedItemsChanged="OnSelectedItemsChanged"
       Responsive="true">
-
     <GridColumns>
-        <GridColumn TItem="TerpeneValue"   HeaderText="Terpene Name" PropertyName="Name" SortKeySelector="item => item.TerpeneName">
-            @context.TerpeneName
-        </GridColumn>
-        <GridColumn TItem="TerpeneValue"   HeaderText="Value" PropertyName="Value" SortKeySelector="item => item.Value">
+        <GridColumn TItem="TerpeneValue" HeaderText="Value" PropertyName="Value" SortKeySelector="item => item.Value">
             @context.Value
         </GridColumn>
-        <GridColumn TItem="TerpeneValue"  HeaderText="created" PropertyName="created" SortKeySelector="item => item.created">
+        <GridColumn TItem="TerpeneValue" HeaderText="TerpeneName" PropertyName="TerpeneName" SortKeySelector="item => item.TerpeneName">
+            @context.TerpeneName
+        </GridColumn>
+        <GridColumn TItem="TerpeneValue" HeaderText="created" PropertyName="created" SortKeySelector="item => item.created">
             @context.created
         </GridColumn>
-        <GridColumn TItem="TerpeneValue"  HeaderText="createdby" PropertyName="createdby" SortKeySelector="item => item.createdby">
-            @context.createdby
+        <GridColumn TItem="TerpeneValue" HeaderText="BatchID" PropertyName="BatchID" SortKeySelector="item => item.BatchID">
+            @context.BatchID
         </GridColumn>
     </GridColumns>
 
 </Grid>
 
 @code {
-    BlazorBootstrap.Grid<TerpeneValue> grid = default!;
-    private IEnumerable<TerpeneValue> employees = default!;
 
-    private HashSet<TerpeneValue> selectedEmployees = new();
 
-    private async Task<GridDataProviderResult<TerpeneValue>> EmployeesDataProvider(GridDataProviderRequest<TerpeneValue> request)
+    private IEnumerable<TerpeneValue> TerpeneValues;
+    private HashSet<TerpeneValue> selectedTerpeneValues = new();
+
+    protected override void OnInitialized()
     {
-        if (employees is null) // pull employees only one time for client-side filtering, sorting, and paging
-            employees = GetEmployees(); // call a service or an API to pull the employees
-
-        return await Task.FromResult(request.ApplyTo(employees));
+        TerpeneValues = DB.TerpeneValues.ToList();
     }
 
-    private IEnumerable<TerpeneValue> GetEmployees()
+    private async Task<GridDataProviderResult<TerpeneValue>> TerpeneValueDataProvider(GridDataProviderRequest<TerpeneValue> request)
     {
-        return DB.TerpeneValues;
+        return await Task.FromResult(request.ApplyTo(TerpeneValues));
     }
-
-    private Task OnSelectedItemsChanged(HashSet<TerpeneValue> employees)
+    private Task OnSelectedItemsChanged(HashSet<TerpeneValue> TerpeneValues)
     {
-        selectedEmployees = employees is not null && employees.Any() ? employees : new();
+        selectedTerpeneValues = TerpeneValues is not null && TerpeneValues.Any() ? TerpeneValues : new();
         return Task.CompletedTask;
     }
 }
