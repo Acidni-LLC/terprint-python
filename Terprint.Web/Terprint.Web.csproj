@@ -46,7 +46,6 @@
  
 
   <ItemGroup>
-    <None Include="Components\Pages\Rc.razor" />
     <None Include="Components\Pages\RatingCategoryProfile.razor" />
   </ItemGroup>
 

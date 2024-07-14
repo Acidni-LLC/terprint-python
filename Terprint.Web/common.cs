@@ -845,11 +845,11 @@ namespace Terprint.Web
                         if (m.Name == "Fenchyl Alcohol") { m.NamesOther.Add("endo-fenchyl alcohol"); }
                         else if (m.Name == "cis-Nerolidol") { m.NamesOther.Add("e-nerolidol"); m.NamesOther.Add("trans-nerolidol"); }
                         else if (m.Name == "δ-Limonene") { m.NamesOther.Add("limonene"); m.NamesOther.Add("d-limonene"); m.NamesOther.Add("limonene"); m.NamesOther.Add("(r)-(+)-limonene"); m.NamesOther.Add("(r)-( )-limonene"); }
-                        else if (m.Name == "borneol") { m.NamesOther.Add("Isoborneol"); } 
+                        else if (m.Name == "borneol") { m.NamesOther.Add("isoborneol"); } 
                         else if (m.Name == "Terpinolene") { m.NamesOther.Add("alpha-terpinolene"); }   
                         else if (m.Name == "Terpineol") { m.NamesOther.Add("total terpineol"); m.NamesOther.Add("alpha-terpineol"); m.NamesOther.Add("terpineol"); }
                         else if (m.Name == "cis-Ocimene") { m.NamesOther.AddRange(["ocimenes", "ocimene"]); }
-                        else if (m.Name == "α-Bisabolol") { m.NamesOther.Add("alpha-Bisabolol"); }
+                        else if (m.Name == "α-Bisabolol") { m.NamesOther.Add("alpha-bisabolol"); }
                         else if (m.Name == "α-Humulene") { m.NamesOther.Add("alpha-humulene"); }
                         else if (m.Name == "α-Pinene") { m.NamesOther.Add("alpha-pinene"); }
                         else if (m.Name == "β-Caryophyllene") { m.NamesOther.Add("e-caryophyllene"); m.NamesOther.Add("beta-caryophyllene"); }
