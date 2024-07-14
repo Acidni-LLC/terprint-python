@@ -708,6 +708,7 @@ namespace Terprint.Web
                     Matrixes.Add(new matrixes(29, "δ-3-Carene", 1, 5, 5, "#C00000"));
                     Matrixes.Add(new matrixes(30, "Borneol", 1, 5, 6, "#99FF33"));
 
+                    Matrixes.Add(new matrixes(150, "Farnesene", 1, 7, 1, "#3AE6F8"));
 
                     Matrixes.Add(new matrixes(31, "(R)-(+)-Limonene", 2, 1, 1, "#008000"));
                     Matrixes.Add(new matrixes(32, "Camphene", 2, 1, 2, "#33CC33"));
@@ -739,6 +740,7 @@ namespace Terprint.Web
                     Matrixes.Add(new matrixes(58, "γ-Terpinene", 2, 10, 1, "#FF0000"));
                     Matrixes.Add(new matrixes(59, "δ-3-Carene", 2, 10, 2, "#C00000"));
                     Matrixes.Add(new matrixes(60, "Borneol", 2, 10, 3, "#99FF33"));
+                    Matrixes.Add(new matrixes(150, "Farnesene", 2, 11, 1, "#3AE6F8"));
                     Matrixes.Add(new matrixes(61, "(R)-(+)-Limonene", 3, 1, 1, "#008000"));
                     Matrixes.Add(new matrixes(62, "Camphene", 3, 1, 2, "#33CC33"));
                     Matrixes.Add(new matrixes(63, "Caryophyllene Oxide", 3, 10, 1, "#66FF66"));
@@ -769,6 +771,7 @@ namespace Terprint.Web
                     Matrixes.Add(new matrixes(88, "γ-Terpinene", 3, 9, 1, "#FF0000"));
                     Matrixes.Add(new matrixes(89, "δ-3-Carene", 3, 9, 2, "#C00000"));
                     Matrixes.Add(new matrixes(90, "Borneol", 3, 15, 2, "#99FF33"));
+                    Matrixes.Add(new matrixes(150, "Farnesene", 3, 16, 2, "#3AE6F8"));
                     Matrixes.Add(new matrixes(91, "(R)-(+)-Limonene", 4, 1, 1, "#008000"));
                     Matrixes.Add(new matrixes(92, "Camphene", 4, 2, 1, "#33CC33"));
                     Matrixes.Add(new matrixes(93, "Caryophyllene Oxide", 4, 3, 1, "#66FF66"));
@@ -799,6 +802,7 @@ namespace Terprint.Web
                     Matrixes.Add(new matrixes(118, "γ-Terpinene", 4, 28, 1, "#FF0000"));
                     Matrixes.Add(new matrixes(119, "δ-3-Carene", 4, 29, 1, "#C00000"));
                     Matrixes.Add(new matrixes(120, "Borneol", 4, 30, 1, "#99FF33"));
+                    Matrixes.Add(new matrixes(150, "Farnesene", 4, 30, 1, "#3AE6F8"));
                     Matrixes.Add(new matrixes(121, "(R)-(+)-Limonene", 5, 1, 1, "#008000"));
                     Matrixes.Add(new matrixes(122, "Camphene", 5, 1, 2, "#33CC33"));
                     Matrixes.Add(new matrixes(123, "Caryophyllene Oxide", 5, 1, 3, "#66FF66"));
@@ -829,6 +833,7 @@ namespace Terprint.Web
                     Matrixes.Add(new matrixes(148, "γ-Terpinene", 5, 1, 28, "#FF0000"));
                     Matrixes.Add(new matrixes(149, "δ-3-Carene", 5, 1, 29, "#C00000"));
                     Matrixes.Add(new matrixes(150, "Borneol", 5, 1, 30, "#99FF33"));
+                    Matrixes.Add(new matrixes(150, "Farnesene", 5, 1, 31, "#3AE6F8"));
 
                     //add FARNESENE, Geranyl Acetate
 
