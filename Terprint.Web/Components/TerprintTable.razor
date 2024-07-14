@@ -91,7 +91,9 @@
                             {
                                 if (i > 1)
                                 { sep = ", "; }
-                                string terpcolor = Matrixes.Where(t1 => t1.Name.Trim().ToLower() == t.TerpeneName.Trim().ToLower() || t1.name2.Trim().ToLower() == t.TerpeneName.Trim().ToLower()).Select(t => t.Color).FirstOrDefault();
+                                string terpcolor = Matrixes
+                                .Where(t1 => t1.Name.Trim().ToLower() == t.TerpeneName.Trim().ToLower() || t1.NamesOther.Contains(t.TerpeneName.Trim().ToLower()))
+                                .Select(t => t.Color).FirstOrDefault();
                                 terps = terps + sep + i + ".  <div class=\"badge\" style=\"background: " + @terpcolor+" \"><h7 style=\"mix-blend-mode:difference;color:white\">" + t.TerpeneName + "</h7></div> " + Math.Round(t.Value * .1, 4) + "%";
                                 i++;
                             }
