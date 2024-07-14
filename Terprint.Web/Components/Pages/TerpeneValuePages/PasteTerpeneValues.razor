@@ -6,8 +6,14 @@
 @inject NavigationManager NavigationManager
 @using Terprint.Web.Models
 <h3>Paste Terpene Values</h3>
+
 <p>Please adhere to the format "[terpene Name][ ][result mg/g][ ][result percent]"</p>
 <EditForm method="post" Model="@tv" OnValidSubmit="AddValues" FormName="create" Enhance>
+
+    <InputSelect id="inputformatc" class="m-0 form-control" @bind-Value="@inputformat">
+        <option value="1">1 [terpene Name][ ][result mg/g][ ][result percent] </option>
+        <option value="2">2 [terpene Name][ ][LOD][ ][result mg/g][ ][result percent]</option>
+    </InputSelect>
     <div class="form-group">
         @{
             // terpeneValues = DB2.TerpeneValues.ToList();
@@ -30,6 +36,8 @@
 @code {
     public string userid { get; set; }
 
+    [SupplyParameterFromForm]
+    public string inputformat { get; set; } = new("");
     [SupplyParameterFromForm]
     public TerpeneValue TerpeneValue { get; set; } = new();
     [SupplyParameterFromForm]
@@ -64,16 +72,39 @@
         var longlist = tv;
         var result = tv.Split(new[] { '\n' });
         terpeneValues = new List<TerpeneValue>();
-        foreach (string s in result)
+        foreach (string st in result)
         {
+            string s = st;
             if (s.Length > 0)
             {
+                if(s.Contains("\t"))
+                {
+                    s = st.Replace("/t", " ");
+                }
+                TerpeneValue terpenevalue = new TerpeneValue();
+                if (inputformat == "1")
+                {
+                    int index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
+                    string name = s.Substring(0, index).Trim();
+                    string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
+                    string secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
+                    terpenevalue = new TerpeneValue() { TerpeneName = name, Value = Convert.ToDouble(secondnum), BatchID = TerpeneValue.BatchID, createdby = userid };
 
-                int index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
-                string name = s.Substring(0, index).Trim();
-                string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
-                string secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
-                terpeneValues.Add(new TerpeneValue() { TerpeneName = name, Value = Convert.ToDouble(secondnum), BatchID = TerpeneValue.BatchID, createdby = userid });
+                }
+                else if (inputformat == "2")
+                {
+                    int index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
+                    string name = s.Substring(0, index).Trim();
+                    string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
+                    string secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
+                    string thirdnum = s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", "");
+                    terpenevalue = new TerpeneValue() { 
+                        TerpeneName = name, 
+                            Value = Convert.ToDouble(thirdnum),
+                        BatchID = TerpeneValue.BatchID, 
+                        createdby = userid };
+                }
+                terpeneValues.Add(terpenevalue);
             }
         }
 

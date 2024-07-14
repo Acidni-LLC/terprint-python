@@ -671,7 +671,7 @@ namespace Terprint.Web
                 return terpenes;
 
             }
-            public void loadmatrix(string strain = "")
+            public void     loadmatrix(string strain = "")
             {
                 if (Matrixes == null)
                 {
@@ -708,6 +708,7 @@ namespace Terprint.Web
                     Matrixes.Add(new matrixes(29, "δ-3-Carene", 1, 5, 5, "#C00000"));
                     Matrixes.Add(new matrixes(30, "Borneol", 1, 5, 6, "#99FF33"));
 
+                    Matrixes.Add(new matrixes(150, "Farnesene", 1, 7, 1, "#3AE6F8"));
 
                     Matrixes.Add(new matrixes(31, "(R)-(+)-Limonene", 2, 1, 1, "#008000"));
                     Matrixes.Add(new matrixes(32, "Camphene", 2, 1, 2, "#33CC33"));
@@ -739,6 +740,7 @@ namespace Terprint.Web
                     Matrixes.Add(new matrixes(58, "γ-Terpinene", 2, 10, 1, "#FF0000"));
                     Matrixes.Add(new matrixes(59, "δ-3-Carene", 2, 10, 2, "#C00000"));
                     Matrixes.Add(new matrixes(60, "Borneol", 2, 10, 3, "#99FF33"));
+                    Matrixes.Add(new matrixes(150, "Farnesene", 2, 11, 1, "#3AE6F8"));
                     Matrixes.Add(new matrixes(61, "(R)-(+)-Limonene", 3, 1, 1, "#008000"));
                     Matrixes.Add(new matrixes(62, "Camphene", 3, 1, 2, "#33CC33"));
                     Matrixes.Add(new matrixes(63, "Caryophyllene Oxide", 3, 10, 1, "#66FF66"));
@@ -769,6 +771,7 @@ namespace Terprint.Web
                     Matrixes.Add(new matrixes(88, "γ-Terpinene", 3, 9, 1, "#FF0000"));
                     Matrixes.Add(new matrixes(89, "δ-3-Carene", 3, 9, 2, "#C00000"));
                     Matrixes.Add(new matrixes(90, "Borneol", 3, 15, 2, "#99FF33"));
+                    Matrixes.Add(new matrixes(150, "Farnesene", 3, 16, 2, "#3AE6F8"));
                     Matrixes.Add(new matrixes(91, "(R)-(+)-Limonene", 4, 1, 1, "#008000"));
                     Matrixes.Add(new matrixes(92, "Camphene", 4, 2, 1, "#33CC33"));
                     Matrixes.Add(new matrixes(93, "Caryophyllene Oxide", 4, 3, 1, "#66FF66"));
@@ -799,6 +802,7 @@ namespace Terprint.Web
                     Matrixes.Add(new matrixes(118, "γ-Terpinene", 4, 28, 1, "#FF0000"));
                     Matrixes.Add(new matrixes(119, "δ-3-Carene", 4, 29, 1, "#C00000"));
                     Matrixes.Add(new matrixes(120, "Borneol", 4, 30, 1, "#99FF33"));
+                    Matrixes.Add(new matrixes(150, "Farnesene", 4, 30, 1, "#3AE6F8"));
                     Matrixes.Add(new matrixes(121, "(R)-(+)-Limonene", 5, 1, 1, "#008000"));
                     Matrixes.Add(new matrixes(122, "Camphene", 5, 1, 2, "#33CC33"));
                     Matrixes.Add(new matrixes(123, "Caryophyllene Oxide", 5, 1, 3, "#66FF66"));
@@ -829,26 +833,28 @@ namespace Terprint.Web
                     Matrixes.Add(new matrixes(148, "γ-Terpinene", 5, 1, 28, "#FF0000"));
                     Matrixes.Add(new matrixes(149, "δ-3-Carene", 5, 1, 29, "#C00000"));
                     Matrixes.Add(new matrixes(150, "Borneol", 5, 1, 30, "#99FF33"));
+                    Matrixes.Add(new matrixes(150, "Farnesene", 5, 1, 31, "#3AE6F8"));
 
+                    //add FARNESENE, Geranyl Acetate
 
                     #endregion
                     #region add alternate names
                     foreach (matrixes m in Matrixes)
                     {
 
-                        if (m.Name == "Fenchyl Alcohol") { m.NamesOther.Add("Endo-Fenchyl Alcohol"); }
-                        else if (m.Name == "cis-Nerolidol") { m.NamesOther.Add("E-Nerolidol"); }
-
-                        else if (m.Name == "(R)-(+)-Limonene") { m.NamesOther.Add("(R)-( )-Limonene"); }
-                        else if (m.Name == "δ-Limonene") { m.NamesOther.Add("D-Limonene"); }
-                        else if (m.Name == "Terpineol") { m.NamesOther.Add("Total Terpineol"); }
-                        else if (m.Name == "cis-Ocimene") { m.NamesOther.AddRange(["Ocimenes", "Ocimene"]); }
+                        if (m.Name == "Fenchyl Alcohol") { m.NamesOther.Add("endo-fenchyl alcohol"); }
+                        else if (m.Name == "cis-Nerolidol") { m.NamesOther.Add("e-nerolidol"); m.NamesOther.Add("trans-nerolidol"); }
+                        else if (m.Name == "δ-Limonene") { m.NamesOther.Add("limonene"); m.NamesOther.Add("d-limonene"); m.NamesOther.Add("limonene"); m.NamesOther.Add("(r)-(+)-limonene"); m.NamesOther.Add("(r)-( )-limonene"); }
+                        else if (m.Name == "borneol") { m.NamesOther.Add("Isoborneol"); } 
+                        else if (m.Name == "Terpinolene") { m.NamesOther.Add("alpha-terpinolene"); }   
+                        else if (m.Name == "Terpineol") { m.NamesOther.Add("total terpineol"); m.NamesOther.Add("alpha-terpineol"); m.NamesOther.Add("terpineol"); }
+                        else if (m.Name == "cis-Ocimene") { m.NamesOther.AddRange(["ocimenes", "ocimene"]); }
                         else if (m.Name == "α-Bisabolol") { m.NamesOther.Add("alpha-Bisabolol"); }
-                        else if (m.Name == "α-Humulene") { m.NamesOther.Add("alpha-Humulene"); }
-                        else if (m.Name == "α-Pinene") { m.NamesOther.Add("alpha-Pinene"); }
-                        else if (m.Name == "β-Caryophyllene") { m.NamesOther.Add("E-Caryophyllene"); }
-                        else if (m.Name == "β-Myrcene") { m.NamesOther.Add("beta-Myrcene"); }
-                        else if (m.Name == "β-Pinene") { m.NamesOther.Add("beta-Pinene"); }
+                        else if (m.Name == "α-Humulene") { m.NamesOther.Add("alpha-humulene"); }
+                        else if (m.Name == "α-Pinene") { m.NamesOther.Add("alpha-pinene"); }
+                        else if (m.Name == "β-Caryophyllene") { m.NamesOther.Add("e-caryophyllene"); m.NamesOther.Add("beta-caryophyllene"); }
+                        else if (m.Name == "β-Myrcene") { m.NamesOther.Add("beta-myrcene"); }
+                        else if (m.Name == "β-Pinene") { m.NamesOther.Add("beta-pinene"); }
 
                     }
 

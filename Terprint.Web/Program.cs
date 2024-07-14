@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using Terprint.Web.Data;
 using Terprint.Web.Components.Account;
-using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.Web; 
 
 var builder = WebApplication.CreateBuilder(args);
 
