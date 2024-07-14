@@ -6,7 +6,7 @@
     
     .ToList())
     {
-        <div class="badge"> <a href="StrainProfile?strain=@System.Web.HttpUtility.UrlEncode(s.StrainName)">@s.StrainName</a>,</div>
+        <div class="badge"><h6><a href="StrainProfile?strain=@System.Web.HttpUtility.UrlEncode(s.StrainName)">@s.StrainName</a></h6> ,</div>
     }
 }
 @code {
