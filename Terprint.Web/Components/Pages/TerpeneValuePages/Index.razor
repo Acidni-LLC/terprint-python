@@ -8,25 +8,55 @@
 
 <h1>Terpene Values</h1>
 
-<p>
-    <a href="terpenevalues/create">Create New</a>
-    <a href="terpenevalues/paste">Paste Values</a>
-</p>
-@{
-    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+<a href="terpenevalues/create">Create New</a>
+<a href="terpenevalues/paste">Paste Values</a>
+<Grid @ref="grid" TItem="TerpeneValue"
+      Class="table table-hover table-bordered table-striped"
+      DataProvider="EmployeesDataProvider"
+      AllowFiltering="true"
+      AllowPaging="true"
+      AllowSorting="true"
+      Responsive="true">
+
+    <GridColumns>
+        <GridColumn TItem="TerpeneValue"   HeaderText="Terpene Name" PropertyName="Name" SortKeySelector="item => item.TerpeneName">
+            @context.TerpeneName
+        </GridColumn>
+        <GridColumn TItem="TerpeneValue"   HeaderText="Value" PropertyName="Value" SortKeySelector="item => item.Value">
+            @context.Value
+        </GridColumn>
+        <GridColumn TItem="TerpeneValue"  HeaderText="created" PropertyName="created" SortKeySelector="item => item.created">
+            @context.created
+        </GridColumn>
+        <GridColumn TItem="TerpeneValue"  HeaderText="createdby" PropertyName="createdby" SortKeySelector="item => item.createdby">
+            @context.createdby
+        </GridColumn>
+    </GridColumns>
+
+</Grid>
+
+@code {
+    BlazorBootstrap.Grid<TerpeneValue> grid = default!;
+    private IEnumerable<TerpeneValue> employees = default!;
+
+    private HashSet<TerpeneValue> selectedEmployees = new();
+
+    private async Task<GridDataProviderResult<TerpeneValue>> EmployeesDataProvider(GridDataProviderRequest<TerpeneValue> request)
+    {
+        if (employees is null) // pull employees only one time for client-side filtering, sorting, and paging
+            employees = GetEmployees(); // call a service or an API to pull the employees
+
+        return await Task.FromResult(request.ApplyTo(employees));
+    }
+
+    private IEnumerable<TerpeneValue> GetEmployees()
+    {
+        return DB.TerpeneValues;
+    }
+
+    private Task OnSelectedItemsChanged(HashSet<TerpeneValue> employees)
+    {
+        selectedEmployees = employees is not null && employees.Any() ? employees : new();
+        return Task.CompletedTask;
+    }
 }
-<Paginator State="@pagination" />
-<QuickGrid Class="table" Items="DB.TerpeneValues"  >
-    <PropertyColumn Property="terpenevalue => terpenevalue.Value"   />
-    <PropertyColumn Property="terpenevalue => terpenevalue.TerpeneName"  />
-
-    <PropertyColumn Title="Batch" Property="terpenevalue => DB.Batch.Where(t=>t.BatchId== terpenevalue.BatchID).FirstOrDefault().Name" />
-    <PropertyColumn Title="Strain" Property="terpenevalue => DB.Strain.Where(t1=>t1.StrainId== DB.Batch.Where(t=>t.BatchId== terpenevalue.BatchID).FirstOrDefault().StrainID).FirstOrDefault().StrainName" />
-    <PropertyColumn Property="terpenevalue => terpenevalue.Scale" />
-
-    <TemplateColumn Context="terpenevalue">
-        <a href="@($"terpenevalues/edit?terpenevalueid={terpenevalue.TerpeneValueId}")">Edit</a> |
-        <a href="@($"terpenevalues/details?terpenevalueid={terpenevalue.TerpeneValueId}")">Details</a> |
-        <a href="@($"terpenevalues/delete?terpenevalueid={terpenevalue.TerpeneValueId}")">Delete</a>
-    </TemplateColumn>
-</QuickGrid>
