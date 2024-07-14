@@ -92,7 +92,7 @@
                                 if (i > 1)
                                 { sep = ", "; }
                                 string terpcolor = Matrixes.Where(t1 => t1.Name.Trim().ToLower() == t.TerpeneName.Trim().ToLower() || t1.name2.Trim().ToLower() == t.TerpeneName.Trim().ToLower()).Select(t => t.Color).FirstOrDefault();
-                                terps = terps + sep + "<font color='" + terpcolor + "'>" + i + ". " + t.TerpeneName + "</font> " + Math.Round(t.Value * .1, 4) + "%";
+                                terps = terps + sep + i + ".  <div class=\"badge\" style=\"background: " + @terpcolor+" \"><h7 style=\"mix-blend-mode:difference;color:white\">" + t.TerpeneName + "</h7></div> " + Math.Round(t.Value * .1, 4) + "%";
                                 i++;
                             }
                             o = (MarkupString)terps;
@@ -290,18 +290,20 @@
                     temprows += "</tr>";
                     temprows += "<tr>";
                 }
-                bool terpvalue = TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name || matrixrow.NamesOther.Contains(t.TerpeneName.Trim())).FirstOrDefault() is not null;
-                bool terpname = TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name || matrixrow.NamesOther.Contains(t.TerpeneName.Trim())).ToList().Count > 0;
+                bool terpvalue = TerpeneValues.Where(t => t.TerpeneName.ToLower().Trim() == matrixrow.Name.ToLower() || matrixrow.NamesOther.Contains(t.TerpeneName.ToLower().Trim())).FirstOrDefault() is not null;
+                bool terpname = TerpeneValues.Where(t => t.TerpeneName.ToLower().Trim() == matrixrow.Name.ToLower() || matrixrow.NamesOther.Contains(t.TerpeneName.ToLower().Trim())).ToList().Count > 0;
                 if (terpvalue && terpname)
                 {
-                    int terpindex = TerpeneValues.IndexOf(TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name || matrixrow.NamesOther.Contains(t.TerpeneName.Trim())).FirstOrDefault()) + 1;
+                    int terpindex = i
+                     
+                    ;
                     ///not zero value output formatted cell
 
                     terpenecounter++;
                     string terpnamecurrent = matrixrow.Name;
-                    string terpnamestrain = TerpeneValues.Where(t => t.TerpeneName.Trim() == matrixrow.Name || matrixrow.NamesOther.Contains(t.TerpeneName.Trim())).FirstOrDefault().TerpeneName;
+                    string terpnamestrain = TerpeneValues.Where(t => t.TerpeneName.ToLower().Trim() == matrixrow.Name.ToLower() || matrixrow.NamesOther.Contains(t.TerpeneName.ToLower().Trim())).FirstOrDefault().TerpeneName;
 
-                    double op = TerpeneValues.Where(t => t.TerpeneName.Trim().ToLower() == matrixrow.Name.ToLower() || matrixrow.NamesOther.Contains(t.TerpeneName.Trim())).FirstOrDefault().Value;
+                    double op = TerpeneValues.Where(t => t.TerpeneName.Trim().ToLower() == matrixrow.Name.ToLower() || matrixrow.NamesOther.Contains(t.TerpeneName.ToLower().Trim())).FirstOrDefault().Value;
 
 
 

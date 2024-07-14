@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using Terprint.Web.Data;
 using Terprint.Web.Components.Account;
-using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.Web; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -61,6 +61,7 @@ builder.Services.AddSingleton<Terprint.Web.Components.ChooserBatch>();
 builder.Services.AddSingleton<Terprint.Web.Components.ChooserRatingCategory>();
 builder.Services.AddSingleton<Terprint.Web.Components.Pages.BatchPages.Create >();
 
+builder.Services.AddBlazorBootstrap();
 
 builder.Services.AddHttpClient<WeatherApiClient>(client =>
     {
