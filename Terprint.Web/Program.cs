@@ -61,6 +61,7 @@ builder.Services.AddSingleton<Terprint.Web.Components.ChooserBatch>();
 builder.Services.AddSingleton<Terprint.Web.Components.ChooserRatingCategory>();
 builder.Services.AddSingleton<Terprint.Web.Components.Pages.BatchPages.Create >();
 
+builder.Services.AddBlazorBootstrap();
 
 builder.Services.AddHttpClient<WeatherApiClient>(client =>
     {
