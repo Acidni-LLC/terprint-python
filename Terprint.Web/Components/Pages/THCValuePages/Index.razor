@@ -1,40 +1,65 @@
-﻿@attribute [Authorize]
-@page "/thcvalues"
+﻿@page "/THCValues"
 @using Microsoft.AspNetCore.Components.QuickGrid
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
+@rendermode InteractiveServer
 
-<PageTitle>THC Values</PageTitle>
+<PageTitle>Terpene Values</PageTitle>
 
-<h1>THC Values</h1>
+<h1>Terpene Values</h1>
 
 <p>
-    <a href="thcvalues/create">Create New</a>
+    <a href="terpenevalues/create">Create New</a>
+    <a href="terpenevalues/paste">Paste Values </a>
 </p>
-<QuickGrid  Items="@DB.THCValues.AsQueryable()" Class="table" >
 
-    <PropertyColumn Title="Batch" Property="thcvalue => DB.Batch.Where(t=>t.BatchId== thcvalue.BatchID).FirstOrDefault().Name" />
-    <PropertyColumn Title="Strain" Property="thcvalue => DB.Strain.Where(t1=>t1.StrainId== DB.Batch.Where(t=>t.BatchId== thcvalue.BatchID).FirstOrDefault().StrainID).FirstOrDefault().StrainName" />
-    <PropertyColumn Property="thcvalue => thcvalue.Analyte" />
-    <PropertyColumn Property="thcvalue => thcvalue.Dilution" />
-    <PropertyColumn Property="thcvalue => thcvalue.LOD" />
-    <PropertyColumn Property="thcvalue => thcvalue.LOQ" />
-    <PropertyColumn Property="thcvalue => thcvalue.Result" />
-    <PropertyColumn Property="thcvalue => thcvalue.Percent" />
 
-    <TemplateColumn Context="thcvalue">
-        <a href="@($"thcvalues/edit?thcvalueid={thcvalue.THCValueId}")">Edit</a> |
-        <a href="@($"thcvalues/details?thcvalueid={thcvalue.THCValueId}")">Details</a> |
-        <a href="@($"thcvalues/delete?thcvalueid={thcvalue.THCValueId}")">Delete</a>
-    </TemplateColumn>
-</QuickGrid>
+<Grid TItem="TerpeneValue"
+      Class="table table-hover table-bordered table-striped"
+      DataProvider="TerpeneValueDataProvider"
+      AllowFiltering="true"
+      AllowPaging="true"
+      PageSize="20"
+      AllowSorting="true"
+      AllowSelection="true"
+      SelectionMode="GridSelectionMode.Multiple"
+      SelectedItemsChanged="OnSelectedItemsChanged"
+      Responsive="true">
+    <GridColumns>
+        <GridColumn TItem="TerpeneValue" HeaderText="Value" PropertyName="Value" SortKeySelector="item => item.Value">
+            @context.Value
+        </GridColumn>
+        <GridColumn TItem="TerpeneValue" HeaderText="TerpeneName" PropertyName="TerpeneName" SortKeySelector="item => item.TerpeneName">
+            @context.TerpeneName
+        </GridColumn>
+        <GridColumn TItem="TerpeneValue" HeaderText="created" PropertyName="created" SortKeySelector="item => item.created">
+            @context.created
+        </GridColumn>
+        <GridColumn TItem="TerpeneValue" HeaderText="BatchID" PropertyName="BatchID" SortKeySelector="item => item.BatchID">
+            @context.BatchID
+        </GridColumn>
+    </GridColumns>
 
-<Paginator State="@pagination" />
+</Grid>
+
 @code {
-    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
-    IQueryable<THCValue>? itemsQueryable;
-    protected override async Task OnInitializedAsync()
+
+
+    private IEnumerable<TerpeneValue> TerpeneValues;
+    private HashSet<TerpeneValue> selectedTerpeneValues = new();
+
+    protected override void OnInitialized()
     {
-       // itemsQueryable = await DB.THCValues.as DB.THCValues.AsQueryable();
+        TerpeneValues = DB.TerpeneValues.ToList();
+    }
+
+    private async Task<GridDataProviderResult<TerpeneValue>> TerpeneValueDataProvider(GridDataProviderRequest<TerpeneValue> request)
+    {
+        return await Task.FromResult(request.ApplyTo(TerpeneValues));
+    }
+    private Task OnSelectedItemsChanged(HashSet<TerpeneValue> TerpeneValues)
+    {
+        selectedTerpeneValues = TerpeneValues is not null && TerpeneValues.Any() ? TerpeneValues : new();
+        return Task.CompletedTask;
     }
 }
