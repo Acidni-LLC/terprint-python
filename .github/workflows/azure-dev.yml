@@ -31,7 +31,8 @@ jobs:
 
       - name: Install azd
         uses: Azure/setup-azd@v1.0.0
-
+      - name: install aspire
+        run: dotnet workload restore [/home/runner/work/Terprint/Terprint/Terprint.AppHost/Terprint.AppHost.csproj]
       - name: Log in with Azure (Federated Credentials)
         if: ${{ env.AZURE_CLIENT_ID != '' }}
         run: |
