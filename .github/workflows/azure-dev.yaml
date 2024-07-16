@@ -5,7 +5,13 @@ on:
     # Set this to the mainline branch you are using
     branches:
       - main
+      - master
 
+# GitHub Actions workflow to deploy to Azure using azd
+# To configure required secrets for connecting to Azure, simply run `azd pipeline config`
+
+# Set up permissions for deploying with secretless Azure federated credentials
+# https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Clinux#set-up-azure-login-with-openid-connect-authentication
 permissions:
   id-token: write
   contents: read
@@ -17,7 +23,6 @@ jobs:
       AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
       AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
       AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
-      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
       AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
     steps:
@@ -26,13 +31,7 @@ jobs:
 
       - name: Install azd
         uses: Azure/setup-azd@v1.0.0
- 
 
-      - name: Install .NET Aspire workload
-        run: dotnet workload install aspire
-
- 
-       
       - name: Log in with Azure (Federated Credentials)
         if: ${{ env.AZURE_CLIENT_ID != '' }}
         run: |
@@ -41,7 +40,10 @@ jobs:
             --federated-credential-provider "github" `
             --tenant-id "$Env:AZURE_TENANT_ID"
         shell: pwsh
-
+        
+      - name: install aspire
+        run: dotnet workload restore [Terprint.AppHost/Terprint.AppHost.csproj]
+        
       - name: Log in with Azure (Client Credentials)
         if: ${{ env.AZURE_CREDENTIALS != '' }}
         run: |
@@ -53,18 +55,13 @@ jobs:
             --client-secret "$($info.clientSecret)" `
             --tenant-id "$($info.tenantId)"
         shell: pwsh
+        env:
+          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Provision Infrastructure
         run: azd provision --no-prompt
-        # Required when 
-        # env:
-        #   AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
-
-      # Required when provisioning and deploying are defined in separate jobs.
-      # - name: Refresh azd env (pulls latest infrastructure provision)
-      #  run: azd env refresh
-      #  env:
-      #    AZURE_LOCATION: ${{ env.AZURE_LOCATION }}
+        env:
+          AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
 
       - name: Deploy Application
         run: azd deploy --no-prompt
