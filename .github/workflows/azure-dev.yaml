@@ -42,7 +42,7 @@ jobs:
         shell: pwsh
         
       - name: install aspire
-        run: dotnet workload restore [/home/runner/work/Terprint/Terprint/Terprint.AppHost/Terprint.AppHost.csproj]
+        run: dotnet workload restore [./Terprint.AppHost/Terprint.AppHost.csproj]
         
       - name: Log in with Azure (Client Credentials)
         if: ${{ env.AZURE_CREDENTIALS != '' }}
