@@ -64,6 +64,7 @@
                     .Where(t => t.Name == grower)
                     .Select(t => t.GrowerId).FirstOrDefault();
     var batches = DB.Batch
+        .OrderByDescending(t => DB.Strain.Where(t1=>t1.StrainId==t.StrainID).FirstOrDefault().StrainName)
         .OrderByDescending(t => t.Date)
         .Where(t => t.GrowerID == growerid)
         .ToList();

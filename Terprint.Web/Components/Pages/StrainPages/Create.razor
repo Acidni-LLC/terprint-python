@@ -5,14 +5,13 @@
 @inject NavigationManager NavigationManager
 
 <PageTitle>Create Strain</PageTitle>
-
-<h1>Create</h1>
+ 
 
 <h4>Strain</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <EditForm method="post" Model="@Strain" OnValidSubmit="AddStrain" FormName="create" Enhance>
+    <div class="col-12">
+        <EditForm method="post" OnValidSubmit="AddStrain" FormName="createstrain" EditContext="editContext" Enhance>
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" />
             <div class="mb-3">
@@ -42,7 +41,12 @@
     </Authorized>
 </AuthorizeView>
 @code {
-
+    protected override void OnInitialized()
+    {
+        Strain ??= new();
+        editContext = new(Strain);
+    }
+    private EditContext? editContext;
     [SupplyParameterFromForm]
     public Strain Strain { get; set; } = new();
 

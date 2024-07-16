@@ -6,17 +6,25 @@
 <PageTitle>Growers</PageTitle>
 
 <h1>Growers</h1>
-
-<p>
-    <a href="growers/create">Create New</a>
-</p>
-
+<AuthorizeView>
+    <Authorized>
+        <p>
+            <a href="growers/create">Create New</a>
+        </p>
+    </Authorized>
+</AuthorizeView>
 <QuickGrid Class="table" Items="DB.Grower">
     <PropertyColumn Property="grower => grower.Name" />
 
     <TemplateColumn Context="grower">
-        <a href="@($"growers/edit?growerid={grower.GrowerId}")">Edit</a> |
-        <a href="@($"growers/details?growerid={grower.GrowerId}")">Details</a> |
-        <a href="@($"growers/delete?growerid={grower.GrowerId}")">Delete</a>
+        <a href="@($"/GrowerProfile?grower={grower.Name}")">Products</a>
+        <AuthorizeView>
+            <Authorized>
+                |
+                <a href="@($"growers/edit?growerid={grower.GrowerId}")">Edit</a> |
+                <a href="@($"growers/details?growerid={grower.GrowerId}")">Details</a> |
+                <a href="@($"growers/delete?growerid={grower.GrowerId}")">Delete</a>
+            </Authorized>
+        </AuthorizeView>
     </TemplateColumn>
 </QuickGrid>
