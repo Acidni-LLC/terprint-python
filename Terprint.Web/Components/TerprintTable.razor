@@ -7,26 +7,44 @@
 @inject Terprint.Web.Data.TerprintWebContext DB
 
 @rendermode InteractiveServer
-
-
 @{
 
 
     if (loadData() && TerpeneValues is not null && TerpeneValues.Count > 0)
     {
 
+        MarkupString firemarkup = new MarkupString();
+        double totalterps = TerpeneValues.Sum(t => t.Value);
+        string fire = "";
+        if (totalterps > 2.0 && totalterps < 2.5)
+        {
+            fire = "<span class=\"bi bi-fire \"> </span>";
+        }
+        if (totalterps >= 2.5 && totalterps < 3.0)
+        {
+            fire =  "<span class=\"bi bi-fire yellow-color\"> </span>";
+        }
+        if (totalterps >= 3.0 && totalterps < 4.0)
+        {
+            fire = "<span class=\"bi bi-fire red-color\"> </span>";
+        }
+        if (totalterps >= 4.0  )
+        {
+            fire = "<span class=\"bi bi-fire purple-color\"> </span>";
+        }
+        firemarkup = new MarkupString(fire);
 
         <div class="container-fluid">
+
             @if (rendermode == renderMode.tableandtitle)
             {
                 <div class="row">
                     <div class="col-12 col-lg-4">
-                        <h5> <a href="/StrainProfile?strain=@System.Web.HttpUtility.UrlEncode(strain)">@strain</a></h5>
+                        <h5> <a href="/StrainProfile?strain=@System.Web.HttpUtility.UrlEncode(strain)">@strain</a> @firemarkup </h5>
                     </div>
                     <div class="col-12 col-lg-4 text-center">
-                        <small class="">
-                            <div><strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%</div>
-                        </small>
+                        <strong>@Math.Round(totalterps, 2)%</strong> - <strong>@TerpeneValues.Count</strong> Terpenes
+
                     </div>
                     <div class="col-12 col-lg-4 float-end text-end">
                         <small class="">@batchData.batch</small> - <small class="">@batchDB.Date</small>
@@ -34,7 +52,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12 ">
-                        @myMarkup
+                        <Card><CardHeader> @myMarkup</CardHeader></Card>
                     </div>
                 </div>
 
@@ -46,20 +64,28 @@
                 {
 
                     <div class="row">
-                        <div class="col-12  col-lg-3">
-                            <h5><a href="/StrainProfile?strain=@System.Web.HttpUtility.UrlEncode(strain)">@strain</a></h5>
+                        <div class="col-7  col-lg-3">
+                            <h5> <a href="/StrainProfile?strain=@System.Web.HttpUtility.UrlEncode(strain)">@strain</a> @firemarkup </h5>
+
                         </div>
 
-                        <div class="col-12 col-lg-3 text-center">
-                            <strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%
+                        <div class="col-12 col-lg-3 ">
+
+                            <strong>@Math.Round(totalterps, 2)%</strong> - <strong>@TerpeneValues.Count</strong> Terpenes
                         </div>
-                        <div class="col-12 col-lg-3 float-end text-end">
-                            <small>@batchData.batch</small> - <small class="">@batchDB.Date</small>
-                        </div>
-                        <div class="col-12 col-lg-3 float-end text-end">
+                        <div class="col-5 col-lg-3 float-end text-end">
                             <strong><a href="/GrowerProfile?grower=@System.Web.HttpUtility.UrlEncode(growerDB.Name)">@growerDB.Name</a></strong>
                         </div>
+                        <div class="col-12 col-lg-3 float-end  text-end">
+                            <small>@batchData.batch</small> - <small class="">@batchDB.Date</small>
+                        </div>
 
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 ">
+                            <Card><CardHeader> @myMarkup</CardHeader></Card>
+                        </div>
                     </div>
                 }
                 else
@@ -67,7 +93,7 @@
 
                     <div class="row">
                         <div class="col-12 col-sm-4">
-                            <strong>@TerpeneValues.Count Terpenes</strong> at  @Math.Round(TerpeneValues.Sum(t => t.Value), 4)%
+                            @firemarkup  <strong>@Math.Round(totalterps, 2)%</strong> - <strong>@TerpeneValues.Count</strong> Terpenes
                         </div>
                         <div class="col-12 col-sm-4 float-end text-end">
                             <small>@batchData.batch</small> - <small class="">@batchDB.Date</small>
@@ -77,11 +103,17 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-12 ">
+                            <Card><CardHeader> @myMarkup</CardHeader></Card>
+                        </div>
+                    </div>
+
                 }
 
                 <div class="row">
-                    <div class="col-12 ">
 
+                    <div class="col-12">
                         @{
                             int i = 1;
                             string sep = "";
@@ -89,28 +121,29 @@
                             string terps = "";
                             foreach (var t in TerpeneValues.Where(t => t.Value > 0).OrderByDescending(t => t.Value).ToList())
                             {
+
+
                                 if (i > 1)
                                 { sep = ", "; }
                                 string terpcolor = Matrixes
-                                .Where(t1 => 
-                                    t1.Name.Trim().ToLower() == t.TerpeneName.Trim().ToLower() || 
-                                    t1.NamesOther.Contains(t.TerpeneName.Trim().ToLower().ToLower()))
+                                .Where(t1 =>
+                                t1.Name.Trim().ToLower() == t.TerpeneName.Trim().ToLower() ||
+                                t1.NamesOther.Contains(t.TerpeneName.Trim().ToLower().ToLower()))
                                 .Select(t => t.Color)
                                 .FirstOrDefault();
-                                terps = terps + sep + i + ".  <div class=\"badge\" style=\"background: " + @terpcolor+" \"><h7 style=\"mix-blend-mode:difference;color:white\">" + t.TerpeneName + "</h7></div> " + Math.Round(t.Value * .1, 4) + "%";
+                                double opacity = 1; Math.Round(t.Value * 1, 2);
+
+                                terps = terps + sep + i + ".  <div class=\"badge\" style=\"background: " + @terpcolor + ";opacity:" + @opacity + "\"><h7 style=\"mix-blend-mode:difference;color:white\">" + t.TerpeneName + "</h7></div> " + Math.Round(t.Value * .1, 4) + "%";
                                 i++;
                             }
-                            o = (MarkupString)terps;
+                            string open = "<div id=\"accordion\">  <div class=\"card\">    <div class=\"card-header\" id=\"headingOne\">      <h5 class=\"mb-0\">        <button class=\"btn btn-link\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseOne\" aria-expanded=\"false\" aria-controls=\"collapseOne\">Terpenes        </button>      </h5>    </div>    <div id=\"collapseOne\" class=\"collapse\" aria-labelledby=\"headingOne\" data-bs-parent=\"#accordion\">      <div class=\"card-body\">";
+                            string close = "    </div>    </div>  </div>    </div> ";
+                            o = (MarkupString)(open + terps + close);
                         }
                         <p>@o</p>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-12 ">
-                        @myMarkup
-                    </div>
-                </div>
             }
             else if (rendermode == renderMode.table)
             {
@@ -300,7 +333,7 @@
                 if (terpvalue && terpname)
                 {
                     int terpindex = i
-                     
+
                     ;
                     ///not zero value output formatted cell
 

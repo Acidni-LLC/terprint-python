@@ -1,0 +1,31 @@
+﻿@page "/CreateGrowerStrainBatch"
+@attribute [Authorize]
+<PageTitle>Create Grower Strain Batch</PageTitle>
+<h3>Create Grower Strain Batch</h3>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <Terprint.Web.Components.Pages.StrainPages.Create></Terprint.Web.Components.Pages.StrainPages.Create>
+        </div>
+        <div class="col-6">
+            <Terprint.Web.Components.Pages.BatchPages.Create></Terprint.Web.Components.Pages.BatchPages.Create>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <ChooserBatch></ChooserBatch>
+        </div>
+    </div>
+    <div class="col-12">
+        <Terprint.Web.Components.Pages.TerpeneValuePages.PasteTerpeneValues></Terprint.Web.Components.Pages.TerpeneValuePages.PasteTerpeneValues>
+    </div><div class="col-12">
+        <Terprint.Web.Components.Pages.THCValuePages.PasteTHCValues>
+        </Terprint.Web.Components.Pages.THCValuePages.PasteTHCValues>
+    </div>
+</div>
+@code {
+
+}

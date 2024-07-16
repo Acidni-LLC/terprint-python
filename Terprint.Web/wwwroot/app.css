@@ -29,6 +29,17 @@ body {
 .checked {
     color: greenyellow;
 }
+.red-color {
+    color: red;
+}
+
+.yellow-color {
+    color: yellow;
+}
+
+.purple-color {
+    color: purple;
+}
 
 /* ============ desktop view ============ */
 @media all and (min-width: 992px) {
