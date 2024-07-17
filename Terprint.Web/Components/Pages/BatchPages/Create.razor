@@ -13,7 +13,7 @@
 <hr />
 <div class="row">
     <div class="col-12">
-        <EditForm Context="editContext" method="post" OnValidSubmit="AddBatch" FormName="createbatch"   Enhance>
+        <EditForm Context="editContext" Model="@Batch" method="post" OnValidSubmit="AddBatch" FormName="createbatch"   Enhance>
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" />
             <div class="mb-3">
