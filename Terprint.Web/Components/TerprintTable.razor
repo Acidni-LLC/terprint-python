@@ -22,15 +22,15 @@
         }
         if (totalterps >= 2.5 && totalterps < 3.0)
         {
-            fire = "<span class=\"bi bi-fire yellow-color\"> </span>";
+            fire = "<span class=\"bi bi-fire yellow-color\"> </span><span class=\"bi bi-fire yellow-color\"> </span>";
         }
         if (totalterps >= 3.0 && totalterps < 4.0)
         {
-            fire = "<span class=\"bi bi-fire red-color\"> </span>";
+            fire = "<span class=\"bi bi-fire red-color\"> </span><span class=\"bi bi-fire red-color\"> </span><span class=\"bi bi-fire red-color\"> </span>";
         }
         if (totalterps >= 4.0)
         {
-            fire = "<span class=\"bi bi-fire purple-color\"> </span>";
+            fire = "<span class=\"bi bi-fire purple-color\"> </span><span class=\"bi bi-fire purple-color\"> </span><span class=\"bi bi-fire purple-color\"> </span><span class=\"bi bi-fire purple-color\"> </span>";
         }
         firemarkup = new MarkupString(fire);
 
@@ -140,7 +140,7 @@
                             string close = "    </div>    </div>  </div>    </div> ";
                             o = (MarkupString)(open + terps + close);
                         }
-                        <p>@o</p> 
+                        @o
                         <div id="accordion">
                             <div class="card">
                                 <div class="card-header" id="headingOne">

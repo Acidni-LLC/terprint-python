@@ -1,18 +1,16 @@
 ﻿@inherits LayoutComponentBase
-
-<header>
-    <NavMenu />
-</header>
-
 <div class="container-fluid">
-    <main>
+    <header>
+        <NavMenu />
+    </header>
 
+    <main>
         @Body
     </main>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - Savitas Strategic Software Solutions, LLC - <a asp-area="" href="/privacy" asp-page="/privacy">Privacy</a>
+        </div>
+    </footer>
 </div>
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2024 - Savitas Strategic Software Solutions, LLC - <a asp-area="" href="/privacy" asp-page="/privacy">Privacy</a> 
-    </div>
-</footer>
 
