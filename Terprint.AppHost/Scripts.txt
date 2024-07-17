@@ -1,0 +1,1 @@
+ az ad sp create-for-rbac --name TerprintPrincipal --role "Owner" --scope /subscriptions/a85bdc2a-8431-4256-ad92-e4fd8b2a4bcb --sdk-auth

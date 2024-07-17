@@ -22,13 +22,13 @@
         }
         if (totalterps >= 2.5 && totalterps < 3.0)
         {
-            fire =  "<span class=\"bi bi-fire yellow-color\"> </span>";
+            fire = "<span class=\"bi bi-fire yellow-color\"> </span>";
         }
         if (totalterps >= 3.0 && totalterps < 4.0)
         {
             fire = "<span class=\"bi bi-fire red-color\"> </span>";
         }
-        if (totalterps >= 4.0  )
+        if (totalterps >= 4.0)
         {
             fire = "<span class=\"bi bi-fire purple-color\"> </span>";
         }
@@ -133,17 +133,35 @@
                                 .FirstOrDefault();
                                 double opacity = 1; Math.Round(t.Value * 1, 2);
 
-                                terps = terps + sep + i + ".  <div class=\"badge\" style=\"background: " + @terpcolor + ";opacity:" + @opacity + "\"><h7 style=\"mix-blend-mode:difference;color:white\">" + t.TerpeneName + "</h7></div> " + Math.Round(t.Value * .1, 4) + "%";
+                                terps = terps + sep + i + ".  <div class=\"badge\" style=\"background: " + @terpcolor + ";opacity:" + @opacity + "\"><h5 style=\"mix-blend-mode:difference;color:white\">" + t.TerpeneName + "</h5></div> <strong>" + Math.Round(t.Value * .1, 4) + "%</strong>";
                                 i++;
                             }
                             string open = "<div id=\"accordion\">  <div class=\"card\">    <div class=\"card-header\" id=\"headingOne\">      <h5 class=\"mb-0\">        <button class=\"btn btn-link\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseOne\" aria-expanded=\"false\" aria-controls=\"collapseOne\">Terpenes        </button>      </h5>    </div>    <div id=\"collapseOne\" class=\"collapse\" aria-labelledby=\"headingOne\" data-bs-parent=\"#accordion\">      <div class=\"card-body\">";
                             string close = "    </div>    </div>  </div>    </div> ";
                             o = (MarkupString)(open + terps + close);
                         }
-                        <p>@o</p>
+                        <p>@o</p> 
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseTHC" aria-expanded="false" aria-controls="collapseTHC">THC Values</button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTHC" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
+                                    <div class="card-body">
+
+                                        @{
+                                            batch = batchData.batch;
+                                        }
+
+                                        <THCValues @bind-batchin="@batch"></THCValues>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             }
             else if (rendermode == renderMode.table)
             {
