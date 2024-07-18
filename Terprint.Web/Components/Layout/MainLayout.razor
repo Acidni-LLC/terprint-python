@@ -9,7 +9,10 @@
     </main>
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - Savitas Strategic Software Solutions, LLC - <a asp-area="" href="/privacy" asp-page="/privacy">Privacy</a>
+            @{
+                String strVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                }
+            &copy; 2024 - Savitas Strategic Software Solutions, LLC - <a asp-area="" href="/privacy" asp-page="/privacy">Privacy</a> @strVersion
         </div>
     </footer>
 </div>

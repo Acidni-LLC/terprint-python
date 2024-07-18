@@ -1,6 +1,34 @@
 ﻿@inject Data.TerprintWebContext3 DB
 @inject NavigationManager _navigationManager
+@inject common.AppState.StateContainer.Strain appstatestrain
+@inject common.AppState.StateContainer.Batch appstatebatch
+@inject common.AppState.StateContainer.Grower appstategrower
+@inject common.AppState.StateContainer.TerpeneValue asTerpeneValue
+@inject common.AppState.StateContainer.THCValue asTHCValue
 
+@{
+    if (appstategrower.Growers == null)
+    {
+        appstategrower.Growers = DB.Grower.ToList();
+        //return appstategrower.Growers;
+    }
+    if (appstatestrain.Strains == null)
+    {
+        appstatestrain.Strains = DB.Strain.ToList(); 
+    }
+    if (appstatebatch.Batches == null)
+    {
+        appstatebatch.Batches = DB.Batch.ToList();
+    }
+    if (asTerpeneValue.TerpeneValues == null)
+    {
+        asTerpeneValue.TerpeneValues = DB.TerpeneValues.ToList();
+    }
+    if (asTHCValue.THCValues == null)
+    {
+        asTHCValue.THCValues = DB.THCValues.ToList();
+    }
+}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/"></a>
@@ -12,32 +40,81 @@
                 <li class="nav-item"><a class="nav-link" href="/"></a> </li>
 
                 <li class="nav-item"><a class="nav-link" href="/">Home </a> </li>
-               @*  <li class="nav-item"><a class="nav-link" href="#"> About </a></li> *@
-                <li class="nav-item"><a class="nav-link" href="/List"> List </a></li>
-                <li class="nav-item"><a class="nav-link" href="/Growers"> Growers </a></li>
+                @*  <li class="nav-item"><a class="nav-link" href="#"> About </a></li> *@
+                <li class="nav-item"><a class="nav-link" href="/List"> List </a></li> 
+                <li class="nav-item dropdown" id="myDropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Growers   </a>
+                    <ul class="dropdown-menu">
+                        @{
+                           
+                            List<Grower> GetGrowers()
+                            {
+                                // e.g. Put a database call here
+                                if (appstategrower.Growers == null)
+                                {
+                                    appstategrower.Growers = DB.Grower.ToList();
+                                    return appstategrower.Growers;
+                                }
+                                else
+                                {
+                                    return appstategrower.Growers;
+                                }
+
+                                //return Terprint.common.Strains.GetBatches(strain);
+
+                            }
+                        }
+                        @{
+                            common.Components c = new common.Components();
+                        }
+                        @foreach (var grower in GetGrowers())
+                        { 
+                            string urlencoded = System.Web.HttpUtility.UrlEncode(grower.Name);
+                            string path = "/GrowerProfile?grower=" + @urlencoded;
+                            <li  >
+                                <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@grower.Name</NavLink>
+
+                            </li>
+                        }
+
+                    </ul>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="/ratingslist">Ratings </a></li>
                 <li class="nav-item dropdown" id="myDropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Strains menu  </a>
                     <ul class="dropdown-menu">
                         @{
-                            List<string> GetStrains()
+                            List<Strain> GetStrains()
                             {
                                 // e.g. Put a database call here
-
-                                return DB.Strain.Select(t => t.StrainName).OrderBy(t => t).ToList();
+                                if (appstatestrain.Strains == null)
+                                {
+                                    appstatestrain.Strains = DB.Strain.ToList();
+                                    return appstatestrain.Strains;
+                                }
+                                else
+                                {
+                                    return appstatestrain.Strains;
+                                }
                                 // Terprint.common.Strains.GetStrains();
 
                             }
-                            List<string> GetBatches(string strain)
+                            List<Batch> GetBatches(string strain)
                             {
                                 // e.g. Put a database call here
+                                if (appstatebatch.Batches == null)
+                                {
+                                    appstatebatch.Batches = DB.Batch.ToList();
+                                }
+                               
+                                // e.g. Put a database call here
 
-                                return DB.Batch.Where(
-                                t => t.StrainID == DB.Strain
+                                return appstatebatch.Batches.Where(
+                                t => t.StrainID == GetStrains()
                                 .Where(t1 => t1.StrainName == strain)
-                                .Select(t => t.StrainId)
+                               .Select(t => t.StrainId)
                                 .FirstOrDefault())
-                                .Select(t => t.Name)
+                                //.Select(t => t.Name)
                                 .ToList();
                                 //return Terprint.common.Strains.GetBatches(strain);
 
@@ -45,13 +122,13 @@
                         }
                         @foreach (var strain in GetStrains())
                         {
-                            string path = "/StrainProfile?strain=" + strain;
+                            string path = "/StrainProfile?strain=" + strain.StrainName;
                             <li>
-                                <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@strain &raquo;</NavLink>
+                                <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@strain.StrainName &raquo;</NavLink>
                                 <ul class="submenu dropdown-menu">
-                                    @foreach (var batch in GetBatches(strain))
+                                    @foreach (var batch in GetBatches(strain.StrainName))
                                     {
-                                        string urlencoded = System.Web.HttpUtility.UrlEncode(@batch);
+                                        string urlencoded = System.Web.HttpUtility.UrlEncode(@batch.Name);
                                         path = "/BatchProfile?size=medium&matrix=1&batch=" + @urlencoded;
                                         <li>
                                             <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@batch</NavLink>
@@ -80,9 +157,6 @@
 
                             }
                         }
-                        @{
-                            common.Components c = new common.Components();
-                        }
                         @foreach (var terpene in GetTerpenes())
                         {
                             string terpcolor = c.GetTerpeneColor(terpene);
@@ -98,62 +172,62 @@
                 </li>
 
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Admin </a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li>
-                                <a class="dropdown-item" href="/growers">Growers » </a>
-                                <ul class="submenu submenu-left dropdown-menu">
-                                    <li><a class="dropdown-item" href="/growers">View</a></li>
-                                    <li><a class="dropdown-item" href="/growers/create">Enter Grower</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/strains">Strains » </a>
-                                <ul class="submenu submenu-left dropdown-menu">
-                                    <li><a class="dropdown-item" href="/strains">View</a></li>
-                                    <li><a class="dropdown-item" href="/strains/create">Enter Strain</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/batches">Batches » </a>
-                                <ul class="submenu submenu-left dropdown-menu">
-                                    <li><a class="dropdown-item" href="/batches">View</a></li>
-                                    <li><a class="dropdown-item" href="/batches/create">Enter Batch</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/terpenevalues">Terpene Values » </a>
-                                <ul class="submenu submenu-left dropdown-menu">
-                                    <li><a class="dropdown-item" href="/terpenevalues">View</a></li>
-                                    <li><a class="dropdown-item" href="/terpenevalues/create">Enter Values</a></li>
-                                    <li><a class="dropdown-item" href="/terpenevalues/paste">Paste Values</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/thcvalues">THC Values » </a>
-                                <ul class="submenu submenu-left dropdown-menu">
-                                    <li><a class="dropdown-item" href="/thcvalues">View</a></li>
-                                    <li><a class="dropdown-item" href="/thcvalues/create">Enter Values</a></li>
-                                    <li><a class="dropdown-item" href="/thcvalues/paste">Paste Values</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/ratingcategories">Rating Categories » </a>
-                                <ul class="submenu submenu-left dropdown-menu">
-                                    <li><a class="dropdown-item" href="/ratingcategories">View</a></li>
-                                    <li><a class="dropdown-item" href="/ratingcategories/create">Enter Values</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/ratings">Ratings » </a>
-                                <ul class="submenu submenu-left dropdown-menu">
-                                    <li><a class="dropdown-item" href="/ratings">View</a></li>
-                                    <li><a class="dropdown-item" href="/ratings/create">Enter Values</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Admin </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li>
+                            <a class="dropdown-item" href="/growers">Growers » </a>
+                            <ul class="submenu submenu-left dropdown-menu">
+                                <li><a class="dropdown-item" href="/growers">View</a></li>
+                                <li><a class="dropdown-item" href="/growers/create">Enter Grower</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/strains">Strains » </a>
+                            <ul class="submenu submenu-left dropdown-menu">
+                                <li><a class="dropdown-item" href="/strains">View</a></li>
+                                <li><a class="dropdown-item" href="/strains/create">Enter Strain</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/batches">Batches » </a>
+                            <ul class="submenu submenu-left dropdown-menu">
+                                <li><a class="dropdown-item" href="/batches">View</a></li>
+                                <li><a class="dropdown-item" href="/batches/create">Enter Batch</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/terpenevalues">Terpene Values » </a>
+                            <ul class="submenu submenu-left dropdown-menu">
+                                <li><a class="dropdown-item" href="/terpenevalues">View</a></li>
+                                <li><a class="dropdown-item" href="/terpenevalues/create">Enter Values</a></li>
+                                <li><a class="dropdown-item" href="/terpenevalues/paste">Paste Values</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/thcvalues">THC Values » </a>
+                            <ul class="submenu submenu-left dropdown-menu">
+                                <li><a class="dropdown-item" href="/thcvalues">View</a></li>
+                                <li><a class="dropdown-item" href="/thcvalues/create">Enter Values</a></li>
+                                <li><a class="dropdown-item" href="/thcvalues/paste">Paste Values</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/ratingcategories">Rating Categories » </a>
+                            <ul class="submenu submenu-left dropdown-menu">
+                                <li><a class="dropdown-item" href="/ratingcategories">View</a></li>
+                                <li><a class="dropdown-item" href="/ratingcategories/create">Enter Values</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/ratings">Ratings » </a>
+                            <ul class="submenu submenu-left dropdown-menu">
+                                <li><a class="dropdown-item" href="/ratings">View</a></li>
+                                <li><a class="dropdown-item" href="/ratings/create">Enter Values</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
 
                 <AuthorizeView>
                     <Authorized>
@@ -164,14 +238,14 @@
                                 <NavLink title="Logout" class="nav-link" href=@($"Logout?redirectUri={returnUrl}") Match="NavLinkMatch.Prefix">Logout   @context.User.Identity?.Name</NavLink>
                             }
                         </li>
-                </Authorized>
+                    </Authorized>
 
-                <NotAuthorized>
+                    <NotAuthorized>
 
-                    <li class="nav-item"><a class="nav-link" href="Account/Register">Register</a> </li>
-                    <li class="nav-item"><a class="nav-link" href="Account/Login">Login</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="Account/Register">Register</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="Account/Login">Login</a> </li>
 
-                </NotAuthorized>
+                    </NotAuthorized>
                 </AuthorizeView>
 
             </ul>

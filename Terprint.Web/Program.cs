@@ -54,8 +54,13 @@ builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSe
 builder.Services.AddQuickGridEntityFrameworkAdapter();;
 builder.Services.AddOutputCache();
 builder.Services.AddSingleton<Terprint.Web.common>();
-builder.Services.AddSingleton<Terprint.Web.common.Components>();
+builder.Services.AddSingleton<Terprint.Web.common.Components>();  
 builder.Services.AddSingleton<Terprint.Web.common.AppState>();
+builder.Services.AddSingleton<Terprint.Web.common.AppState.StateContainer.Grower>();
+builder.Services.AddSingleton<Terprint.Web.common.AppState.StateContainer.Batch>();
+builder.Services.AddSingleton<Terprint.Web.common.AppState.StateContainer.Strain>();
+builder.Services.AddSingleton<Terprint.Web.common.AppState.StateContainer.THCValue>();
+builder.Services.AddSingleton<Terprint.Web.common.AppState.StateContainer.TerpeneValue>();
 builder.Services.AddSingleton<Terprint.Web.Components.TerprintTable>();
 builder.Services.AddSingleton<Terprint.Web.Components.ChooserBatch>();
 builder.Services.AddSingleton<Terprint.Web.Components.ChooserRatingCategory>();

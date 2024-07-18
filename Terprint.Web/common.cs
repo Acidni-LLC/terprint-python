@@ -41,7 +41,7 @@ namespace Terprint.Web
             string s = "";
             try
             {
-              s="<a href=\"/StrainProfile?strain=" + System.Web.HttpUtility.UrlEncode(strain)+"\">"+strain+"</a>"   ;
+                s = "<a href=\"/StrainProfile?strain=" + System.Web.HttpUtility.UrlEncode(strain) + "\">" + strain + "</a>";
             }
             catch (Exception ex)
             {
@@ -49,15 +49,15 @@ namespace Terprint.Web
             }
             return s;
         }
-        public static string CreateRatingCategoryLink(string ratingcategory,int ratingcategoryid)
+        public static string CreateRatingCategoryLink(string ratingcategory, int ratingcategoryid)
         {
             string s = "";
             try
             {
                 s = "<a href=\"/ratingcategoryprofile?ratingcategory="
-                    + System.Web.HttpUtility.UrlEncode(ratingcategory) 
+                    + System.Web.HttpUtility.UrlEncode(ratingcategory)
                     + "&ratingcategoryid="
-                    +ratingcategoryid+"\">"
+                    + ratingcategoryid + "\">"
                     + ratingcategory + "</a>";
                 s = " " + ratingcategory + " ";
             }
@@ -74,20 +74,132 @@ namespace Terprint.Web
         {
             public static string appname = "Terptastic";
         }
-     
+
         public class AppState
         {
+            public class StateContainer
+            {
+                public class TerpeneValue
+                {
+                    private List<Models.TerpeneValue> terpenevalues;
+
+                    public List<Models.TerpeneValue> TerpeneValues
+                    {
+                        get => terpenevalues ?? null;
+                        set
+                        {
+                            terpenevalues = value;
+                            NotifyStateChanged();
+                        }
+                    }
+                    public event Action? OnChange;
+
+                    private void NotifyStateChanged() => OnChange?.Invoke();
+
+                }
+                public class THCValue
+                {
+                    private List<Models.THCValue> thcvalues;
+
+                    public List<Models.THCValue> THCValues
+                    {
+                        get => thcvalues ?? null;
+                        set
+                        {
+                            thcvalues = value;
+                            NotifyStateChanged();
+                        }
+                    }
+                    public event Action? OnChange;
+
+                    private void NotifyStateChanged() => OnChange?.Invoke();
+
+                }
+                public class Grower
+                {
+                    private List<Models.Grower> growers;
+
+                    public List<Models.Grower> Growers
+                    {
+                        get => growers ?? null;
+                        set
+                        {
+                            growers = value;
+                            NotifyStateChanged();
+                        }
+                    }
+                    public event Action? OnChange;
+
+                    private void NotifyStateChanged() => OnChange?.Invoke();
+
+                }
+                public class Strain
+                {
+                    private List<Models.Strain> strains;
+
+                    public List<Models.Strain> Strains
+                    {
+                        get => strains ?? null;
+                        set
+                        {
+                            strains = value;
+                             NotifyStateChanged();
+                        }
+                    }
+                    public event Action? OnChange;
+
+                    private void NotifyStateChanged() => OnChange?.Invoke();
+
+                }
+
+                public class Batch
+                {
+                    private List<Models.Batch> batches;
+                    public List<Models.Batch> Batches
+                    {
+                        get => batches ?? null;
+                        set
+                        {
+                            batches = value;
+                             NotifyStateChanged();
+                        }
+                    }
+                    public event Action? OnChange;
+
+                    private void NotifyStateChanged() => OnChange?.Invoke();
+                }
+
+            }
+            public static class menuItems
+            {
+
+                public static List<Strain> Strains
+                {
+                    get
+                    {
+                        if (strains is null)
+                        { }
+                        return strains;
+                    }
+                    set { strains = value; }
+                }
+                public static List<Grower> Growers { get; set; }
+                public static List<Batch> Batches { get; set; }
+                private static List<Strain> strains { get; set; }
+                private static List<Grower> growers { get; set; }
+                private static List<Batch> batches { get; set; }
+            }
             public RatingCategory ratingCategory { get; set; }
             public int batchid { get; set; }
             public int ratingcategoryid { get; set; }
 
-            public class TerprintTable
-            {
-                public string batchId { get; set; }
-                public int matrixId { get; set; }
+            //public class TerprintTable
+            //{
+            //    public string batchId { get; set; }
+            //    public int matrixId { get; set; }
 
-                public int matrixSize { get; set; }
-            }
+            //    public int matrixSize { get; set; }
+            //}
 
         }
         public static class Strains
@@ -671,7 +783,7 @@ namespace Terprint.Web
                 return terpenes;
 
             }
-            public void     loadmatrix(string strain = "")
+            public void loadmatrix(string strain = "")
             {
                 if (Matrixes == null)
                 {
@@ -845,8 +957,8 @@ namespace Terprint.Web
                         if (m.Name == "Fenchyl Alcohol") { m.NamesOther.Add("endo-fenchyl alcohol"); }
                         else if (m.Name == "cis-Nerolidol") { m.NamesOther.Add("e-nerolidol"); m.NamesOther.Add("trans-nerolidol"); }
                         else if (m.Name == "δ-Limonene") { m.NamesOther.Add("limonene"); m.NamesOther.Add("d-limonene"); m.NamesOther.Add("limonene"); m.NamesOther.Add("(r)-(+)-limonene"); m.NamesOther.Add("(r)-( )-limonene"); }
-                        else if (m.Name == "borneol") { m.NamesOther.Add("isoborneol"); } 
-                        else if (m.Name == "Terpinolene") { m.NamesOther.Add("alpha-terpinolene"); }   
+                        else if (m.Name == "borneol") { m.NamesOther.Add("isoborneol"); }
+                        else if (m.Name == "Terpinolene") { m.NamesOther.Add("alpha-terpinolene"); }
                         else if (m.Name == "Terpineol") { m.NamesOther.Add("total terpineol"); m.NamesOther.Add("alpha-terpineol"); m.NamesOther.Add("terpineol"); }
                         else if (m.Name == "cis-Ocimene") { m.NamesOther.AddRange(["ocimenes", "ocimene"]); }
                         else if (m.Name == "α-Bisabolol") { m.NamesOther.Add("alpha-bisabolol"); }
