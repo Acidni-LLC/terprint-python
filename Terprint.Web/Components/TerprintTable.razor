@@ -15,6 +15,9 @@
 
         MarkupString firemarkup = new MarkupString();
         double totalterps = TerpeneValues.Sum(t => t.Value);
+        double totalthc = thcvalues
+        //  .Where(t => t.Percent.All(char.IsDigit))
+        .Select(t => t.Percent).Sum();
         string fire = "";
         if (totalterps > 2.0 && totalterps < 2.5)
         {
@@ -39,14 +42,20 @@
             @if (rendermode == renderMode.tableandtitle)
             {
                 <div class="row">
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-3">
                         <h5> <a href="/StrainProfile?strain=@System.Web.HttpUtility.UrlEncode(strain)">@strain</a> @firemarkup </h5>
                     </div>
-                    <div class="col-12 col-lg-4 text-center">
-                        <strong>@Math.Round(totalterps, 2)%</strong> - <strong>@TerpeneValues.Count</strong> Terpenes
+                    <div class="col-12 col-lg-3 text-center">
+                        <strong>@Math.Round(totalterps, 2)%</strong> - <strong>@TerpeneValues.Count</strong> Terpenes  @{
+                            if (totalthc > 0)
+                            {
+                                <span>| <strong>@Math.Round(totalthc, 2)%</strong> THC - <strong>@thcvalues.Count</strong> Cannabinoids</span>
+
+                            }
+                        }
 
                     </div>
-                    <div class="col-12 col-lg-4 float-end text-end">
+                    <div class="col-12 col-lg-3 float-end text-end">
                         <small class="">@batchData.batch</small> - <small class="">@batchDB.Date</small>
                     </div>
                 </div>
@@ -64,16 +73,23 @@
                 {
 
                     <div class="row">
-                        <div class="col-7  col-lg-3">
+                        <div class="col-12  col-lg-3">
                             <h5> <a href="/StrainProfile?strain=@System.Web.HttpUtility.UrlEncode(strain)">@strain</a> @firemarkup </h5>
 
                         </div>
 
-                        <div class="col-12 col-lg-3 ">
+                        <div class="col-12 col-lg-4 ">
 
                             <strong>@Math.Round(totalterps, 2)%</strong> - <strong>@TerpeneValues.Count</strong> Terpenes
+                            @{
+                                if (totalthc > 0)
+                                {
+                                    <span>| <strong>@Math.Round(totalthc, 2)%</strong> THC - <strong>@thcvalues.Count</strong> Cannabinoids</span>
+
+                                }
+                            }
                         </div>
-                        <div class="col-5 col-lg-3 float-end text-end">
+                        <div class="col-12 col-lg-2 float-end text-end">
                             <strong><a href="/GrowerProfile?grower=@System.Web.HttpUtility.UrlEncode(growerDB.Name)">@growerDB.Name</a></strong>
                         </div>
                         <div class="col-12 col-lg-3 float-end  text-end">
@@ -92,13 +108,19 @@
                 {
 
                     <div class="row">
-                        <div class="col-12 col-sm-4">
-                            @firemarkup  <strong>@Math.Round(totalterps, 2)%</strong> - <strong>@TerpeneValues.Count</strong> Terpenes
+                        <div class="col-12 col-lg-4">
+                            @firemarkup  <strong>@Math.Round(totalterps, 2)%</strong> - <strong>@TerpeneValues.Count</strong> Terpenes  @{
+                                if (totalthc > 0)
+                                {
+                                    <span>| <strong>@Math.Round(totalthc, 2)%</strong> THC - <strong>@thcvalues.Count</strong> Cannabinoids</span>
+
+                                }
+                            }
                         </div>
-                        <div class="col-12 col-sm-4 float-end text-end">
+                        <div class="col-12 col-lg-4 float-end text-end">
                             <small>@batchData.batch</small> - <small class="">@batchDB.Date</small>
                         </div>
-                        <div class="col-12 col-lg-3 float-end text-end">
+                        <div class="col-12 col-lg-4 float-end text-end">
                             <strong><a href="/GrowerProfile?grower=@System.Web.HttpUtility.UrlEncode(growerDB.Name)">@growerDB.Name</a></strong>
                         </div>
                     </div>
@@ -141,25 +163,31 @@
                             o = (MarkupString)(open + terps + close);
                         }
                         @o
-                        <div id="accordion">
-                            <div class="card">
-                                <div class="card-header" id="headingOne">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseTHC" aria-expanded="false" aria-controls="collapseTHC">THC Values</button>
-                                    </h5>
-                                </div>
-                                <div id="collapseTHC" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
-                                    <div class="card-body">
+                        @{
+                            if (totalthc > 0)
+                            {
 
-                                        @{
-                                            batch = batchData.batch;
-                                        }
+                                <div id="accordion">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseTHC" aria-expanded="false" aria-controls="collapseTHC">THC Values</button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseTHC" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
+                                            <div class="card-body">
 
-                                        <THCValues @bind-batchin="@batch"></THCValues>
+                                                @{
+                                                    batch = batchData.batch;
+                                                }
+
+                                                <THCValues @bind-thcvalues="@thcvalues"></THCValues>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            }
+                        }
                     </div>
                 </div>
             }
@@ -193,6 +221,7 @@
     public Models.Grower growerDB { get; set; }
     public MarkupString myMarkup { get; set; }
     public List<Models.TerpeneValue>? TerpeneValues { get; set; }
+    public List<Models.THCValue>? thcvalues { get; set; }
     public MarkupString outputrows { get; set; }
     [Parameter]
     public string? strain { get; set; }
@@ -286,6 +315,11 @@
             growerDB = DB.Grower.Where(t => t.GrowerId == batchDB.GrowerID).FirstOrDefault();
             strain = DB.Strain.Where(t => t.StrainId == DB.Batch.Where(t => t.BatchId == batchDB.BatchId).FirstOrDefault().StrainID).FirstOrDefault().StrainName;
             TerpeneValues = DB.TerpeneValues.Where(t => t.BatchID == batchDB.BatchId).OrderByDescending(t => t.Value).ToList();
+            thcvalues = DB.THCValues
+            .Where(t => t.BatchID == batchDB.BatchId)
+            .Where(t => t.Percent > 0)
+            .OrderByDescending(t => t.Percent)
+            .ToList();
 
         }
         else

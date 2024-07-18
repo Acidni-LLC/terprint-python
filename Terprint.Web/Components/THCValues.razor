@@ -4,24 +4,15 @@
 
 
 @{
-    if (batchin != null)
-    { 
-        var results = DB.THCValues
-        .Where(
-               t => t.BatchID ==
-               DB.Batch
-               .Where(t1 => t1.Name == batchin)
-               .FirstOrDefault().BatchId)
-               //.Where(t=>t.Result>0)
-               .OrderBy(t => t.THCValueId)
-               .AsQueryable();
+    if (thcvalues != null)
+    {  
         double total = 0;
-        foreach (var r in results)
+        foreach (var r in thcvalues)
         {
-            if (double.Parse(r.Percent) > 0)
+            if ( r.Percent > 0)
             {
                 <Card> <Badge Class="text-start" Color="BadgeColor.Light"><h5> @r.Analyte - @r.Percent% </h5></Badge> </Card>
-                total = total + double.Parse(r.Percent);
+                total = total + r.Percent;
             }
 
         }
@@ -30,15 +21,15 @@
     }
 }
 
-@code {
+@code { 
 
     [Parameter]
-    public string? batchin { get; set; }
-    [Parameter] public EventCallback<string> batchinChanged { get; set; }
-    private Task OnbatchinChanged(ChangeEventArgs e)
+    public List<THCValue> thcvalues { get; set; }
+    [Parameter] public EventCallback<List<THCValue>> thcvaluesChanged { get; set; }
+    private Task OnthcvaluesChanged(ChangeEventArgs e)
     {
-        batchin = e.Value.ToString();
+        thcvalues = (List<THCValue> )e.Value ;
         //batchin = batch;
-        return batchinChanged.InvokeAsync(batchin);
+        return thcvaluesChanged.InvokeAsync(thcvalues);
     }
 }
