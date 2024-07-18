@@ -1,10 +1,15 @@
 ﻿@using Microsoft.AspNetCore.Mvc
 @using Microsoft.AspNetCore.Mvc
-@using Microsoft.AspNetCore.WebUtilities
-@inject common.AppState appstate
+@using Microsoft.AspNetCore.WebUtilities 
 @inject Terprint.Web.common.Components c;
 @inject NavigationManager nm
 @inject Terprint.Web.Data.TerprintWebContext DB
+
+@inject common.AppState.StateContainer.Strain appstatestrain
+@inject common.AppState.StateContainer.Batch appstatebatch
+@inject common.AppState.StateContainer.Grower appstategrower
+@inject common.AppState.StateContainer.THCValue asthcvalue
+@inject common.AppState.StateContainer.TerpeneValue asterpenevalue
 
 @rendermode InteractiveServer
 @{
@@ -46,10 +51,10 @@
                         <h5> <a href="/StrainProfile?strain=@System.Web.HttpUtility.UrlEncode(strain)">@strain</a> @firemarkup </h5>
                     </div>
                     <div class="col-12 col-lg-3 text-center">
-                        <strong>@Math.Round(totalterps, 2)%</strong> - <strong>@TerpeneValues.Count</strong> Terpenes  @{
+                        <strong>@TerpeneValues.Count</strong> Terpenes at<Badge Color="BadgeColor.Secondary">@Math.Round(totalterps, 2)%</Badge> @{
                             if (totalthc > 0)
                             {
-                                <span>| <strong>@Math.Round(totalthc, 2)%</strong> THC - <strong>@thcvalues.Count</strong> Cannabinoids</span>
+                                <span><Badge Color="BadgeColor.Secondary">@Math.Round(totalthc, 2)%</Badge> THC - <strong>@thcvalues.Count</strong> Cannabinoids</span>
 
                             }
                         }
@@ -80,11 +85,11 @@
 
                         <div class="col-12 col-lg-4 ">
 
-                            <strong>@Math.Round(totalterps, 2)%</strong> - <strong>@TerpeneValues.Count</strong> Terpenes
+                            <strong>@TerpeneValues.Count</strong> Terpenes at  <Badge Color="BadgeColor.Secondary">@Math.Round(totalterps, 2)%</Badge> 
                             @{
                                 if (totalthc > 0)
                                 {
-                                    <span>| <strong>@Math.Round(totalthc, 2)%</strong> THC - <strong>@thcvalues.Count</strong> Cannabinoids</span>
+                                    <span><Badge Color="BadgeColor.Secondary">@Math.Round(totalthc, 2)%</Badge> THC - <strong>@thcvalues.Count</strong> Cannabinoids</span>
 
                                 }
                             }
@@ -109,10 +114,10 @@
 
                     <div class="row">
                         <div class="col-12 col-lg-4">
-                            @firemarkup  <strong>@Math.Round(totalterps, 2)%</strong> - <strong>@TerpeneValues.Count</strong> Terpenes  @{
+                            @firemarkup    <strong>@TerpeneValues.Count</strong> Terpenes at <Badge Color="BadgeColor.Secondary">@Math.Round(totalterps, 2)%</Badge>  @{
                                 if (totalthc > 0)
                                 {
-                                    <span>| <strong>@Math.Round(totalthc, 2)%</strong> THC - <strong>@thcvalues.Count</strong> Cannabinoids</span>
+                                    <span><Badge Color="BadgeColor.Secondary">@Math.Round(totalthc, 2)%</Badge> THC - <strong>@thcvalues.Count</strong> Cannabinoids</span>
 
                                 }
                             }
@@ -213,8 +218,7 @@
         rendermode = (renderMode)e.Value;
         return rendermodeChanged.InvokeAsync((renderMode)rendermode);
     }
-
-    common.AppState appState = new common.AppState();
+     
 
     #region properties
     public Models.Batch batchDB { get; set; }
@@ -311,11 +315,11 @@
         if (batchin != "")
 
         {
-            batchDB = DB.Batch.Where(t => t.Name.Trim() == batchin).FirstOrDefault();
-            growerDB = DB.Grower.Where(t => t.GrowerId == batchDB.GrowerID).FirstOrDefault();
-            strain = DB.Strain.Where(t => t.StrainId == DB.Batch.Where(t => t.BatchId == batchDB.BatchId).FirstOrDefault().StrainID).FirstOrDefault().StrainName;
-            TerpeneValues = DB.TerpeneValues.Where(t => t.BatchID == batchDB.BatchId).OrderByDescending(t => t.Value).ToList();
-            thcvalues = DB.THCValues
+            batchDB = appstatebatch.Batches.Where(t => t.Name.Trim() == batchin).FirstOrDefault();
+            growerDB = appstategrower.Growers.Where(t => t.GrowerId == batchDB.GrowerID).FirstOrDefault();
+            strain = appstatestrain.Strains.Where(t => t.StrainId == appstatebatch.Batches.Where(t => t.BatchId == batchDB.BatchId).FirstOrDefault().StrainID).FirstOrDefault().StrainName;
+            TerpeneValues = asterpenevalue.TerpeneValues.Where(t => t.BatchID == batchDB.BatchId).OrderByDescending(t => t.Value).ToList();
+            thcvalues =asthcvalue.THCValues
             .Where(t => t.BatchID == batchDB.BatchId)
             .Where(t => t.Percent > 0)
             .OrderByDescending(t => t.Percent)

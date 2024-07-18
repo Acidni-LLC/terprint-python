@@ -2,6 +2,8 @@
 @using Microsoft.AspNetCore.Mvc
 @using Terprint.Web.Models
 
+@inject common.AppState.StateContainer.Strain appstatestrain
+@inject common.AppState.StateContainer.Batch appstatebatch
 @inject NavigationManager nm
 @inject Terprint.Web.Data.TerprintWebContext DB
 
@@ -75,7 +77,7 @@
 }
 
 @{
-    foreach (var batch in DB.Batch.OrderByDescending(t=>t.StrainID).ToList())
+    foreach (var batch in appstatebatch.Batches.OrderByDescending(t=>t.StrainID).ToList())
     {
 
         { bd = new ChooserBatch.BatchData() { batch = batch.Name, batchId = (int)batch.BatchId }; }
