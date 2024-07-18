@@ -48,7 +48,7 @@
 
                 <InputSelect id="strain" class="m-0 form-control edit-active" @bind-Value="Batch.StrainID">
                     <option selected disabled>Select Strain</option>
-                    @foreach (var s in Strains)
+                    @foreach (var s in Strains.OrderBy(t=>t.StrainName))
                     {
                         <option value=@s.StrainId @onselect="() => Batch.StrainID = s.StrainId">@s.StrainName</option>
                     }

@@ -108,14 +108,16 @@
                 string name = s.Substring(0, index).Trim();
                 string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
                 string secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
-                string thirddnum = s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", "");
+                double thirddnum = 0;
+                 double.TryParse(s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", ""), out thirddnum);
                 THCValue THCValue = new THCValue();
                 if(inputformat=="1")
                 {
 
-                    string fourthnum = s.Substring(index, s.Length - index).Split(" ")[3].Replace("%", "");
-                    string fifthnum = s.Substring(index, s.Length - index).Split(" ")[4].Replace("%", "");
-                    THCValue = new THCValue() { Analyte = name, Dilution = firstnum, LOD = secondnum, LOQ = thirddnum, Result = fourthnum, Percent = fifthnum, BatchID = thcvalue.BatchID };
+                    string fourthnum = s.Substring(index, s.Length - index).Split(" ")[3].Replace("%", ""); 
+                    double fifthnum = 0;
+                    double.TryParse(s.Substring(index, s.Length - index).Split(" ")[4].Replace("%", ""), out fifthnum);
+                    THCValue = new THCValue() { Analyte = name, Dilution = firstnum, LOD = secondnum, LOQ = thirddnum.ToString(), Result = fourthnum, Percent = fifthnum, BatchID = thcvalue.BatchID };
                 }
                 else if (inputformat=="2")
                 {

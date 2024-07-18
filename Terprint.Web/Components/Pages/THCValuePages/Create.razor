@@ -44,7 +44,7 @@
             </div>        
             <div class="mb-3">
                 <label for="percent" class="form-label">Percent:</label> 
-                <InputText id="percent" @bind-Value="THCValue.Percent" class="form-control" /> 
+                <InputNumber id="percent" @bind-Value="THCValue.Percent" class="form-control" /> 
                 <ValidationMessage For="() => THCValue.Percent" class="text-danger" /> 
             </div>        
             <button type="submit" class="btn btn-primary">Create</button>

@@ -19,7 +19,7 @@ namespace Terprint.Web.Models
 
         public string Result { get; set; }
 
-        public string Percent { get; set; }
+        public double Percent { get; set; }
 
 
     }
