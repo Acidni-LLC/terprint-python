@@ -50,7 +50,7 @@
 
     protected override void OnInitialized()
     {
-        TerpeneValues = DB.TerpeneValues.ToList();
+        TerpeneValues = DB.TerpeneValues.OrderByDescending(t=>t.created).ToList();
     }
 
     private async Task<GridDataProviderResult<TerpeneValue>> TerpeneValueDataProvider(GridDataProviderRequest<TerpeneValue> request)

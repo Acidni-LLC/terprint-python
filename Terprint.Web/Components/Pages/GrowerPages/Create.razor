@@ -4,6 +4,7 @@
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
 
+@inject common.AppState.StateContainer.Grower asgrower
 <PageTitle>Create Grower</PageTitle>
  
 
@@ -46,6 +47,7 @@
         Grower.Name = Grower.Name.Trim();
         DB.Grower.Add(Grower);
         await DB.SaveChangesAsync();
-        NavigationManager.NavigateTo("/growers");
+        asgrower.Growers.Add(Grower);
+        NavigationManager.NavigateTo("/strains/create");
     }
 }

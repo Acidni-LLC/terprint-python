@@ -4,6 +4,7 @@
 @inject Terprint.Web.Data.TerprintWebContext DB
 @inject Terprint.Web.Data.TerprintWebContext2 DB2
 @inject NavigationManager NavigationManager
+@inject common.AppState.StateContainer.TerpeneValue asterpenevalues
 @using Terprint.Web.Models
 <h3>Paste Terpene Values</h3>
 
@@ -65,7 +66,8 @@
         ParseValues();
         await DB.TerpeneValues.AddRangeAsync(terpeneValues);
         await DB.SaveChangesAsync();
-        NavigationManager.NavigateTo("/terpenevalues");
+        asterpenevalues.TerpeneValues.AddRange(terpeneValues);
+        NavigationManager.NavigateTo("/thcvalues/paste");
     }
     private void ParseValues()
     {
@@ -105,6 +107,7 @@
                         createdby = userid };
                 }
                 terpeneValues.Add(terpenevalue);
+
             }
         }
 
