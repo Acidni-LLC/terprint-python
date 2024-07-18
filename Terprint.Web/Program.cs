@@ -56,6 +56,7 @@ builder.Services.AddOutputCache();
 builder.Services.AddSingleton<Terprint.Web.common>();
 builder.Services.AddSingleton<Terprint.Web.common.Components>();  
 builder.Services.AddSingleton<Terprint.Web.common.AppState>();
+builder.Services.AddSingleton<Terprint.Web.common.AppState.StateContainer.RatingCategory>();
 builder.Services.AddSingleton<Terprint.Web.common.AppState.StateContainer.Grower>();
 builder.Services.AddSingleton<Terprint.Web.common.AppState.StateContainer.Batch>();
 builder.Services.AddSingleton<Terprint.Web.common.AppState.StateContainer.Strain>();

@@ -5,6 +5,7 @@
 @inject common.AppState.StateContainer.Grower appstategrower
 @inject common.AppState.StateContainer.TerpeneValue asTerpeneValue
 @inject common.AppState.StateContainer.THCValue asTHCValue
+@inject common.AppState.StateContainer.RatingCategory asRatingCategory
 
 @{
     if (appstategrower.Growers == null)
@@ -27,6 +28,10 @@
     if (asTHCValue.THCValues == null)
     {
         asTHCValue.THCValues = DB.THCValues.ToList();
+    }
+    if (asRatingCategory.RatingCategories == null)
+    {
+        asRatingCategory.RatingCategories = DB.RatingCategory.ToList();
     }
 }
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">

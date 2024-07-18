@@ -3,6 +3,7 @@
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
 @using Microsoft.EntityFrameworkCore
+@inject common.AppState.StateContainer.RatingCategory asRatingCategory
 
 <PageTitle>Delete RatingCategory</PageTitle>
 
@@ -60,6 +61,8 @@
     {
         DB.RatingCategory.Remove(ratingcategory!);
         await DB.SaveChangesAsync();
+
+        asRatingCategory.RatingCategories.Remove(ratingcategory!);
         NavigationManager.NavigateTo("/ratingcategories");
     }
 }

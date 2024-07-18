@@ -3,6 +3,7 @@
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
 @using Microsoft.EntityFrameworkCore
+@inject common.AppState.StateContainer.RatingCategory asRatingCategory
 
 <PageTitle>Details RatingCategory</PageTitle>
 
@@ -41,7 +42,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        ratingcategory = await DB.RatingCategory.FirstOrDefaultAsync(m => m.RatingCategoryId == RatingCategoryId);
+        ratingcategory =   asRatingCategory.RatingCategories.FirstOrDefault(m => m.RatingCategoryId == RatingCategoryId);
 
         if (ratingcategory is null)
         {
