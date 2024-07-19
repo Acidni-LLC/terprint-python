@@ -8,6 +8,9 @@
 @inject common.AppState.StateContainer.RatingCategory asRatingCategory
 
 @{
+
+    #region appstate load
+
     if (appstategrower.Growers == null)
     {
         appstategrower.Growers = DB.Grower.ToList();
@@ -15,7 +18,7 @@
     }
     if (appstatestrain.Strains == null)
     {
-        appstatestrain.Strains = DB.Strain.ToList(); 
+        appstatestrain.Strains = DB.Strain.ToList();
     }
     if (appstatebatch.Batches == null)
     {
@@ -33,6 +36,8 @@
     {
         asRatingCategory.RatingCategories = DB.RatingCategory.ToList();
     }
+
+    #endregion
 }
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
@@ -46,12 +51,12 @@
 
                 <li class="nav-item"><a class="nav-link" href="/">Home </a> </li>
                 @*  <li class="nav-item"><a class="nav-link" href="#"> About </a></li> *@
-                <li class="nav-item"><a class="nav-link" href="/List"> List </a></li> 
+                <li class="nav-item"><a class="nav-link" href="/List"> List </a></li>
                 <li class="nav-item dropdown" id="myDropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Growers   </a>
                     <ul class="dropdown-menu">
                         @{
-                           
+
                             List<Grower> GetGrowers()
                             {
                                 // e.g. Put a database call here
@@ -73,10 +78,10 @@
                             common.Components c = new common.Components();
                         }
                         @foreach (var grower in GetGrowers())
-                        { 
+                        {
                             string urlencoded = System.Web.HttpUtility.UrlEncode(grower.Name);
                             string path = "/GrowerProfile?grower=" + @urlencoded;
-                            <li  >
+                            <li>
                                 <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@grower.Name</NavLink>
 
                             </li>
@@ -84,7 +89,30 @@
 
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="/ratingslist">Ratings </a></li>
+                <li class="nav-item dropdown" id="myDropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Ratings   </a>
+                    <ul class="dropdown-menu">
+
+                        @foreach (var rc in asRatingCategory.RatingCategories)
+                        {
+                            string urlencoded = System.Web.HttpUtility.UrlEncode(@rc.RatingCategoryId.ToString());
+                            string path = "/Ratinglist?RatingCategoryID=" + @urlencoded;
+                            <li>
+                                <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@rc.CategoryTitle</NavLink>
+
+                            </li>
+                        }
+
+                    </ul>
+                </li>
+
+                 
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a class="dropdown-item" href="/growers">View</a></li>
+                    <li><a class="dropdown-item" href="/growers/create">Enter Grower</a></li>
+
+
+                </ul>
                 <li class="nav-item dropdown" id="myDropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Strains menu  </a>
                     <ul class="dropdown-menu">
@@ -111,13 +139,13 @@
                                 {
                                     appstatebatch.Batches = DB.Batch.ToList();
                                 }
-                               
+
                                 // e.g. Put a database call here
 
                                 return appstatebatch.Batches.Where(
                                 t => t.StrainID == GetStrains()
                                 .Where(t1 => t1.StrainName == strain)
-                               .Select(t => t.StrainId)
+                                .Select(t => t.StrainId)
                                 .FirstOrDefault())
                                 //.Select(t => t.Name)
                                 .ToList();

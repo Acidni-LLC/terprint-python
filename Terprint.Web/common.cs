@@ -49,6 +49,19 @@ namespace Terprint.Web
             }
             return s;
         }
+        public static string CreateBatchLink(string batch)
+        {
+            string s = "";
+            try
+            {
+                s = "<a href=\"/BatchProfile?batch=" + System.Web.HttpUtility.UrlEncode(batch) + "\">" + batch + "</a>";
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return s;
+        }
         public static string CreateRatingCategoryLink(string ratingcategory, int ratingcategoryid)
         {
             string s = "";

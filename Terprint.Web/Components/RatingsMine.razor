@@ -8,14 +8,10 @@
 
 <AuthorizeView>
     <NotAuthorized>
-        Please <a href="/account/login">login</a>
+        Please <a href="/account/login?ReturnUrl=/myratings">login</a>
     </NotAuthorized>
     <Authorized>
-        <RangeInput @ref="rangeInput"
-                    TValue="int?"
-                    @bind-Value="amount"
-                    Min="0"
-                    Max="10" />
+       
         @amount
                     @{
             userid = context.User.Identity?.Name;
