@@ -42,39 +42,39 @@
             </InputSelect>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class=" col-12"> 
-        @{
-            foreach (var r in DB.Batch.Where(t => t.StrainID == strainid1).ToList())
-            {
+    <div class="row">
+        <div class=" col-12">
+            @{
+                foreach (var r in DB.Batch.Where(t => t.StrainID == strainid1).ToList())
+                {
 
-                ChooserBatch.BatchData bd = new ChooserBatch.BatchData() { batch = r.Name, batchId = (int)r.BatchId };
-                <div class="card">
-                    <div class="card-body">
-                        <TerprintTable @bind-batch="@bd.batch" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+                    ChooserBatch.BatchData bd = new ChooserBatch.BatchData() { batch = r.Name, batchId = (int)r.BatchId };
+                    <div class="card">
+                        <div class="card-body">
+                            <TerprintTable @bind-batch="@bd.batch" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+                        </div>
                     </div>
-                </div>
+                }
             }
-        }
-    </div>
-    <div class="  col-12"> 
-        @{
-            foreach (var r in DB.Batch.Where(t => t.StrainID == strainid2).ToList())
-            {
-                ChooserBatch.BatchData bd = new ChooserBatch.BatchData() { batch = r.Name, batchId = (int)r.BatchId };
-                <div class="card">
-                    <div class="card-body">
-                        <TerprintTable @bind-batch="@bd.batch" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+        </div>
+        <div class="  col-12">
+            @{
+                foreach (var r in DB.Batch.Where(t => t.StrainID == strainid2).ToList())
+                {
+                    ChooserBatch.BatchData bd = new ChooserBatch.BatchData() { batch = r.Name, batchId = (int)r.BatchId };
+                    <div class="card">
+                        <div class="card-body">
+                            <TerprintTable @bind-batch="@bd.batch" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+                        </div>
                     </div>
-                </div>
+                }
             }
-        }
+        </div>
     </div>
 </div>
 @code {
 
-    public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandtitle;
+    public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.table;
     [FromQuery(Name = "matrix")]
     public int? matrix
     {
