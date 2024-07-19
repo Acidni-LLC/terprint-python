@@ -148,7 +148,7 @@
 
                             }
                         }
-                        @foreach (var strain in GetStrains())
+                        @foreach (var strain in GetStrains().OrderBy(t=>t.StrainName))
                         {
                             string path = "/StrainProfile?strain=" + strain.StrainName;
                             <li>

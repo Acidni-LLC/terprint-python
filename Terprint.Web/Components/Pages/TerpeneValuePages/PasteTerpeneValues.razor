@@ -84,43 +84,53 @@
                 {
                     s = st.Replace("/t", " ");
                 }
-                TerpeneValue terpenevalue = new TerpeneValue();
-                string secondnum = "";
-                string thirdnum = "";
-                if (inputformat == "1")
+                if (s.ToLower().Contains("nd") || s.ToLower().Contains("loq"))
                 {
-                    int index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
-                    string name = s.Substring(0, index).Trim();
-                    string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
-                     secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
-                    terpenevalue = new TerpeneValue() { TerpeneName = name, Value = Convert.ToDouble(secondnum), BatchID = TerpeneValue.BatchID, createdby = userid };
 
                 }
-                else if (inputformat == "2" || inputformat == "3" )
+                else
                 {
-                    int index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
-                    string name = s.Substring(0, index).Trim();
-                    string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
-                    if (inputformat == "2"  )
+                    TerpeneValue terpenevalue = new TerpeneValue();
+                    string secondnum = "";
+                    string thirdnum = "";
+                    if (inputformat == "1")
                     {
+                        int index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
+                        string name = s.Substring(0, index).Trim();
+                        string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
+                        secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
+                        terpenevalue = new TerpeneValue() { TerpeneName = name, Value = Convert.ToDouble(secondnum), BatchID = TerpeneValue.BatchID, createdby = userid };
 
-                         secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
-                         thirdnum = s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", "");
                     }
-                    else
+                    else if (inputformat == "2" || inputformat == "3")
                     {
+                        int index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
+                        string name = s.Substring(0, index).Trim();
+                        string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
+                        if (inputformat == "2")
+                        {
 
-                         secondnum = s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", "");
-                         thirdnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
+                            secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
+                            thirdnum = s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", "");
+                        }
+                        else
+                        {
+
+                            secondnum = s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", "");
+                            thirdnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
+                        }
+                        terpenevalue = new TerpeneValue()
+                            {
+                                TerpeneName = name,
+                                Value = Convert.ToDouble(thirdnum),
+                                BatchID = TerpeneValue.BatchID,
+                                createdby = userid
+                            };
                     }
-                    terpenevalue = new TerpeneValue() { 
-                        TerpeneName = name, 
-                            Value = Convert.ToDouble(thirdnum),
-                        BatchID = TerpeneValue.BatchID, 
-                        createdby = userid };
+                    terpeneValues.Add(terpenevalue);
+
                 }
-                terpeneValues.Add(terpenevalue);
-
+               
             }
         }
 
