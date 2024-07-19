@@ -26,7 +26,7 @@
         </InputSelect>
         <Terprint.Web.Components.ChooserBatch></Terprint.Web.Components.ChooserBatch>
 
-        <label class="control-label">Terpene Values</label>
+        <label class="control-label">THC Values</label>
         <InputTextArea id="tva" @bind-Value="@tv" class="form-control" rows="10">@string.Join("\n ", DB2.THCValues.Select(t => t.Analyte).ToList())</InputTextArea>
     </div>
     <button type="submit" class="btn btn-primary">Add Values</button>
