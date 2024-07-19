@@ -4,6 +4,7 @@
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
 
+@inject common.AppState.StateContainer.Strain asstrain
 <PageTitle>Create Strain</PageTitle>
  
 
@@ -56,6 +57,7 @@
         Strain.StrainName = Strain.StrainName.Trim();
         DB.Strain.Add(Strain);
         await DB.SaveChangesAsync();
-        NavigationManager.NavigateTo("/strains");
+        asstrain.Strains.Add(Strain);
+        NavigationManager.NavigateTo("/batches/create");
     }
 }

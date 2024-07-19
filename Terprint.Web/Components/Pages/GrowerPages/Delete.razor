@@ -4,6 +4,7 @@
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
 @using Microsoft.EntityFrameworkCore
+@inject common.AppState.StateContainer.Grower asgrower
 
 <PageTitle>Delete Growers</PageTitle>
 
@@ -49,6 +50,7 @@
     {
         DB.Grower.Remove(grower!);
         await DB.SaveChangesAsync();
+        asgrower.Growers.Remove(grower!);
         NavigationManager.NavigateTo("/growers");
     }
 }

@@ -49,6 +49,19 @@ namespace Terprint.Web
             }
             return s;
         }
+        public static string CreateBatchLink(string batch)
+        {
+            string s = "";
+            try
+            {
+                s = "<a href=\"/BatchProfile?batch=" + System.Web.HttpUtility.UrlEncode(batch) + "\">" + batch + "</a>";
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return s;
+        }
         public static string CreateRatingCategoryLink(string ratingcategory, int ratingcategoryid)
         {
             string s = "";
@@ -162,6 +175,22 @@ namespace Terprint.Web
                         {
                             batches = value;
                              NotifyStateChanged();
+                        }
+                    }
+                    public event Action? OnChange;
+
+                    private void NotifyStateChanged() => OnChange?.Invoke();
+                }
+                public class RatingCategory
+                {
+                    private List<Models.RatingCategory> ratingcategories;
+                    public List<Models.RatingCategory> RatingCategories
+                    {
+                        get => ratingcategories ?? null;
+                        set
+                        {
+                            ratingcategories = value;
+                            NotifyStateChanged();
                         }
                     }
                     public event Action? OnChange;

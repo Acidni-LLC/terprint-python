@@ -2,18 +2,16 @@
 @using Microsoft.AspNetCore.Components.QuickGrid
 @inject HttpClient Http
 @inject NavigationManager NavManager
+@inject common.AppState.StateContainer.Strain asstrain
+@inject common.AppState.StateContainer.Batch asbatch
 <h3>Ratings Mine</h3>
 
 <AuthorizeView>
     <NotAuthorized>
-        Please <a href="/account/login">login</a>
+        Please <a href="/account/login?ReturnUrl=/myratings">login</a>
     </NotAuthorized>
     <Authorized>
-        <RangeInput @ref="rangeInput"
-                    TValue="int?"
-                    @bind-Value="amount"
-                    Min="0"
-                    Max="10" />
+       
         @amount
                     @{
             userid = context.User.Identity?.Name;
@@ -23,8 +21,8 @@
         <QuickGrid Class="table" Items="DB.Rating" Pagination="@pagination">
             <PropertyColumn Property="Rating => DB.RatingCategory.Where(t=>t.RatingCategoryId== Rating.RatingCategoryID).FirstOrDefault().CategoryName" />
             <PropertyColumn Property="Rating => Rating.Value" />
-            <PropertyColumn Property="Rating => DB.Batch.Where(t=>t.BatchId== Rating.BatchID).FirstOrDefault().Name" />
-            <PropertyColumn Property="Rating => DB.Strain.Where(t=>t.StrainId==DB.Batch.Where(t=>t.BatchId== Rating.BatchID).FirstOrDefault().StrainID ).FirstOrDefault().StrainName" />
+            <PropertyColumn Property="Rating => asbatch.Batches.Where(t=>t.BatchId== Rating.BatchID).FirstOrDefault().Name" />
+            <PropertyColumn Property="Rating => asstrain.Strains.Where(t=>t.StrainId==asbatch.Batches.Where(t=>t.BatchId== Rating.BatchID).FirstOrDefault().StrainID ).FirstOrDefault().StrainName" />
             <PropertyColumn Property="Rating => Rating.created.ToShortDateString()" />
 
         </QuickGrid>

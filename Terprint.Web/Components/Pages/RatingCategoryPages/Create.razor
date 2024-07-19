@@ -4,6 +4,7 @@
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
+@inject common.AppState.StateContainer.RatingCategory asRatingCategory
 
 <PageTitle>Create RatingCategory</PageTitle>
 
@@ -62,6 +63,7 @@
     {
         DB.RatingCategory.Add(RatingCategory);
         await DB.SaveChangesAsync();
+        asRatingCategory.RatingCategories.Add(RatingCategory);
         NavigationManager.NavigateTo("/ratingcategories");
     }
 }

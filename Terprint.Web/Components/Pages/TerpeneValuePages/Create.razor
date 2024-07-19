@@ -4,6 +4,7 @@
 @inject Terprint.Web.Data.TerprintWebContext2 DB2
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
+@inject common.AppState.StateContainer.TerpeneValue asterpenevalues
 
 <PageTitle>Create TerpeneValue TerpeneValue</PageTitle>
 
@@ -81,6 +82,7 @@
     {
         DB.TerpeneValues.Add(TerpeneValue);
         await DB.SaveChangesAsync();
+        asterpenevalues.TerpeneValues.Add(TerpeneValue);
         NavigationManager.NavigateTo("/terpenevalues");
     }
 }

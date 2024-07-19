@@ -5,6 +5,7 @@
 @inject Terprint.Web.Data.TerprintWebContext2 DB2
 @inject NavigationManager NavigationManager
 @inject common.AppState appstate
+@inject common.AppState.StateContainer.THCValue asthcvalues
 @using Terprint.Web.Models
 <PageTitle>Paste THC Values</PageTitle>
 <h3>Paste THC Values</h3>
@@ -72,6 +73,7 @@
         ParseValues();
         await DB.THCValues.AddRangeAsync(THCValues);
         await DB.SaveChangesAsync();
+        asthcvalues.THCValues.AddRange(THCValues);
         NavigationManager.NavigateTo("/thcvalues");
     }
     private void ParseValues()

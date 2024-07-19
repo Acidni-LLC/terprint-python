@@ -3,6 +3,7 @@
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
+@inject common.AppState.StateContainer.Batch asbatch
 @using Microsoft.EntityFrameworkCore
 
 <PageTitle>Delete Batch</PageTitle>
@@ -57,6 +58,7 @@
     {
         DB.Batch.Remove(batch!);
         await DB.SaveChangesAsync();
+        asbatch.Batches.Remove(batch);
         NavigationManager.NavigateTo("/batches");
     }
 }

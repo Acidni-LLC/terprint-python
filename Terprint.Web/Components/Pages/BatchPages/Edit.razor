@@ -3,6 +3,7 @@
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
+@inject common.AppState.StateContainer.Batch asbatch
 @using Microsoft.EntityFrameworkCore
 
 <PageTitle>Edit Batch</PageTitle>
@@ -87,8 +88,7 @@ else
             // {
             //     throw;
             // }
-        }
-
+        } 
         NavigationManager.NavigateTo("/batches");
     }
 
