@@ -50,7 +50,7 @@
                 <li class="nav-item"><a class="nav-link" href="/"></a> </li>
 
                 <li class="nav-item"><a class="nav-link" href="/">Home </a> </li>
-                @*  <li class="nav-item"><a class="nav-link" href="#"> About </a></li> *@
+                <li class="nav-item"><a class="nav-link" href="/straincompare"> Strain Compare </a></li>
                 <li class="nav-item"><a class="nav-link" href="/List"> List </a></li>
                 <li class="nav-item dropdown" id="myDropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Growers   </a>
@@ -164,7 +164,7 @@
                                         string urlencoded = System.Web.HttpUtility.UrlEncode(@batch.Name);
                                         path = "/BatchProfile?size=medium&matrix=1&batch=" + @urlencoded;
                                         <li>
-                                            <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@batch</NavLink>
+                                            <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@batch.Name</NavLink>
                                         </li>
                                     }
 
