@@ -10,6 +10,7 @@ using Terprint.Web.Data;
 using Terprint.Web.Components.Account;
 using Microsoft.AspNetCore.Components.Web;
 using Blazored.LocalStorage;
+using Aspire.Hosting.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +22,14 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
 
-builder.Services.AddBlazoredLocalStorage();   // local storage
-builder.Services.AddBlazoredLocalStorage(config => config.JsonSerializerOptions.WriteIndented = true);  // local storage
+builder.AddRedisClient("cache");
+//builder.AddRedis("cache");
+//builder.Services.AddStackExchangeRedisCache(options =>
+//{
+//    options.Configuration = "localhost:6000"; // Your Redis server connection string
+//    options.InstanceName = "myApp"; // Optional: Prefix for cache keys
+//});
+ 
 
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddScoped<IdentityUserAccessor>();

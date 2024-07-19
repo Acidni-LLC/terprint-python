@@ -9,6 +9,9 @@ using Microsoft.Identity.Client;
 using Microsoft.AspNetCore.WebUtilities;
 using OpenTelemetry.Trace;
 using Microsoft.AspNetCore.Components.Routing;
+using Microsoft.Extensions.Caching.Distributed;
+using Terprint.Web.Components;
+using StackExchange.Redis;
 
 
 namespace Terprint.Web
@@ -101,7 +104,9 @@ namespace Terprint.Web
                         get => terpenevalues ?? null;
                         set
                         {
+                            IConnectionMultiplexer connectionMultiplexer;
                             terpenevalues = value;
+                            
                             NotifyStateChanged();
                         }
                     }

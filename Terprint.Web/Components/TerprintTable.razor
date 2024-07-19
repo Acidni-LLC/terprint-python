@@ -30,15 +30,15 @@
         }
         if (totalterps >= 2.5 && totalterps < 3.0)
         {
-            fire = "<span class=\"bi bi-fire yellow-color\"> </span><span class=\"bi bi-fire yellow-color\"> </span>";
+            fire = "<span class=\"bi bi-fire yellow-color\"></span><span class=\"bi bi-fire yellow-color\"></span>";
         }
         if (totalterps >= 3.0 && totalterps < 4.0)
         {
-            fire = "<span class=\"bi bi-fire red-color\"> </span><span class=\"bi bi-fire red-color\"> </span><span class=\"bi bi-fire red-color\"> </span>";
+            fire = "<span class=\"bi bi-fire red-color\"></span><span class=\"bi bi-fire red-color\"></span><span class=\"bi bi-fire red-color\"></span>";
         }
         if (totalterps >= 4.0)
         {
-            fire = "<span class=\"bi bi-fire purple-color\"> </span><span class=\"bi bi-fire purple-color\"> </span><span class=\"bi bi-fire purple-color\"> </span><span class=\"bi bi-fire purple-color\"> </span>";
+            fire = "<span class=\"bi bi-fire purple-color\"></span><span class=\"bi bi-fire purple-color\"></span><span class=\"bi bi-fire purple-color\"></span><span class=\"bi bi-fire purple-color\"></span>";
         }
         firemarkup = new MarkupString(fire);
 
@@ -47,10 +47,10 @@
             @if (rendermode == renderMode.tableandtitle)
             {
                 <div class="row">
-                    <div class="col-12 col-lg-3">
+                    <div class="col-12 col-lg-4">
                         <h5> <a href="/StrainProfile?strain=@System.Web.HttpUtility.UrlEncode(strain)">@strain</a> @firemarkup </h5>
                     </div>
-                    <div class="col-12 col-lg-3 text-center">
+                    <div class="col-12 col-lg-4 text-center">
                         <strong>@TerpeneValues.Count</strong> Terpenes at <Badge Color="BadgeColor.Secondary">@Math.Round(totalterps, 2)%</Badge> @{
                             if (totalthc > 0)
                             {
@@ -60,8 +60,9 @@
                         }
 
                     </div>
-                    <div class="col-12 col-lg-3 float-end text-end">
+                    <div class="col-12 col-lg-4 float-end text-end">
                         <small class="">@batchData.batch</small> - <small class="">@batchDB.Date</small>
+                        <strong><a href="/GrowerProfile?grower=@System.Web.HttpUtility.UrlEncode(growerDB.Name)">@growerDB.Name</a></strong>
                     </div>
                 </div>
                 <div class="row">
