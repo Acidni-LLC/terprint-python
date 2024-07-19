@@ -119,7 +119,7 @@
                     string fourthnum = s.Substring(index, s.Length - index).Split(" ")[3].Replace("%", ""); 
                     double fifthnum = 0;
                     double.TryParse(s.Substring(index, s.Length - index).Split(" ")[4].Replace("%", ""), out fifthnum);
-                    THCValue = new THCValue() { Analyte = name, Dilution = firstnum, LOD = secondnum, LOQ = thirddnum.ToString(), Result = fourthnum, Percent = fifthnum, BatchID = thcvalue.BatchID };
+                    THCValue = new THCValue() { Analyte = name, Dilution = firstnum, LOD = secondnum, LOQ = thirddnum.ToString(), Result = fourthnum, Percent = fifthnum, BatchID = TerpeneValue.BatchID };
                 }
                 else if (inputformat=="2")
                 {
