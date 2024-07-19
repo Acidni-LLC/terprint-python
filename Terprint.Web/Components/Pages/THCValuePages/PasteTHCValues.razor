@@ -22,6 +22,7 @@
         <InputSelect id="inputformatc" class="m-0 form-control" @bind-Value="@inputformat">
             <option value="1">1 [Analyte][ ][Dilution (1:n)][ ][LOD (%)][ ][LOQ (%)][ ][Result (mg/g)]{ ][(%)] </option>
             <option value="2">2 [Analyte][ ][LOD (MG/G)][ ][RESULT (MG/G)][ ][RESULT % (TOTAL)]</option>
+            <option value="3">3 [Analyte][ ][LOD (MG/G)][ ][RESULT %][ ][RESULT (MG/G)]</option>
         </InputSelect>
         <Terprint.Web.Components.ChooserBatch></Terprint.Web.Components.ChooserBatch>
 
@@ -111,24 +112,36 @@
                 string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
                 string secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
                 double thirddnum = 0;
-                 double.TryParse(s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", ""), out thirddnum);
-                THCValue THCValue = new THCValue();
-                if(inputformat=="1")
+                if (secondnum.ToLower().Contains("loq") || secondnum.ToLower().Contains("nd"))
                 {
-
-                    string fourthnum = s.Substring(index, s.Length - index).Split(" ")[3].Replace("%", ""); 
-                    double fifthnum = 0;
-                    double.TryParse(s.Substring(index, s.Length - index).Split(" ")[4].Replace("%", ""), out fifthnum);
-                    THCValue = new THCValue() { Analyte = name, Dilution = firstnum, LOD = secondnum, LOQ = thirddnum.ToString(), Result = fourthnum, Percent = fifthnum, BatchID = TerpeneValue.BatchID };
+                    //no data
                 }
-                else if (inputformat=="2")
+                else
                 {
+                    THCValue THCValue = new THCValue();
+                    if (inputformat == "1")
+                    {
 
-                    THCValue = new THCValue() { Analyte = name, LOD = firstnum, Result = secondnum, Percent = thirddnum, BatchID = TerpeneValue.BatchID };
+                        string fourthnum = s.Substring(index, s.Length - index).Split(" ")[3].Replace("%", "");
+                        double fifthnum = 0;
+                        double.TryParse(s.Substring(index, s.Length - index).Split(" ")[4].Replace("%", ""), out fifthnum);
+                        THCValue = new THCValue() { Analyte = name, Dilution = firstnum, LOD = secondnum, LOQ = thirddnum.ToString(), Result = fourthnum, Percent = fifthnum, BatchID = TerpeneValue.BatchID };
+                    }
+                    else if (inputformat == "2")
+                    {
+
+                        THCValue = new THCValue() { Analyte = name, LOD = firstnum, Result = secondnum, Percent = thirddnum, BatchID = TerpeneValue.BatchID };
+                    }
+                    else if (inputformat == "3")
+                    {
+
+                        THCValue = new THCValue() { Analyte = name, LOD = firstnum, Result = thirddnum.ToString(), Percent = double.Parse(secondnum), BatchID = TerpeneValue.BatchID };
+                    }
+
+                    THCValue.createdby = userid;
+                    THCValues.Add(THCValue);
+
                 }
-
-                THCValue.createdby = userid;
-                THCValues.Add(THCValue);
                 // THCValues.Add(new THCValue() { Name = name, Value = Convert.ToDouble(secondnum), BatchID = THCValue.BatchID });
                 //THCValues.Add(new THCValue() { Name = name, Value = Convert.ToDouble(secondnum), BatchID = THCValue.BatchID });
 
