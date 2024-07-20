@@ -88,20 +88,22 @@
             {
                 string sl = s;
                 int index = 0;
-                if (s.Contains("Delta-9") || s.Contains("d9-THC") || s.Contains("Δ9-THC"))
+                if (s.ToLower().Contains("delta-9") || s.ToLower().Contains("d9-thc") || s.ToLower().Contains("Δ9-thc") || s.ToLower().Contains("delta-9 thc"))
                 {
-                    sl = s.Replace("Delta-9", "XXXXXXX");
-                    sl = s.Replace("Δ9-THC", "XXXXXX");
-                    sl = s.Replace("d9-THC", "XXXXXX");
+                    sl = s.ToLower().Replace("delta-9", "XXXXXXX");
+                    sl = s.ToLower().Replace("delta-9 thc", "XXXXXXXXXXX");
+                    sl = s.ToLower().Replace("δ9-thc", "XXXXXX");
+                    sl = s.ToLower().Replace("d9-thc", "XXXXXX");
                     index = sl.IndexOf(sl.FirstOrDefault(char.IsNumber));
 
 
                 }
-                else if (s.Contains("Delta-8") || s.Contains("d8-THC") || s.Contains("Δ8-THC"))
+                else if (s.ToLower().Contains("delta-8") || s.ToLower().Contains("d8-thc") || s.ToLower().Contains("Δ8-thc") || s.ToLower().Contains("delta-8 thc"))
                 {
-                    sl = s.Replace("Delta-8", "XXXXXXX");
-                    sl = s.Replace("Δ8-THC", "XXXXXX");
-                    sl = s.Replace("d8-THC", "XXXXXX");
+                    sl = s.ToLower().Replace("delta-8", "XXXXXXX");
+                    sl = s.ToLower().Replace("delta-8 thc", "XXXXXXXXXXX");
+                    sl = s.ToLower().Replace("δ8-thc", "XXXXXX");
+                    sl = s.ToLower().Replace("d8-thc", "XXXXXX");
                     index = sl.IndexOf(sl.FirstOrDefault(char.IsNumber));
 
                 }
