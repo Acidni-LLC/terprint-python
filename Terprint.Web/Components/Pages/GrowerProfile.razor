@@ -7,6 +7,9 @@
 @inject Terprint.Web.Data.TerprintWebContext DB
 @inject Terprint.Web.Components.ChooserBatch ChooserBatch
 @inject Terprint.Web.Components.ChooserRatingCategory ChooserRatingCategory
+@inject common.AppState.StateContainer.Grower asGrower
+@inject common.AppState.StateContainer.Batch asBatch
+@inject common.AppState.StateContainer.Strain asStrain
 @inject common.AppState appstate
 @rendermode InteractiveServer
 
@@ -60,12 +63,12 @@
 }
 
 @{
-    int growerid = DB.Grower
+    int growerid = asGrower.Growers
                     .Where(t => t.Name == grower)
                     .Select(t => t.GrowerId).FirstOrDefault();
-    var batches = DB.Batch
-        .OrderByDescending(t => DB.Strain.Where(t1=>t1.StrainId==t.StrainID).FirstOrDefault().StrainName)
-        .OrderByDescending(t => t.Date)
+    var batches = asBatch.Batches
+        .OrderBy (t => asStrain.Strains.Where(t1 => t1.StrainId == t.StrainID).FirstOrDefault().StrainName)
+       // .OrderByDescending(t => t.Date)
         .Where(t => t.GrowerID == growerid)
         .ToList();
 
