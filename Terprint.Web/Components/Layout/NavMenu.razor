@@ -51,6 +51,7 @@
 
                 <li class="nav-item"><a class="nav-link" href="/">Home </a> </li>
                 <li class="nav-item"><a class="nav-link" href="/straincompare"> Strain Compare </a></li>
+                <li class="nav-item"><a class="nav-link" href="/strainmatcher"> Strain Matcher </a></li>
                 <li class="nav-item"><a class="nav-link" href="/List"> List </a></li>
                 <li class="nav-item dropdown" id="myDropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Growers   </a>
@@ -150,7 +151,7 @@
                         }
                         @foreach (var strain in GetStrains().OrderBy(t=>t.StrainName))
                         {
-                            string path = "/StrainProfile?strain=" + strain.StrainName;
+                            string path = "/StrainProfile?strain=" + System.Web.HttpUtility.UrlEncode(strain.StrainName);
                             <li>
                                 <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@strain.StrainName &raquo;</NavLink>
                                 <ul class="submenu dropdown-menu">

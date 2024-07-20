@@ -1,7 +1,7 @@
-﻿@page "/strainmatch"
+﻿@page "/strainmatcher"
+@using Terprint.Web.Models
 @inject Terprint.Web.Data.TerprintWebContext DB
 @inject Terprint.Web.Data.TerprintWebContext2 DB2
-@using Terprint.Web.Models
 @inject NavigationManager nm
 @inject common.AppState.StateContainer.Strain asStrain
 @inject common.AppState.StateContainer.Batch asBatch
@@ -42,6 +42,18 @@
                     <option value=@b.StrainId @onselect="() => strainid2 = (int)b.StrainId">@b.StrainName</option>
                 }
             </InputSelect>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col-4">
+            Terpenes in Strain 1 <br /> not in Strain 2
+        </div> 
+        <div class=" col-4">
+            Terpenes in both strains  
+        </div> 
+        <div class=" col-4">
+
+            Terpenes in Strain 2 <br />not in Strain 1
         </div>
     </div>
     <div class="row">

@@ -4,9 +4,21 @@
 @inject common.AppState.StateContainer.Strain asStrain
 @inject common.AppState.StateContainer.Batch asBatch
 @inject Terprint.Web.Data.TerprintWebContext DB
-<h3>Rating List</h3>
 
-<QuickGrid Class="table" TGridItem="Models.Rating" Items="DB.Rating.Where(t=>t.RatingCategoryID== RatingCategoryID) .AsQueryable()">
+
+@{
+    RatingCategory = asRatingCategory.RatingCategories.Where(t => t.RatingCategoryId == RatingCategoryID).FirstOrDefault();
+
+    var ratings = DB.Rating.Where(t => t.RatingCategoryID == RatingCategoryID).OrderByDescending(t => t.Value).AsQueryable();
+
+    if (RatingCategory.RatingCategoryType == "Scale 1-10")
+    {
+
+        ratings = ratings.OrderByDescending(t => Convert.ToInt32(t.Value)).AsQueryable();
+    }
+}
+<h3>@RatingCategory.CategoryName</h3>
+<QuickGrid Class="table" TGridItem="Models.Rating" Items="ratings">
     <TemplateColumn Context="rating" Title="Strain">
         @{
             string strain = asStrain.Strains.Where(t => t.StrainId == asBatch.Batches.Where(t => t.BatchId == rating.BatchID).FirstOrDefault().StrainID).FirstOrDefault().StrainName;
@@ -14,11 +26,9 @@
             MarkupString markupString = new MarkupString(link);
             @markupString
         }
-    </TemplateColumn> 
-    <PropertyColumn Property="rating => asRatingCategory.RatingCategories.Where(t=>t.RatingCategoryId== rating.RatingCategoryID).FirstOrDefault().CategoryName.AsEnumerable()" Title="Rating Question" />
+    </TemplateColumn>
 
-
-    <TemplateColumn Context="rating" Title="Rating Response">
+    <TemplateColumn Context="rating" Title="              ">
         @{
             if (rating.RatingCategoryID == 1)
             {
@@ -26,9 +36,11 @@
                 //     <RangeInput   TValue="int" Value="int.Parse(rating.Value)" Min="0" Max="10" Disabled="true" />
                 // </span>
                 double width = double.Parse(@rating.Value) * 10;
-                <Progress Class="mb-3">
-                    <ProgressBar Color="ProgressColor.Success" Width="@width" />
-                </Progress>
+                <div style="width:10em">
+                    <Progress Class="mb-3">
+                        <ProgressBar Color="ProgressColor.Success" Width="@width" />
+                    </Progress>
+                </div>
             }
             else if (rating.RatingCategoryID == 2 || rating.RatingCategoryID == 3 || rating.RatingCategoryID == 4 || rating.RatingCategoryID == 6)
             {
@@ -47,7 +59,7 @@
             }
         }
 
-    </TemplateColumn> 
+    </TemplateColumn>
     <TemplateColumn Context="rating" Title="Batch">
         @{
             string batch = asBatch.Batches.Where(t => t.BatchId == rating.BatchID).FirstOrDefault().Name;
@@ -57,11 +69,12 @@
         }
     </TemplateColumn>
     <PropertyColumn Property="rating => rating.Notes" />
-    <PropertyColumn Property="rating => rating.userid" />
 </QuickGrid>
 @code {
     private RangeInput<int?> rangeInput = default!;
     [SupplyParameterFromQuery]
     public int? RatingCategoryID { get; set; }
+    public string? ratingcategory { get; set; }
+    public RatingCategory? RatingCategory { get; set; }
 
 }
