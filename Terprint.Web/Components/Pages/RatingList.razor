@@ -7,10 +7,18 @@
 
 
 @{
-    RatingCategory = asRatingCategory.RatingCategories.Where(t => t.RatingCategoryId == RatingCategoryID).FirstOrDefault().CategoryName;
+    RatingCategory = asRatingCategory.RatingCategories.Where(t => t.RatingCategoryId == RatingCategoryID).FirstOrDefault();
+
+    var ratings = DB.Rating.Where(t => t.RatingCategoryID == RatingCategoryID).OrderByDescending(t => t.Value).AsQueryable();
+
+    if (RatingCategory.RatingCategoryType == "Scale 1-10")
+    {
+
+        ratings = ratings.OrderByDescending(t => Convert.ToInt32(t.Value)).AsQueryable();
+    }
 }
-<h3>@RatingCategory</h3>
-<QuickGrid Class="table" TGridItem="Models.Rating" Items="DB.Rating.Where(t=>t.RatingCategoryID== RatingCategoryID) .OrderByDescending(t=>t.Value).AsQueryable()">
+<h3>@RatingCategory.CategoryName</h3>
+<QuickGrid Class="table" TGridItem="Models.Rating" Items="ratings">
     <TemplateColumn Context="rating" Title="Strain">
         @{
             string strain = asStrain.Strains.Where(t => t.StrainId == asBatch.Batches.Where(t => t.BatchId == rating.BatchID).FirstOrDefault().StrainID).FirstOrDefault().StrainName;
@@ -61,12 +69,12 @@
         }
     </TemplateColumn>
     <PropertyColumn Property="rating => rating.Notes" />
-    <PropertyColumn Property="rating => rating.userid" />
 </QuickGrid>
 @code {
     private RangeInput<int?> rangeInput = default!;
     [SupplyParameterFromQuery]
     public int? RatingCategoryID { get; set; }
-    public string? RatingCategory { get; set; }
+    public string? ratingcategory { get; set; }
+    public RatingCategory? RatingCategory { get; set; }
 
 }
