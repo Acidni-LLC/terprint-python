@@ -282,6 +282,7 @@ namespace Terprint.Web
                     TerpsOnlyin2 = new List<KeyValuePair<string, double>>();
                     foreach (var r in strain1Terps)
                     {
+                        
 
                         if (strain2Terps.Where(t => t.TerpeneName.Trim() == r.TerpeneName.Trim()).Count() > 0)
                         {
