@@ -88,18 +88,22 @@
             {
                 string sl = s;
                 int index = 0;
-                if (s.Contains("Delta-9") || s.Contains("d9-THC"))
+                if (s.ToLower().Contains("delta-9") || s.ToLower().Contains("d9-thc") || s.ToLower().Contains("Δ9-thc") || s.ToLower().Contains("delta-9 thc"))
                 {
-                    sl = s.Replace("Delta-9", "Delta-N");
-                    sl = s.Replace("d9-THC", "dNine-THC");
+                    sl = s.ToLower().Replace("delta-9", "XXXXXXX");
+                    sl = s.ToLower().Replace("delta-9 thc", "XXXXXXXXXXX");
+                    sl = s.ToLower().Replace("δ9-thc", "XXXXXX");
+                    sl = s.ToLower().Replace("d9-thc", "XXXXXX");
                     index = sl.IndexOf(sl.FirstOrDefault(char.IsNumber));
 
 
                 }
-                else if (s.Contains("Delta-8") || s.Contains("d8-THC"))
+                else if (s.ToLower().Contains("delta-8") || s.ToLower().Contains("d8-thc") || s.ToLower().Contains("Δ8-thc") || s.ToLower().Contains("delta-8 thc"))
                 {
-                    sl = s.Replace("Delta-8", "Delta-E");
-                    sl = s.Replace("d8-THC", "dEight-THC");
+                    sl = s.ToLower().Replace("delta-8", "XXXXXXX");
+                    sl = s.ToLower().Replace("delta-8 thc", "XXXXXXXXXXX");
+                    sl = s.ToLower().Replace("δ8-thc", "XXXXXX");
+                    sl = s.ToLower().Replace("d8-thc", "XXXXXX");
                     index = sl.IndexOf(sl.FirstOrDefault(char.IsNumber));
 
                 }
@@ -111,7 +115,8 @@
                 string name = s.Substring(0, index).Trim();
                 string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
                 string secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
-                double thirddnum = 0;
+                double thirddnum = 0;  
+
                 if (secondnum.ToLower().Contains("loq") || secondnum.ToLower().Contains("nd"))
                 {
                     //no data
@@ -130,10 +135,12 @@
                     else if (inputformat == "2")
                     {
 
+                        double.TryParse(s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", ""), out thirddnum);
                         THCValue = new THCValue() { Analyte = name, LOD = firstnum, Result = secondnum, Percent = thirddnum, BatchID = TerpeneValue.BatchID };
                     }
                     else if (inputformat == "3")
                     {
+                        double.TryParse(s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", ""), out thirddnum);
 
                         THCValue = new THCValue() { Analyte = name, LOD = firstnum, Result = thirddnum.ToString(), Percent = double.Parse(secondnum), BatchID = TerpeneValue.BatchID };
                     }
