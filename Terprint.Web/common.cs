@@ -106,7 +106,7 @@ namespace Terprint.Web
                         {
                             IConnectionMultiplexer connectionMultiplexer;
                             terpenevalues = value;
-                            
+
                             NotifyStateChanged();
                         }
                     }
@@ -161,7 +161,7 @@ namespace Terprint.Web
                         set
                         {
                             strains = value;
-                             NotifyStateChanged();
+                            NotifyStateChanged();
                         }
                     }
                     public event Action? OnChange;
@@ -179,7 +179,7 @@ namespace Terprint.Web
                         set
                         {
                             batches = value;
-                             NotifyStateChanged();
+                            NotifyStateChanged();
                         }
                     }
                     public event Action? OnChange;
@@ -252,7 +252,74 @@ namespace Terprint.Web
                 return c.TerpValues.Where(t => t.Strain == strain).Select(t => t.Batch).OrderBy(t => t).Distinct().ToList();
 
             }
+            public class StrainComparer
+            {
+                public class TerpList
+                {
+                    public string strain1;
+                    public string strain2;
+                    public string terpene;
+                    public double terpeneValue;
 
+                }
+                public string strain1;
+                public string strain2;
+                public List<KeyValuePair<string, double>> TerpsinBoth;
+                public List<KeyValuePair<string, double>> TerpsOnlyin1;
+                public List<KeyValuePair<string, double>> TerpsOnlyin2;
+
+                public List<TerpeneValue> strain1Terps;
+                public List<TerpeneValue> strain2Terps;
+
+                public List<TerpList> terplistboth;
+
+                public StrainComparer(string strain1, string strain2, List<TerpeneValue> strain1Terps,
+                List<TerpeneValue> strain2Terps)
+                {
+                    terplistboth = new List<TerpList>();
+                    TerpsinBoth = new List<KeyValuePair<string, double>>();
+                    TerpsOnlyin1 = new List<KeyValuePair<string, double>>();
+                    TerpsOnlyin2 = new List<KeyValuePair<string, double>>();
+                    foreach (var r in strain1Terps)
+                    {
+
+                        if (strain2Terps.Where(t => t.TerpeneName.Trim() == r.TerpeneName.Trim()).Count() > 0)
+                        {
+                            if (terplistboth.Where(t => t.terpene.Trim() == r.TerpeneName.Trim()).Count() == 0)
+                            {
+                                TerpsinBoth.Add(new KeyValuePair<string, double>(r.TerpeneName.Trim(), r.Value));
+                                terplistboth.Add(new TerpList() { strain1 = strain1, terpene = r.TerpeneName.Trim() });
+                            }
+                        }
+                        else
+                        {
+                            if (TerpsOnlyin1.Where(t => t.Key == r.TerpeneName).Count() == 0)
+                            {
+                                TerpsOnlyin1.Add(new KeyValuePair<string, double>(r.TerpeneName.Trim(), r.Value));
+                            }
+                        }
+                    }
+                    foreach (var r in strain2Terps)
+                    {
+                        if (strain1Terps.Where(t => t.TerpeneName.Trim() == r.TerpeneName.Trim()).Count() > 0)
+                        {
+                            if (terplistboth.Where(t => t.terpene.Trim() == r.TerpeneName.Trim()).Count() == 0)
+                            {
+                                TerpsinBoth.Add(new KeyValuePair<string, double>(r.TerpeneName.Trim(), r.Value));
+
+                                terplistboth.Add(new TerpList() { strain1 = strain1, terpene = r.TerpeneName.Trim() });
+                            }
+                        }
+                        else
+                        {
+                            TerpsOnlyin2.Add(new KeyValuePair<string, double>(r.TerpeneName.Trim(), r.Value));
+
+                        }
+                    }
+
+
+                }
+            }
         }
         public class Components : PageModel
         {
