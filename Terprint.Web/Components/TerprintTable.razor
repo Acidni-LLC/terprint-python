@@ -161,7 +161,7 @@
                                 .FirstOrDefault();
                                 double opacity = 1; Math.Round(t.Value * 1, 2);
 
-                                terps = terps + sep + i + ".  <div class=\"badge\" style=\"background: " + @terpcolor + ";opacity:" + @opacity + "\"><h5 style=\"mix-blend-mode:difference;color:white\">" + t.TerpeneName + "</h5></div> <strong>" + Math.Round(t.Value * .1, 4) + "%</strong>";
+                                terps = terps + sep +   "  <div class=\"badge\" style=\"background: " + @terpcolor + ";opacity:" + @opacity + "\"><h5 style=\"mix-blend-mode:difference;color:white\">" + t.TerpeneName + "</h5></div> <strong>" + Math.Round(t.Value * .1, 4) + "%</strong>";
                                 i++;
                             }
                             string open = "<div id=\"accordion\">  <div class=\"card\">    <div class=\"card-header\" id=\"headingOne\">      <h5 class=\"mb-0\">        <button class=\"btn btn-link\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapseOne\" aria-expanded=\"false\" aria-controls=\"collapseOne\">Terpenes        </button>      </h5>    </div>    <div id=\"collapseOne\" class=\"collapse\" aria-labelledby=\"headingOne\" data-bs-parent=\"#accordion\">      <div class=\"card-body\">";
