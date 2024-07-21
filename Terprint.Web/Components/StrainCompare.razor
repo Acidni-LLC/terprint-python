@@ -5,6 +5,7 @@
 @inject NavigationManager nm
 @inject common.AppState.StateContainer.Strain asStrain
 @inject common.AppState.StateContainer.Batch asBatch
+@inject common.AppState.StateContainer.TerpeneValue asTerpeneValue
 @rendermode InteractiveServer
 <div class="container-fluid">
     <div class="row">
@@ -44,6 +45,72 @@
             </InputSelect>
         </div>
     </div>
+    @{
+        if (strainid1 > 0 && strainid2 > 0)
+        {
+            common.Components co  = new common.Components();
+            common.Strains.StrainComparer sc = new common.Strains.StrainComparer(
+            strainid1.ToString(),
+            strainid2.ToString(),
+            asTerpeneValue.TerpeneValues.Where(t => asBatch.Batches.Where(t => t.StrainID == strainid1).Select(t => t.BatchId).ToList().Contains(t.BatchID)).ToList(),
+            asTerpeneValue.TerpeneValues.Where(t => asBatch.Batches.Where(t => t.StrainID == strainid2).Select(t => t.BatchId).ToList().Contains(t.BatchID)).ToList()
+            );
+            <div class="row">
+                <div class="col-4 text-center"><h4> Strain 1 Only Terpenes</h4>  </div>
+                <div class="col-4 text-center"><h4> Terpenes in Both  </h4></div>
+                <div class="col-4 text-center"><h4>  Strain 2 Only Terpenes</h4></div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    @{
+                        List<string> s = new List<string>();
+                        foreach (var r in sc.TerpsOnlyin1)
+                        {
+                            string terpcolor = "";
+                            //co.GetTerpeneColor(r.Key.ToString().Trim());
+                            string m = "  <div class=\"badge\" style=\"background: " + @terpcolor + "\"><h5 style=\"mix-blend-mode:difference;color:white\">" + r.Key.ToString() + "</h5></div> ";
+                            s.Add(m);
+                        }
+
+                        MarkupString ms = (MarkupString)string.Join("", s);
+                    }
+                    @ms
+                </div>
+                <div class="col-4">
+                    @{
+                        s = new List<string>();
+                        foreach (var r in sc.TerpsinBoth)
+                        {
+                            string terpcolor = "";
+                            //co.GetTerpeneColor(r.Key.ToString().Trim());
+                            string m = "  <div class=\"badge\" style=\"background: " + @terpcolor + "\"><h5 style=\"mix-blend-mode:difference;color:white\">" + r.Key.ToString() + "</h5></div>  ";
+                            s.Add(m);
+                        }
+                        ms = (MarkupString)string.Join("", s);
+                    }
+                    @ms
+                </div>
+                <div class="col-4">
+                    @{
+                        s = new List<string>();
+                        foreach (var r in sc.TerpsOnlyin2)
+                        {
+                            string terpcolor = "";
+                            //co.GetTerpeneColor(r.Key.ToString().Trim());
+                            string m = "  <div class=\"badge\" style=\"background: " + @terpcolor + "\"><h5 style=\"mix-blend-mode:difference;color:white\">" + r.Key.ToString() + "</h5></div>  ";
+                            s.Add(m);
+                        }
+                        ms = (MarkupString)string.Join("", s);
+                    }
+                    @ms
+                </div>
+            </div>
+
+
+        }
+
+    }
+
     <div class="row">
         <div class=" col-12">
             @{
@@ -61,7 +128,7 @@
         </div>
         <div class="  col-12">
             @{
-                foreach (var r in DB.Batch.Where(t => t.StrainID == strainid2).ToList())
+                foreach (var r in asBatch.Batches.Where(t => t.StrainID == strainid2).ToList())
                 {
                     ChooserBatch.BatchData bd = new ChooserBatch.BatchData() { batch = r.Name, batchId = (int)r.BatchId };
                     <div class="card">
@@ -75,7 +142,6 @@
     </div>
 </div>
 @code {
-
     public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandheader;
     [FromQuery(Name = "matrix")]
     public int? matrix
