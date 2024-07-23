@@ -1,14 +1,10 @@
 ﻿@page "/CannabinoidMatcher"
-
 @inject common.AppState.StateContainer.Batch asbatch
 @inject common.AppState.StateContainer.Grower appstategrower
 @inject common.AppState.StateContainer.THCValue asthcvalue
 @inject common.AppState.StateContainer.Strain asStrain
-
 @rendermode InteractiveServer
 <h3>Cannabinoid Matcher</h3>
-
-
 
 @{
     var analytes = asthcvalue.THCValues
@@ -20,22 +16,38 @@
     .Distinct()
     .ToList();
 
-}
-
-@{
-
     MarkupString rowend = new MarkupString("</div><div class=\"row\">");
     MarkupString filler = new MarkupString("<div class=\"col\"> </div>");
+    // select t.Analyte,count(t.Analyte) from THCValues t group by t.Analyte order by count(t.Analyte)  desc
+    var analytecounts = asthcvalue.THCValues
+    .GroupBy(t => t.Analyte)
+     .Select(group => new
+     {
+         Analyte = group.Key,
+         Count = group.Count()
+     })
+                        .OrderBy(x => x.Analyte) ;
 }
 <div class="=container">
     <div class="row">
         <div class="col-12 text-center">
-            <Badge Color="BadgeColor.Primary">  Find batches <strong>that have any</strong> of the following cannabinoids selected;</Badge>
-@*              (<InputRadio type="radio" TValue="string" id="anyorall" @Value="@anyorall" />Any <InputRadio type="radio" TValue="string" id="anyorall" @Value="@anyorall" /> All  ) *@
+            @{
+                string Any = "Any"; string All = "All";
+            }
+            <Badge Color="BadgeColor.Primary">  Find batches <strong>that have (<InputRadioGroup Name="anyorall" TValue="string" @bind-Value="@anyorall"> <InputRadio checked type="radio" Value="@Any" />Any <InputRadio type="radio" Value="@All" />All </InputRadioGroup>  ) </strong> of the following cannabinoids selected;</Badge>
+            @*              *@
         </div>
     </div>
     <div class="row">
-        <div></div>
+        @{
+            var ac = asthcvalue.THCValues
+            .GroupBy(t => t.Analyte.Trim().ToLower())
+            .Select(group => new
+            {
+                Analyte = group.Key,
+                Count = group.Count() 
+            });
+        } 
         @if (SelectablePatterns is not null)
         {
 
@@ -44,7 +56,10 @@
             {
                 <div class="col">
                     <input title="@item" name="@item" type="checkbox" @bind-value="@item.IsSelected" />
-                    @item.Name
+                    @{
+                        var values = ac.Where(t => t.Analyte.Trim().ToLower() == item.Name.Trim().ToLower()).FirstOrDefault();
+                    }
+                    @item.Name (@values.Count) 
                 </div>
                 if (i % 5 == 0)
                 {
@@ -60,16 +75,16 @@
                     @filler
                     i++;
                 }
-            } 
+            }
 
-            
+
         }
     </div>
 </div>
 <div class="=container">
     <div class="row">
         <div class="col-12 text-center">
-           
+
             <Badge Color="BadgeColor.Primary"> Make sure the batches <strong>do not have</strong> these cannabinoids:</Badge>
         </div>
     </div>
@@ -98,18 +113,18 @@
                     i++;
                 }
             }
-            
+
         }
 
     </div>
 </div>
+
 @{
-    public string anyorall;
     List<string> analyteswewant = SelectablePatterns.Where(sp => sp.IsSelected)
-                .Select(t1 => t1.Name.Trim().ToLower()).ToList();
+    .Select(t1 => t1.Name.Trim().ToLower()).ToList();
 
     List<string> analyteswewantnot = UnSelectablePatterns.Where(sp => sp.IsSelected)
-                .Select(t1 => t1.Name.Trim().ToLower()).ToList();
+    .Select(t1 => t1.Name.Trim().ToLower()).ToList();
 
     List<int?> batchidlist = new List<int?>();
     List<int?> batchidlistfiltered = new List<int?>();
@@ -118,20 +133,55 @@
     .Where(t =>
        analyteswewant
     .Contains(t.Analyte.Trim().ToLower()))
-    .Select(t=>t.BatchID)
+    .Select(t => t.BatchID)
     .ToList();
+    if (anyorall == "Any")
+    {
+        batchidlist = asthcvalue.THCValues
+        .Where(t =>
+           analyteswewant
+        .Contains(t.Analyte.Trim().ToLower()))
+        .Select(t => t.BatchID)
+        .ToList();
 
-     
+    }
+    else if (anyorall == "All")
+    {
+        bool all = false;
+        foreach (var b in batchidlist)
+        {
+            int countofA = 0;
+            List<AnalyteInBatch> alllist = new List<AnalyteInBatch>();
+
+            foreach (var analyte in asthcvalue.THCValues.Where(t => t.BatchID == b).Select(t => t.Analyte.Trim().ToLower()))
+            {
+                if (analyteswewant.Contains(analyte))
+                {
+                    countofA++;
+                }
+            }
+            if (countofA == analyteswewant.Count())
+            {
+                batchidlistfiltered.Add(b);
+            }
+        }
+
+
+    }
+    if (anyorall == "All" && batchidlist.Count() != batchidlistfiltered.Count())
+    {
+        batchidlist = batchidlistfiltered;
+    }
 
     batchidlistfiltered = asthcvalue.THCValues
     .Where(t => batchidlist.Contains(t.BatchID))
-    .Where(t =>
-        analyteswewantnot
-    .Contains(t.Analyte.Trim().ToLower()))
-    .Select(t=>t.BatchID)
-    .ToList();
+        .Where(t =>
+    analyteswewantnot
+        .Contains(t.Analyte.Trim().ToLower()))
+        .Select(t => t.BatchID)
+        .ToList();
 
-    List<int?> filteredbatches = new  List<int?>(); 
+    List<int?> filteredbatches = new List<int?>();
 
     foreach (int i in batchidlist)
     {
@@ -144,19 +194,21 @@
             filteredbatches.Add(i);
         }
     }
-     
+
 
     var batches = asbatch.Batches
         .OrderBy(t => asStrain.Strains.Where(t1 => t1.StrainId == t.StrainID).FirstOrDefault().StrainName)
         // .OrderByDescending(t => t.Date)
         .Where(t => filteredbatches.Contains(t.BatchId))
-        .ToList(); 
+        .ToList();
 }
 
 <div class="card">
     <div class="card-header">
-        <p class="card-title" style="mix-blend-mode:difference;color:white">List of Batches with
+        <p class="card-title" style="mix-blend-mode:difference;color:white">
+            List of Batches with
             <strong> @string.Join(",", SelectablePatterns.Where(sp => sp.IsSelected).Select(t => t.Name).ToList())  </strong>
+
             and not with
             <strong>   @string.Join(",", UnSelectablePatterns.Where(sp => sp.IsSelected).Select(t => t.Name).ToList())   </strong>
         </p>
@@ -179,7 +231,23 @@
     }
 }
 
+
 @code {
+
+    public class AnalyteInBatch { public int? batch; public string analyte; public bool contained; }
+    private String _anyorall = "Any";
+
+    public String anyorall
+    {
+        get => _anyorall;
+        set
+        {
+            _anyorall = value;
+            // Set the property of the ViewModel used in your Model Property of the EditContext or any other property/field
+
+        }
+    }
+
     public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandheader;
     public int? matrix { get; set; } = 5;
     public string? size { get; set; } = "small";
@@ -216,7 +284,7 @@
        .ToList();
 
         var distinctList = analytes.Distinct(
-            StringComparer.CurrentCultureIgnoreCase).ToList();
+        StringComparer.CurrentCultureIgnoreCase).ToList();
 
         SelectablePatterns = distinctList.Select(pat => new SelectablePattern { Name = pat }).ToList();
         UnSelectablePatterns = distinctList.Select(pat => new SelectablePattern { Name = pat }).ToList();

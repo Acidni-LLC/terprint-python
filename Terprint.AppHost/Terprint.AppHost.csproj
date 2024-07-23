@@ -10,7 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Terprint 3.Web\Terprint 3.Web.csproj" />
     <ProjectReference Include="..\Terprint.ApiService\Terprint.ApiService.csproj" />
     <ProjectReference Include="..\Terprint.Web\Terprint.Web.csproj" />
   </ItemGroup>
