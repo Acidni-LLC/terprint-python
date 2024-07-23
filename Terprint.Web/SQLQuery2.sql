@@ -9,3 +9,7 @@ select * from THCValues where [Percent] = 0
 select * from TerpeneValues where Value = 0
 --delete from THCValues where [Percent] = 0
 --delete from thcvalues where batchid = 87 in (58,59,60,61,62,63,64,65,66,67,68)
+
+select tv.TerpeneName,count(tv.TerpeneName) from TerpeneValues tv group by tv.TerpeneName order by count(tv.TerpeneName )  desc
+
+select t.Analyte,count(t.Analyte) from THCValues t group by t.Analyte order by count(t.Analyte)  desc
