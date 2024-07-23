@@ -3,6 +3,7 @@
 @inject common.AppState.StateContainer.Batch asbatch
 @inject common.AppState.StateContainer.Grower appstategrower
 @inject common.AppState.StateContainer.THCValue asthcvalue
+@inject common.AppState.StateContainer.Strain asStrain
 
 @rendermode InteractiveServer
 <h3>Cannabinoid Matcher</h3>
@@ -29,13 +30,15 @@
 <div class="=container">
     <div class="row">
         <div class="col-12 text-center">
-            <h5>  Find batches <block>with</block> the following cannabinoids;</h5>
+            <Badge Color="BadgeColor.Primary">  Find batches <strong>that have any</strong> of the following cannabinoids selected;</Badge>
+@*              (<InputRadio type="radio" TValue="string" id="anyorall" @Value="@anyorall" />Any <InputRadio type="radio" TValue="string" id="anyorall" @Value="@anyorall" /> All  ) *@
         </div>
     </div>
     <div class="row">
+        <div></div>
         @if (SelectablePatterns is not null)
         {
-            
+
             int i = 1;
             foreach (var item in SelectablePatterns)
             {
@@ -43,7 +46,7 @@
                     <input title="@item" name="@item" type="checkbox" @bind-value="@item.IsSelected" />
                     @item.Name
                 </div>
-                if (i % 5 ==0)
+                if (i % 5 == 0)
                 {
                     @rowend
 
@@ -57,21 +60,17 @@
                     @filler
                     i++;
                 }
-            }
-            <br />
+            } 
 
-            <div><b>Selected items:</b></div>
-            foreach (var item in SelectablePatterns.Where(sp => sp.IsSelected))
-            {
-                <div>@item.Name</div>
-            }
+            
         }
     </div>
 </div>
 <div class="=container">
     <div class="row">
         <div class="col-12 text-center">
-            <h5> Make sure the batches <strong>do not have</strong> these cannabinoids:</h5>
+           
+            <Badge Color="BadgeColor.Primary"> Make sure the batches <strong>do not have</strong> these cannabinoids:</Badge>
         </div>
     </div>
     <div class="row">
@@ -98,20 +97,93 @@
                     @filler
                     i++;
                 }
-            } 
-            <br />
-            <div><b>Selected items:</b></div>
-            foreach (var item in UnSelectablePatterns.Where(sp => sp.IsSelected))
-            {
-                <div>@item.Name</div>
             }
+            
         }
 
     </div>
 </div>
- 
+@{
+    public string anyorall;
+    List<string> analyteswewant = SelectablePatterns.Where(sp => sp.IsSelected)
+                .Select(t1 => t1.Name.Trim().ToLower()).ToList();
+
+    List<string> analyteswewantnot = UnSelectablePatterns.Where(sp => sp.IsSelected)
+                .Select(t1 => t1.Name.Trim().ToLower()).ToList();
+
+    List<int?> batchidlist = new List<int?>();
+    List<int?> batchidlistfiltered = new List<int?>();
+
+    batchidlist = asthcvalue.THCValues
+    .Where(t =>
+       analyteswewant
+    .Contains(t.Analyte.Trim().ToLower()))
+    .Select(t=>t.BatchID)
+    .ToList();
+
+     
+
+    batchidlistfiltered = asthcvalue.THCValues
+    .Where(t => batchidlist.Contains(t.BatchID))
+    .Where(t =>
+        analyteswewantnot
+    .Contains(t.Analyte.Trim().ToLower()))
+    .Select(t=>t.BatchID)
+    .ToList();
+
+    List<int?> filteredbatches = new  List<int?>(); 
+
+    foreach (int i in batchidlist)
+    {
+        if (batchidlistfiltered.Contains(i))
+        {
+
+        }
+        else
+        {
+            filteredbatches.Add(i);
+        }
+    }
+     
+
+    var batches = asbatch.Batches
+        .OrderBy(t => asStrain.Strains.Where(t1 => t1.StrainId == t.StrainID).FirstOrDefault().StrainName)
+        // .OrderByDescending(t => t.Date)
+        .Where(t => filteredbatches.Contains(t.BatchId))
+        .ToList(); 
+}
+
+<div class="card">
+    <div class="card-header">
+        <p class="card-title" style="mix-blend-mode:difference;color:white">List of Batches with
+            <strong> @string.Join(",", SelectablePatterns.Where(sp => sp.IsSelected).Select(t => t.Name).ToList())  </strong>
+            and not with
+            <strong>   @string.Join(",", UnSelectablePatterns.Where(sp => sp.IsSelected).Select(t => t.Name).ToList())   </strong>
+        </p>
+    </div>
+    <div class="card-body">
+        <h6>@batches.Count() Batches</h6>
+    </div>
+</div>
+@{
+    foreach (var batch in batches)
+    {
+
+        { bd = new ChooserBatch.BatchData() { batch = batch.Name, batchId = (int)batch.BatchId }; }
+        <div class="card">
+            <div class="card-body">
+                <TerprintTable @bind-batch="@batch.Name" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+            </div>
+        </div>
+
+    }
+}
 
 @code {
+    public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandheader;
+    public int? matrix { get; set; } = 5;
+    public string? size { get; set; } = "small";
+    public Components.ChooserBatch.BatchData bd = new ChooserBatch.BatchData();
     class SelectablePattern { public string Name; public bool IsSelected; }
     List<SelectablePattern> SelectablePatterns;
     List<SelectablePattern> UnSelectablePatterns;
