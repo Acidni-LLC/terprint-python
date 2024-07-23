@@ -62,47 +62,53 @@
             </div>
             <div class="row">
                 <div class="col-4">
+                <ul>
                     @{
                         List<string> s = new List<string>();
                         foreach (var r in sc.TerpsOnlyin1)
                         {
                             string terpcolor = "";
                             //co.GetTerpeneColor(r.Key.ToString().Trim());
-                            string m = "  <div class=\"badge\" ><h5 style=\"mix-blend-mode:difference;color:white\">" + r.Key.ToString() + "</h5></div> ";
+                                string m = "<li>" + r.Key.ToString() + "</li>";
                             s.Add(m);
                         }
 
                         MarkupString ms = (MarkupString)string.Join("", s);
                     }
                     @ms
+                    </ul>
                 </div>
                 <div class="col-4">
+                <ul>
                     @{
                         s = new List<string>();
                         foreach (var r in sc.TerpsinBoth)
                         {
                             string terpcolor = "";
                             //co.GetTerpeneColor(r.Key.ToString().Trim());
-                            string m = "  <div class=\"badge\" ><h5 style=\"mix-blend-mode:difference;color:white\">" + r.Key.ToString() + "</h5></div>  ";
+                                string m = "<li>" + r.Key.ToString() + "</li>";
                             s.Add(m);
                         }
                         ms = (MarkupString)string.Join("", s);
                     }
-                    @ms
+                        @ms
+                    </ul>
                 </div>
                 <div class="col-4">
+                <ul>
                     @{
                         s = new List<string>();
                         foreach (var r in sc.TerpsOnlyin2)
                         {
                             string terpcolor = "";
-                            //co.GetTerpeneColor(r.Key.ToString().Trim());
-                            string m = "  <div class=\"badge\" ><h5 style=\"mix-blend-mode:difference;color:white\">" + r.Key.ToString() + "</h5></div>  ";
+                                //co.GetTerpeneColor(r.Key.ToString().Trim());
+                                string m = "<li>" + r.Key.ToString() + "</li>";
                             s.Add(m);
                         }
                         ms = (MarkupString)string.Join("", s);
                     }
-                    @ms
+                        @ms
+                    </ul>
                 </div>
             </div>
 
