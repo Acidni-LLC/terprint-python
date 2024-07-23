@@ -1,0 +1,153 @@
+﻿@page "/CannabinoidMatcher"
+
+@inject common.AppState.StateContainer.Batch asbatch
+@inject common.AppState.StateContainer.Grower appstategrower
+@inject common.AppState.StateContainer.THCValue asthcvalue
+
+@rendermode InteractiveServer
+<h3>Cannabinoid Matcher</h3>
+
+
+
+@{
+    var analytes = asthcvalue.THCValues
+    .OrderBy(t => t.Analyte)
+    .Select(t =>
+        t.Analyte.Trim()
+
+    )
+    .Distinct()
+    .ToList();
+
+}
+
+@{
+
+    MarkupString rowend = new MarkupString("</div><div class=\"row\">");
+    MarkupString filler = new MarkupString("<div class=\"col\"> </div>");
+}
+<div class="=container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h5>  Find batches <block>with</block> the following cannabinoids;</h5>
+        </div>
+    </div>
+    <div class="row">
+        @if (SelectablePatterns is not null)
+        {
+            
+            int i = 1;
+            foreach (var item in SelectablePatterns)
+            {
+                <div class="col">
+                    <input title="@item" name="@item" type="checkbox" @bind-value="@item.IsSelected" />
+                    @item.Name
+                </div>
+                if (i % 5 ==0)
+                {
+                    @rowend
+
+                }
+                i++;
+            }
+            if (i < 24)
+            {
+                while (i <= 20)
+                {
+                    @filler
+                    i++;
+                }
+            }
+            <br />
+
+            <div><b>Selected items:</b></div>
+            foreach (var item in SelectablePatterns.Where(sp => sp.IsSelected))
+            {
+                <div>@item.Name</div>
+            }
+        }
+    </div>
+</div>
+<div class="=container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h5> Make sure the batches <strong>do not have</strong> these cannabinoids:</h5>
+        </div>
+    </div>
+    <div class="row">
+        @if (UnSelectablePatterns is not null)
+        {
+            int i = 1;
+            foreach (var item in UnSelectablePatterns)
+            {
+                <div class="col">
+                    <input title="@item" name="@item" type="checkbox" @bind-value="@item.IsSelected" />
+                    @item.Name
+                </div>
+                if (i % 5 == 0)
+                {
+                    @rowend
+
+                }
+                i++;
+            }
+            if (i < 24)
+            {
+                while (i <= 20)
+                {
+                    @filler
+                    i++;
+                }
+            } 
+            <br />
+            <div><b>Selected items:</b></div>
+            foreach (var item in UnSelectablePatterns.Where(sp => sp.IsSelected))
+            {
+                <div>@item.Name</div>
+            }
+        }
+
+    </div>
+</div>
+ 
+
+@code {
+    class SelectablePattern { public string Name; public bool IsSelected; }
+    List<SelectablePattern> SelectablePatterns;
+    List<SelectablePattern> UnSelectablePatterns;
+    public List<KeyValuePair<string, bool>> checkValues;
+    // public List<THCValue> cannbinoidList;
+    public void CheckChanged(ChangeEventArgs e)
+    {
+
+    }
+    public List<Batch> batchList;
+    public List<canValue> canvalues;
+    public canValue canvalue;
+
+
+    public InputSelect<canValue> cannabinoidList;
+
+    public class canValue
+    {
+        public string analyte;
+    }
+    protected override void OnInitialized()
+    {
+        var analytes = asthcvalue.THCValues
+       .OrderBy(t => t.Analyte)
+       .Select(t =>
+       t.Analyte.Trim()
+
+       )
+       .Distinct()
+       .ToList();
+
+        var distinctList = analytes.Distinct(
+            StringComparer.CurrentCultureIgnoreCase).ToList();
+
+        SelectablePatterns = distinctList.Select(pat => new SelectablePattern { Name = pat }).ToList();
+        UnSelectablePatterns = distinctList.Select(pat => new SelectablePattern { Name = pat }).ToList();
+    }
+
+}
