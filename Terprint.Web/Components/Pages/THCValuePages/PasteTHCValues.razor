@@ -88,22 +88,24 @@
             {
                 string sl = s;
                 int index = 0;
-                if (s.ToLower().Contains("delta-9") || s.ToLower().Contains("d9-thc") || s.ToLower().Contains("Δ9-thc") || s.ToLower().Contains("delta-9 thc"))
+                if (s.ToLower().Contains("delta-9") || s.ToLower().Contains("d9-thc") || s.ToLower().Contains("Δ9-thc") || s.ToLower().Contains("δ9-thc") || s.ToLower().Contains("delta-9 thc"))
                 {
-                    sl = s.ToLower().Replace("delta-9", "XXXXXXX");
                     sl = s.ToLower().Replace("delta-9 thc", "XXXXXXXXXXX");
-                    sl = s.ToLower().Replace("δ9-thc", "XXXXXX");
-                    sl = s.ToLower().Replace("d9-thc", "XXXXXX");
+                    sl = sl.ToLower().Replace("delta-9", "XXXXXXX");
+                    sl = sl.ToLower().Replace("δ9-thc", "XXXXXX");
+                    sl = sl.Replace("Δ9-thc", "XXXXXX"); 
+                    sl = sl.ToLower().Replace("d9-thc", "XXXXXX");
                     index = sl.IndexOf(sl.FirstOrDefault(char.IsNumber));
 
 
                 }
-                else if (s.ToLower().Contains("delta-8") || s.ToLower().Contains("d8-thc") || s.ToLower().Contains("Δ8-thc") || s.ToLower().Contains("delta-8 thc"))
+                else if (s.ToLower().Contains("delta-8") || s.ToLower().Contains("d8-thc") || s.ToLower().Contains("Δ8-thc") || s.ToLower().Contains("δ8-thc") || s.ToLower().Contains("delta-8 thc"))
                 {
-                    sl = s.ToLower().Replace("delta-8", "XXXXXXX");
                     sl = s.ToLower().Replace("delta-8 thc", "XXXXXXXXXXX");
-                    sl = s.ToLower().Replace("δ8-thc", "XXXXXX");
-                    sl = s.ToLower().Replace("d8-thc", "XXXXXX");
+                    sl = sl.ToLower().Replace("delta-8", "XXXXXXX");
+                    sl = sl.ToLower().Replace("δ8-thc", "XXXXXX");
+                    sl = sl.Replace("Δ8-thc", "XXXXXX");
+                    sl = sl.ToLower().Replace("d8-thc", "XXXXXX");
                     index = sl.IndexOf(sl.FirstOrDefault(char.IsNumber));
 
                 }
@@ -117,7 +119,7 @@
                 string secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
                 double thirddnum = 0;  
 
-                if (secondnum.ToLower().Contains("loq") || secondnum.ToLower().Contains("nd"))
+                if (secondnum.ToLower().Contains("loq") || secondnum.ToLower().Contains("lod") || secondnum.ToLower().Contains("nd"))
                 {
                     //no data
                 }
