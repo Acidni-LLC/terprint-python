@@ -12,8 +12,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Terprint.Web", "Terprint.We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Terprint.Tests", "Terprint.Tests\Terprint.Tests.csproj", "{88542AE5-A8F7-4AFA-946F-05DF886E188E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Terprint 3.Web", "Terprint 3.Web\Terprint 3.Web.csproj", "{DA7A932D-5A44-4BAC-B295-1229ADA3C053}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,10 +38,6 @@ Global
 		{88542AE5-A8F7-4AFA-946F-05DF886E188E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88542AE5-A8F7-4AFA-946F-05DF886E188E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88542AE5-A8F7-4AFA-946F-05DF886E188E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA7A932D-5A44-4BAC-B295-1229ADA3C053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA7A932D-5A44-4BAC-B295-1229ADA3C053}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA7A932D-5A44-4BAC-B295-1229ADA3C053}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA7A932D-5A44-4BAC-B295-1229ADA3C053}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

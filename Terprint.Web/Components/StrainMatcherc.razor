@@ -4,12 +4,13 @@
 @inject Terprint.Web.Data.TerprintWebContext2 DB2
 @inject NavigationManager nm
 @inject common.AppState.StateContainer.Strain asStrain
-@inject common.AppState.StateContainer.Batch asBatch
+@inject common.AppState.StateContainer.Batch asBatch 
+@inject common.AppState.StateContainer.TerpeneValue asTerpeneValue
 @rendermode InteractiveServer
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 text-center">
-            <h3>Strain Compare</h3>
+            <h3>Strain Matcher</h3>
         </div>
     </div>
     @{
@@ -24,7 +25,7 @@
     }
     <div class="row">
         <div class="col-md-6 col-12">
-            <h3>Strain 1</h3>
+            <h3>Select Strain</h3>
             <InputSelect id="strain1" class="m-0 form-control" @bind-Value="@strainid1" @oninput="OnStrainId1Changed">
 
                 @foreach (var b in strains1)
@@ -34,58 +35,50 @@
 
             </InputSelect>
         </div>
-        <div class="col-md-6 col-12">
-            <h3>Strain 2</h3>
-            <InputSelect id="strain2" class="m-0 form-control" @bind-Value="@strainid2" @oninput="OnStrainid2Changed">
-                @foreach (var b in strains2)
-                {
-                    <option value=@b.StrainId @onselect="() => strainid2 = (int)b.StrainId">@b.StrainName</option>
-                }
-            </InputSelect>
-        </div>
-    </div>
-    <div class="row">
-        <div class=" col-4">
-            Terpenes in Strain 1 <br /> not in Strain 2
-        </div> 
-        <div class=" col-4">
-            Terpenes in both strains  
-        </div> 
-        <div class=" col-4">
-
-            Terpenes in Strain 2 <br />not in Strain 1
-        </div>
-    </div>
-    <div class="row">
-        <div class=" col-12">
-            @{
-                foreach (var r in asBatch.Batches.Where(t => t.StrainID == strainid1).ToList())
-                {
-
-                    ChooserBatch.BatchData bd = new ChooserBatch.BatchData() { batch = r.Name, batchId = (int)r.BatchId };
-                    <div class="card">
-                        <div class="card-body">
-                            <TerprintTable @bind-batch="@bd.batch" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-        <div class="  col-12">
-            @{
-                foreach (var r in DB.Batch.Where(t => t.StrainID == strainid2).ToList())
-                {
-                    ChooserBatch.BatchData bd = new ChooserBatch.BatchData() { batch = r.Name, batchId = (int)r.BatchId };
-                    <div class="card">
-                        <div class="card-body">
-                            <TerprintTable @bind-batch="@bd.batch" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
-                        </div>
-                    </div>
-                }
-            }
-        </div>
     </div>
 </div>
+<div class="row">
+    <div class=" col-12">
+        @{
+            //match to strains with the same terpenes or cannabinoids - for now terpenes
+            var batches = asBatch.Batches.Where(t => t.StrainID == strainid1).Select(t=>t.BatchId).ToList();
+            List<string> terpenes = new List<string>();
+            foreach (var tv in asTerpeneValue.TerpeneValues.Where(t => batches.Contains(t.BatchID)).ToList())
+            {
+                terpenes.Add(tv.TerpeneName);
+            }
+             
+
+
+            foreach (var r in asBatch.Batches.Where(t => t.StrainID == strainid1).ToList())
+            {
+
+                ChooserBatch.BatchData bd = new ChooserBatch.BatchData() { batch = r.Name, batchId = (int)r.BatchId };
+                <div class="card">
+                    <div class="card-body">
+                        <TerprintTable @bind-batch="@bd.batch" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class=" col-4">
+                                Terpenes in Strain 1 <br /> not in Strain 2
+                            </div>
+                            <div class=" col-4">
+                                Terpenes in both strains
+                            </div>
+                            <div class=" col-4">
+
+                                Terpenes in Strain 2 <br />not in Strain 1
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+        }
+    </div>
+</div> 
 @code {
 
 
