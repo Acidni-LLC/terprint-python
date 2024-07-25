@@ -84,7 +84,7 @@
         await DB.THCValues.AddRangeAsync(THCValues);
         await DB.SaveChangesAsync();
         asthcvalues.THCValues.AddRange(THCValues);
-        NavigationManager.NavigateTo("/StrainProfile?strain=" + System.Web.HttpUtility.UrlEncode((strain)));
+        NavigationManager.NavigateTo("/StrainProfile?strain=" + System.Web.HttpUtility.UrlEncode((strain)),true);
     }
     private void ParseValues()
     {

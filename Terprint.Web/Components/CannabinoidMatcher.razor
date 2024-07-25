@@ -133,6 +133,7 @@
     .Where(t =>
        analyteswewant
     .Contains(t.Analyte.Trim().ToLower()))
+        .OrderByDescending(t => t.Percent)
     .Select(t => t.BatchID)
     .ToList();
     if (anyorall == "Any")
@@ -141,6 +142,7 @@
         .Where(t =>
            analyteswewant
         .Contains(t.Analyte.Trim().ToLower()))
+        .OrderByDescending(t => t.Percent)
         .Select(t => t.BatchID)
         .ToList();
 

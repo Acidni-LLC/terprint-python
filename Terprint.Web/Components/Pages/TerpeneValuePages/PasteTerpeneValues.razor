@@ -84,6 +84,11 @@
                 {
                     s = st.Replace("/t", " ");
                 }
+                if (s.Contains("3-CARENE"))
+                {
+                    s = st.Replace("3-CARENE", "T-CARENE");
+                }
+
                 if (s.ToLower().Contains("nd") || s.ToLower().Contains("loq"))
                 {
 
@@ -96,6 +101,10 @@
                     if (inputformat == "1")
                     {
                         int index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
+                        if (s.Contains("T-CARENE"))
+                        {
+                            s = st.Replace("T-CARENE", "3-CARENE");
+                        }
                         string name = s.Substring(0, index).Trim();
                         string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
                         secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
@@ -105,6 +114,10 @@
                     else if (inputformat == "2" || inputformat == "3")
                     {
                         int index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
+                        if (s.Contains("T-CARENE"))
+                        {
+                            s = st.Replace("T-CARENE", "3-CARENE");
+                        }
                         string name = s.Substring(0, index).Trim();
                         string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
                         if (inputformat == "2")
