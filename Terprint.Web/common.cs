@@ -1069,6 +1069,7 @@ namespace Terprint.Web
                         else if (m.Name == "β-Caryophyllene") { m.NamesOther.Add("e-caryophyllene"); m.NamesOther.Add("beta-caryophyllene"); }
                         else if (m.Name == "β-Myrcene") { m.NamesOther.Add("beta-myrcene"); }
                         else if (m.Name == "β-Pinene") { m.NamesOther.Add("beta-pinene"); }
+                        else if (m.Name == "α-Terpinene") { m.NamesOther.Add("alpha-terpinene"); }
 
                     }
 
