@@ -6,6 +6,8 @@
 @inject NavigationManager NavigationManager
 @inject common.AppState appstate
 @inject common.AppState.StateContainer.THCValue asthcvalues
+@inject common.AppState.StateContainer.Strain asStrain
+@inject common.AppState.StateContainer.Batch asBatch
 @using Terprint.Web.Models
 <PageTitle>Paste THC Values</PageTitle>
 <h3>Paste THC Values</h3>
@@ -14,7 +16,11 @@
     <div class="form-group">
         @{
             // terpeneValues = DB2.TerpeneValues.ToList();
-
+            if (TerpeneValue.BatchID != null)
+            {
+            strain = asStrain.Strains.Where(t => t.StrainId == asBatch.Batches.Where(t1 => t1.BatchId == TerpeneValue.BatchID).FirstOrDefault().StrainID).FirstOrDefault().StrainName;
+                
+            }
         }
         <p>
             Please choose the input format
@@ -23,11 +29,12 @@
             <option value="1">1 [Analyte][ ][Dilution (1:n)][ ][LOD (%)][ ][LOQ (%)][ ][Result (mg/g)]{ ][(%)] </option>
             <option value="2">2 [Analyte][ ][LOD (MG/G)][ ][RESULT (MG/G)][ ][RESULT % (TOTAL)]</option>
             <option value="3">3 [Analyte][ ][LOD (MG/G)][ ][RESULT %][ ][RESULT (MG/G)]</option>
+            <option value="4">4 [D9-THC THCA CBD CBDA D8-THC CBG CBGA CBN THCV CBDV CBC]</option>
         </InputSelect>
         <Terprint.Web.Components.ChooserBatch></Terprint.Web.Components.ChooserBatch>
 
         <label class="control-label">THC Values</label>
-        <InputTextArea id="tva" @bind-Value="@tv" class="form-control" rows="10">@string.Join("\n ", DB2.THCValues.Select(t => t.Analyte).ToList())</InputTextArea>
+        <InputTextArea id="tva" @bind-Value="@tv" class="form-control" rows="10">@string.Join("\n ", asthcvalues.THCValues.Select(t => t.Analyte).ToList())</InputTextArea>
     </div>
     <button type="submit" class="btn btn-primary">Add Values</button>
 </EditForm>
@@ -40,6 +47,7 @@
     </Authorized>
 </AuthorizeView>
 @code {
+    public string strain = "";
     public string userid { get; set; }
     [SupplyParameterFromForm]
     public string inputformat { get; set; } = new("");
@@ -72,88 +80,150 @@
         //DB2.DisposeAsync();
 
         ParseValues();
+       // return;
         await DB.THCValues.AddRangeAsync(THCValues);
         await DB.SaveChangesAsync();
         asthcvalues.THCValues.AddRange(THCValues);
-        NavigationManager.NavigateTo("/thcvalues");
+        NavigationManager.NavigateTo("/StrainProfile?strain=" + System.Web.HttpUtility.UrlEncode((strain)));
     }
     private void ParseValues()
     {
         var longlist = tv;
         var result = tv.Split(new[] { '\n' });
         THCValues = new List<THCValue>();
+        List<THCValue> THCValuesfor4 = new List<THCValue>();
+        int i = 1;
+        int ii = -1;
         foreach (string s in result)
         {
-            if (s.Length > 0)
+            THCValue THCValue = new THCValue();
+            if (inputformat == "4")
             {
-                string sl = s;
-                int index = 0;
-                if (s.ToLower().Contains("delta-9") || s.ToLower().Contains("d9-thc") || s.ToLower().Contains("Δ9-thc") || s.ToLower().Contains("δ9-thc") || s.ToLower().Contains("delta-9 thc"))
+                if (i == 1)
                 {
-                    sl = s.ToLower().Replace("delta-9 thc", "XXXXXXXXXXX");
-                    sl = sl.ToLower().Replace("delta-9", "XXXXXXX");
-                    sl = sl.ToLower().Replace("δ9-thc", "XXXXXX");
-                    sl = sl.Replace("Δ9-thc", "XXXXXX"); 
-                    sl = sl.ToLower().Replace("d9-thc", "XXXXXX");
-                    index = sl.IndexOf(sl.FirstOrDefault(char.IsNumber));
-
-
-                }
-                else if (s.ToLower().Contains("delta-8") || s.ToLower().Contains("d8-thc") || s.ToLower().Contains("Δ8-thc") || s.ToLower().Contains("δ8-thc") || s.ToLower().Contains("delta-8 thc"))
-                {
-                    sl = s.ToLower().Replace("delta-8 thc", "XXXXXXXXXXX");
-                    sl = sl.ToLower().Replace("delta-8", "XXXXXXX");
-                    sl = sl.ToLower().Replace("δ8-thc", "XXXXXX");
-                    sl = sl.Replace("Δ8-thc", "XXXXXX");
-                    sl = sl.ToLower().Replace("d8-thc", "XXXXXX");
-                    index = sl.IndexOf(sl.FirstOrDefault(char.IsNumber));
-
-                }
-                else
-                {
-                    index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
-
-                }
-                string name = s.Substring(0, index).Trim();
-                string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
-                string secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
-                double thirddnum = 0;  
-
-                if (secondnum.ToLower().Contains("loq") || secondnum.ToLower().Contains("lod") || secondnum.ToLower().Contains("nd"))
-                {
-                    //no data
-                }
-                else
-                {
-                    THCValue THCValue = new THCValue();
-                    if (inputformat == "1")
+                    foreach (var name in s.Split(" ").ToList())
                     {
-
-                        string fourthnum = s.Substring(index, s.Length - index).Split(" ")[3].Replace("%", "");
-                        double fifthnum = 0;
-                        double.TryParse(s.Substring(index, s.Length - index).Split(" ")[4].Replace("%", ""), out fifthnum);
-                        THCValue = new THCValue() { Analyte = name, Dilution = firstnum, LOD = secondnum, LOQ = thirddnum.ToString(), Result = fourthnum, Percent = fifthnum, BatchID = TerpeneValue.BatchID };
+                        THCValue = new THCValue();
+                        THCValue.Analyte = name;
+                        THCValue.BatchID = TerpeneValue.BatchID;
+                        THCValue.createdby =userid;
+                        THCValuesfor4.Add(THCValue);
                     }
-                    else if (inputformat == "2")
+                }
+                else if (i == 2)
+                {
+                    List<string> firstnum = s.Split(" ").ToList();
+                    foreach (var percent in s.Split(" ").ToList())
                     {
+                        if (percent.Contains("%") == false && percent.Contains("ND") == false)
+                        {
+                            THCValuesfor4[ii].Percent = double.Parse(percent);
 
-                        double.TryParse(s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", ""), out thirddnum);
-                        THCValue = new THCValue() { Analyte = name, LOD = firstnum, Result = secondnum, Percent = thirddnum, BatchID = TerpeneValue.BatchID };
+                        }
+                        else
+                        {
+
+                        }
+                        ii++;
                     }
-                    else if (inputformat == "3")
+                    ii = -1;
+                }
+                else if (i == 3)
+                {
+                    List<string> firstnum = s.Split(" ").ToList();
+                    foreach (var mgu in s.Split(" ").ToList())
                     {
-                        double.TryParse(s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", ""), out thirddnum);
+                        if (mgu.ToLower().Contains("mg/unit") == false  )
+                        {
+                            THCValuesfor4[ii].Result = mgu;
 
-                        THCValue = new THCValue() { Analyte = name, LOD = firstnum, Result = thirddnum.ToString(), Percent = double.Parse(secondnum), BatchID = TerpeneValue.BatchID };
+                        }
+                        ii++;
                     }
+                }
+                else if (i == 4)
+                {
 
-                    THCValue.createdby = userid;
-                    THCValues.Add(THCValue);
+                    THCValues = THCValuesfor4.Where(t1=>t1.Percent!=0).ToList();
+                }
+                i++;
+            }
+            else
+            {
+
+                if (s.Length > 0)
+
+                {
+
+
+                    string sl = s;
+                    int index = 0;
+                    if (s.ToLower().Contains("delta-9") || s.ToLower().Contains("d9-thc") || s.ToLower().Contains("Δ9-thc") || s.ToLower().Contains("delta-9 thc"))
+                    {
+                        sl = s.ToLower().Replace("delta-9", "XXXXXXX");
+                        sl = s.ToLower().Replace("delta-9 thc", "XXXXXXXXXXX");
+                        sl = s.ToLower().Replace("δ9-thc", "XXXXXX");
+                        sl = s.ToLower().Replace("d9-thc", "XXXXXX");
+                        index = sl.IndexOf(sl.FirstOrDefault(char.IsNumber));
+
+
+                    }
+                    else if (s.ToLower().Contains("delta-8") || s.ToLower().Contains("d8-thc") || s.ToLower().Contains("Δ8-thc") || s.ToLower().Contains("delta-8 thc"))
+                    {
+                        sl = s.ToLower().Replace("delta-8", "XXXXXXX");
+                        sl = s.ToLower().Replace("delta-8 thc", "XXXXXXXXXXX");
+                        sl = s.ToLower().Replace("δ8-thc", "XXXXXX");
+                        sl = s.ToLower().Replace("d8-thc", "XXXXXX");
+                        index = sl.IndexOf(sl.FirstOrDefault(char.IsNumber));
+
+                    }
+                    else
+                    {
+                        index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
+
+                    }
+                    string name = s.Substring(0, index).Trim();
+                    string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
+                    string secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
+                    double thirddnum = 0;
+
+                    if (secondnum.ToLower().Contains("loq") || secondnum.ToLower().Contains("nd"))
+                    {
+                        //no data
+                    }
+                    else
+                    {
+                        THCValue = new THCValue();
+                        if (inputformat == "1")
+                        {
+
+                            string fourthnum = s.Substring(index, s.Length - index).Split(" ")[3].Replace("%", "");
+                            double fifthnum = 0;
+                            double.TryParse(s.Substring(index, s.Length - index).Split(" ")[4].Replace("%", ""), out fifthnum);
+                            THCValue = new THCValue() { Analyte = name, Dilution = firstnum, LOD = secondnum, LOQ = thirddnum.ToString(), Result = fourthnum, Percent = fifthnum, BatchID = TerpeneValue.BatchID };
+                        }
+                        else if (inputformat == "2")
+                        {
+
+                            double.TryParse(s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", ""), out thirddnum);
+                            THCValue = new THCValue() { Analyte = name, LOD = firstnum, Result = secondnum, Percent = thirddnum, BatchID = TerpeneValue.BatchID };
+                        }
+                        else if (inputformat == "3")
+                        {
+                            double.TryParse(s.Substring(index, s.Length - index).Split(" ")[2].Replace("%", ""), out thirddnum);
+
+                            THCValue = new THCValue() { Analyte = name, LOD = firstnum, Result = thirddnum.ToString(), Percent = double.Parse(secondnum), BatchID = TerpeneValue.BatchID };
+                        }
+
+                        THCValue.createdby = userid;
+                        THCValues.Add(THCValue);
+
+                    }
+                    // THCValues.Add(new THCValue() { Name = name, Value = Convert.ToDouble(secondnum), BatchID = THCValue.BatchID });
+                    //THCValues.Add(new THCValue() { Name = name, Value = Convert.ToDouble(secondnum), BatchID = THCValue.BatchID });
+
 
                 }
-                // THCValues.Add(new THCValue() { Name = name, Value = Convert.ToDouble(secondnum), BatchID = THCValue.BatchID });
-                //THCValues.Add(new THCValue() { Name = name, Value = Convert.ToDouble(secondnum), BatchID = THCValue.BatchID });
-
 
             }
         }
