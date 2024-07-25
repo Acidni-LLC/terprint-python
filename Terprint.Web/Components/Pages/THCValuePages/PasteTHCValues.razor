@@ -18,8 +18,8 @@
             // terpeneValues = DB2.TerpeneValues.ToList();
             if (TerpeneValue.BatchID != null)
             {
-            strain = asStrain.Strains.Where(t => t.StrainId == asBatch.Batches.Where(t1 => t1.BatchId == TerpeneValue.BatchID).FirstOrDefault().StrainID).FirstOrDefault().StrainName;
-                
+                strain = asStrain.Strains.Where(t => t.StrainId == asBatch.Batches.Where(t1 => t1.BatchId == TerpeneValue.BatchID).FirstOrDefault().StrainID).FirstOrDefault().StrainName;
+
             }
         }
         <p>
@@ -80,11 +80,11 @@
         //DB2.DisposeAsync();
 
         ParseValues();
-       // return;
+        // return;
         await DB.THCValues.AddRangeAsync(THCValues);
         await DB.SaveChangesAsync();
         asthcvalues.THCValues.AddRange(THCValues);
-        NavigationManager.NavigateTo("/StrainProfile?strain=" + System.Web.HttpUtility.UrlEncode((strain)),true);
+        NavigationManager.NavigateTo("/StrainProfile?strain=" + System.Web.HttpUtility.UrlEncode((strain)), true);
     }
     private void ParseValues()
     {
@@ -106,7 +106,7 @@
                         THCValue = new THCValue();
                         THCValue.Analyte = name;
                         THCValue.BatchID = TerpeneValue.BatchID;
-                        THCValue.createdby =userid;
+                        THCValue.createdby = userid;
                         THCValuesfor4.Add(THCValue);
                     }
                 }
@@ -133,7 +133,7 @@
                     List<string> firstnum = s.Split(" ").ToList();
                     foreach (var mgu in s.Split(" ").ToList())
                     {
-                        if (mgu.ToLower().Contains("mg/unit") == false  )
+                        if (mgu.ToLower().Contains("mg/unit") == false)
                         {
                             THCValuesfor4[ii].Result = mgu;
 
@@ -144,7 +144,7 @@
                 else if (i == 4)
                 {
 
-                    THCValues = THCValuesfor4.Where(t1=>t1.Percent!=0).ToList();
+                    THCValues = THCValuesfor4.Where(t1 => t1.Percent != 0).ToList();
                 }
                 i++;
             }
@@ -158,30 +158,45 @@
 
                     string sl = s;
                     int index = 0;
-                    if (s.ToLower().Contains("delta-9") || s.ToLower().Contains("d9-thc") || s.ToLower().Contains("Δ9-thc") || s.ToLower().Contains("delta-9 thc"))
+                    if (s.ToLower().Contains("delta-9"))
                     {
                         sl = s.ToLower().Replace("delta-9", "XXXXXXX");
-                        sl = s.ToLower().Replace("delta-9 thc", "XXXXXXXXXXX");
-                        sl = s.ToLower().Replace("δ9-thc", "XXXXXX");
-                        sl = s.ToLower().Replace("d9-thc", "XXXXXX");
-                        index = sl.IndexOf(sl.FirstOrDefault(char.IsNumber));
-
 
                     }
-                    else if (s.ToLower().Contains("delta-8") || s.ToLower().Contains("d8-thc") || s.ToLower().Contains("Δ8-thc") || s.ToLower().Contains("delta-8 thc"))
+                    if (s.ToLower().Contains("d9-thc"))
+                    {
+                        sl = s.ToLower().Replace("d9-thc", "XXXXXX");
+                    }
+                    if (s.ToLower().Contains("δ9-thc"))
+                    {
+                        sl = s.ToLower().Replace("δ9-thc", "XXXXXX");
+                    }
+                    if (s.ToLower().Contains("delta-9 thc"))
+                    {
+                        sl = s.ToLower().Replace("delta-9 thc", "XXXXXXXXXXX");
+
+                    }
+                    if (s.ToLower().Contains("delta-8"))
                     {
                         sl = s.ToLower().Replace("delta-8", "XXXXXXX");
-                        sl = s.ToLower().Replace("delta-8 thc", "XXXXXXXXXXX");
-                        sl = s.ToLower().Replace("δ8-thc", "XXXXXX");
-                        sl = s.ToLower().Replace("d8-thc", "XXXXXX");
-                        index = sl.IndexOf(sl.FirstOrDefault(char.IsNumber));
 
                     }
-                    else
+                    if (s.ToLower().Contains("d8-thc"))
                     {
-                        index = s.IndexOf(s.FirstOrDefault(char.IsNumber));
+                        sl = s.ToLower().Replace("d8-thc", "XXXXXX");
+                    }
+                    if (s.ToLower().Contains("δ8-thc"))
+                    {
+                        sl = s.ToLower().Replace("δ8-thc", "XXXXXX");
+                    }
+                    if (s.ToLower().Contains("delta-8 thc"))
+                    {
+                        sl = s.ToLower().Replace("delta-8 thc", "XXXXXXXXXXX");
 
                     }
+                    index = sl.IndexOf(sl.FirstOrDefault(char.IsNumber));
+
+
                     string name = s.Substring(0, index).Trim();
                     string firstnum = s.Substring(index, s.Length - index).Split(" ")[0];
                     string secondnum = s.Substring(index, s.Length - index).Split(" ")[1].Replace("%", "");
