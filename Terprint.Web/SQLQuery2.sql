@@ -3,6 +3,10 @@
 select * from batch where name ='18347_0004 808376'
 
 select * from thcvalues where  batchid = 87
+select top(100)* from thcvalues order by batchid desc
+select top(100)* from thcvalues order by batchid desc
+
+select s.StrainName,b.* from batch b join strain s on b.StrainID=s.StrainId where b.BatchId not in (Select BatchId from THCValues)
 
 select * from THCValues where batchid = (select batchid from batch where name ='1223298389111661') 
 select * from THCValues where [Percent] = 0
