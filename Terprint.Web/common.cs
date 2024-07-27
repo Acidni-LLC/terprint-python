@@ -96,44 +96,50 @@ namespace Terprint.Web
             private void LoadMatrixes()
             {
                 Terpenes Terpenes = new Terpenes();
-                int id= 1;
+                int id = 1;
                 foreach (var md in MatrixDefinitionList)
-                { int row = 0;
-                    while(row <=   md.rows)
+                {
+                    int row = 1;
+                    while (row <= md.rows)
                     {
-                        int col = 0;
+                        int col = 1;
 
-                        while( col <= md.columns)
+                        while (col <= md.columns)
                         {
-                            Terpenes.Terpene t = Terpenes.TerpeneList.Where(t => t.Id == id).FirstOrDefault(); 
+                            if (Terpenes.TerpeneList.Where(t => t.Id == id).FirstOrDefault() != null)
+                            {
+                                Terpenes.Terpene t = Terpenes.TerpeneList.Where(t => t.Id == id).FirstOrDefault();
                                 MatrixList.Add(new Matrix()
                                 {
-                                    Terpene = t ,
-                                    MatrixDefinitionid=md.id,
-                                    id=id,
-                                    column=col,
-                                    row=row
+                                    Terpene = t,
+                                    MatrixDefinitionid = md.id,
+                                    id = id,
+                                    column = col,
+                                    row = row
 
                                 });
-                                id++;
-                           
+
+                            }
+                            id++;
+
+
                             col++;
                         }
                         row++;
                     }
                 }
             }
-                private void LoadMatrixDefinitions()
+            private void LoadMatrixDefinitions()
             {
                 MatrixDefinitionList.Add(new MatrixDefinition() { id = 1, rows = 6, columns = 6 });
                 MatrixDefinitionList.Add(new MatrixDefinition() { id = 2, rows = 11, columns = 3 });
                 MatrixDefinitionList.Add(new MatrixDefinition() { id = 3, rows = 17, columns = 2 });
                 MatrixDefinitionList.Add(new MatrixDefinition() { id = 4, rows = 34, columns = 1 });
-                MatrixDefinitionList.Add(new MatrixDefinition() { id = 5, rows = 1, columns = 34 }); 
+                MatrixDefinitionList.Add(new MatrixDefinition() { id = 5, rows = 1, columns = 34 });
             }
-            public List<Matrix> MatrixList {get;set; }
+            public List<Matrix> MatrixList { get; set; }
             public List<MatrixDefinition> MatrixDefinitionList { get; set; }
-            public class Matrix 
+            public class Matrix
             {
                 public int id { get; set; }
                 public int MatrixDefinitionid { get; set; }
@@ -151,11 +157,11 @@ namespace Terprint.Web
         public class Terpenes
         {
             public List<Terpene> TerpeneList { get; set; }
-            public  Terpenes()
+            public Terpenes()
             {
                 TerpeneList = new List<Terpene>();
 
-                TerpeneList.Add(new Terpene() { TerpeneName = "(R)-(+)-Limonene", Color = "#008000", Id = 1, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "δ-Limonene", Color = "#008000", Id = 1, OtherNames = { "d-limonene", "(r)-(+)-limonene", "limonene", "(r)-( )-limonene" } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Camphene", Color = "#33CC33", Id = 2, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Caryophyllene Oxide", Color = "#66FF66", Id = 3, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Eucalyptol", Color = "#CCFFCC", Id = 4, OtherNames = { } });
@@ -165,7 +171,7 @@ namespace Terprint.Web
                 TerpeneList.Add(new Terpene() { TerpeneName = "Isopulegol", Color = "#FFCCCC", Id = 8, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Linalool", Color = "#FF7C80", Id = 9, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Menthol", Color = "#CC0000", Id = 10, OtherNames = { } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "δ-Limonene", Color = "#66CCFF", Id = 11, OtherNames = { "d-limonene", "(r)-(+)-limonene", "limonene", "(r)-( )-limonene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Geranyl Acetate", Color = "#996633", Id = 11, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Terpineol", Color = "#0066FF", Id = 12, OtherNames = { "total terpineol", "alpha-terpineol" } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Terpinolene", Color = "#0000CC", Id = 13, OtherNames = { "alpha-terpinolene" } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Valencene", Color = "#006666", Id = 14, OtherNames = { } });
@@ -187,7 +193,6 @@ namespace Terprint.Web
                 TerpeneList.Add(new Terpene() { TerpeneName = "Borneol", Color = "#99FF33", Id = 30, OtherNames = { "isoborneol" } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Sabinene", Color = "#C0C0C0", Id = 31, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Farnesene", Color = "#00CC99", Id = 32, OtherNames = { } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "Geranyl Acetate", Color = "#996633", Id = 33, OtherNames = { } });
 
 
             }
@@ -201,7 +206,7 @@ namespace Terprint.Web
                 public string Color { get; set; }
                 public int Id { get; set; }
                 public List<string> OtherNames { get; set; }
-                
+
 
             }
         }
