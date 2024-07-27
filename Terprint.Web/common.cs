@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.Extensions.Caching.Distributed;
 using Terprint.Web.Components;
 using StackExchange.Redis;
+using System.Composition.Convention;
 
 
 namespace Terprint.Web
@@ -83,9 +84,127 @@ namespace Terprint.Web
             }
             return s;
         }
+        public class Matrixes
+        {
+            public Matrixes()
+            {
+                MatrixList = new List<Matrix>();
+                MatrixDefinitionList = new List<MatrixDefinition>();
+                LoadMatrixDefinitions();
+                LoadMatrixes();
+            }
+            private void LoadMatrixes()
+            {
+                Terpenes Terpenes = new Terpenes();
+                int id= 1;
+                foreach (var md in MatrixDefinitionList)
+                { int row = 0;
+                    while(row <=   md.rows)
+                    {
+                        int col = 0;
+
+                        while( col <= md.columns)
+                        {
+                            Terpenes.Terpene t = Terpenes.TerpeneList.Where(t => t.Id == id).FirstOrDefault(); 
+                                MatrixList.Add(new Matrix()
+                                {
+                                    Terpene = t ,
+                                    MatrixDefinitionid=md.id,
+                                    id=id,
+                                    column=col,
+                                    row=row
+
+                                });
+                                id++;
+                           
+                            col++;
+                        }
+                        row++;
+                    }
+                }
+            }
+                private void LoadMatrixDefinitions()
+            {
+                MatrixDefinitionList.Add(new MatrixDefinition() { id = 1, rows = 6, columns = 6 });
+                MatrixDefinitionList.Add(new MatrixDefinition() { id = 2, rows = 11, columns = 3 });
+                MatrixDefinitionList.Add(new MatrixDefinition() { id = 3, rows = 17, columns = 2 });
+                MatrixDefinitionList.Add(new MatrixDefinition() { id = 4, rows = 34, columns = 1 });
+                MatrixDefinitionList.Add(new MatrixDefinition() { id = 5, rows = 1, columns = 34 }); 
+            }
+            public List<Matrix> MatrixList {get;set; }
+            public List<MatrixDefinition> MatrixDefinitionList { get; set; }
+            public class Matrix 
+            {
+                public int id { get; set; }
+                public int MatrixDefinitionid { get; set; }
+                public int row { get; set; }
+                public int column { get; set; }
+                public Terpenes.Terpene Terpene { get; set; }
+            }
+            public class MatrixDefinition
+            {
+                public int id { get; set; }
+                public int rows { get; set; }
+                public int columns { get; set; }
+            }
+        }
+        public class Terpenes
+        {
+            public List<Terpene> TerpeneList { get; set; }
+            public  Terpenes()
+            {
+                TerpeneList = new List<Terpene>();
+
+                TerpeneList.Add(new Terpene() { TerpeneName = "(R)-(+)-Limonene", Color = "#008000", Id = 1, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Camphene", Color = "#33CC33", Id = 2, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Caryophyllene Oxide", Color = "#66FF66", Id = 3, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Eucalyptol", Color = "#CCFFCC", Id = 4, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Fenchyl Alcohol", Color = "#FFCCFF", Id = 5, OtherNames = { "endo-fenchyl alcohol" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Geraniol", Color = "#FF99FF", Id = 6, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Guaiol", Color = "#CC00CC", Id = 7, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Isopulegol", Color = "#FFCCCC", Id = 8, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Linalool", Color = "#FF7C80", Id = 9, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Menthol", Color = "#CC0000", Id = 10, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "δ-Limonene", Color = "#66CCFF", Id = 11, OtherNames = { "d-limonene", "(r)-(+)-limonene", "limonene", "(r)-( )-limonene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Terpineol", Color = "#0066FF", Id = 12, OtherNames = { "total terpineol", "alpha-terpineol" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Terpinolene", Color = "#0000CC", Id = 13, OtherNames = { "alpha-terpinolene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Valencene", Color = "#006666", Id = 14, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "cis-Nerolidol", Color = "#339966", Id = 15, OtherNames = { "e-nerolidol", "trans-nerolidol" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "cis-Ocimene", Color = "#00CC00", Id = 16, OtherNames = { "ocimenes", "ocimene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "p-Cymene", Color = "#FF6699", Id = 17, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "trans-Caryophyllene", Color = "#FF3399", Id = 18, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "trans-Nerolidol", Color = "#CC3399", Id = 19, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "trans-Ocimene", Color = "#7030A0", Id = 20, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "α-Bisabolol", Color = "#002060", Id = 21, OtherNames = { "alpha-bisabolol" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "α-Humulene", Color = "#0070C0", Id = 22, OtherNames = { "alpha-humulene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "α-Pinene", Color = "#00B0F0", Id = 23, OtherNames = { "alpha-pinene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "α-Terpinene", Color = "#00B050", Id = 24, OtherNames = { "alpha-terpinene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "β-Caryophyllene", Color = "#92D050", Id = 25, OtherNames = { "e-caryophyllene", "beta-caryophyllene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "β-Myrcene", Color = "#FFFF00", Id = 26, OtherNames = { "beta-myrcene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "β-Pinene", Color = "#FFC000", Id = 27, OtherNames = { "beta-pinene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "γ-Terpinene", Color = "#FF0000", Id = 28, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "δ-3-Carene", Color = "#C00000", Id = 29, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Borneol", Color = "#99FF33", Id = 30, OtherNames = { "isoborneol" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Sabinene", Color = "#C0C0C0", Id = 31, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Farnesene", Color = "#00CC99", Id = 32, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Geranyl Acetate", Color = "#996633", Id = 33, OtherNames = { } });
 
 
-        public enum TerpeneList { };
+            }
+            public class Terpene
+            {
+                public Terpene()
+                {
+
+                }
+                public string TerpeneName { get; set; }
+                public string Color { get; set; }
+                public int Id { get; set; }
+                public List<string> OtherNames { get; set; }
+                
+
+            }
+        }
         public static class config
         {
             public static string appname = "Terptastic";
@@ -282,7 +401,7 @@ namespace Terprint.Web
                     TerpsOnlyin2 = new List<KeyValuePair<string, double>>();
                     foreach (var r in strain1Terps)
                     {
-                        
+
 
                         if (strain2Terps.Where(t => t.TerpeneName.Trim() == r.TerpeneName.Trim()).Count() > 0)
                         {
@@ -1070,6 +1189,8 @@ namespace Terprint.Web
                         else if (m.Name == "β-Myrcene") { m.NamesOther.Add("beta-myrcene"); }
                         else if (m.Name == "β-Pinene") { m.NamesOther.Add("beta-pinene"); }
                         else if (m.Name == "α-Terpinene") { m.NamesOther.Add("alpha-terpinene"); }
+                        else if (m.Name == "α-Terpinene") { m.NamesOther.Add("gamma-terpinene"); }
+                        else if (m.Name == "δ-3-Carene") { m.NamesOther.Add("3-carene"); }
 
                     }
 
