@@ -16,8 +16,7 @@
 
 
     if (loadData() && TerpeneValues is not null && TerpeneValues.Count > 0)
-    {
-
+    { 
         MarkupString firemarkup = new MarkupString();
         double totalterps = TerpeneValues.Sum(t => t.Value);
         double totalthc = thcvalues
@@ -153,11 +152,11 @@
 
                                 if (i > 1)
                                 { sep = ", "; }
-                                string terpcolor = Matrixes
+                                string terpcolor = m.MatrixList
                                 .Where(t1 =>
-                                t1.Name.Trim().ToLower() == t.TerpeneName.Trim().ToLower() ||
-                                t1.NamesOther.Contains(t.TerpeneName.Trim().ToLower().ToLower()))
-                                .Select(t => t.Color)
+                                t1.Terpene.TerpeneName.Trim().ToLower() == t.TerpeneName.Trim().ToLower() ||
+                                t1.Terpene.OtherNames.Contains(t.TerpeneName.Trim().ToLower().ToLower()))
+                                .Select(t => t.Terpene.Color)
                                 .FirstOrDefault();
                                 double opacity = 1; Math.Round(t.Value * 1, 2);
 
@@ -211,6 +210,8 @@
 
 }
 @code {
+
+    common.Matrixes m = new common.Matrixes();
     public enum renderMode { table, tableandheader, tableandtitle, nostrain };
     [Parameter] public renderMode? rendermode { get; set; }
     [Parameter] public EventCallback<renderMode> rendermodeChanged { get; set; }
@@ -219,7 +220,7 @@
         rendermode = (renderMode)e.Value;
         return rendermodeChanged.InvokeAsync((renderMode)rendermode);
     }
-     
+
 
     #region properties
     public Models.Batch batchDB { get; set; }
@@ -306,20 +307,26 @@
             return false;
         }
     }
-
-    public List<common.Components.matrixes> Matrixes { get; set; }
+     
     public void terprintTable(string batchin = "", string sortorder = "")
     {
-
-        c.loadmatrix();
-        Matrixes = c.Matrixes;
+         
         if (batchin != "")
 
         {
-            batchDB = appstatebatch.Batches.Where(t => t.Name.Trim() == batchin).FirstOrDefault();
-            growerDB = appstategrower.Growers.Where(t => t.GrowerId == batchDB.GrowerID).FirstOrDefault();
-            strain = appstatestrain.Strains.Where(t => t.StrainId == appstatebatch.Batches.Where(t => t.BatchId == batchDB.BatchId).FirstOrDefault().StrainID).FirstOrDefault().StrainName;
-            TerpeneValues = asterpenevalue.TerpeneValues.Where(t => t.BatchID == batchDB.BatchId).OrderByDescending(t => t.Value).ToList();
+            batchDB = appstatebatch.Batches
+            .Where(t => t.Name.Trim() == batchin)
+            .FirstOrDefault();
+            growerDB = appstategrower.Growers
+            .Where(t => t.GrowerId == batchDB.GrowerID)
+            .FirstOrDefault();
+            strain = appstatestrain.Strains
+            .Where(t => t.StrainId == appstatebatch.Batches.Where(t => t.BatchId == batchDB.BatchId).FirstOrDefault().StrainID)
+            .FirstOrDefault().StrainName;
+            TerpeneValues = asterpenevalue.TerpeneValues
+            .Where(t => t.BatchID == batchDB.BatchId)
+            .OrderByDescending(t => t.Value)
+            .ToList();
             thcvalues =asthcvalue.THCValues
             .Where(t => t.BatchID == batchDB.BatchId)
             .Where(t => t.Percent > 0)
@@ -335,10 +342,11 @@
             //  matrix = Convert.ToInt32(Request.Form["matrix"].ToString());
             //test
         }
+        List<common.Matrixes.Matrix> localmatrix1 = m.MatrixList.Where(t=>t.MatrixDefinitionid==matrix).ToList();
         string temprow = "";
         string temprows = "";
         int currentRow = 1;
-        int maxRow = Matrixes.Max(t => t.Row);
+        int maxRow = localmatrix1.Max(t => t.row);
         Random rnd = new Random();
         string width = "";
         if (size == "micro")
@@ -363,30 +371,19 @@
         {
             width = "width: 25px;height: 25px;";
             temprows += "<table ><tr>";
-        };
-        List<common.Components.matrixes> localmatrix = Matrixes;
-        // if(sortorder =="name")
-        {
-            //    localmatrix = Matrixes.Where(t => t.Matrix == matrix).OrderBy(t=>t.Name).ToList();
-        }
-        // else
-        {
-            localmatrix = Matrixes.Where(t => t.Matrix == matrix).OrderBy(t => t.Column).OrderBy(t => t.Row).ToList();
-        }
+        };  
         int i = 1;
         int terpenecounter = 0;
-        foreach (var matrixrow in localmatrix)
-        {
-            if (matrixrow.Matrix == matrix)
-            {
-                if (matrixrow.Row > currentRow)
+        foreach (var matrixrow in localmatrix1 .OrderBy(t => t.id).ToList())
+        { 
+                if (matrixrow.row > currentRow)
                 {
                     currentRow += 1;
                     temprows += "</tr>";
                     temprows += "<tr>";
                 }
-                bool terpvalue = TerpeneValues.Where(t => t.TerpeneName.ToLower().Trim() == matrixrow.Name.ToLower() || matrixrow.NamesOther.Contains(t.TerpeneName.ToLower().Trim())).FirstOrDefault() is not null;
-                bool terpname = TerpeneValues.Where(t => t.TerpeneName.ToLower().Trim() == matrixrow.Name.ToLower() || matrixrow.NamesOther.Contains(t.TerpeneName.ToLower().Trim())).ToList().Count > 0;
+                bool terpvalue = TerpeneValues.Where(t => t.TerpeneName.ToLower().Trim() == matrixrow.Terpene.TerpeneName.ToLower() || matrixrow.Terpene.OtherNames.Contains(t.TerpeneName.ToLower().Trim())).FirstOrDefault() is not null;
+            bool terpname = TerpeneValues.Where(t => t.TerpeneName.ToLower().Trim() == matrixrow.Terpene.TerpeneName.ToLower() || matrixrow.Terpene.OtherNames.Contains(t.TerpeneName.ToLower().Trim())).ToList().Count > 0;
                 if (terpvalue && terpname)
                 {
                     int terpindex = i
@@ -395,10 +392,10 @@
                     ///not zero value output formatted cell
 
                     terpenecounter++;
-                    string terpnamecurrent = matrixrow.Name;
-                    string terpnamestrain = TerpeneValues.Where(t => t.TerpeneName.ToLower().Trim() == matrixrow.Name.ToLower() || matrixrow.NamesOther.Contains(t.TerpeneName.ToLower().Trim())).FirstOrDefault().TerpeneName;
+                    string terpnamecurrent = matrixrow.Terpene.TerpeneName;
+                string terpnamestrain = TerpeneValues.Where(t => t.TerpeneName.ToLower().Trim() == matrixrow.Terpene.TerpeneName.ToLower() || matrixrow.Terpene.OtherNames.Contains(t.TerpeneName.ToLower().Trim())).FirstOrDefault().TerpeneName;
 
-                    double op = TerpeneValues.Where(t => t.TerpeneName.Trim().ToLower() == matrixrow.Name.ToLower() || matrixrow.NamesOther.Contains(t.TerpeneName.ToLower().Trim())).FirstOrDefault().Value;
+                    double op = TerpeneValues.Where(t => t.TerpeneName.Trim().ToLower() == matrixrow.Terpene.TerpeneName.ToLower() || matrixrow.Terpene.OtherNames.Contains(t.TerpeneName.ToLower().Trim())).FirstOrDefault().Value;
 
 
 
@@ -407,16 +404,16 @@
                     double opacitynondec = Math.Round((op * 10), 2);
                     temprow = "";
 
-                    string tooltip = terpindex + ". " + matrixrow.Name + " " + opp;
+                    string tooltip = terpindex + ". " + matrixrow.Terpene.TerpeneName + " " + opp;
 
                     //set table cell colors and sizes
                     if (size != "micro")
                     {
-                        temprow += string.Format("<td title=\"{5}\" style='{3}border:solid;border-color:{1};background-color:{1};opacity:{2}'> <div  style=\"z-index:{4};opacity:1\">", matrixrow.Id, matrixrow.Color, opacity, width, opacitynondec, tooltip, matrixrow.Name);
+                    temprow += string.Format("<td title=\"{5}\" style='{3}border:solid;border-color:{1};background-color:{1};opacity:{2}'> <div  style=\"z-index:{4};opacity:1\">", matrixrow.id, matrixrow.Terpene.Color, opacity, width, opacitynondec, tooltip, matrixrow.Terpene.TerpeneName);
                     }
                     else
                     {
-                        temprow += string.Format("<td title=\"{5}\" style='{3}background-color:{1};opacity:{2}'>  ", matrixrow.Id, matrixrow.Color, opacity, width, opacitynondec, tooltip);
+                    temprow += string.Format("<td title=\"{5}\" style='{3}background-color:{1};opacity:{2}'>  ", matrixrow.id, matrixrow.Terpene.Color, opacity, width, opacitynondec, tooltip);
 
 
                     }
@@ -426,11 +423,11 @@
                     {
                         MarkupString navman = new MarkupString();
 
-                        temprow += string.Format("<a href=\"/TerpeneProfile?terpene={1}\">&nbsp;</a>", opp, matrixrow.Name);
+                    temprow += string.Format("<a href=\"/TerpeneProfile?terpene={1}\">&nbsp;</a>", opp, matrixrow.Terpene.TerpeneName);
                     }
                     else
                     {
-                        temprow += string.Format("<span style=\"z-index:100\" class='badge bg-black text-bg-info'>{3}. <a href=\"/TerpeneProfile?terpene={0}\">{0}</a></span>", matrixrow.Name, opacity, matrixrow.Color, terpindex);
+                    temprow += string.Format("<span style=\"z-index:100\" class='badge bg-black text-bg-info'>{3}. <a href=\"/TerpeneProfile?terpene={0}\">{0}</a></span>", matrixrow.Terpene.TerpeneName, opacity, matrixrow.Terpene.Color, terpindex);
 
                         temprow += string.Format("<span class=\"badge bg-black rounded-pill text-bg-info\">{1}</span>", op, opp);
 
@@ -444,7 +441,7 @@
                     ///zero value output blank cell
                     temprow = "";
                     //temprow += string.Format("<tr >", matrixrow.Color);// "<tr bgcolor="">";
-                    temprow += string.Format("<td  style='{3}opacity:{2}'>  ", matrixrow.Id, matrixrow.Color, 0, width);
+                    temprow += string.Format("<td  style='{3}opacity:{2}'>  ", matrixrow.id, matrixrow.Terpene.Color, 0, width);
                     //temprow += string.Format(" {0}   ", o.Name);
                     //temprow += string.Format(" {0} , ", o.Matrix);
                     //  temprow += string.Format(" Row {0}, Column {1} ", o.Row,o.Column );
@@ -455,8 +452,7 @@
                 }
                 i++;
                 temprows = temprows + temprow;
-
-            }
+                 
         }
 
         temprows += "</tr></table>";

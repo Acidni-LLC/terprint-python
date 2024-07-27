@@ -96,9 +96,9 @@ namespace Terprint.Web
             private void LoadMatrixes()
             {
                 Terpenes Terpenes = new Terpenes();
-                int id = 1;
                 foreach (var md in MatrixDefinitionList)
                 {
+                int id = 1;
                     int row = 1;
                     while (row <= md.rows)
                     {
@@ -161,7 +161,7 @@ namespace Terprint.Web
             {
                 TerpeneList = new List<Terpene>();
 
-                TerpeneList.Add(new Terpene() { TerpeneName = "δ-Limonene", Color = "#008000", Id = 1, OtherNames = { "d-limonene", "(r)-(+)-limonene", "limonene", "(r)-( )-limonene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "(R)-(+)-Limonene", Color = "#008000", Id = 1, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Camphene", Color = "#33CC33", Id = 2, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Caryophyllene Oxide", Color = "#66FF66", Id = 3, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Eucalyptol", Color = "#CCFFCC", Id = 4, OtherNames = { } });
@@ -171,28 +171,30 @@ namespace Terprint.Web
                 TerpeneList.Add(new Terpene() { TerpeneName = "Isopulegol", Color = "#FFCCCC", Id = 8, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Linalool", Color = "#FF7C80", Id = 9, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Menthol", Color = "#CC0000", Id = 10, OtherNames = { } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "Geranyl Acetate", Color = "#996633", Id = 11, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "δ-Limonene", Color = "#66CCFF", Id = 11, OtherNames = { "d-limonene", "(r)-(+)-limonene", "limonene", "(r)-( )-limonene" } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Terpineol", Color = "#0066FF", Id = 12, OtherNames = { "total terpineol", "alpha-terpineol" } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Terpinolene", Color = "#0000CC", Id = 13, OtherNames = { "alpha-terpinolene" } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Valencene", Color = "#006666", Id = 14, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "cis-Nerolidol", Color = "#339966", Id = 15, OtherNames = { "e-nerolidol", "trans-nerolidol" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "cis-Ocimene", Color = "#00CC00", Id = 16, OtherNames = { "ocimenes", "ocimene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Ocimene", Color = "#00CC00", Id = 16, OtherNames = { "ocimenes", "cis-ocimene", "trans-ocimene" } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "p-Cymene", Color = "#FF6699", Id = 17, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "trans-Caryophyllene", Color = "#FF3399", Id = 18, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "trans-Nerolidol", Color = "#CC3399", Id = 19, OtherNames = { } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "trans-Ocimene", Color = "#7030A0", Id = 20, OtherNames = { } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "α-Bisabolol", Color = "#002060", Id = 21, OtherNames = { "alpha-bisabolol" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "α-Humulene", Color = "#0070C0", Id = 22, OtherNames = { "alpha-humulene" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "α-Pinene", Color = "#00B0F0", Id = 23, OtherNames = { "alpha-pinene" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "α-Terpinene", Color = "#00B050", Id = 24, OtherNames = { "alpha-terpinene" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "β-Caryophyllene", Color = "#92D050", Id = 25, OtherNames = { "e-caryophyllene", "beta-caryophyllene" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "β-Myrcene", Color = "#FFFF00", Id = 26, OtherNames = { "beta-myrcene" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "β-Pinene", Color = "#FFC000", Id = 27, OtherNames = { "beta-pinene" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "γ-Terpinene", Color = "#FF0000", Id = 28, OtherNames = { } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "δ-3-Carene", Color = "#C00000", Id = 29, OtherNames = { } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "Borneol", Color = "#99FF33", Id = 30, OtherNames = { "isoborneol" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "Sabinene", Color = "#C0C0C0", Id = 31, OtherNames = { } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "Farnesene", Color = "#00CC99", Id = 32, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "α-Bisabolol", Color = "#002060", Id = 20, OtherNames = { "alpha-bisabolol" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "α-Humulene", Color = "#0070C0", Id = 21, OtherNames = { "alpha-humulene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "α-Pinene", Color = "#00B0F0", Id = 22, OtherNames = { "alpha-pinene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "α-Terpinene", Color = "#00B050", Id = 23, OtherNames = { "alpha-terpinene", "γ-terpinene", "alpha-terpinene", "gamma-terpinene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "β-Caryophyllene", Color = "#92D050", Id = 24, OtherNames = { "e-caryophyllene", "beta-caryophyllene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "β-Myrcene", Color = "#FFFF00", Id = 25, OtherNames = { "beta-myrcene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "β-Pinene", Color = "#FFC000", Id = 26, OtherNames = { "beta-pinene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "δ-3-Carene", Color = "#C00000", Id = 27, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Borneol", Color = "#99FF33", Id = 28, OtherNames = { "isoborneol" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Sabinene", Color = "#C0C0C0", Id = 29, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Farnesene", Color = "#00CC99", Id = 30, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Geranyl Acetate", Color = "#996633", Id = 31, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Phellandrene", Color = "#54065A", Id = 32, OtherNames = { "alpha-phellandrene" } });
+
+
 
 
             }
@@ -200,7 +202,7 @@ namespace Terprint.Web
             {
                 public Terpene()
                 {
-
+                    OtherNames = new List<string>();
                 }
                 public string TerpeneName { get; set; }
                 public string Color { get; set; }
@@ -647,276 +649,7 @@ namespace Terprint.Web
                 if (TerpValues is null)
                 {
                     TerpValues = new List<terpValue>();
-
-                    #region data strains
-                    TerpValues.Add(new terpValue(0, "3-Carene", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(0.3, "Camphene", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(0, "Caryophyllene Oxide", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(0, "cis-Nerolidol", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(0, "Eucalyptol", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(0.27, "Geraniol", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(1.67, "Guaiol", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(0, "Isopulegol", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(5.9, "Linalool", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(0, "Menthol", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(0, "Ocimene", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(0, "p-Cymene", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(0.13, "Terpinolene", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(1.57, "trans-Nerolidol", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(1.65, "α-Bisabolol", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(2.12, "α-Humulene", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(0.82, "α-Pinene", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(0, "α-Terpinene", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(6.5, "β-Caryophyllene", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(0.68, "β-Myrcene", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(1.32, "β-Pinene", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(0, "γ-Terpinene", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(9.07, "δ-Limonene", "Z-Mintz", "3370 0970 3898 2532"));
-                    TerpValues.Add(new terpValue(0, "3-Carene", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(0.16, "Camphene", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(0.12, "Caryophyllene Oxide", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(0, "cis-Nerolidol", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(0.04, "Eucalyptol", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(0, "Geraniol", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(0, "Guaiol", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(0, "Isopulegol", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(0.67, "Linalool", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(0, "Menthol", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(3.96, "Ocimene", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(0, "p-Cymene", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(0.08, "Terpinolene", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(0.35, "trans-Nerolidol", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(1.56, "α-Bisabolol", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(1.1, "α-Humulene", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(7.19, "α-Pinene", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(0, "α-Terpinene", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(3.53, "β-Caryophyllene", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(18.49, "β-Myrcene", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(2.06, "β-Pinene", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(0, "γ-Terpinene", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(0.89, "δ-Limonene", "Purple Eclipse", "5152 6368 4561 8754"));
-                    TerpValues.Add(new terpValue(7.603, "(R)-(+)-Limonene", "Krypto Chronic", "56966_0005029379"));
-                    TerpValues.Add(new terpValue(2.287, "Borneol", "Krypto Chronic", "56966_0005029379"));
-                    TerpValues.Add(new terpValue(0.713, "Fenchyl Alcohol", "Krypto Chronic", "56966_0005029379"));
-                    TerpValues.Add(new terpValue(2.651, "Linalool", "Krypto Chronic", "56966_0005029379"));
-                    TerpValues.Add(new terpValue(3.919, "trans-Caryophyllene", "Krypto Chronic", "56966_0005029379"));
-                    TerpValues.Add(new terpValue(0.92, "α-Humulene", "Krypto Chronic", "56966_0005029379"));
-                    TerpValues.Add(new terpValue(0.655, "α-Pinene", "Krypto Chronic", "56966_0005029379"));
-                    TerpValues.Add(new terpValue(1.303, "β-Myrcene", "Krypto Chronic", "56966_0005029379"));
-                    TerpValues.Add(new terpValue(0.914, "β-Pinene", "Krypto Chronic", "56966_0005029379"));
-                    TerpValues.Add(new terpValue(0.7689, "(R)-(+)-Limonene", "Space Age Cake", "59727_0005068301"));
-                    TerpValues.Add(new terpValue(0.2604, "Borneol", "Space Age Cake", "59727_0005068301"));
-                    TerpValues.Add(new terpValue(0.0692, "Fenchyl Alcohol", "Space Age Cake", "59727_0005068301"));
-                    TerpValues.Add(new terpValue(0.4693, "Linalool", "Space Age Cake", "59727_0005068301"));
-                    TerpValues.Add(new terpValue(1.5846, "trans-Caryophyllene", "Space Age Cake", "59727_0005068301"));
-                    TerpValues.Add(new terpValue(0.0855, "α-Bisabolol", "Space Age Cake", "59727_0005068301"));
-                    TerpValues.Add(new terpValue(0.3631, "α-Humulene", "Space Age Cake", "59727_0005068301"));
-                    TerpValues.Add(new terpValue(0.0551, "α-Pinene", "Space Age Cake", "59727_0005068301"));
-                    TerpValues.Add(new terpValue(0.6157, "β-Myrcene", "Space Age Cake", "59727_0005068301"));
-                    TerpValues.Add(new terpValue(0.0821, "β-Pinene", "Space Age Cake", "59727_0005068301"));
-
-
-                    TerpValues.Add(new terpValue(2.374, "Borneol", "DieselDough", "63424_0004931218"));
-                    TerpValues.Add(new terpValue(0.64, "Fenchyl", "DieselDough", "63424_0004931218"));
-                    TerpValues.Add(new terpValue(1.44, "Guaiol", "DieselDough", "63424_0004931218"));
-                    TerpValues.Add(new terpValue(2.682, "Linalool", "DieselDough", "63424_0004931218"));
-                    TerpValues.Add(new terpValue(6.974, "trans-Caryophyllene", "DieselDough", "63424_0004931218"));
-                    TerpValues.Add(new terpValue(0.704, "trans-Nerolidol", "DieselDough", "63424_0004931218"));
-                    TerpValues.Add(new terpValue(0.619, "α-Bisabolol", "DieselDough", "63424_0004931218"));
-                    TerpValues.Add(new terpValue(1.591, "α-Humulene", "DieselDough", "63424_0004931218"));
-                    TerpValues.Add(new terpValue(0.529, "α-Pinene", "DieselDough", "63424_0004931218"));
-                    TerpValues.Add(new terpValue(6.004, "β-Myrcene", "DieselDough", "63424_0004931218"));
-                    TerpValues.Add(new terpValue(0.77, "β-Pinene", "DieselDough", "63424_0004931218"));
-                    TerpValues.Add(new terpValue(3.01, "(R)-(+)-Limonene", "DieselDough", "63424_0004999768"));
-                    TerpValues.Add(new terpValue(0.86, "Fenchyl Alcohol", "DieselDough", "63424_0004999768"));
-                    TerpValues.Add(new terpValue(0.5, "Geranyl Acetate", "DieselDough", "63424_0004999768"));
-                    TerpValues.Add(new terpValue(1.24, "Guaiol", "DieselDough", "63424_0004999768"));
-                    TerpValues.Add(new terpValue(2.1, "Linalool", "DieselDough", "63424_0004999768"));
-                    TerpValues.Add(new terpValue(0.6, "Total Terpineol", "DieselDough", "63424_0004999768"));
-                    TerpValues.Add(new terpValue(5.13, "trans-Caryophyllene", "DieselDough", "63424_0004999768"));
-                    TerpValues.Add(new terpValue(0.51, "trans-Nerolidol", "DieselDough", "63424_0004999768"));
-                    TerpValues.Add(new terpValue(0.38, "Valencene", "DieselDough", "63424_0004999768"));
-                    TerpValues.Add(new terpValue(0.64, "α-Bisabolol", "DieselDough", "63424_0004999768"));
-                    TerpValues.Add(new terpValue(1, "α-Humulene", "DieselDough", "63424_0004999768"));
-                    TerpValues.Add(new terpValue(0.31, "α-Pinene", "DieselDough", "63424_0004999768"));
-                    TerpValues.Add(new terpValue(0.48, "β-Myrcene", "DieselDough", "63424_0004999768"));
-                    TerpValues.Add(new terpValue(2.96, "β-Pinene", "DieselDough", "63424_0004999768"));
-                    TerpValues.Add(new terpValue(6.556, "(R)-(+)-Limonene", " Cake Face", "67317_0005141914"));
-                    TerpValues.Add(new terpValue(2.379, "Borneol", " Cake Face", "67317_0005141914"));
-                    TerpValues.Add(new terpValue(0.841, "Fenchyl Alcohol", " Cake Face", "67317_0005141914"));
-                    TerpValues.Add(new terpValue(4.079, "Linalool", " Cake Face", "67317_0005141914"));
-                    TerpValues.Add(new terpValue(14.132, "trans-Caryophyllene", " Cake Face", "67317_0005141914"));
-                    TerpValues.Add(new terpValue(1.061, "trans-Nerolidol", " Cake Face", "67317_0005141914"));
-                    TerpValues.Add(new terpValue(0.591, "α-Bisabolol", " Cake Face", "67317_0005141914"));
-                    TerpValues.Add(new terpValue(3.139, "α-Humulene", " Cake Face", "67317_0005141914"));
-                    TerpValues.Add(new terpValue(0.478, "α-Pinene", " Cake Face", "67317_0005141914"));
-                    TerpValues.Add(new terpValue(3.255, "β-Myrcene", " Cake Face", "67317_0005141914"));
-                    TerpValues.Add(new terpValue(0.7, "β-Pinene", " Cake Face", "67317_0005141914"));
-                    TerpValues.Add(new terpValue(7.277, "(R)-(+)-Limonene", "LA Kush Cake", "67335_0005165631"));
-                    TerpValues.Add(new terpValue(2.94, "Borneol", "LA Kush Cake", "67335_0005165631"));
-                    TerpValues.Add(new terpValue(0.901, "Fenchyl Alcohol", "LA Kush Cake", "67335_0005165631"));
-                    TerpValues.Add(new terpValue(5.52, "Linalool", "LA Kush Cake", "67335_0005165631"));
-                    TerpValues.Add(new terpValue(6.094, "trans-Caryophyllene", "LA Kush Cake", "67335_0005165631"));
-                    TerpValues.Add(new terpValue(1.371, "α-Humulene", "LA Kush Cake", "67335_0005165631"));
-                    TerpValues.Add(new terpValue(0.567, "α-Pinene", "LA Kush Cake", "67335_0005165631"));
-                    TerpValues.Add(new terpValue(0.481, "β-Myrcene", "LA Kush Cake", "67335_0005165631"));
-                    TerpValues.Add(new terpValue(0.84, "β-Pinene", "LA Kush Cake", "67335_0005165631"));
-                    TerpValues.Add(new terpValue(0, "3-Carene", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0.31, "Camphene", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0, "Caryophyllene Oxide", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0, "cis-Nerolidol", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0, "Eucalyptol", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0, "Geraniol", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0, "Guaiol", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0, "Isopulegol", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(2.36, "Linalool", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0, "Menthol", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0, "Ocimene", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0, "p-Cymene", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0.12, "Terpinolene", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0.22, "trans-Nerolidol", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0.43, "α-Bisabolol", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(1.6, "α-Humulene", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0.81, "α-Pinene", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0, "α-Terpinene", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(5.04, "β-Caryophyllene", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(3.63, "β-Myrcene", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(1.18, "β-Pinene", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0, "γ-Terpinene", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(7.69, "δ-Limonene", "Witch D.", "6953 2390 9886 2373"));
-                    TerpValues.Add(new terpValue(0, "3-Carene", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0.18, "Camphene", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0, "Caryophyllene Oxide", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0, "cis-Nerolidol", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0.04, "Eucalyptol", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0, "Geraniol", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0, "Guaiol", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0.11, "Isopulegol", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(1.98, "Linalool", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0, "Menthol", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0.2, "Ocimene", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0, "p-Cymene", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0.08, "Terpinolene", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0.54, "trans-Nerolidol", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(1.39, "α-Bisabolol", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(3.3, "α-Humulene", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0.53, "α-Pinene", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0, "α-Terpinene", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(9.01, "β-Caryophyllene", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(4.32, "β-Myrcene", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0.96, "β-Pinene", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0, "γ-Terpinene", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(4.51, "δ-Limonene", "G. Mints", "9436 5391 1236 0974"));
-                    TerpValues.Add(new terpValue(0, "3-Carene", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(0.23, "Camphene", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(0, "Caryophyllene Oxide", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(0, "cis-Nerolidol", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(0, "Eucalyptol", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(0, "Geraniol", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(0, "Guaiol", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(0, "Isopulegol", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(1.23, "Linalool", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(0, "Menthol", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(2, "Ocimene", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(0, "p-Cymene", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(0.06, "Terpinolene", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(0.43, "trans-Nerolidol", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(0.77, "α-Bisabolol", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(0.87, "α-Humulene", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(15.45, "α-Pinene", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(0, "α-Terpinene", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(1.9, "β-Caryophyllene", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(1.75, "β-Myrcene", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(4.72, "β-Pinene", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(0, "γ-Terpinene", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(3.1, "δ-Limonene", "Blueberry Headba0", "9628 5341 3355 9561"));
-                    TerpValues.Add(new terpValue(12.443, "trans-Caryophyllene", "Traffic Jam", "68675_0005224528"));
-                    TerpValues.Add(new terpValue(6.081, "(R)-(+)-Limonene", "Traffic Jam", "68675_0005224528"));
-                    TerpValues.Add(new terpValue(3.803, "α-Humulene", "Traffic Jam", "68675_0005224528"));
-                    TerpValues.Add(new terpValue(3.115, "Linalool", "Traffic Jam", "68675_0005224528"));
-                    TerpValues.Add(new terpValue(1.727, "β-Myrcene", "Traffic Jam", "68675_0005224528"));
-                    TerpValues.Add(new terpValue(1.524, "Borneol", "Traffic Jam", "68675_0005224528"));
-                    TerpValues.Add(new terpValue(1.126, "trans-Nerolidol", "Traffic Jam", "68675_0005224528"));
-                    TerpValues.Add(new terpValue(0.628, "α-Bisabolol", "Traffic Jam", "68675_0005224528"));
-                    TerpValues.Add(new terpValue(0.555, "β-Pinene", "Traffic Jam", "68675_0005224528"));
-                    TerpValues.Add(new terpValue(0.537, "Fenchyl Alcohol", "Traffic Jam", "68675_0005224528"));
-                    TerpValues.Add(new terpValue(0.415, "α-Pinene", "Traffic Jam", "68675_0005224528"));
-                    TerpValues.Add(new terpValue(10.284, "trans-Caryophyllene", "Wedding Crasher", "59731_0005856782"));
-                    TerpValues.Add(new terpValue(4.16, "β-Myrcene", "Wedding Crasher", "59731_0005856782"));
-                    TerpValues.Add(new terpValue(4.072, "(R)-(+)-Limonene", "Wedding Crasher", "59731_0005856782"));
-                    TerpValues.Add(new terpValue(2.552, "Linalool", "Wedding Crasher", "59731_0005856782"));
-                    TerpValues.Add(new terpValue(2.3, "α-Humulene", "Wedding Crasher", "59731_0005856782"));
-                    TerpValues.Add(new terpValue(1.713, "trans-Nerolidol", "Wedding Crasher", "59731_0005856782"));
-                    TerpValues.Add(new terpValue(0.957, "Fenchyl Alcohol", "Wedding Crasher", "59731_0005856782"));
-                    TerpValues.Add(new terpValue(0.582, "β-Pinene", "Wedding Crasher", "59731_0005856782"));
-                    TerpValues.Add(new terpValue(0.571, "α-Bisabolol", "Wedding Crasher", "59731_0005856782"));
-                    TerpValues.Add(new terpValue(0.382, "α-Pinene", "Wedding Crasher", "59731_0005856782"));
-                    TerpValues.Add(new terpValue(10.58, "trans-Caryophyllene", "Space Age Cake", "19233_0005737034"));
-                    TerpValues.Add(new terpValue(6.409, "(R)-(+)-Limonene", "Space Age Cake", "19233_0005737034"));
-                    TerpValues.Add(new terpValue(5.987, "Linalool", "Space Age Cake", "19233_0005737034"));
-                    TerpValues.Add(new terpValue(3.378, "α-Humulene", "Space Age Cake", "19233_0005737034"));
-                    TerpValues.Add(new terpValue(3.042, "β-Myrcene", "Space Age Cake", "19233_0005737034"));
-                    TerpValues.Add(new terpValue(0.000871, "Fenchyl Alcohol", "Space Age Cake", "19233_0005737034"));
-                    TerpValues.Add(new terpValue(0.714, "α-Bisabolol", "Space Age Cake", "19233_0005737034"));
-                    TerpValues.Add(new terpValue(0.564, "β-Pinene", "Space Age Cake", "19233_0005737034"));
-                    TerpValues.Add(new terpValue(7.24, "β-Myrcene", "iCa0y", "67279_0005905658"));
-                    TerpValues.Add(new terpValue(6.054, "(R)-(+)-Limonene", "iCa0y", "67279_0005905658"));
-                    TerpValues.Add(new terpValue(4.906, "trans-Caryophyllene", "iCa0y", "67279_0005905658"));
-                    TerpValues.Add(new terpValue(3.962, "Linalool", "iCa0y", "67279_0005905658"));
-                    TerpValues.Add(new terpValue(1.534, "Fenchyl Alcohol", "iCa0y", "67279_0005905658"));
-                    TerpValues.Add(new terpValue(1.362, "α-Humulene", "iCa0y", "67279_0005905658"));
-                    TerpValues.Add(new terpValue(1.093, "trans-Nerolidol", "iCa0y", "67279_0005905658"));
-                    TerpValues.Add(new terpValue(0.741, "β-Pinene", "iCa0y", "67279_0005905658"));
-                    TerpValues.Add(new terpValue(0.636, "α-Bisabolol", "iCa0y", "67279_0005905658"));
-                    TerpValues.Add(new terpValue(0.511, "α-Pinene", "iCa0y", "67279_0005905658"));
-                    TerpValues.Add(new terpValue(10.635, "trans-Caryophyllene", "Ice Cream Cake", "64811_0005937028"));
-                    TerpValues.Add(new terpValue(6.449, "Linalool", "Ice Cream Cake", "64811_0005937028"));
-                    TerpValues.Add(new terpValue(6.448, "(R)-(+)-Limonene", "Ice Cream Cake", "64811_0005937028"));
-                    TerpValues.Add(new terpValue(3.382, "α-Humulene", "Ice Cream Cake", "64811_0005937028"));
-                    TerpValues.Add(new terpValue(2.729, "β-Myrcene", "Ice Cream Cake", "64811_0005937028"));
-                    TerpValues.Add(new terpValue(0.871, "Fenchyl Alcohol", "Ice Cream Cake", "64811_0005937028"));
-                    TerpValues.Add(new terpValue(0.646, "α-Bisabolol", "Ice Cream Cake", "64811_0005937028"));
-                    TerpValues.Add(new terpValue(0.513, "β-Pinene", "Ice Cream Cake", "64811_0005937028"));
-                    TerpValues.Add(new terpValue(12.955, "trans-Caryophyllene", "Shiprweck", "19290_0006067427"));
-                    TerpValues.Add(new terpValue(3.786, "α-Humulene", "Shiprweck", "19290_0006067427"));
-                    TerpValues.Add(new terpValue(3.455, "(R)-(+)-Limonene", "Shiprweck", "19290_0006067427"));
-                    TerpValues.Add(new terpValue(2.444, "Linalool", "Shiprweck", "19290_0006067427"));
-                    TerpValues.Add(new terpValue(1.907, "trans-Nerolidol", "Shiprweck", "19290_0006067427"));
-                    TerpValues.Add(new terpValue(1.15, "β-Myrcene", "Shiprweck", "19290_0006067427"));
-                    TerpValues.Add(new terpValue(0.802, "α-Bisabolol", "Shiprweck", "19290_0006067427"));
-                    TerpValues.Add(new terpValue(0.405, "β-Pinene", "Shiprweck", "19290_0006067427"));
-                    TerpValues.Add(new terpValue(6.84, "trans-Caryophyllene", "Boston Rntz #5 (H)", "PRPFLW100054-2405-28099"));
-                    TerpValues.Add(new terpValue(3.85, "δ-Limonene", "Boston Rntz #5 (H)", "PRPFLW100054-2405-28099"));
-                    TerpValues.Add(new terpValue(1.9, "β-Humulene", "Boston Rntz #5 (H)", "PRPFLW100054-2405-28099"));
-                    TerpValues.Add(new terpValue(1.53, "beta-Myrcene", "Boston Rntz #5 (H)", "PRPFLW100054-2405-28099"));
-                    TerpValues.Add(new terpValue(1.5, "Linalool", "Boston Rntz #5 (H)", "PRPFLW100054-2405-28099"));
-                    TerpValues.Add(new terpValue(1.08, "α-Bisabolol", "Boston Rntz #5 (H)", "PRPFLW100054-2405-28099"));
-                    TerpValues.Add(new terpValue(0.85, "Terpineol", "Boston Rntz #5 (H)", "PRPFLW100054-2405-28099"));
-                    TerpValues.Add(new terpValue(0.763, "trans-Nerolidol", "Boston Rntz #5 (H)", "PRPFLW100054-2405-28099"));
-                    TerpValues.Add(new terpValue(0.697, "Fenchyl Alcohol", "Boston Rntz #5 (H)", "PRPFLW100054-2405-28099"));
-                    TerpValues.Add(new terpValue(0.559, "β-Pinene", "Boston Rntz #5 (H)", "PRPFLW100054-2405-28099"));
-                    TerpValues.Add(new terpValue(0.551, "α-Pinene", "Boston Rntz #5 (H)", "PRPFLW100054-2405-28099"));
-
-
-                    try
-                    {
-
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
-
-                    if (strain != null)
-                    { currentStrain = TerpValues.Where(t => t.Strain == strain).ToList(); }
-                    else
-                    { currentStrain = TerpValues.Where(t => t.Strain == TerpValues[0].Strain).ToList(); }
-
-
-
-
-
-                    #endregion
+                     
                 }
 
             }
@@ -927,14 +660,14 @@ namespace Terprint.Web
             public string GetTerpeneColor(string terpene)
             {
                 string color = "";
-
+                common.Matrixes m = new Matrixes();
                 loadmatrix();
                 try
                 {
-                    var r = Matrixes.Where(t => t.Name == terpene.Trim() || t.NamesOther.Contains(terpene.Trim())).FirstOrDefault();
+                    var r = m.MatrixList.Where(t => t.Terpene.TerpeneName == terpene.Trim() || t.Terpene.OtherNames.Contains(terpene.Trim())).FirstOrDefault();
                     if (r is not null)
                     {
-                        color = r.Color;
+                        color = r.Terpene.Color;
                     }
                     else
                     {
@@ -977,11 +710,11 @@ namespace Terprint.Web
 
             public List<string> GetTerpeneList()
             {
+                common.Matrixes m = new Matrixes();
                 List<string> terpenes = new List<string>();
+ 
 
-                loadmatrix();
-
-                terpenes = Matrixes.Select(t => t.Name).Distinct().ToList();
+                terpenes = m.MatrixList.Select(t => t.Terpene.TerpeneName).Distinct().ToList();
 
                 return terpenes;
 
@@ -990,17 +723,17 @@ namespace Terprint.Web
             {
                 string terpenes = "";
 
-                loadmatrix();
+                common.Matrixes m = new Matrixes(); 
 
-                var r = Matrixes.Where(t => t.Name == terpene.Trim() || t.NamesOther.Contains(terpene.Trim())).FirstOrDefault();
+                var r = m.MatrixList.Where(t => t.Terpene.TerpeneName == terpene.Trim() || t.Terpene.OtherNames.Contains(terpene.Trim())).FirstOrDefault();
                 if (r is not null)
-                    if (Matrixes
-                        .Where(t => t.Name == terpene && t.name2.Length > 0)
+                    if (m.MatrixList
+                        .Where(t => t.Terpene.TerpeneName == terpene  )
                         .Count() > 0)
                     {
-                        terpenes = Matrixes
-                        .Where(t => t.Name == terpene)
-                        .FirstOrDefault().name2;
+                        terpenes = m.MatrixList
+                        .Where(t => t.Terpene.TerpeneName == terpene)
+                        .FirstOrDefault().Terpene.TerpeneName;
                     }
                     else
                     {
