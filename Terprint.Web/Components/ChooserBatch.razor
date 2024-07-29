@@ -3,18 +3,20 @@
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
 @rendermode InteractiveServer
+@inject common.AppState.StateContainer.Strain asStrain
+@inject common.AppState.StateContainer.Batch asBatch
 
 @inject common.AppState appstate
 
 <div class="mb-3">
     <label for="batch" class="form-label">Batch:</label>
     @{
-        var Batches = DB2.Batch
+        var Batches = asBatch.Batches
         .Select(t => new
         {
             t.BatchId,
             t.Name,
-            StrainName = DB2.Strain.Where(t1 => t1.StrainId == t.StrainID).FirstOrDefault().StrainName,
+            StrainName = asStrain.Strains.Where(t1 => t1.StrainId == t.StrainID).FirstOrDefault().StrainName,
             t.StrainID,
             t.Date
         }
@@ -40,7 +42,7 @@
 
             if (batchin && batch.Trim() == b.Name.Trim())
             {
-                <option selected value=@b.BatchId @onselect="() => BatchId = (int)b.BatchId">@DB2.Strain.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName  @b.Date  @b.Name</option>
+                <option selected value=@b.BatchId @onselect="() => BatchId = (int)b.BatchId">@asStrain.Strains.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName  @b.Date  @b.Name</option>
 
                 {
                     BatchId = (int)b.BatchId;
@@ -49,7 +51,7 @@
             }
             else
             {
-                <option value=@b.BatchId @onselect="() => BatchId = (int)b.BatchId">@DB2.Strain.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName  @b.Date  @b.Name</option>
+                <option value=@b.BatchId @onselect="() => BatchId = (int)b.BatchId">@asStrain.Strains.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName  @b.Date  @b.Name</option>
 
             }
 

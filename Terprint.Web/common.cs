@@ -13,6 +13,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Terprint.Web.Components;
 using StackExchange.Redis;
 using System.Composition.Convention;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 
 namespace Terprint.Web
@@ -98,7 +99,7 @@ namespace Terprint.Web
                 Terpenes Terpenes = new Terpenes();
                 foreach (var md in MatrixDefinitionList)
                 {
-                int id = 1;
+                    int id = 1;
                     int row = 1;
                     while (row <= md.rows)
                     {
@@ -161,31 +162,31 @@ namespace Terprint.Web
             {
                 TerpeneList = new List<Terpene>();
 
-                TerpeneList.Add(new Terpene() { TerpeneName = "(R)-(+)-Limonene", Color = "#008000", Id = 1, OtherNames = { } });
+                //TerpeneList.Add(new Terpene() { TerpeneName = "(R)-(+)-Limonene", Color = "#008000", Id = 1, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Camphene", Color = "#33CC33", Id = 2, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Caryophyllene Oxide", Color = "#66FF66", Id = 3, OtherNames = { } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "Eucalyptol", Color = "#CCFFCC", Id = 4, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Eucalyptol", Color = "#CCFFCC", Id = 4, OtherNames = { }, Description = "Minty, camphor aroma" });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Fenchyl Alcohol", Color = "#FFCCFF", Id = 5, OtherNames = { "endo-fenchyl alcohol" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "Geraniol", Color = "#FF99FF", Id = 6, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Geraniol", Color = "#FF99FF", Id = 6, OtherNames = { }, Description = "Tobacco like aroma" });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Guaiol", Color = "#CC00CC", Id = 7, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Isopulegol", Color = "#FFCCCC", Id = 8, OtherNames = { } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "Linalool", Color = "#FF7C80", Id = 9, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Linalool", Color = "#FF7C80", Id = 9, OtherNames = { }, Description = "Floral, lavender aroma" });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Menthol", Color = "#CC0000", Id = 10, OtherNames = { } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "δ-Limonene", Color = "#66CCFF", Id = 11, OtherNames = { "d-limonene", "(r)-(+)-limonene", "limonene", "(r)-( )-limonene" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "Terpineol", Color = "#0066FF", Id = 12, OtherNames = { "total terpineol", "alpha-terpineol" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "δ-Limonene", Color = "#66CCFF", Id = 11, OtherNames = { "d-limonene", "(r)-(+)-limonene", "limonene", "(r)-( )-limonene" }, Description = "Second most abundant, citrus" });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Terpineol", Color = "#0066FF", Id = 12, OtherNames = { "total terpineol", "alpha-terpineol" }, Description = "Lilac, floral aroma" });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Terpinolene", Color = "#0000CC", Id = 13, OtherNames = { "alpha-terpinolene" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "Valencene", Color = "#006666", Id = 14, OtherNames = { } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Valencene", Color = "#006666", Id = 14, OtherNames = { }, Description = "Tropical, citrus aroma" });
                 TerpeneList.Add(new Terpene() { TerpeneName = "cis-Nerolidol", Color = "#339966", Id = 15, OtherNames = { "e-nerolidol", "trans-nerolidol" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "Ocimene", Color = "#00CC00", Id = 16, OtherNames = { "ocimenes", "cis-ocimene", "trans-ocimene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "Ocimene", Color = "#00CC00", Id = 16, OtherNames = { "ocimenes", "cis-ocimene", "trans-ocimene" }, Description = "Tropical, musky aroma" });
                 TerpeneList.Add(new Terpene() { TerpeneName = "p-Cymene", Color = "#FF6699", Id = 17, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "trans-Caryophyllene", Color = "#FF3399", Id = 18, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "trans-Nerolidol", Color = "#CC3399", Id = 19, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "α-Bisabolol", Color = "#002060", Id = 20, OtherNames = { "alpha-bisabolol" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "α-Humulene", Color = "#0070C0", Id = 21, OtherNames = { "alpha-humulene" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "α-Pinene", Color = "#00B0F0", Id = 22, OtherNames = { "alpha-pinene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "α-Humulene", Color = "#0070C0", Id = 21, OtherNames = { "alpha-humulene" }, Description = "Hoppy, herbal aroma" });
+                TerpeneList.Add(new Terpene() { TerpeneName = "α-Pinene", Color = "#00B0F0", Id = 22, OtherNames = { "alpha-pinene" }, Description = "Pine, fir aroma" });
                 TerpeneList.Add(new Terpene() { TerpeneName = "α-Terpinene", Color = "#00B050", Id = 23, OtherNames = { "alpha-terpinene", "γ-terpinene", "alpha-terpinene", "gamma-terpinene" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "β-Caryophyllene", Color = "#92D050", Id = 24, OtherNames = { "e-caryophyllene", "beta-caryophyllene" } });
-                TerpeneList.Add(new Terpene() { TerpeneName = "β-Myrcene", Color = "#FFFF00", Id = 25, OtherNames = { "beta-myrcene" } });
+                TerpeneList.Add(new Terpene() { TerpeneName = "β-Caryophyllene", Color = "#92D050", Id = 24, OtherNames = { "e-caryophyllene", "beta-caryophyllene" }, Description = "Spicy, peppery aroma" });
+                TerpeneList.Add(new Terpene() { TerpeneName = "β-Myrcene", Color = "#FFFF00", Id = 25, OtherNames = { "beta-myrcene" }, Description = "The most abundant terpene in modern commercial cannabis and gives it a peppery, spicy, balsam fragrance." });
                 TerpeneList.Add(new Terpene() { TerpeneName = "β-Pinene", Color = "#FFC000", Id = 26, OtherNames = { "beta-pinene" } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "δ-3-Carene", Color = "#C00000", Id = 27, OtherNames = { } });
                 TerpeneList.Add(new Terpene() { TerpeneName = "Borneol", Color = "#99FF33", Id = 28, OtherNames = { "isoborneol" } });
@@ -205,6 +206,7 @@ namespace Terprint.Web
                     OtherNames = new List<string>();
                 }
                 public string TerpeneName { get; set; }
+                public string Description { get; set; }
                 public string Color { get; set; }
                 public int Id { get; set; }
                 public List<string> OtherNames { get; set; }
@@ -388,6 +390,7 @@ namespace Terprint.Web
                     public double terpeneValue;
 
                 }
+                common.Matrixes m = new Matrixes();
                 public string strain1;
                 public string strain2;
                 public List<KeyValuePair<string, double>> TerpsinBoth;
@@ -399,51 +402,69 @@ namespace Terprint.Web
 
                 public List<TerpList> terplistboth;
 
+                public class TerpCompareData
+                {
+                    public int terplist { get; set; }
+                    public string originalTerpName { get; set; }
+                    public string dbTerpName { get; set; }
+                    public bool in1 { get; set; }
+                    public bool in2 { get; set; }
+                    public bool inboth { get; set; }
+                    public double value { get; set; }
+                }
                 public StrainComparer(string strain1, string strain2, List<TerpeneValue> strain1Terps,
                 List<TerpeneValue> strain2Terps)
                 {
+                    List<TerpCompareData> tcd = new List<TerpCompareData>();
+                    List<string> terpenes = new List<string>();
+                    common.Components c = new common.Components();
                     terplistboth = new List<TerpList>();
                     TerpsinBoth = new List<KeyValuePair<string, double>>();
                     TerpsOnlyin1 = new List<KeyValuePair<string, double>>();
                     TerpsOnlyin2 = new List<KeyValuePair<string, double>>();
                     foreach (var r in strain1Terps)
                     {
-
-
-                        if (strain2Terps.Where(t => t.TerpeneName.Trim() == r.TerpeneName.Trim()).Count() > 0)
+                        tcd.Add(new TerpCompareData()
                         {
-                            if (terplistboth.Where(t => t.terpene.Trim() == r.TerpeneName.Trim()).Count() == 0)
-                            {
-                                TerpsinBoth.Add(new KeyValuePair<string, double>(r.TerpeneName.Trim(), r.Value));
-                                terplistboth.Add(new TerpList() { strain1 = strain1, terpene = r.TerpeneName.Trim() });
-                            }
-                        }
-                        else
-                        {
-                            if (TerpsOnlyin1.Where(t => t.Key == r.TerpeneName).Count() == 0)
-                            {
-                                TerpsOnlyin1.Add(new KeyValuePair<string, double>(r.TerpeneName.Trim(), r.Value));
-                            }
-                        }
+                            terplist = 1,
+                            originalTerpName = r.TerpeneName,
+                            dbTerpName = c.GetDBTerpName(r.TerpeneName),
+                            value = r.Value,
+                            in1 = true
+                        });
+
                     }
                     foreach (var r in strain2Terps)
                     {
-                        if (strain1Terps.Where(t => t.TerpeneName.Trim() == r.TerpeneName.Trim()).Count() > 0)
+                        tcd.Add(new TerpCompareData()
                         {
-                            if (terplistboth.Where(t => t.terpene.Trim() == r.TerpeneName.Trim()).Count() == 0)
-                            {
-                                TerpsinBoth.Add(new KeyValuePair<string, double>(r.TerpeneName.Trim(), r.Value));
+                            terplist = 2,
+                            originalTerpName = r.TerpeneName,
+                            dbTerpName = c.GetDBTerpName(r.TerpeneName),
+                            value = r.Value,
+                            in2 = true
+                        });
 
-                                terplistboth.Add(new TerpList() { strain1 = strain1, terpene = r.TerpeneName.Trim() });
-                            }
-                        }
-                        else
-                        {
-                            TerpsOnlyin2.Add(new KeyValuePair<string, double>(r.TerpeneName.Trim(), r.Value));
-
-                        }
                     }
+                    terpenes = tcd.Select(t => t.dbTerpName).Distinct().ToList();
+                    foreach (string s in terpenes)
+                    {
+                        if (tcd.Where(t => t.dbTerpName == s).Count() ==2)
+                        {
 
+                            TerpsinBoth.Add(new KeyValuePair<string, double>(s, 0));
+                        }
+                       else if (tcd.Where(t => t.dbTerpName == s).Where(t => t.terplist == 1).Count() == 1)
+                        {
+
+                            TerpsOnlyin1.Add(new KeyValuePair<string, double>(s, 0));
+                        }
+                       else if (tcd.Where(t => t.dbTerpName == s).Where(t => t.terplist == 2).Count() == 1)
+                        {
+
+                            TerpsOnlyin2.Add(new KeyValuePair<string, double>(s,0));
+                        }
+                    } 
 
                 }
             }
@@ -649,7 +670,7 @@ namespace Terprint.Web
                 if (TerpValues is null)
                 {
                     TerpValues = new List<terpValue>();
-                     
+
                 }
 
             }
@@ -685,14 +706,13 @@ namespace Terprint.Web
             public string GetTerpeneDescription(string terpene)
             {
                 string details = "";
-
-                loadmatrix();
+                common.Matrixes m = new Matrixes();
                 try
                 {
-                    var r = Matrixes.Where(t => t.Name == terpene.Trim() || t.NamesOther.Contains(terpene.Trim())).FirstOrDefault();
+                    var r = m.MatrixList.Where(t => t.Terpene.TerpeneName == terpene.Trim() || t.Terpene.OtherNames.Contains(terpene.Trim())).FirstOrDefault();
                     if (r is not null)
                     {
-                        details = r.description;
+                        details = r.Terpene.Description;
                     }
                     else
                     {
@@ -712,7 +732,7 @@ namespace Terprint.Web
             {
                 common.Matrixes m = new Matrixes();
                 List<string> terpenes = new List<string>();
- 
+
 
                 terpenes = m.MatrixList.Select(t => t.Terpene.TerpeneName).Distinct().ToList();
 
@@ -722,23 +742,20 @@ namespace Terprint.Web
             public string GetDBTerpName(string terpene)
             {
                 string terpenes = "";
-
-                common.Matrixes m = new Matrixes(); 
-
-                var r = m.MatrixList.Where(t => t.Terpene.TerpeneName == terpene.Trim() || t.Terpene.OtherNames.Contains(terpene.Trim())).FirstOrDefault();
-                if (r is not null)
-                    if (m.MatrixList
-                        .Where(t => t.Terpene.TerpeneName == terpene  )
-                        .Count() > 0)
+                
+                common.Matrixes m = new Matrixes();
+                common.Terpenes t = new Terpenes();
+                foreach (var terp in t.TerpeneList)
+                {
+                    if (terp.TerpeneName.ToLower()  == terpene.ToLower() )
                     {
-                        terpenes = m.MatrixList
-                        .Where(t => t.Terpene.TerpeneName == terpene)
-                        .FirstOrDefault().Terpene.TerpeneName;
+                        terpenes = terp.TerpeneName;
                     }
-                    else
+                    if (terp.OtherNames.Contains(terpene.ToLower()))
                     {
-                        terpenes = terpene;
+                        terpenes = terp.TerpeneName;
                     }
+                }
                 return terpenes;
 
             }

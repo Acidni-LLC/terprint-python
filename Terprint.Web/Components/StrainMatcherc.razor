@@ -4,7 +4,7 @@
 @inject Terprint.Web.Data.TerprintWebContext2 DB2
 @inject NavigationManager nm
 @inject common.AppState.StateContainer.Strain asStrain
-@inject common.AppState.StateContainer.Batch asBatch 
+@inject common.AppState.StateContainer.Batch asBatch
 @inject common.AppState.StateContainer.TerpeneValue asTerpeneValue
 @rendermode InteractiveServer
 <div class="container-fluid">
@@ -18,13 +18,9 @@
         .OrderBy(t1 => t1.StrainName)
         .Select(t => new { t.StrainId, t.StrainName })
         .ToList();
-        var strains2 = asStrain.Strains
-        .OrderBy(t1 => t1.StrainName)
-        .Select(t => new { t.StrainId, t.StrainName })
-        .ToList();
     }
     <div class="row">
-        <div class="col-md-6 col-12">
+        <div class="  col-12">
             <h3>Select Strain</h3>
             <InputSelect id="strain1" class="m-0 form-control" @bind-Value="@strainid1" @oninput="OnStrainId1Changed">
 
@@ -41,47 +37,160 @@
     <div class=" col-12">
         @{
             //match to strains with the same terpenes or cannabinoids - for now terpenes
-            var batches = asBatch.Batches.Where(t => t.StrainID == strainid1).Select(t=>t.BatchId).ToList();
+            var batches = asBatch.Batches.Where(t => t.StrainID == strainid1).Select(t => t.BatchId).ToList();
             List<string> terpenes = new List<string>();
+            common.Components c = new common.Components();
             foreach (var tv in asTerpeneValue.TerpeneValues.Where(t => batches.Contains(t.BatchID)).ToList())
             {
-                terpenes.Add(tv.TerpeneName);
+                terpenes.Add(c.GetDBTerpName(tv.TerpeneName));
             }
-             
+            terpenes = terpenes.Select(t => t).Distinct().ToList();
 
-
-            foreach (var r in asBatch.Batches.Where(t => t.StrainID == strainid1).ToList())
+            List<tv> terps = new List<tv>();
+            foreach (TerpeneValue terpeneValue in asTerpeneValue.TerpeneValues)
             {
+                tv t = new tv();
+                t.Value = terpeneValue.Value;
+                t.Scale = terpeneValue.Scale;
+                t.TerpeneValueId = terpeneValue.TerpeneValueId;
+                t.createdby = terpeneValue.createdby;
+                t.BatchID = terpeneValue.BatchID;
+                t.TerpeneName = terpeneValue.TerpeneName;
+                t.dbname = c.GetDBTerpName(terpeneValue.TerpeneName);
+                terps.Add(t);
 
-                ChooserBatch.BatchData bd = new ChooserBatch.BatchData() { batch = r.Name, batchId = (int)r.BatchId };
-                <div class="card">
-                    <div class="card-body">
-                        <TerprintTable @bind-batch="@bd.batch" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+            }
+            List<int> batchlist = new List<int>();
+            List<BatchCount> batchlist1 = new List<BatchCount>();
+            foreach (string terp in terpenes)
+            {
+                foreach (tv tv in terps.Where(t => t.dbname == terp).ToList())
+                {
+                    if (batchlist1.Where(t => t.batchid == tv.BatchID).Count() > 0)
+                    {
+                        int v = batchlist1.Where(t => t.batchid == tv.BatchID).FirstOrDefault().count;
+                        batchlist1.Where(t => t.batchid == tv.BatchID).FirstOrDefault().count = v + 1;
+                    }
+                    else
+                    {
+                        batchlist1.Add(new BatchCount() { batchid = (int)tv.BatchID, count = 1 });
+                    }
+                }
+                batchlist.AddRange(terps.Where(t => t.dbname == terp).Select(t => (int)t.BatchID).ToList());
+
+                foreach (var bbb in batches)
+                {
+                    ChooserBatch.BatchData bd = new ChooserBatch.BatchData() { batch = asBatch.Batches.Where(t => t.BatchId == bbb).FirstOrDefault().Name, batchId = (int)bbb };
+                    <div class="card">
+                        <div class="card-body">
+                            <TerprintTable @bind-batch="@bd.batch" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class=" col-4">
-                                Terpenes in Strain 1 <br /> not in Strain 2
-                            </div>
-                            <div class=" col-4">
-                                Terpenes in both strains
-                            </div>
-                            <div class=" col-4">
+                }
 
-                                Terpenes in Strain 2 <br />not in Strain 1
+
+                batchlist1 = batchlist1.OrderByDescending(t => t.count).Distinct().ToList();
+                foreach (var bb in batchlist1)
+                {
+                    var b = asBatch.Batches.Where(t => t.BatchId == bb.batchid).FirstOrDefault();
+                    ChooserBatch.BatchData bd = new ChooserBatch.BatchData() { batch = b.Name, batchId = (int)b.BatchId };
+                    <div class="card">
+                        <div class="card-body">
+                            <TerprintTable @bind-batch="@bd.batch" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+                        </div>
+                        <div class="card-body">
+                            @{
+                                strainid2 = (int)b.StrainID;
+                                common.Strains.StrainComparer sc = new common.Strains.StrainComparer(
+                                strainid1.ToString(),
+                                strainid2.ToString(),
+                                asTerpeneValue.TerpeneValues.Where(t => asBatch.Batches.Where(t => t.StrainID == strainid1).Select(t => t.BatchId).ToList().Contains(t.BatchID)).ToList(),
+                                asTerpeneValue.TerpeneValues.Where(t => asBatch.Batches.Where(t => t.StrainID == strainid2).Select(t => t.BatchId).ToList().Contains(t.BatchID)).ToList()
+                                );
+                            }
+                            <div class="row">
+                                <div class="col-4 text-center"><h4> Strain 1 Only Terpenes</h4>  </div>
+                                <div class="col-4 text-center">
+                                    <h4>
+                                        @batchlist1.Where(t => t.batchid == b.BatchId).FirstOrDefault().count Terpenes in Both
+                                    </h4>
+                                </div>
+                                <div class="col-4 text-center"><h4> Strain 2 Only Terpenes</h4></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <ol>
+                                        @{
+                                            MarkupString ms = (MarkupString)"";
+                                            List<string> s = new List<string>();
+                                            foreach (var r in sc.TerpsOnlyin1)
+                                            {
+                                                string terpcolor = "";
+                                                //co.GetTerpeneColor(r.Key.ToString().Trim());
+                                                string m = "<li>" + r.Key.ToString() + "</li>";
+                                                s.Add(m);
+                                            }
+
+                                            ms = (MarkupString)string.Join("", s);
+                                        }
+                                        @ms
+                                    </ol>
+                                </div>
+                                <div class="col-4">
+                                    <ol>
+                                        @{
+                                            ms = (MarkupString)"";
+                                            s = new List<string>();
+                                            foreach (var r in sc.TerpsinBoth)
+                                            {
+                                                string terpcolor = "";
+                                                //co.GetTerpeneColor(r.Key.ToString().Trim());
+                                                string m = "<li>" + r.Key.ToString() + "</li>";
+                                                s.Add(m);
+                                            }
+                                            ms = (MarkupString)string.Join("", s);
+                                        }
+                                        @ms
+                                    </ol>
+                                </div>
+                                <div class="col-4">
+                                    <ol>
+                                        @{
+                                            ms = (MarkupString)"";
+                                            s = new List<string>();
+                                            foreach (var r in sc.TerpsOnlyin2)
+                                            {
+                                                string terpcolor = "";
+                                                //co.GetTerpeneColor(r.Key.ToString().Trim());
+                                                string m = "<li>" + r.Key.ToString() + "</li>";
+                                                s.Add(m);
+                                            }
+                                            ms = (MarkupString)string.Join("", s);
+                                        }
+                                        @ms
+                                    </ol>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
 
+                }
             }
         }
     </div>
-</div> 
+</div>
 @code {
-
-
+    public class BatchCount
+    {
+        public string batchname { get; set; }
+        public int batchid { get; set; }
+        public int count { get; set; }
+    }
+    public class tv : TerpeneValue
+    {
+        public string dbname { get; set; }
+    }
 
     public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandheader;
     [FromQuery(Name = "matrix")]
@@ -154,4 +263,4 @@
         return strainid2Changed.InvokeAsync(strainid2);
 
     }
-}
+    }
