@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Terprint.Web.Data;
 
 #nullable disable
 
-namespace Terprint.Web.Migrations
+namespace Terprint.Web.Migrations.TerprintWeb
 {
     [DbContext(typeof(TerprintWebContext))]
-    partial class TerprintWebContextModelSnapshot : ModelSnapshot
+    [Migration("20240728211637_202407281715")]
+    partial class _202407281715
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,9 +152,6 @@ namespace Terprint.Web.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pictures")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RatingCategoryID")

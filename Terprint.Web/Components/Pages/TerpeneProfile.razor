@@ -7,6 +7,8 @@
 @inject Terprint.Web.Components.ChooserBatch ChooserBatch
 @inject Terprint.Web.Components.ChooserRatingCategory ChooserRatingCategory
 @inject common.AppState appstate
+@inject common.AppState.StateContainer.Batch appstatebatch
+@inject common.AppState.StateContainer.TerpeneValue asterpenevalue
 @rendermode InteractiveServer
 
 
@@ -65,18 +67,18 @@
     string dbterpname = c.GetDBTerpName(terpene);
 
 
-    var terpenevalueslist = DB.TerpeneValues
+    var terpenevalueslist = asterpenevalue.TerpeneValues
                     .Where(t => t.TerpeneName == dbterpname)
         .OrderByDescending(t => t.Value)
                     .Select(t => new 
-                        { batchid = t.BatchID, 
-                            Name = DB.Batch.Where(t1 => t1.BatchId == t.BatchID).Select(t2 => t2.Name).FirstOrDefault() ,
+                    { batchid = t.BatchID, 
+                        Name = appstatebatch.Batches.Where(t1 => t1.BatchId == t.BatchID).Select(t2 => t2.Name).FirstOrDefault(),
                         Value=t.Value,
                         dbterpname=dbterpname})
                     .Distinct()
                     .ToList();
     int i = 1;
-     
+    terpenevalueslist = terpenevalueslist.OrderByDescending(t => t.Value).ToList();
     terpcolor = c.GetTerpeneColor(terpene);
 
     <div class="card">
