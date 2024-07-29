@@ -8,13 +8,13 @@
 @attribute [Authorize]
 @inject common.AppState.StateContainer.Batch asbatch
 <PageTitle>Create Batch</PageTitle>
- 
+
 
 <h4>Batch</h4>
 <hr />
 <div class="row">
     <div class="col-12">
-        <EditForm Context="editContext" Model="@Batch" method="post" OnValidSubmit="AddBatch" FormName="createbatch"   Enhance>
+        <EditForm Context="editContext" Model="@Batch" method="post" OnValidSubmit="AddBatch" FormName="createbatch" Enhance>
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" />
             <div class="mb-3">
@@ -24,8 +24,14 @@
             </div>
             <div class="mb-3">
                 <label for="type" class="form-label">Type:</label>
+                <InputSelect id="grower" class="m-0 form-control edit-active" @bind-Value="Batch.Type">
+
+
+                    <option selected value="Flower">Flower</option>
+
+
+                </InputSelect>
                 <InputText id="type" @bind-Value="Batch.Type" class="form-control" />
-                <ValidationMessage For="() => Batch.Type" class="text-danger" />
             </div>
             <div class="mb-3">
                 <label for="date" class="form-label">Date:</label>
@@ -49,7 +55,7 @@
 
                 <InputSelect id="strain" class="m-0 form-control edit-active" @bind-Value="Batch.StrainID">
                     <option selected disabled>Select Strain</option>
-                    @foreach (var s in Strains.OrderBy(t=>t.StrainName))
+                    @foreach (var s in Strains.OrderBy(t => t.StrainName))
                     {
                         <option value=@s.StrainId @onselect="() => Batch.StrainID = s.StrainId">@s.StrainName</option>
                     }
@@ -113,6 +119,7 @@
     {
         //Batch.Grower = Grower;
         //DB2.DisposeAsync();
+        Batch.created = DateTime.Now;
         Batch.Name = Batch.Name.Trim();
         //Batch.createdby = User.Identity?.Name;
         DB.Batch.AddAsync(Batch);
