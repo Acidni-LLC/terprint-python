@@ -15,6 +15,10 @@ namespace Terprint.Web.Models
         { get; set; }
         public string? Notes
         { get; set; }
+        public string? sharedWith
+        { get; set; }
+        public string? Pictures
+        { get; set; }
         [Required]
         public int? BatchID { get; set; }
 

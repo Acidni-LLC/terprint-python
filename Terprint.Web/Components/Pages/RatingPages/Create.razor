@@ -49,6 +49,15 @@
                 <InputText id="notes" @bind-Value="Rating.Notes" class="form-control" />
                 <ValidationMessage For="() => Rating.Notes" class="text-danger" />
             </div>
+            <div class="mb-3">
+                <label for="sharedWith" class="form-label">sharedWith:</label>
+                <InputSelect id="sharedWith" @bind-Value="Rating.sharedWith" class="form-control">
+                    <option value="Private" selected>Private</option>
+                    <option value="Public">Public</option>
+                    <option value="People">These email addresses:</option>
+                </InputSelect>
+                <ValidationMessage For="() => Rating.sharedWith" class="text-danger" />
+            </div>
 
             <button type="submit" class="btn btn-primary">Create</button>
         </EditForm>
