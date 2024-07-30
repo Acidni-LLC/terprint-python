@@ -2,29 +2,46 @@
 @using Microsoft.AspNetCore.Components.QuickGrid
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
+@inject common.AppState.StateContainer.Grower asGrower
+@rendermode InteractiveServer
+ 
 
-<PageTitle>Growers</PageTitle>
+<Grid TItem="Grower"
+      Class="table table-hover table-bordered table-striped"
+      DataProvider="GrowerDataProvider"
+      AllowFiltering="true"
+      AllowPaging="true"
+      PageSize="20"
+      AllowSorting="true"
+      AllowSelection="true"
+      Responsive="true">
+    <GridColumns>
+        <GridColumn TItem="Grower" HeaderText="GrowerName" PropertyName="Name" SortKeySelector="item => item.Name">
+            @context.Name
+        </GridColumn> 
+        <GridColumn TItem="Grower" HeaderText="created" PropertyName="created" SortKeySelector="item => item.created">
+            @context.created
+        </GridColumn>
+        <GridColumn TItem="Grower" HeaderText="createdby" PropertyName="createdby" SortKeySelector="item => item.createdby">
+            @context.createdby
+        </GridColumn>
 
-<h1>Growers</h1>
-<AuthorizeView>
-    <Authorized>
-        <p>
-            <a href="growers/create">Create New</a>
-        </p>
-    </Authorized>
-</AuthorizeView>
-<QuickGrid Class="table" Items="DB.Grower">
-    <PropertyColumn Property="grower => grower.Name" />
+    </GridColumns>
 
-    <TemplateColumn Context="grower">
-        <a href="@($"/GrowerProfile?grower={grower.Name}")">Products</a>
-        <AuthorizeView>
-            <Authorized>
-                |
-                <a href="@($"growers/edit?growerid={grower.GrowerId}")">Edit</a> |
-                <a href="@($"growers/details?growerid={grower.GrowerId}")">Details</a> |
-                <a href="@($"growers/delete?growerid={grower.GrowerId}")">Delete</a>
-            </Authorized>
-        </AuthorizeView>
-    </TemplateColumn>
-</QuickGrid>
+</Grid>
+@code {
+
+    private IEnumerable<Grower> Growers;
+    private HashSet<Grower> selectedGrowers = new();
+
+    protected override void OnInitialized()
+    {
+        Growers = asGrower.Growers.OrderByDescending(t => t.created).ToList();
+    }
+
+    private async Task<GridDataProviderResult<Grower>> GrowerDataProvider(GridDataProviderRequest<Grower> request)
+    {
+        return await Task.FromResult(request.ApplyTo(Growers));
+    }
+
+}

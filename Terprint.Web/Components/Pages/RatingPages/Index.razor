@@ -5,7 +5,10 @@
 @inject common.AppState.StateContainer.RatingCategory asRatingCategory
 @inject common.AppState.StateContainer.Strain asStrain
 @inject common.AppState.StateContainer.Batch asBatch
+@inject common.AppState.StateContainer.Rating asRating 
 @using Terprint.Web.Models
+@rendermode InteractiveServer
+
 
 <PageTitle>Index Rating</PageTitle>
 
@@ -14,18 +17,57 @@
 <p>
     <a href="ratings/create">Create New</a>
 </p>
+ 
 
-<QuickGrid Class="table" Items="DB.Rating"> 
-    <PropertyColumn Property="rating => rating.userid" />
-    <PropertyColumn Property="rating => asRatingCategory.RatingCategories.Where(t=>t.RatingCategoryId== rating.RatingCategoryID).FirstOrDefault().CategoryName" />
-    <PropertyColumn Property="rating => rating.Value" />
-    <PropertyColumn Property="rating => rating.Notes" />
-    <PropertyColumn Property="rating => rating.BatchID" />
-    <PropertyColumn Property="rating => asStrain.Strains.Where(t=>t.StrainId==asBatch.Batches.Where(t=>t.BatchId==rating.BatchID).FirstOrDefault().StrainID).FirstOrDefault().StrainName" />
 
-    <TemplateColumn Context="rating">
-        <a href="@($"ratings/edit?ratingid={rating.RatingId}")">Edit</a> |
-        <a href="@($"ratings/details?ratingid={rating.RatingId}")">Details</a> |
-        <a href="@($"ratings/delete?ratingid={rating.RatingId}")">Delete</a>
-    </TemplateColumn>
-</QuickGrid>
+<Grid TItem="Rating"
+      Class="table table-hover table-bordered table-striped"
+      DataProvider="RatingDataProvider"
+      AllowFiltering="true"
+      AllowPaging="true"
+      PageSize="20"
+      AllowSorting="true"
+      AllowSelection="true"
+      Responsive="true">
+    <GridColumns>
+        <GridColumn TItem="Rating" HeaderText="RatingName" PropertyName="RatingName" SortKeySelector="item => item.userid">
+            @context.userid
+        </GridColumn>
+        <GridColumn TItem="Rating" HeaderText="RatingDescription" PropertyName="Value" SortKeySelector="item => item.Value">
+            @context.Value
+        </GridColumn>
+        <GridColumn TItem="Rating" HeaderText="Notes" PropertyName="Notes" SortKeySelector="item => item.Notes">
+            @context.Notes
+        </GridColumn>
+        <GridColumn TItem="Rating" HeaderText="BatchID" PropertyName="BatchID" SortKeySelector="item => item.BatchID">
+            @context.BatchID
+        </GridColumn>
+        <GridColumn TItem="Rating" HeaderText="BatchID" PropertyName="BatchID" SortKeySelector="item => asStrain.Strains.Where(t=>t.StrainId==asBatch.Batches.Where(t=>t.BatchId==item.BatchID ).FirstOrDefault().StrainID).FirstOrDefault().StrainName">
+            @context
+        </GridColumn>
+        <GridColumn TItem="Rating" HeaderText="created" PropertyName="created" SortKeySelector="item => item.created">
+            @context.created
+        </GridColumn>
+        <GridColumn TItem="Rating" HeaderText="createdby" PropertyName="createdby" SortKeySelector="item => item.createdby">
+            @context.createdby
+        </GridColumn>
+
+    </GridColumns>
+
+</Grid>
+@code {
+
+    private IEnumerable<Rating> Ratings;
+    private HashSet<Rating> selectedRatings = new();
+
+    protected override void OnInitialized()
+    {
+        Ratings = asRating.Ratings.OrderByDescending(t => t.created).ToList();
+    }
+
+    private async Task<GridDataProviderResult<Rating>> RatingDataProvider(GridDataProviderRequest<Rating> request)
+    {
+        return await Task.FromResult(request.ApplyTo(Ratings));
+    }
+
+}

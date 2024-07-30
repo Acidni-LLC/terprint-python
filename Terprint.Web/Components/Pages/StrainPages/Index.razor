@@ -1,7 +1,9 @@
 ﻿@page "/strains"
 @using Microsoft.AspNetCore.Components.QuickGrid
 @inject Terprint.Web.Data.TerprintWebContext DB
+@inject common.AppState.StateContainer.Strain asStrain
 @using Terprint.Web.Models
+@rendermode InteractiveServer
 
 <PageTitle>Strains</PageTitle>
 
@@ -10,14 +12,47 @@
 <p>
     <a href="strains/create">Create New</a>
 </p>
+ 
 
-<QuickGrid Class="table" Items="DB.Strain">
-    <PropertyColumn Property="strain => strain.StrainName" />
-    <PropertyColumn Property="strain => strain.StrainDescription" />
+<Grid TItem="Strain"
+      Class="table table-hover table-bordered table-striped"
+      DataProvider="StrainDataProvider"
+      AllowFiltering="true"
+      AllowPaging="true"
+      PageSize="20"
+      AllowSorting="true"
+      AllowSelection="true" 
+      Responsive="true">
+    <GridColumns>
+        <GridColumn TItem="Strain" HeaderText="StrainName" PropertyName="StrainName" SortKeySelector="item => item.StrainName">
+            @context.StrainName
+        </GridColumn>
+        <GridColumn TItem="Strain" HeaderText="StrainDescription" PropertyName="StrainDescription" SortKeySelector="item => item.StrainDescription">
+            @context.StrainDescription
+        </GridColumn>
+        <GridColumn TItem="Strain" HeaderText="created" PropertyName="created" SortKeySelector="item => item.created">
+            @context.created
+        </GridColumn>
+        <GridColumn TItem="Strain" HeaderText="createdby" PropertyName="createdby" SortKeySelector="item => item.createdby">
+            @context.createdby
+        </GridColumn>
+         
+    </GridColumns>
 
-    <TemplateColumn Context="strain">
-        <a href="@($"strains/edit?strainid={strain.StrainId}")">Edit</a> |
-        <a href="@($"strains/details?strainid={strain.StrainId}")">Details</a> |
-        <a href="@($"strains/delete?strainid={strain.StrainId}")">Delete</a>
-    </TemplateColumn>
-</QuickGrid>
+</Grid>
+@code{
+
+    private IEnumerable<Strain> Strains;
+    private HashSet<Strain> selectedStrains = new();
+
+    protected override void OnInitialized()
+    {
+        Strains = asStrain.Strains.OrderByDescending(t => t.created).ToList();
+    }
+
+    private async Task<GridDataProviderResult<Strain>> StrainDataProvider(GridDataProviderRequest<Strain> request)
+    {
+        return await Task.FromResult(request.ApplyTo(Strains));
+    }
+
+}
