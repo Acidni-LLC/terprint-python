@@ -330,6 +330,22 @@ namespace Terprint.Web
 
                     private void NotifyStateChanged() => OnChange?.Invoke();
                 }
+                public class Rating 
+                {
+                    private List<Models.Rating> ratings;
+                    public List<Models.Rating> Ratings
+                    {
+                        get => ratings ?? null;
+                        set
+                        {
+                            ratings = value;
+                            NotifyStateChanged();
+                        }
+                    }
+                    public event Action? OnChange;
+
+                    private void NotifyStateChanged() => OnChange?.Invoke();
+                }
 
             }
             public static class menuItems

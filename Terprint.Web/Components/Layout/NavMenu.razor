@@ -6,6 +6,7 @@
 @inject common.AppState.StateContainer.TerpeneValue asTerpeneValue
 @inject common.AppState.StateContainer.THCValue asTHCValue
 @inject common.AppState.StateContainer.RatingCategory asRatingCategory
+@inject common.AppState.StateContainer.Rating  asRating
 
 @{
 
@@ -36,6 +37,11 @@
     {
         asRatingCategory.RatingCategories = DB.RatingCategory.ToList();
     }
+    if (asRating.Ratings == null)
+    {
+        asRating.Ratings = DB.Rating.ToList();
+    }
+
 
     #endregion
 }
