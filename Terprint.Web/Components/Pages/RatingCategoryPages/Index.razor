@@ -3,6 +3,8 @@
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject common.AppState.StateContainer.RatingCategory asRatingCategory
+@rendermode InteractiveServer
+
 
 <PageTitle>Index RatingCategory</PageTitle>
 
@@ -11,16 +13,56 @@
 <p>
     <a href="ratingcategories/create">Create New</a>
 </p>
+ 
 
-<QuickGrid Class="table" TGridItem="Models.RatingCategory" Items="asRatingCategory.RatingCategories.AsQueryable()">
-    <PropertyColumn Property="ratingcategory => ratingcategory.RatingCategoryType" />
-    <PropertyColumn Property="ratingcategory => ratingcategory.CategoryName" />
-    <PropertyColumn Property="ratingcategory => ratingcategory.CategoryDescription" />
-    <PropertyColumn Property="ratingcategory => ratingcategory.CategoryTitle" />
+<Grid TItem="RatingCategory"
+      Class="table table-hover table-bordered table-striped"
+      DataProvider="RatingCategoryDataProvider"
+      AllowFiltering="true"
+      AllowPaging="true"
+      PageSize="20"
+      AllowSorting="true"
+      AllowSelection="true"
+      Responsive="true">
+    <GridColumns>
+        <GridColumn TItem="RatingCategory" HeaderText="RatingCategoryName" PropertyName="RatingCategoryType" SortKeySelector="item => item.RatingCategoryType">
+            @context.RatingCategoryType
+        </GridColumn>
+        <GridColumn TItem="RatingCategory" HeaderText="RatingCategoryName" PropertyName="RatingCategoryName" SortKeySelector="item => item.CategoryName">
+            @context.CategoryName
+        </GridColumn>
+        <GridColumn TItem="RatingCategory" HeaderText="CategoryDescription" PropertyName="CategoryDescription" SortKeySelector="item => item.CategoryDescription">
+            @context.CategoryDescription
+        </GridColumn>
+        <GridColumn TItem="RatingCategory" HeaderText="CategoryDescription" PropertyName="CategoryDescription" SortKeySelector="item => item.CategoryDescription">
+            @context.CategoryDescription
+        </GridColumn>
+        <GridColumn TItem="RatingCategory" HeaderText="CategoryTitle" PropertyName="CategoryTitle" SortKeySelector="item => item.CategoryTitle">
+            @context.CategoryTitle
+        </GridColumn>
+        <GridColumn TItem="RatingCategory" HeaderText="created" PropertyName="created" SortKeySelector="item => item.created">
+            @context.created
+        </GridColumn>
+        <GridColumn TItem="RatingCategory" HeaderText="createdby" PropertyName="createdby" SortKeySelector="item => item.createdby">
+            @context.createdby
+        </GridColumn>
 
-    <TemplateColumn Context="ratingcategory">
-        <a href="@($"ratingcategories/edit?ratingcategoryid={ratingcategory.RatingCategoryId}")">Edit</a> |
-        <a href="@($"ratingcategories/details?ratingcategoryid={ratingcategory.RatingCategoryId}")">Details</a> |
-        <a href="@($"ratingcategories/delete?ratingcategoryid={ratingcategory.RatingCategoryId}")">Delete</a>
-    </TemplateColumn>
-</QuickGrid>
+    </GridColumns>
+
+</Grid>
+@code {
+
+    private IEnumerable<RatingCategory> RatingCategorys;
+    private HashSet<RatingCategory> selectedRatingCategorys = new();
+
+    protected override void OnInitialized()
+    {
+        RatingCategorys = asRatingCategory.RatingCategories.OrderByDescending(t => t.created).ToList();
+    }
+
+    private async Task<GridDataProviderResult<RatingCategory>> RatingCategoryDataProvider(GridDataProviderRequest<RatingCategory> request)
+    {
+        return await Task.FromResult(request.ApplyTo(RatingCategorys));
+    }
+
+}

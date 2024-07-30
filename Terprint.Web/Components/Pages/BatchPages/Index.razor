@@ -1,7 +1,10 @@
 ﻿@page "/batches"
 @using Microsoft.AspNetCore.Components.QuickGrid
 @inject Terprint.Web.Data.TerprintWebContext DB
+@inject common.AppState.StateContainer.Batch asBatch
+@inject common.AppState.StateContainer.Strain asStrain
 @using Terprint.Web.Models
+@rendermode InteractiveServer
 
 <PageTitle>Index Batch</PageTitle>
 
@@ -10,15 +13,55 @@
 <p>
     <a href="batches/create">Create New</a>
 </p>
+ 
 
-<QuickGrid Class="table" Items="DB.Batch">
-    <PropertyColumn Property="batch => batch.Name" Sortable="true"/>
-    <PropertyColumn Property="batch => batch.Type" />
-    <PropertyColumn Property="batch => batch.Date" />
 
-    <TemplateColumn Context="batch">
-        <a href="@($"batches/edit?batchid={batch.BatchId}")">Edit</a> |
-        <a href="@($"batches/details?batchid={batch.BatchId}")">Details</a> |
-        <a href="@($"batches/delete?batchid={batch.BatchId}")">Delete</a>
-    </TemplateColumn>
-</QuickGrid>
+<Grid TItem="Batch"
+      Class="table table-hover table-bordered table-striped"
+      DataProvider="BatchDataProvider"
+      AllowFiltering="true"
+      AllowPaging="true"
+      PageSize="20"
+      AllowSorting="true"
+      AllowSelection="true"
+      Responsive="true">
+    <GridColumns>
+        <GridColumn TItem="Batch" HeaderText="Name" PropertyName="Name" SortKeySelector="item => item.Name">
+            @context.Name
+        </GridColumn>
+        <GridColumn TItem="Batch" HeaderText="BatchId" PropertyName="BatchId" SortKeySelector="item => item.BatchId">
+            @context.BatchId
+        </GridColumn>
+        <GridColumn TItem="Batch" HeaderText="Batch Date" PropertyName="Date" SortKeySelector="item => item.Date">
+            @context.Date
+        </GridColumn>
+        <GridColumn TItem="Batch" HeaderText="StrainName" PropertyName="StrainID" SortKeySelector="item => item.StrainID">
+
+            @context.StrainID
+        </GridColumn>
+        <GridColumn TItem="Batch" HeaderText="created" PropertyName="created" SortKeySelector="item => item.created">
+            @context.created
+        </GridColumn>
+        <GridColumn TItem="Batch" HeaderText="createdby" PropertyName="createdby" SortKeySelector="item => item.createdby">
+            @context.createdby
+        </GridColumn>
+
+    </GridColumns>
+
+</Grid>
+@code {
+
+    private IEnumerable<Batch> Batches;
+    private HashSet<Batch> selectedBatches = new();
+
+    protected override void OnInitialized()
+    {
+        Batches = asBatch.Batches.OrderByDescending(t => t.created).ToList();
+    }
+
+    private async Task<GridDataProviderResult<Batch>> BatchDataProvider(GridDataProviderRequest<Batch> request)
+    {
+        return await Task.FromResult(request.ApplyTo(Batches));
+    }
+
+}
