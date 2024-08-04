@@ -1,8 +1,8 @@
 ﻿select * from  RatingCategory
 
-select * from batch where name ='18347_0004 808376'
+select Top(100)* from batch order by created desc
 
-select * from thcvalues where  batchid = 87
+select * from TerpeneValues where  lower(terpenename) like '%caryophyllene%' order by BatchID desc
 select top(100)* from thcvalues order by created desc
 select top(100)* from thcvalues order by batchid desc
 --delete from thcvalues where thcvalueid >= 789

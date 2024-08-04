@@ -5,6 +5,7 @@
 @rendermode InteractiveServer
 @inject common.AppState.StateContainer.Strain asStrain
 @inject common.AppState.StateContainer.Batch asBatch
+@inject common.AppState.StateContainer.TerpeneValue asTerpeneValue
 
 @inject common.AppState appstate
 
@@ -18,7 +19,9 @@
             t.Name,
             StrainName = asStrain.Strains.Where(t1 => t1.StrainId == t.StrainID).FirstOrDefault().StrainName,
             t.StrainID,
-            t.Date
+            t.Date,
+            TerpenesPercent = asTerpeneValue.TerpeneValues.Where(t2 => t2.BatchID == t.BatchId).Select(t2 => t2.Value).Sum(),
+            TerpenesCount = asTerpeneValue.TerpeneValues.Where(t2 => t2.BatchID == t.BatchId).Select(t2 => t2.Value).Count()
         }
         ).ToList();
     }
@@ -42,7 +45,7 @@
 
             if (batchin && batch.Trim() == b.Name.Trim())
             {
-                <option selected value=@b.BatchId @onselect="() => BatchId = (int)b.BatchId">@asStrain.Strains.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName  @b.Date  @b.Name</option>
+                <option selected value=@b.BatchId @onselect="() => BatchId = (int)b.BatchId">@asStrain.Strains.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName @Math.Round(b.TerpenesPercent,2)%  @b.Date  @b.Name</option>
 
                 {
                     BatchId = (int)b.BatchId;
@@ -51,7 +54,7 @@
             }
             else
             {
-                <option value=@b.BatchId @onselect="() => BatchId = (int)b.BatchId">@asStrain.Strains.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName  @b.Date  @b.Name</option>
+                <option value=@b.BatchId @onselect="() => BatchId = (int)b.BatchId">@asStrain.Strains.Where(t => t.StrainId == @b.StrainID).FirstOrDefault().StrainName @Math.Round(b.TerpenesPercent, 2)% @b.Date  @b.Name</option>
 
             }
 
