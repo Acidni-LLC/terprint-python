@@ -11,6 +11,8 @@ using Terprint.Web.Components.Account;
 using Microsoft.AspNetCore.Components.Web;
 using Blazored.LocalStorage;
 using Aspire.Hosting.Redis;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Terprint.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,6 +71,8 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddSignInManager()
     .AddDefaultTokenProviders();
+
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 builder.Services.AddQuickGridEntityFrameworkAdapter();;
