@@ -1,4 +1,7 @@
 ﻿@page "/"
+
+@attribute [OutputCache(Duration = 20)]
+
 @{
     string title = common.config.appname + " - Home";
 }
