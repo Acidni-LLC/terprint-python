@@ -1,5 +1,10 @@
-﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><PropertyGroup xmlns="">  <UserSecretsId>9384185d-bcdc-4818-be2d-78c45a5f02bf</UserSecretsId>
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<PropertyGroup>  <UserSecretsId>9384185d-bcdc-4818-be2d-78c45a5f02bf</UserSecretsId>
   </PropertyGroup>
+  <PropertyGroup>  
+  <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>  
+  <TargetFrameworkMoniker>.NETFramework,Version=$(TargetFrameworkVersion)</TargetFrameworkMoniker>  
+</PropertyGroup> 
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
