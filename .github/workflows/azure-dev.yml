@@ -32,18 +32,8 @@ jobs:
       - name: Install .NET Aspire workload
         run: dotnet workload install aspire
         
-      - name: Install >NET 
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
-          with:
-            dotnet-version: '10.0.x'
-        run: |
-        dotnet workload install aspire
-       
-      - name: Log in with Azure (Federated Credentials)
-        if: ${{ env.AZURE_CLIENT_ID != ' ' }}
-        run: |
-        dotnet build 'Terprint/Terprint.AppHost'
+     
+        
         
           azd auth login `
             --client-id "$Env:AZURE_CLIENT_ID" `
