@@ -54,17 +54,17 @@ jobs:
             --tenant-id "$($info.tenantId)"
         shell: pwsh
 
-      - name: Provision Infrastructure
-        run: azd provision --no-prompt
+      #- name: Provision Infrastructure
+      #  run: azd provision --no-prompt
         # Required when 
         # env:
         #   AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
 
       # Required when provisioning and deploying are defined in separate jobs.
-      # - name: Refresh azd env (pulls latest infrastructure provision)
-      #  run: azd env refresh
-      #  env:
-      #    AZURE_LOCATION: ${{ env.AZURE_LOCATION }}
+      - name: Refresh azd env (pulls latest infrastructure provision)
+        run: azd env refresh
+        env:
+          AZURE_LOCATION: ${{ env.AZURE_LOCATION }}
 
       - name: Deploy Application
         run: azd deploy --no-prompt
