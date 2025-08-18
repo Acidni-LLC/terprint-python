@@ -5,12 +5,12 @@
     <NoWarn>$(NoWarn);NU1507</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Aspire.Hosting.AppHost" Version="9.2.1" />
-    <PackageVersion Include="Aspire.Hosting.Redis" Version="9.2.1" />
-    <PackageVersion Include="Aspire.Hosting.Testing" Version="9.2.1" />
-    <PackageVersion Include="Aspire.StackExchange.Redis" Version="9.2.1" />
-    <PackageVersion Include="Azure.Identity" Version="1.14.0" />
-    <PackageVersion Include="Blazor.Bootstrap" Version="3.3.1" />
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="9.3.1" />
+    <PackageVersion Include="Aspire.Hosting.Redis" Version="9.3.1" />
+    <PackageVersion Include="Aspire.Hosting.Testing" Version="9.3.1" />
+    <PackageVersion Include="Aspire.StackExchange.Redis" Version="9.3.1" />
+    <PackageVersion Include="Azure.Identity" Version="1.14.1" />
+    <PackageVersion Include="Blazor.Bootstrap" Version="3.4.0" />
     <PackageVersion Include="Blazored.LocalStorage" Version="4.5.0" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="10.0.0-preview.4.25258.110" />
@@ -26,9 +26,9 @@
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.0-preview.4.25258.110" />
     <PackageVersion Include="Microsoft.Extensions.Caching.Memory" Version="10.0.0-preview.4.25258.110" />
     <PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="10.0.0-preview.4.25258.110" />
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.5.0" />
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.2.1" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.7.0" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.3.1" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageVersion Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
     <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.12.0" />
     <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.12.0" />
@@ -41,6 +41,6 @@
     <PackageVersion Include="System.Formats.Asn1" Version="10.0.0-preview.4.25258.110" />
     <PackageVersion Include="System.Text.Json" Version="10.0.0-preview.4.25258.110" />
     <PackageVersion Include="xunit" Version="2.9.3" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.0" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.1" />
   </ItemGroup>
 </Project>
