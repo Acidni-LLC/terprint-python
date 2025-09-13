@@ -43,6 +43,7 @@ result = lx.extract(
     prompt_description=prompt,
     examples=examples,
     model_id="gemini-2.5-pro",
+    api_key="AIzaSyBbjvJnLLSanl5WpXWAXy0VqXe6ES4n74I" 
 )
 
 # Save the results to a JSONL file
