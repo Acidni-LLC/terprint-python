@@ -27,3 +27,7 @@ select t.* from THCValues t where t.BatchID = '44'
 
 select b.name,t.* from THCValues t join batch b on t.BatchID = b.BatchId where t.BatchID in (44,51,42,43,50,74,75,76,77,78,79,80,87) 
 update TerpeneValues set TerpeneName = '3-CARENE' where TerpeneValueId=549
+
+
+
+select s.StrainName,b.* from batch b join strain s on b.StrainID=s.StrainId where b.BatchId not in (Select BatchId from THCValues)
