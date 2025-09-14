@@ -1,0 +1,29 @@
+1
+ 
+  Analyte Result (mg/g) (%) 
+ (R)-(+)-Limonene 6.896 0.69% 
+ trans-Caryophyllene 3.437 0.344% 
+ Linalool 2.384 0.238% 
+ beta-Myrcene 1.896 0.19% 
+ alpha-Humulene 0.953 0.095% 
+ Fenchyl Alcohol 0.874 0.087% 
+ Guaiol 0.822 0.082% 
+ beta-Pinene 0.795 0.079% 
+ alpha-Pinene 0.734 0.073% 
+ trans-Nerolidol 0.686 0.069% 
+ Geranyl acetate 0.327 0.033% 
+ Ocimene 0.127 0.013%
+----------------------|
+THCA-A|150.000|3.20E-5|0.015|278|27.8
+CBGA|15.000|8.00E-5|0.015|13.7|1.37
+Delta-9 THC|15.000|1.30E-5|0.015|4.73|0.473
+CBG|15.000|2.48E-4|0.015|1.46|0.146
+CBDA|15.000|1.00E-5|0.015|0.794|0.0790
+Delta-8 THC|15.000|2.60E-5|0.015|0.181|0.0180
+CBC|15.000|1.80E-5|0.015|<LOQ|<LOQ
+CBD|15.000|5.40E-5|0.015|<LOQ|<LOQ
+CBDV|15.000|6.50E-5|0.015|<LOQ|<LOQ
+CBN|15.000|1.40E-5|0.015|<LOQ|<LOQ
+THCV|15.000|7.00E-6|0.015|<LOQ|<LOQ
+Total Active CBD|15.000|0.696|0.0696
+Total Active THC

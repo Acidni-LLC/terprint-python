@@ -103,8 +103,20 @@ for item in my_list:
             f.write(extracted_text)
         terpenetext = extracted_text.split("TERPENES SUMMARY (Top Ten)", maxsplit=1)[1]
         terpenetext = terpenetext.split("Completed", maxsplit=1)[0]
+
         cannabinoidtext = extracted_text.split("POTENCY SUMMARY (As Received)", maxsplit=1)[1]
         cannabinoidtext  =cannabinoidtext.split("TERPENES SUMMARY (Top Ten)", maxsplit=1)[0]
+
+        
+        for line in cannabinoidtext.splitlines():
+            if line == "THCA-A" or line == "Delta-9 THC" or line == "CBDA" or line == "CBD" or line == "CBN" or line == "CBG" or line == "CBC" or line == "THCV" or line == "CBDV" or line == "CBGA" or line == "THC-A" or line == "Delta-9-THC" or line =="Total Active CBD"or line =="Total Active THC" or line =="Delta-8 THC":
+                outputline =  outputline + "\n"+line  
+                outputlines = outputlines +  outputline
+                outputline=""
+            else:
+                outputline = outputline + "|" + line
+
+        cannabinoidtext = outputlines
         print("2\n"+terpenetext)
         #print(extracted_text)
         print("2\n"+cannabinoidtext)
