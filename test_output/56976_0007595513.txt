@@ -1,3 +1,4 @@
+1
 
 Analyte
 Result (mg/g)
@@ -41,19 +42,6 @@ Ocimene
 Total Terpenes: 2.386%
 
 ----------------------
-Potency Summary
-Total Active THC
-23.2%
-813 mg
-Total Active CBD
-0.0630%
-2.19 mg
-Total CBG
-1.50%
-52.6 mg
-Total CBN
--
-None Detected
-Total Cannabinoids
-28.2%
-986 mg
+ |  Potency Summary Total Active THC 23.2% 813 mg
+ | Total Active CBD 0.0630% 2.19 mg Total CBG 1.50%
+ | 52.6 mg Total CBN - None Detected Total Cannabinoids

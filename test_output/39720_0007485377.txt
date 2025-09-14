@@ -1,3 +1,4 @@
+1
 
 Analyte
 Result (mg/g)
@@ -35,19 +36,16 @@ alpha-Pinene
 Total Terpenes: 3.163%
 
 ----------------------
-Potency Summary
-Total Active THC
-29.2%
-1020 mg
-Total Active CBD
-0.0810%
-2.82 mg
-Total CBG
-0.810%
-28.3 mg
-Total CBN
--
-None Detected
-Total Cannabinoids
-34.1%
-1200 mg
+THCA-A - 150.0003.20E-50.01531731.7
+Delta-9 THC - 15.0001.30E-50.01513.81.38
+CBGA - 15.0008.00E-50.0158.060.806
+CBG - 15.0002.48E-40.0151.020.102
+CBDA - 15.0001.00E-50.0150.9170.0920
+Delta-8 THC - 15.0002.60E-50.0150.5170.0520
+CBC - 15.0001.80E-50.015<LOQ<LOQ
+CBD - 15.0005.40E-50.015<LOQ<LOQ
+CBDV - 15.0006.50E-50.015<LOQ<LOQ
+CBN - 15.0001.40E-50.015<LOQ<LOQ
+THCV - 15.0007.00E-60.015<LOQ<LOQ
+Total Active CBD - 15.0000.8050.0805
+Total Active THC - 

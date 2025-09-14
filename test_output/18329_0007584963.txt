@@ -1,3 +1,4 @@
+1
 
 Analyte
 Result (mg/g)
@@ -31,20 +32,17 @@ Ocimene
 0.003%
 Total Terpenes: 1.114%
 
-----------------------
-Potency Summary
-Total Active THC
-19.2%
-672 mg
-Total Active CBD
-0.0550%
-1.91 mg
-Total CBG
-0.577%
-20.2 mg
-Total CBN
--
-None Detected
-Total Cannabinoids
-22.6%
-790 mg
+---------------------- 
+THCA-A -  150.000 3.20E-5 0.015 211 21.1
+Delta-9 THC -  15.000 1.30E-5 0.015 6.80 0.680
+CBGA -  15.000 8.00E-5 0.015 5.47 0.547
+CBG -  15.000 2.48E-4 0.015 0.965 0.0970
+CBDA -  15.000 1.00E-5 0.015 0.623 0.0620
+Delta-8 THC -  15.000 2.60E-5 0.015 0.564 0.0560
+CBC -  15.000 1.80E-5 0.015 <LOQ <LOQ
+CBD -  15.000 5.40E-5 0.015 <LOQ <LOQ
+CBDV -  15.000 6.50E-5 0.015 <LOQ <LOQ
+CBN -  15.000 1.40E-5 0.015 <LOQ <LOQ
+THCV -  15.000 7.00E-6 0.015 <LOQ <LOQ
+Total Active CBD -  15.000 0.546 0.0546
+Total Active THC - 

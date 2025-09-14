@@ -1,3 +1,4 @@
+1
 
 Analyte
 Result (mg/g) (%)
@@ -34,19 +35,17 @@ Fenchyl Alcohol
 Total Terpenes: 2.087%
 
 ----------------------
-Potency Summary
-Total Active THC
-31.1%
-1090 mg
-Total Active CBD
-0.136%
-4.76 mg
-Total CBG
-2.66%
-93.2 mg
-Total CBN
--
-None Detected
-Total Cannabinoids
-38.6%
-1350 mg
+THCA-A 150.0003.20E-50.01534934.9
+CBGA 15.0008.00E-50.01527.82.78
+Delta-9 THC 15.0001.30E-50.0155.470.547
+CBG 15.0002.48E-40.0152.230.223
+CBDA 15.0001.00E-50.0151.130.113
+CBD 15.0005.40E-50.0150.3690.0370
+CBC 15.0001.80E-50.015<LOQ<LOQ
+CBDV 15.0006.50E-50.015<LOQ<LOQ
+CBN 15.0001.40E-50.015<LOQ<LOQ
+Delta-8 THC 15.0002.60E-50.015<LOQ<LOQ
+THCV 15.0007.00E-60.015<LOQ<LOQ
+Total Active CBD 15.0001.360.136
+Total Active THC 
+15.00031131.1

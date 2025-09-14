@@ -1,0 +1,53 @@
+
+Analyte
+Result (mg/g)
+(%)
+(R)-(+)-Limonene
+11.73
+1.173%
+trans-Caryophyllene
+6.828
+0.683%
+Linalool
+3.097
+0.31%
+alpha-Humulene
+3.049
+0.305%
+alpha-Pinene
+1.736
+0.174%
+beta-Pinene
+1.285
+0.129%
+Fenchyl Alcohol
+1.267
+0.127%
+beta-Myrcene
+1.017
+0.102%
+alpha-Bisabolol
+0.397
+0.04%
+Ocimene
+0.221
+0.022%
+Total Terpenes: 3.065%
+
+----------------------
+Potency Summary
+Total Active THC
+24.3%
+849 mg
+Total Active CBD
+0.0760%
+2.67 mg
+Total CBG
+0.769%
+26.9 mg
+Total CBN
+-
+None Detected
+Total Cannabinoids
+28.5%
+998 mg

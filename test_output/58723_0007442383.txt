@@ -1,4 +1,41 @@
+2
 
+3.08%
+Total Terpenes
+Analyte
+%
+ 
+0.881
+d-Limonene
+0.684
+beta-Caryophyllene
+0.432
+Linalool
+0.220
+alpha-Humulene
+0.134
+trans-Nerolidol
+0.0945
+alpha-Pinene
+0.0873
+Fenchyl Alcohol
+0.0844
+alpha-Terpineol
+0.0828
+beta-Pinene
+0.0810
+alpha-Bisabolol
+Total CBD
+0.0602% (2.11 mg)
+Total THC
+25.4% (889 mg)
+Total Cannabinoids
+29.6% (1,040 mg)
+
+----------------------
+%
+Analyte
+mg
  THCa
 27.5
 963
@@ -32,36 +69,3 @@
  THCV
 <LOQ
 <LOQ
-
-----------------------
-3.08%
-Total Terpenes
-Analyte
-%
- 
-0.881
-d-Limonene
-0.684
-beta-Caryophyllene
-0.432
-Linalool
-0.220
-alpha-Humulene
-0.134
-trans-Nerolidol
-0.0945
-alpha-Pinene
-0.0873
-Fenchyl Alcohol
-0.0844
-alpha-Terpineol
-0.0828
-beta-Pinene
-0.0810
-alpha-Bisabolol
-Total CBD
-0.0602% (2.11 mg)
-Total THC
-25.4% (889 mg)
-Total Cannabinoids
-29.6% (1,040 mg)

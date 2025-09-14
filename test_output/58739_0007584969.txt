@@ -1,3 +1,4 @@
+1
 
 Analyte
 Result (mg/g)
@@ -35,19 +36,6 @@ Geranyl acetate
 Total Terpenes: 2.202%
 
 ----------------------
-Potency Summary
-Total Active THC
-31.2%
-1090 mg
-Total Active CBD
-0.0800%
-2.81 mg
-Total CBG
-0.849%
-29.7 mg
-Total CBN
--
-None Detected
-Total Cannabinoids
-36.5%
-1280 mg
+ |  Potency Summary Total Active THC 31.2% 1090 mg
+ | Total Active CBD 0.0800% 2.81 mg Total CBG 0.849%
+ | 29.7 mg Total CBN - None Detected Total Cannabinoids

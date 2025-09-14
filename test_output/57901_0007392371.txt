@@ -1,3 +1,4 @@
+1
 
 Analyte
 Result (mg/g) (%)
@@ -25,19 +26,6 @@ alpha-Bisabolol
 Total Terpenes: 2.085%
 
 ----------------------
-Potency Summary
-Total Active THC
-26.1%
-914 mg
-Total Active CBD
-0.0830%
-2.90 mg
-Total CBG
-1.13%
-39.6 mg
-Total CBN
--
-None Detected
-Total Cannabinoids
-31.1%
-1090 mg
+ |  Potency Summary Total Active THC 26.1% 914 mg
+ | Total Active CBD 0.0830% 2.90 mg Total CBG 1.13%
+ | 39.6 mg Total CBN - None Detected Total Cannabinoids

@@ -1,3 +1,4 @@
+1
 
 Analyte
 Result (mg/g)
@@ -34,20 +35,17 @@ alpha-Phellandrene
 0.004%
 Total Terpenes: 2.674%
 
-----------------------
-Potency Summary
+----------------------|
+THCA-A|150.000|3.20E-5|0.015|286|28.6
+Delta-9 THC|15.000|1.30E-5|0.015|13.0|1.30
+CBGA|15.000|8.00E-5|0.015|11.7|1.17
+CBG|15.000|2.48E-4|0.015|1.78|0.178
+CBDA|15.000|1.00E-5|0.015|0.941|0.0940
+THCV|15.000|7.00E-6|0.015|0.738|0.0740
+Delta-8 THC|15.000|2.60E-5|0.015|0.269|0.0270
+CBC|15.000|1.80E-5|0.015|<LOQ|<LOQ
+CBD|15.000|5.40E-5|0.015|<LOQ|<LOQ
+CBDV|15.000|6.50E-5|0.015|<LOQ|<LOQ
+CBN|15.000|1.40E-5|0.015|<LOQ|<LOQ
+Total Active CBD|15.000|0.825|0.0825
 Total Active THC
-26.4%
-924 mg
-Total Active CBD
-0.0830%
-2.89 mg
-Total CBG
-1.20%
-42.0 mg
-Total CBN
--
-None Detected
-Total Cannabinoids
-31.5%
-1100 mg
