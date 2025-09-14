@@ -47,9 +47,29 @@ for item in my_list:
         with open(batch+"_extractall.txt", "w", encoding='utf-8') as f:
             f.write(extracted_text)
         terpenetext = extracted_text.split("Terpenes Summary", maxsplit=1)[1]
-        terpenetext  =terpenetext.split("Detailed Terpenes Analysis is on the following page", maxsplit=1)[0]
-        print("1\n"+terpenetext)
+        terpenetext  =terpenetext.split("Total Terpenes:", maxsplit=1)[0]
+       # print("1\n"+terpenetext)
         #print(extracted_text)
+        counter =0
+        outputline = ""
+        outputlines = ""
+        newcan = 0 
+        for line in terpenetext.splitlines():
+            if counter == 3:
+                outputline = "\n"+ outputline + " " + line  
+                outputlines = outputlines + " " + outputline
+                outputline=""
+                counter  = 1
+            elif counter == 1:                
+                outputline =   outputline 
+                outputline = outputline + " " + line 
+                counter = counter + 1
+            else:
+                outputline = outputline + " " + line
+                counter = counter + 1
+
+        terpenetext = outputlines
+        outputlines = ""
         cannabinoidtext = extracted_text.split("Result\n(mg/g)\n(%)", maxsplit=1)[1]
  
         cannabinoidtext = cannabinoidtext.split("Prep. By: ", maxsplit=1)[0]
