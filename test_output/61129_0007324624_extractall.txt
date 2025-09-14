@@ -1,0 +1,153 @@
+Certificate of Analysis
+Trulieve
+61129_0007324624
+Sample Matrix:
+Whole Flower
+Cultivation Facility:
+Quincy
+Processing Facility:
+Higdon
+Batch Size:
+15981 g
+Batch Unit Size:
+3.5 g
+Units Sampled:
+20
+Total Amt. Sampled:
+70 g
+Seed to Sale ID:
+4701095349673815
+QA Sample ID:
+3352352937575212
+Laboratory ID:
+JE16001-01
+Cultivar: 
+RED APPLE FRITTERZ by SUNSHINE CANNABIS
+Product Name:
+TruFlower - HYBRID
+Description:
+SSC-Flower-3.5g-RedAppleFrittrz-H-FL
+Admin. Route:
+Inhalation
+Label Claim:
+Sample Date:
+05/16/25
+Received:
+05/16/25 14:38
+Completed:
+05/21/25 10:53
+THC: -- mg | CBD: -- mg
+Batch Date:
+05/16/2025
+POTENCY SUMMARY (As Received)
+%
+Analyte
+mg
+ THCa
+23.2
+812
+ delta 9-THC
+0.479
+16.8
+ CBGa
+0.320
+11.2
+ CBG
+0.135
+4.73
+ CBDa
+0.0586
+2.05
+ CBD
+0.00225
+0.0788
+ CBC
+<LOQ
+<LOQ
+ CBDV
+<LOQ
+<LOQ
+ CBN
+<LOQ
+<LOQ
+ delta 8-THC
+<LOQ
+<LOQ
+ THCV
+<LOQ
+<LOQ
+TERPENES SUMMARY (Top Ten)
+2.54%
+Total Terpenes
+Analyte
+%
+ 
+0.700
+d-Limonene
+0.542
+beta-Caryophyllene
+0.309
+Ocimene, Total
+0.251
+beta-Myrcene
+0.198
+Linalool
+0.153
+alpha-Humulene
+0.0846
+alpha-Pinene
+0.0810
+Fenchyl Alcohol
+0.0695
+beta-Pinene
+0.0677
+alpha-Terpineol
+Total CBD
+0.0537% (1.88 mg)
+Total THC
+20.8% (728 mg)
+Total Cannabinoids
+24.2% (847 mg)
+Completed
+Potency
+Not Tested
+Homogeneity
+Completed
+Terpenes
+Not Tested
+Residual Solvents
+PASS
+% Moisture
+PASS
+Water Activity
+PASS
+Foreign Matter
+PASS
+Pesticides
+PASS
+Mycotoxins
+PASS
+Heavy Metals
+PASS
+Microbials
+Not Applicable
+Label Claim
+ANALYSIS SUMMARY
+LOQ = Limit of Quantification
+ND = Non-Detect 
+RPD = Relative Percent Difference
+  MDL = Method Detection Limit
+PQL = Practical Quantitation Limit
+Copyright © 2025 Modern Canna, LLC. All rights reserved. 
+This report shall not be reproduced, distributed, or transmitted in any form or by any means, without written consent from Modern Canna, LLC.  The 
+results in this report relate only to the products analyzed. The results in this report are confidential. For more information regarding our reporting 
+limits, please visit: www.moderncanna.com/modern-canna-reporting-limits/
+4705 Old Rd 37
+Lakeland, FL 33813
+www.moderncanna.com
+CMTL-0005
+Page 1 of 1
+863-608-7800
+Accreditation #102020
+J. Brian Leapard, M.S.
+     Laboratory Director

@@ -1,0 +1,67 @@
+
+ THCa
+29.3
+1,030
+ delta 9-THC
+1.82
+63.7
+ CBGa
+0.593
+20.8
+ CBG
+0.134
+4.69
+ CBDa
+0.0874
+3.06
+ CBD
+0.0133
+0.465
+ CBN
+0.00455
+0.159
+ CBC
+<LOQ
+<LOQ
+ CBDV
+<LOQ
+<LOQ
+ delta 8-THC
+<LOQ
+<LOQ
+ THCV
+<LOQ
+<LOQ
+
+----------------------
+2.99%
+Total Terpenes
+Analyte
+%
+ 
+1.16
+beta-Caryophyllene
+0.507
+d-Limonene
+0.378
+Linalool
+0.273
+beta-Myrcene
+0.272
+alpha-Humulene
+0.0635
+alpha-Terpineol
+0.0590
+trans-Nerolidol
+0.0585
+Fenchyl Alcohol
+0.0524
+alpha-Bisabolol
+0.0500
+beta-Pinene
+Total CBD
+0.0900% (3.15 mg)
+Total THC
+27.6% (966 mg)
+Total Cannabinoids
+32.0% (1,120 mg)
