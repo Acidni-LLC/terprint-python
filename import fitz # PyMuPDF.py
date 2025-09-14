@@ -2,7 +2,7 @@ import fitz # PyMuPDF
 import requests
 
 
-batch = "81283_0007516400"
+batch = "68673_0007530137"
 
 url ="https://www.trulieve.com/content/dam/trulieve/en/lab-reports/"+batch+".pdf?download=true"  # Replace with the actual URL of the file
 local_filename = batch+".pdf"  # Replace with your desired local filename
@@ -34,16 +34,33 @@ def extract_text_from_pdf(pdf_path):
         print(f"Error extracting text: {e}")
     return text
 
-# Example usage
-# pdf_file = "sample.pdf"
-extracted_text = extract_text_from_pdf(pdf_path)
-splittext = extracted_text.split("Terpenes Summary", maxsplit=1)[1]
-splittext  =splittext.split("Detailed Terpenes Analysis is on the following page", maxsplit=1)[0]
-print(splittext)
-#print(extracted_text)
-splittext1 = extracted_text.split("This product is tested at this moisture level, not at dry weight.", maxsplit=1)[1]
-splittext1 = splittext1.split("Terpenes Summary", maxsplit=1)[0]
-print(splittext1)
 
-with open(batch+".txt", "w", encoding='utf-8') as f:
-    f.write(splittext + "\n----------------------" + splittext1)
+try:
+    #Example usage
+    pdf_file = "sample.pdf"
+    extracted_text = extract_text_from_pdf(pdf_path)
+    with open(batch+"_extractall.txt", "w", encoding='utf-8') as f:
+        f.write(extracted_text)
+    splittext = extracted_text.split("Terpenes Summary", maxsplit=1)[1]
+    splittext  =splittext.split("Detailed Terpenes Analysis is on the following page", maxsplit=1)[0]
+    print(splittext)
+    #print(extracted_text)
+    splittext1 = extracted_text.split("This product is tested at this moisture level, not at dry weight.", maxsplit=1)[1]
+    splittext1 = splittext1.split("Terpenes Summary", maxsplit=1)[0]
+    print("1\n"+splittext1)
+    with open(batch+".txt", "w", encoding='utf-8') as f:
+        f.write(splittext + "\n----------------------" + splittext1)
+
+except Exception as e:
+    extracted_text = extract_text_from_pdf(pdf_path)
+    with open(batch+"_extractall.txt", "w", encoding='utf-8') as f:
+        f.write(extracted_text)
+    splittext = extracted_text.split("%\nAnalyte\nmg", maxsplit=1)[1]
+    splittext  =splittext.split("TERPENES SUMMARY (Top Ten)", maxsplit=1)[0]
+    print(splittext)
+    #print(extracted_text)
+    splittext1 = extracted_text.split("TERPENES SUMMARY (Top Ten)", maxsplit=1)[1]
+    splittext1 = splittext1.split("Completed", maxsplit=1)[0]
+    print("2\n"+splittext1)
+    with open(batch+".txt", "w", encoding='utf-8') as f:
+        f.write(splittext + "\n----------------------" + splittext1)
