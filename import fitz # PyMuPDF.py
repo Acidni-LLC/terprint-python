@@ -72,19 +72,35 @@ for item in my_list:
             outputline = ""
             outputlines = ""
             newcan = 0 
+            
+            counter = 1
             for line in terpenetext.splitlines():
-                if counter == 3:
-                    outputline = "\n"+ outputline + " " + line  
-                    outputlines = outputlines + " " + outputline
-                    outputline=""
-                    counter  = 1
-                elif counter == 1:                
-                    outputline =   outputline 
-                    outputline = outputline + " " + line 
-                    counter = counter + 1
-                else:
-                    outputline = outputline + " " + line
-                    counter = counter + 1
+                
+                if counter  ==1 :
+                    outputline =   line 
+                    #outputline =   terp + "," + str(percent)+ "|" +  str(counter) + "|"
+                elif counter  == 2:
+                        outputline = outputline + ","+ line
+                elif counter  == 3:
+                    outputline = outputline + ","+ line
+                    outputlines = outputlines+  "\n"+  outputline                     
+                    outputline = ""
+                    counter = 0
+                
+                counter = counter  + 1
+            # for line in terpenetext.splitlines():
+            #     if counter == 3:
+            #         outputline = "\n"+ outputline + " " + line  
+            #         outputlines = outputlines + " " + outputline
+            #         outputline=""
+            #         counter  = 1
+            #     elif counter == 1:                
+            #         outputline =   outputline 
+            #         outputline = outputline + " " + line 
+            #         counter = counter + 1
+            #     else:
+            #         outputline = outputline + " " + line
+            #         counter = counter + 1
 
             terpenetext = outputlines
             outputlines = ""
