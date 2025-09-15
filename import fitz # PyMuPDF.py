@@ -100,7 +100,7 @@ for item in my_list:
                     outputlines = outputlines +  outputline
                     outputline=""
                 else:
-                    outputline = outputline + "|" + line
+                    outputline = outputline + "," + line
 
             cannabinoidtext = outputlines
             print("1\n"+terpenetext)
@@ -136,17 +136,17 @@ for item in my_list:
             for line in cannabinoidtext.splitlines():
                 if line.strip() == "THCa" or line.strip() == "delta 9-THC" or line.strip() == "CBDa" or line.strip() == "CBD" or line.strip() == "CBN" or line.strip() == "CBG" or line.strip() == "CBC" or line.strip() == "THCV" or line.strip() == "CBDV" or line.strip() == "CBGa" or line.strip() == "Total THC" or line.strip() =="Total CBD" or line.strip() =="delta 8-THC":    
                     if c != 1:
-                        outputline =  outputline + "\n"+ line.strip()   
+                        outputline =  outputline + ",\n"+ line.strip()   
                         outputlines = outputlines +  outputline
                         outputline=""
                     else:
                         c = c + 1
                 else:
-                    outputline = outputline + "|" +  line.strip() 
+                    outputline = outputline + "," +  line.strip() 
                     outputlines = outputlines +  outputline
                     c = c + 1
 
-            cannabinoidtext = outputlines.replace("|||%||%|Analyte||%|Analyte|mg||%|Analyte|mg","") 
+            cannabinoidtext = outputlines.replace(",,,%,,%,Analyte,,%,Analyte,mg,,%,Analyte,mg","") 
             outputlines=""
             counter = 1
             for line in terpenetext.splitlines():
@@ -164,7 +164,7 @@ for item in my_list:
                     # counter = counter  + 1
                 else:
                     terp = line   
-                    outputline =   terp + " " + percent
+                    outputline =   terp + "," + percent
                     outputlines = outputlines+ outputline+  "\n"
                     # counter = counter  + 1
               
