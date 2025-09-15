@@ -66,41 +66,28 @@ for item in my_list:
             
             terpenetext = extracted_text.split("Terpenes Summary", maxsplit=1)[1]
             terpenetext  =terpenetext.split("Total Terpenes:", maxsplit=1)[0]
+            terpenetext = terpenetext.split("(%)", maxsplit=1)[1]
         # print("1\n"+terpenetext)
             #print(extracted_text)
             counter =1
             outputline = ""
-            outputlines = ""
-            newcan = 0 
-            
-            counter = 1
+            outputlines = ""   
+            one = ""
+            two = "" 
+            three ="" 
             for line in terpenetext.splitlines():
-                
-                if counter  ==1 :
-                    outputline =   line 
-                    #outputline =   terp + "," + str(percent)+ "|" +  str(counter) + "|"
-                elif counter  == 2:
-                        outputline = outputline + ","+ line
-                elif counter  == 3:
-                    outputline = outputline + ","+ line
-                    outputlines = outputlines+  "\n"+  outputline                     
+                outputline =  outputline + line + ",|" + str(counter)               
+                if str(counter) == "2":    
+                    outputline=       outputline     +"\n"           
+                if str(counter) == "4":    
+                    outputlines = outputlines + outputline    +"\n" 
                     outputline = ""
-                    counter = 0
-                
-                counter = counter  + 1
-            # for line in terpenetext.splitlines():
-            #     if counter == 3:
-            #         outputline = "\n"+ outputline + " " + line  
-            #         outputlines = outputlines + " " + outputline
-            #         outputline=""
-            #         counter  = 1
-            #     elif counter == 1:                
-            #         outputline =   outputline 
-            #         outputline = outputline + " " + line 
-            #         counter = counter + 1
-            #     else:
-            #         outputline = outputline + " " + line
-            #         counter = counter + 1
+                    one = ""
+                    two = "" 
+                    three =""
+                    four = ""
+                    counter =0
+                counter  = counter  + 1
 
             terpenetext = outputlines
             outputlines = ""
