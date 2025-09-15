@@ -131,16 +131,23 @@ for item in my_list:
             cannabinoidtext = extracted_text1.split("POTENCY SUMMARY (As Received)", maxsplit=1)[1]
             cannabinoidtext  =cannabinoidtext.split("TERPENES SUMMARY (Top Ten)", maxsplit=1)[0]
 
-            
-            # for line in cannabinoidtext.splitlines():
-            #     if line == "THCa" or line == "delta 9-THC" or line == "CBDa" or line == "CBD" or line == "CBN" or line == "CBG" or line == "CBC" or line == "THCV" or line == "CBDV" or line == "CBGA" or line == "Total THC" or line =="Total CBD" or line =="delta 8-THC":    
-            #         outputline =  outputline + "\n"+line  
-            #         outputlines = outputlines +  outputline
-            #         outputline=""
-            #     else:
-            #         outputline = outputline + "|" + line
-            # cannabinoidtext = outputlines  
+            outputlines = ""
+            c= 1
+            for line in cannabinoidtext.splitlines():
+                if line.strip() == "THCa" or line.strip() == "delta 9-THC" or line.strip() == "CBDa" or line.strip() == "CBD" or line.strip() == "CBN" or line.strip() == "CBG" or line.strip() == "CBC" or line.strip() == "THCV" or line.strip() == "CBDV" or line.strip() == "CBGa" or line.strip() == "Total THC" or line.strip() =="Total CBD" or line.strip() =="delta 8-THC":    
+                    if c != 1:
+                        outputline =  outputline + "\n"+ line.strip()   
+                        outputlines = outputlines +  outputline
+                        outputline=""
+                    else:
+                        c = c + 1
+                else:
+                    outputline = outputline + "|" +  line.strip() 
+                    outputlines = outputlines +  outputline
+                    c = c + 1
 
+            cannabinoidtext = outputlines.replace("|||%||%|Analyte||%|Analyte|mg||%|Analyte|mg","") 
+            outputlines=""
             counter = 1
             for line in terpenetext.splitlines():
               
