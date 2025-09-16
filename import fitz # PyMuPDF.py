@@ -81,7 +81,7 @@ for item in my_list:
             counter = 1
             for line in terpenetext.splitlines():                
                 if counter  ==1 :
-                    outputline =   line 
+                    outputline =  batch + "," + line 
                     #outputline =   terp + "," + str(percent)+ "|" +  str(counter) + "|"
                 elif counter  == 2:
                     outputline = outputline + ","+ line
@@ -122,7 +122,7 @@ for item in my_list:
                 # else:
                 #     outputline = outputline + "," + line  
                 if counter ==1:
-                    outputline = line 
+                    outputline = batch + "," +line 
 
                 elif counter <6:
                     outputline = outputline + ","+  line 
@@ -175,8 +175,9 @@ for item in my_list:
             c= 1
             for line in cannabinoidtext.splitlines():
                 if line.strip() == "THCa" or line.strip() == "delta 9-THC" or line.strip() == "CBDa" or line.strip() == "CBD" or line.strip() == "CBN" or line.strip() == "CBG" or line.strip() == "CBC" or line.strip() == "THCV" or line.strip() == "CBDV" or line.strip() == "CBGa" or line.strip() == "Total THC" or line.strip() =="Total CBD" or line.strip() =="delta 8-THC":    
-                    if c != 1:
-                        outputline =  outputline + ",\n"+ line.strip()   
+                   
+                    if c != 1: 
+                        outputline =  outputline + ",\n"+batch + ","  +     line.strip()   
                         outputlines = outputlines +  outputline
                         outputline=""
                     else:
@@ -209,7 +210,7 @@ for item in my_list:
                     outputline =  terp + " " + percent
                     # counter = counter  + 1
                 else:
-                    terp = line   
+                    terp = batch + "," +line   
                     outputline =   terp + "," + percent
                     outputlines = outputlines+ outputline+  "\n"
                     # counter = counter  + 1
