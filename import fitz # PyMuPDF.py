@@ -61,53 +61,79 @@ for item in my_list:
         outputlines = ""
         terp = ""
         percent = ""
-        #FORMAT 1
+        
+        #FORMAT 1111111111111111111111111111
+
         if format == 1:
+
+        #FORMAT 111111111111111111111111111
+
             
-            terpenetext = extracted_text.split("Terpenes Summary", maxsplit=1)[1]
+            terpenetext = extracted_text.split("Result (mg/g)\n(%)\n", maxsplit=1)[1]
             terpenetext  =terpenetext.split("Total Terpenes:", maxsplit=1)[0]
-            terpenetext = terpenetext.split("(%)", maxsplit=1)[1]
         # print("1\n"+terpenetext)
             #print(extracted_text)
             counter =1
             outputline = ""
-            outputlines = ""   
-            one = ""
-            two = "" 
-            three ="" 
-            for line in terpenetext.splitlines():
-                outputline =  outputline + line + ",|" + str(counter)               
-                if str(counter) == "2":    
-                    outputline=       outputline     +"\n"           
-                if str(counter) == "4":    
-                    outputlines = outputlines + outputline    +"\n" 
-                    outputline = ""
-                    one = ""
-                    two = "" 
-                    three =""
-                    four = ""
-                    counter =0
-                counter  = counter  + 1
-
-            terpenetext = outputlines
             outputlines = ""
-            cannabinoidtext = extracted_text.split("Result\n(mg/g)\n(%)", maxsplit=1)[1]
+            newcan = 0 
+            
+            counter = 1
+            for line in terpenetext.splitlines():                
+                if counter  ==1 :
+                    outputline =   line 
+                    #outputline =   terp + "," + str(percent)+ "|" +  str(counter) + "|"
+                elif counter  == 2:
+                    outputline = outputline + ","+ line
+                elif counter  == 3:
+                    outputline = outputline + ","+ line
+                    outputlines = outputlines+  "\n"+  outputline                     
+                    outputline = ""
+                    counter = 0                    
+                counter = counter  + 1
+            # for line in terpenetext.splitlines():
+            #     if counter == 3:
+            #         outputline = "\n"+ outputline + " " + line  
+            #         outputlines = outputlines + " " + outputline
+            #         outputline=""
+            #         counter  = 1
+            #     elif counter == 1:                
+            #         outputline =   outputline 
+            #         outputline = outputline + " " + line 
+            #         counter = counter + 1
+            #     else:
+            #         outputline = outputline + " " + line
+            #         counter = counter + 1
+
+            terpenetext = outputlines.replace(",Analyte,Result (mg/g)\n%,","")
+            outputlines = ""
+            outputline = ""
+            cannabinoidtext = extracted_text.split("Result\n(mg/g)\n(%)\n", maxsplit=1)[1]
     
-            cannabinoidtext = cannabinoidtext.split("Prep. By: ", maxsplit=1)[0]
+            cannabinoidtext = cannabinoidtext.split("\nPrep. By: ", maxsplit=1)[0]
             print("1\n"+cannabinoidtext)
             counter =1
             newcan = 0 
             for line in cannabinoidtext.splitlines():
-                if line == "THCA-A" or line == "Delta-9 THC" or line == "CBDA" or line == "CBD" or line == "CBN" or line == "CBG" or line == "CBC" or line == "THCV" or line == "CBDV" or line == "CBGA" or line == "THC-A" or line == "Delta-9-THC" or line =="Total Active CBD"or line =="Total Active THC" or line =="Delta-8 THC":
-                    outputline =  outputline + "\n"+line  
-                    outputlines = outputlines +  outputline
-                    outputline=""
-                else:
-                    outputline = outputline + "," + line
+                # if line == "THCA-A" or line == "Delta-9 THC" or line == "CBDA" or line == "CBD" or line == "CBN" or line == "CBG" or line == "CBC" or line == "THCV" or line == "CBDV" or line == "CBGA" or line == "THC-A" or line == "Delta-9-THC" or line =="Total Active CBD"or line =="Total Active THC" or line =="Delta-8 THC":
+                #     outputline =  outputline + line  
+                #     outputlines = outputlines +  outputline
+                #     outputline=""
+                # else:
+                #     outputline = outputline + "," + line  
+                if counter <6:
+                    outputline = outputline + ","+  line 
 
-            cannabinoidtext = outputlines
+                elif counter ==6:
+                    outputlines = outputlines +  outputline + ","+  line + "\n"
+                    outputline=""
+                    counter = 0
+                counter = counter + 1
+
+            cannabinoidtext = outputlines.replace(",Analyte,Result (mg/g) (%)\n","")
+            print("__________________________________________________")      
+            print(batch)            
             print("1\n"+terpenetext)
-            
             print("1\n"+cannabinoidtext) 
 
 
@@ -116,9 +142,14 @@ for item in my_list:
             
                 f.write(outputtext)
         
-        ###FORMAT 2
+        ###FORMAT 2222222222222222222222222222
+
 
         elif format == 2:
+
+
+        ###FORMAT 222222222222222222222222222
+
             extracted_text = extract_text_from_pdf(pdf_path)
             extracted_text1 = extracted_text
             with open(batch+"_extractall.txt", "w", encoding='utf-8') as f:
@@ -135,6 +166,11 @@ for item in my_list:
             cannabinoidtext  =cannabinoidtext.split("TERPENES SUMMARY (Top Ten)", maxsplit=1)[0]
 
             outputlines = ""
+            outputline = ""
+            c= 1
+            can=""
+            percent=""
+            outputlines = ""
             c= 1
             for line in cannabinoidtext.splitlines():
                 if line.strip() == "THCa" or line.strip() == "delta 9-THC" or line.strip() == "CBDa" or line.strip() == "CBD" or line.strip() == "CBN" or line.strip() == "CBG" or line.strip() == "CBC" or line.strip() == "THCV" or line.strip() == "CBDV" or line.strip() == "CBGa" or line.strip() == "Total THC" or line.strip() =="Total CBD" or line.strip() =="delta 8-THC":    
@@ -149,11 +185,17 @@ for item in my_list:
                     outputlines = outputlines +  outputline
                     c = c + 1
 
-            cannabinoidtext = outputlines.replace(",,,%,,%,Analyte,,%,Analyte,mg,,%,Analyte,mg","") 
+            cannabinoidtext = outputlines.replace(",,,%,,%,Analyte,,%,Analyte,mg,,%,Analyte,mg,","") 
+                
+ 
             outputlines=""
             counter = 1
+            skip = True
+            terp = ""
             for line in terpenetext.splitlines():
-              
+                if skip == True:
+                    skip = False
+                    continue
                 try:
                     float(line)
                     is_number = True
@@ -183,8 +225,9 @@ for item in my_list:
                 #     counter  =1
             terpenetext = outputlines
 
+            print("__________________________________________________")        
+            print(batch)            
             print("2\n"+terpenetext)
-            #print(extracted_text)
             print("2\n"+cannabinoidtext)
             with open(batch+".txt", "w", encoding='utf-8') as f:
                 outputtext = "2\n"+terpenetext + "\n----------------------" + cannabinoidtext
