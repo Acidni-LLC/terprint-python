@@ -121,9 +121,11 @@ for item in my_list:
                 #     outputline=""
                 # else:
                 #     outputline = outputline + "," + line  
-                if counter <6:
-                    outputline = outputline + ","+  line 
+                if counter ==1:
+                    outputline = line 
 
+                elif counter <6:
+                    outputline = outputline + ","+  line 
                 elif counter ==6:
                     outputlines = outputlines +  outputline + ","+  line + "\n"
                     outputline=""
@@ -138,8 +140,7 @@ for item in my_list:
 
 
             with open(batch+".txt", "w", encoding='utf-8') as f:
-                outputtext = "1\n"+terpenetext + "\n----------------------" + cannabinoidtext
-            
+                outputtext = "1\n"+terpenetext + "\n----------------------\n" + cannabinoidtext            
                 f.write(outputtext)
         
         ###FORMAT 2222222222222222222222222222
