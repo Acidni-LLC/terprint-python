@@ -88,10 +88,11 @@ for item in my_list:
             
             counter = 1
             position = 1
-            print(terpenetext)
+           # print(terpenetext)
             skip = True
             for line in terpenetext.splitlines():    
                 if skip == True:
+                    outputlines ="Batch,Index,Terpene,Result,Percent\n"
                     skip = False
                     continue
                 if counter  ==1 :
@@ -130,7 +131,13 @@ for item in my_list:
             counter =1
             newcan = 0 
             position =1
+            setheader = True
             for line in cannabinoidtext.splitlines():
+                # if skip == True:
+                #     outputlines ="Batch,Index,Cannabinoid,Dilution,LOD,LOQ,Result,Percent\n"
+                #     skip = False
+                #     outputline =   line 
+                #     continue
                 if "Total " in line:
                     break 
                 # if "mg/g" in line:    
@@ -141,12 +148,15 @@ for item in my_list:
                 # else:
                 #     outputline = outputline + "," + line  
                 if counter ==1:
-                    outputline = batch + ","+str(position)+"," +line 
+                    if setheader == True:
+                        outputlines ="Batch,Index,Cannabinoid,Dilution,LOD,LOQ,Result,Percent\n"
+                        setheader=False
+                    outputline = batch + ", "+str(position)+", " +line +" "+ outputline
 
                 elif counter <6:
-                    outputline = outputline + ","+  line 
+                    outputline = outputline + ", "+  line 
                 elif counter ==6:
-                    outputlines = outputlines +  outputline + ","+  line + "\n"
+                    outputlines = outputlines +  outputline + ", "+  line + "\n"
                     outputline=""
                     counter = 0
                     position = position + 1
@@ -158,11 +168,10 @@ for item in my_list:
             # print("1\n"+terpenetext)
             # print("1\n"+cannabinoidtext) 
 
-
-            with open(batch+"_terpenes.txt", "w", encoding='utf-8') as f:
+            with open("terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
                 outputtext =  terpenetext            
                 f.write(outputtext)
-            with open(batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
+            with open("cannabinoids\\"+batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
                 outputtext = cannabinoidtext            
                 f.write(outputtext)
         
@@ -176,7 +185,7 @@ for item in my_list:
 
             extracted_text = extract_text_from_pdf(pdf_path)
             extracted_text1 = extracted_text
-          #  print("1extracted_text:\n")
+            print(extracted_text)
            # with open(batch+"_extractall.txt", "w", encoding='utf-8') as f:
                # f.write(extracted_text)
                 
@@ -201,20 +210,38 @@ for item in my_list:
             outputlines = ""
             c= 1
             position = 1
+            skipcount = 4
+            index = 1
             for line in cannabinoidtext.splitlines():
-                if line.strip() == "THCa" or line.strip() == "delta 9-THC" or line.strip() == "CBDa" or line.strip() == "CBD" or line.strip() == "CBN" or line.strip() == "CBG" or line.strip() == "CBC" or line.strip() == "THCV" or line.strip() == "CBDV" or line.strip() == "CBGa" or line.strip() == "Total THC" or line.strip() =="Total CBD" or line.strip() =="delta 8-THC":    
-                   
-                    if c != 1: 
-                        outputline =  outputline + ",\n"+batch + ","  +str(position)+","+     line.strip()   
-                        outputlines = outputlines +  outputline
-                        outputline=""
-                        position = position + 1
-                    else:
-                        c = c + 1
-                else:
-                    outputline = outputline + "," +  line.strip() 
-                    outputlines = outputlines +  outputline
-                    c = c + 1
+                if position == skipcount:
+                    outputlines ="Batch,Index,Cannabinoid,Percent,Milligrams\n"
+                    position = position + 1
+                    skip = False 
+                    continue
+                elif position < skipcount:
+                    position = position + 1
+                    continue
+                if "Total " in line:
+                    break 
+                # if "mg/g" in line:    
+                # if line == "THCA-A" or line == "Delta-9 THC" or line == "CBDA" or line == "CBD" or line == "CBN" or line == "CBG" or line == "CBC" or line == "THCV" or line == "CBDV" or line == "CBGA" or line == "THC-A" or line == "Delta-9-THC" or line =="Total Active CBD"or line =="Total Active THC" or line =="Delta-8 THC":
+                #     outputline =  outputline + line  
+                #     outputlines = outputlines +  outputline
+                #     outputline=""
+                # else:
+                #     outputline = outputline + "," + line  
+                if counter ==1:
+                    outputline = batch + ", "+str(index)+", " +line 
+
+                elif counter <3:
+                    outputline = outputline + ", "+  line 
+                elif counter ==3:
+                    outputlines = outputlines +  outputline + ", "+  line + "\n"
+                    outputline=""
+                    counter = 0
+                    position = position + 1
+                    index=index+1
+                counter = counter + 1
 
             cannabinoidtext = outputlines.replace(",,,%,,%,Analyte,,%,Analyte,mg,,%,Analyte,mg,","") 
                 
@@ -224,10 +251,11 @@ for item in my_list:
             skip = True
             terp = ""
             position = 1
-            for line in terpenetext.splitlines():
+            skip = True
+            for line in terpenetext.splitlines():    
                 if skip == True:
+                    outputlines ="Batch,Index,Terpene,Percent\n"
                     skip = False
-                    continue
                 try:
                     float(line)
                     is_number = True
@@ -262,10 +290,10 @@ for item in my_list:
             # print("2\n"+terpenetext)
             # print("2\n"+cannabinoidtext)
        
-            with open(batch+"_terpenes.txt", "w", encoding='utf-8') as f:
+            with open("terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
                 outputtext =  terpenetext            
                 f.write(outputtext)
-            with open(batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
+            with open("cannabinoids\\"+batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
                 outputtext = cannabinoidtext            
                 f.write(outputtext)
 
