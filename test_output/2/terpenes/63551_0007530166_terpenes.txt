@@ -1,0 +1,11 @@
+Batch,Index,Terpene,Percent
+63551_0007530166, 1, d-Limonene,0.586
+63551_0007530166, 2, beta-Caryophyllene,0.541
+63551_0007530166, 3, beta-Myrcene,0.385
+63551_0007530166, 4, alpha-Humulene,0.169
+63551_0007530166, 5, trans-Nerolidol,0.150
+63551_0007530166, 6, Fenchyl Alcohol,0.0805
+63551_0007530166, 7, alpha-Bisabolol,0.0767
+63551_0007530166, 8, alpha-Terpineol,0.0642
+63551_0007530166, 9, beta-Pinene,0.0506
+63551_0007530166, 10, Isopulegol,0.0439

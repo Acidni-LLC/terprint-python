@@ -1,0 +1,11 @@
+Batch,Index,Terpene,Percent
+61128_0007514199, 1, d-Limonene,0.618
+61128_0007514199, 2, beta-Caryophyllene,0.365
+61128_0007514199, 3, Ocimene, Total,0.165
+61128_0007514199, 4, alpha-Humulene,0.145
+61128_0007514199, 5, Linalool,0.0807
+61128_0007514199, 6, beta-Myrcene,0.0804
+61128_0007514199, 7, alpha-Pinene,0.0732
+61128_0007514199, 8, beta-Pinene,0.0626
+61128_0007514199, 9, trans-Nerolidol,0.0619
+61128_0007514199, 10, alpha-Bisabolol,0.0618

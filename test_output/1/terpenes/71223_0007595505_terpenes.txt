@@ -1,0 +1,9 @@
+Batch,Index,Terpene,Result,Percent
+71223_0007595505,1,trans-Caryophyllene,7.372,0.737%
+71223_0007595505,2,alpha-Humulene,3.719,0.372%
+71223_0007595505,3,(R)-(+)-Limonene,3.651,0.365%
+71223_0007595505,4,beta-Myrcene,3.408,0.341%
+71223_0007595505,5,Linalool,3.22,0.322%
+71223_0007595505,6,alpha-Bisabolol,1.188,0.119%
+71223_0007595505,7,Fenchyl Alcohol,0.509,0.051%
+71223_0007595505,8,beta-Pinene,0.441,0.044%

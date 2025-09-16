@@ -168,10 +168,10 @@ for item in my_list:
             # print("1\n"+terpenetext)
             # print("1\n"+cannabinoidtext) 
 
-            with open("terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
+            with open(str(format)+"\\terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
                 outputtext =  terpenetext            
                 f.write(outputtext)
-            with open("cannabinoids\\"+batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
+            with open(str(format)+"\\cannabinoids\\"+batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
                 outputtext = cannabinoidtext            
                 f.write(outputtext)
         
@@ -185,7 +185,7 @@ for item in my_list:
 
             extracted_text = extract_text_from_pdf(pdf_path)
             extracted_text1 = extracted_text
-            print(extracted_text)
+           # print(extracted_text)
            # with open(batch+"_extractall.txt", "w", encoding='utf-8') as f:
                # f.write(extracted_text)
                 
@@ -301,10 +301,10 @@ for item in my_list:
             # print("2\n"+terpenetext)
             # print("2\n"+cannabinoidtext)
        
-            with open("terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
+            with open(str(format)+"\\terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
                 outputtext =  terpenetext            
                 f.write(outputtext)
-            with open("cannabinoids\\"+batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
+            with open(str(format)+"\\cannabinoids\\"+batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
                 outputtext = cannabinoidtext            
                 f.write(outputtext)
 

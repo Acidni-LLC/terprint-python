@@ -1,0 +1,11 @@
+Batch,Index,Terpene,Percent
+76757_0007768507, 1, beta-Caryophyllene,0.686
+76757_0007768507, 2, beta-Myrcene,0.502
+76757_0007768507, 3, Linalool,0.267
+76757_0007768507, 4, alpha-Humulene,0.180
+76757_0007768507, 5, d-Limonene,0.172
+76757_0007768507, 6, trans-Nerolidol,0.104
+76757_0007768507, 7, alpha-Bisabolol,0.0858
+76757_0007768507, 8, Caryophyllene oxide,0.0359
+76757_0007768507, 9, Ocimene, Total,0.0289
+76757_0007768507, 10, alpha-Terpineol,0.0270
