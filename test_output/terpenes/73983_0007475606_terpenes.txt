@@ -1,5 +1,4 @@
 Batch,Index,Terpene,Result,Percent
-
 73983_0007475606,1,(R)-(+)-Limonene,11.153,1.115%
 73983_0007475606,2,trans-Caryophyllene,7.007,0.701%
 73983_0007475606,3,alpha-Humulene,3.045,0.304%

@@ -1,5 +1,4 @@
 Batch,Index,Terpene,Result,Percent
-
 79080_0007541026,1,(R)-(+)-Limonene,14.049,1.405%
 79080_0007541026,2,Linalool,3.41,0.341%
 79080_0007541026,3,trans-Caryophyllene,3.249,0.325%

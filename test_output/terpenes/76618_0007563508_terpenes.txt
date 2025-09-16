@@ -1,5 +1,4 @@
 Batch,Index,Terpene,Result,Percent
-
 76618_0007563508,1,trans-Caryophyllene,6.74,0.674%
 76618_0007563508,2,beta-Myrcene,3.581,0.358%
 76618_0007563508,3,Linalool,1.955,0.195%

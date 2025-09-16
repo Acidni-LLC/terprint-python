@@ -1,5 +1,4 @@
 Batch,Index,Terpene,Result,Percent
-
 18329_0007630532,1,beta-Myrcene,6.003,0.6%
 18329_0007630532,2,trans-Caryophyllene,2.969,0.297%
 18329_0007630532,3,alpha-Pinene,2.701,0.27%

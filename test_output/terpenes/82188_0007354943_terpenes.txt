@@ -1,5 +1,4 @@
 Batch,Index,Terpene,Result,Percent
-
 82188_0007354943,1,(R)-(+)-Limonene,8.442,0.844%
 82188_0007354943,2,trans-Caryophyllene,4.757,0.476%
 82188_0007354943,3,beta-Myrcene,2.828,0.283%

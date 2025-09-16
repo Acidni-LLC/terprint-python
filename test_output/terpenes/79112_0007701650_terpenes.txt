@@ -1,5 +1,4 @@
 Batch,Index,Terpene,Result,Percent
-
 79112_0007701650,1,Terpinolene,9.02,0.902%
 79112_0007701650,2,(R)-(+)-Limonene,3.425,0.343%
 79112_0007701650,3,trans-Caryophyllene,1.876,0.188%

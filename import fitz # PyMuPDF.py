@@ -92,7 +92,7 @@ for item in my_list:
             skip = True
             for line in terpenetext.splitlines():    
                 if skip == True:
-                    outputlines ="Batch,Index,Terpene,Result,Percent\n"
+                    outputlines ="Batch,Index,Terpene,Result,Percent"
                     skip = False
                     continue
                 if counter  ==1 :
@@ -252,10 +252,18 @@ for item in my_list:
             terp = ""
             position = 1
             skip = True
+            index = 1
+            setheader = True
             for line in terpenetext.splitlines():    
                 if skip == True:
-                    outputlines ="Batch,Index,Terpene,Percent\n"
                     skip = False
+                    continue
+                 # print("Line:", line)
+                 # print("Counter:", counter)
+                 # print("Is number:", is_number)
+                 # print("-----")
+                 # Check if the line can be converted to a float
+                 # If it can, it's a number; otherwise, it's not
                 try:
                     float(line)
                     is_number = True
@@ -265,14 +273,17 @@ for item in my_list:
 
                 if is_number == True :
                     percent = line  
-                    outputline =  terp + " " + percent
+                    outputline =  terp + ", " + percent
                     # counter = counter  + 1
                 else:
-                    terp = batch + "," + str(position)+"," + line
+                    if setheader == True:
+                        outputlines ="Batch,Index,Terpene,Percent\n"
+                        setheader=False
+                    terp = batch + ", " + str(index)+", " + line
                     outputline =   terp + "," + percent
                     outputlines = outputlines+ outputline+  "\n"
-                    # counter = counter  + 1
-              
+                    index = index + 1
+                
                     # if counter == 1:
                 #     percent = line
                 #     counter = counter  + 1

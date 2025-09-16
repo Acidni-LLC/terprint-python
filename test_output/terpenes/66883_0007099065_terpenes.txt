@@ -1,5 +1,4 @@
 Batch,Index,Terpene,Result,Percent
-
 66883_0007099065,1,trans-Caryophyllene,5.932,0.593%
 66883_0007099065,2,(R)-(+)-Limonene,5.789,0.579%
 66883_0007099065,3,trans-Nerolidol,3.468,0.347%

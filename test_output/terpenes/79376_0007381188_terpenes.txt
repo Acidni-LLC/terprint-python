@@ -1,5 +1,4 @@
 Batch,Index,Terpene,Result,Percent
-
 79376_0007381188,1,beta-Myrcene,5.577,0.558%
 79376_0007381188,2,(R)-(+)-Limonene,4.043,0.404%
 79376_0007381188,3,Linalool,3.427,0.343%

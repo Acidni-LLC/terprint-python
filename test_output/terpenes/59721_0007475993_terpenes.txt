@@ -1,5 +1,4 @@
 Batch,Index,Terpene,Result,Percent
-
 59721_0007475993,1,trans-Caryophyllene,8.599,0.86%
 59721_0007475993,2,beta-Myrcene,3.983,0.398%
 59721_0007475993,3,alpha-Humulene,2.312,0.231%
