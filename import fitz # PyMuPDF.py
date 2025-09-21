@@ -15,12 +15,12 @@ for item in my_list:
     local_filename = batch+".pdf"  # Replace with your desired local filename
 
     if os.path.exists(local_filename):
-        print(f"File '{local_filename}' already exists.")
+        print(f"File '{batch}' already exists.")
         continue
         # If you want to redownload the file even if it exists, set redownload to 1
         # redownload = 1
     else:
-        print(f"File '{local_filename}' does not exist. It will be downloaded.")
+        print(f"File '{batch}' does not exist. It will be downloaded.")
         missingfile = 1
 
 
