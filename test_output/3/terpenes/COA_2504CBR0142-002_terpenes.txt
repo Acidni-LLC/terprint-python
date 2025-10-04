@@ -1,0 +1,10 @@
+Batch,Index,Terpene,(ug/g),Percent
+COA_2504CBR0142-002, 1, E-Caryophyllene, 0.400, 3998.19
+COA_2504CBR0142-002, 2, Ocimenes, 0.370, 3696.6
+COA_2504CBR0142-002, 3, alpha-Pinene, 0.265, 2649.8
+COA_2504CBR0142-002, 4, beta-Pinene, 0.144, 1443.46
+COA_2504CBR0142-002, 5, beta-Myrcene, 0.117, 1168.1
+COA_2504CBR0142-002, 6, Terpineol, 0.090, 903.335
+COA_2504CBR0142-002, 7, alpha-Bisabolol, 0.087, 865.418
+COA_2504CBR0142-002, 8, alpha-Humulene, 0.083, 828.048
+COA_2504CBR0142-002, 9, Endo-Fenchyl Alcohol, 0.073, 727.301

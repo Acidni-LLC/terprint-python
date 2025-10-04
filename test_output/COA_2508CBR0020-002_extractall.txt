@@ -1,0 +1,254 @@
+       SUMMARY
+TESTED
+Potency
+TESTED
+Mycotoxins
+PASSED
+Terpenes
+TESTED
+Microbials
+PASSED
+Pesticides
+PASSED
+Total Yeast
+and Mold
+PASSED
+Total
+Contaminant
+Load
+PASSED
+Water Activity
+PASSED
+Residual
+Solvents
+NOT TESTED
+Moisture
+PASSED
+PASSED
+Heavy Metals
+Filth and Foreign
+Material
+PASSED
+Total Aerobic
+Bacteria
+NOT TESTED
+Homogeneity
+NOT TESTED
+POTENCY
+TESTED
+      Analyte
+Result
+LOD
+Result
+(mg/g)
+%
+(mg/g)
+mg/unit
+279
+27.9
+0.000012
+THCA
+977
+14.2
+1.42
+0.00002
+d9-THC
+49.7
+5.03
+0.503
+0.000008
+CBGA
+17.6
+1.26
+0.126
+0.000015
+CBG
+4.41
+ND
+ND
+0.000004
+CBC
+N/A
+ND
+ND
+0.00001
+CBD
+N/A
+ND
+ND
+0.000012
+CBDA
+N/A
+ND
+ND
+0.000017
+CBDV
+N/A
+ND
+ND
+0.000009
+CBN
+N/A
+ND
+ND
+0.000246
+d8-THC
+N/A
+ND
+ND
+0.000015
+THCV
+N/A
+Sample Analyzed By:
+69
+TM-001 Potency
+08062025 Potency.batch.bin
+8/6/2025 15:46
+Batch Reviewed By:
+1000
+040
+027
+HPLC
+Date/Time:
+Date/Time:
+8/7/2025 11:18
+Dilution:
+Sample Prepared By:
+Analysis #
+8/7/2025 12:06
+Date/Time:
+0.5421
+Analysis Method:
+Specimen wt (g):
+Instrument Used:
+As Received
+29.9%
+Total THC
+Total CBD
+POTENCY SUMMARY
+Total Cannabinoids
+25.9%
+0.000%
+THC Label Claim
+CBD Label Claim
+N/A
+N/A
+N/A
+N/A
+Total CBD/Unit
+N/A
+Total THC/Unit
+906 mg
+Total Cannabinoids/Unit
+1048.5 mg
+As Received
+As Received
+As Received
+As Received
+As Received
+TERPENES SUMMARY
+            Analyte
+Result
+Result
+(ug/g)
+%
+D-Limonene
+0.991
+9907.04
+E-Caryophyllene
+0.664
+6635.2
+Linalool
+0.580
+5800.08
+Ocimenes
+0.336
+3363.36
+alpha-Humulene
+0.232
+2322.32
+alpha-Pinene
+0.216
+2162.16
+Terpineol
+0.210
+2104.96
+beta-Pinene
+0.191
+1910.48
+Endo-Fenchyl Alcohol
+0.161
+1613.04
+alpha-Bisabolol
+0.068
+678.392
+                              Total Terpenes: 3.77%
+Showing top 10 Terpenes, full analysis on the following page.
+8/5/2025
+Sampling Date:
+Candy Fumez 3.5g Flower
+Flower
+Certificate of Analysis
+Order #
+2508CBR0020-002
+2508CBR0020
+Method Testing Laboratories
+2720 Broadway Center Blvd.
+Brandon, FL 33510
+Lic #CMTL-2023-00012
+Candy Fumez 3.5g Flower
+Sample #
+Receipt Date:
+Completion Date:
+Sampled Gross Weight:
+Sampling Method:
+Product Name:
+Description:
+Matrix:
+Client: Sunburn
+Address:
+Address:
+25548 County Rd 44A
+Eustis, FL  32736
+Batch #:
+Batch Date:
+Extracted From:
+Seed to Sale #:
+Lot ID:
+Cultivars:
+Test Reg State:
+Cultivation Facility:
+Cultivation Date:
+Production Facility:
+Production Date:
+8/5/2025 12:08
+08/07/2025 16:58
+8/5/2025
+28.56 g
+4542970999187453
+8/5/2025
+3091817266279714
+4542970999187453
+1340638704791402
+Candy Fumez
+Cannabis FL
+Winter Garden
+Winter Garden
+6/22/2025
+LAB-028
+Total Batch Wgt or Vol: 6,5887g
+Product g/unit: 3.50
+Page
+Definitions and Abbreviations used in this report: Total THC = Delta 9 THC + (THCA*0.877), Total CBD = CBD + (CBDA*0.877), Total Cannabinoids = THC + THCA + CBD + CBDA + CBG + CBGA + Delta 8 THC + THCV + CBDV + CBC + CBN, Total THC and Total CBD are
+expressed as mg in total package weight, (Dilution) = Dilution Factor, (%) = Percent, (mg/g) = Milligrams per Gram, (mg/mL) = Milligrams per Milliliter, (mg/kg) = Milligrams per Kilogram, (ug/kg) = Microgram per Kilogram, (cfu/g) = Colony Forming Unit per Gram,
+Action Limit of Absent is equivalent to < 1 cfu/g, (aw) = Water Activity, (LOD) = Limit of Detection, (LOQ) = Limit of Quantitation; (ppm) = parts per million; (ppb) = parts per billion; Units for ppm also expressed as (mg/kg); Units for ppb also expressed as (ug/kg).All
+measurements and calibrations at Method Testing Labs are traceable to the International System of Units (SI) through an unbroken chain of comparisons and from recognized national metrology institutes. Compounded measurement uncertainty for any analyte is
+available upon request.
+This report shall not be reproduced, without written approval, from Method Testing Labs.  The results of this report relate only to the material or product analyzed.  Test results are confidential unless explicitly waived otherwise.  Accredited by a third-party
+accrediting body as a competent testing laboratory pursuant to ISO/IEC 17025:2017 of the International Organization for Standardization.
+of
+Anthony Repay
+08/07/2025 16:58
+Lab Director
+1
+1

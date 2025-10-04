@@ -1,0 +1,254 @@
+       SUMMARY
+TESTED
+Potency
+TESTED
+Mycotoxins
+PASSED
+Terpenes
+TESTED
+Microbials
+PASSED
+Pesticides
+PASSED
+Total Yeast
+and Mold
+PASSED
+Total
+Contaminant
+Load
+PASSED
+Water Activity
+PASSED
+Residual
+Solvents
+NOT TESTED
+Moisture
+PASSED
+PASSED
+Heavy Metals
+Filth and Foreign
+Material
+PASSED
+Total Aerobic
+Bacteria
+NOT TESTED
+Homogeneity
+NOT TESTED
+POTENCY
+TESTED
+      Analyte
+Result
+LOD
+Result
+(mg/g)
+%
+(mg/g)
+mg/unit
+320
+32.0
+0.000012
+THCA
+2240
+12.1
+1.21
+0.000008
+CBGA
+85.0
+4.96
+0.496
+0.00002
+d9-THC
+34.7
+1.98
+0.198
+0.000015
+CBG
+13.9
+0.981
+0.098
+0.000012
+CBDA
+6.87
+ND
+ND
+0.000004
+CBC
+N/A
+ND
+ND
+0.00001
+CBD
+N/A
+ND
+ND
+0.000017
+CBDV
+N/A
+ND
+ND
+0.000009
+CBN
+N/A
+ND
+ND
+0.000246
+d8-THC
+N/A
+ND
+ND
+0.000015
+THCV
+N/A
+Sample Analyzed By:
+049
+TM-001 Potency
+LC3 Potency 1.batch.bin
+9/30/2025 11:21
+Batch Reviewed By:
+1000
+049
+029
+HPLC
+Date/Time:
+Date/Time:
+9/30/2025 11:40
+Dilution:
+Sample Prepared By:
+Analysis #
+9/30/2025 12:38
+Date/Time:
+0.5150
+Analysis Method:
+Specimen wt (g):
+Instrument Used:
+As Received
+33.9%
+Total THC
+Total CBD
+POTENCY SUMMARY
+Total Cannabinoids
+28.5%
+0.086%
+THC Label Claim
+CBD Label Claim
+N/A
+N/A
+N/A
+N/A
+Total CBD/Unit
+6.02 mg
+Total THC/Unit
+2000 mg
+Total Cannabinoids/Unit
+2376.9 mg
+As Received
+As Received
+As Received
+As Received
+As Received
+TERPENES SUMMARY
+            Analyte
+Result
+Result
+(ug/g)
+%
+E-Caryophyllene
+0.698
+6984.44
+beta-Myrcene
+0.421
+4211.04
+D-Limonene
+0.245
+2445.12
+Linalool
+0.199
+1992.32
+alpha-Humulene
+0.162
+1618.76
+Ocimenes
+0.080
+803.72
+alpha-Bisabolol
+0.045
+448.272
+beta-Pinene
+0.027
+268.284
+Terpineol
+0.026
+262.624
+Endo-Fenchyl Alcohol
+0.020
+202.628
+                              Total Terpenes: 1.94%
+Showing top 10 Terpenes, full analysis on the following page.
+9/25/2025
+Sampling Date:
+Blue Zushi 7g Smalls
+Flower
+Certificate of Analysis
+Order #
+2509CBR0152-009
+2509CBR0152
+Method Testing Laboratories
+2720 Broadway Center Blvd.
+Brandon, FL 33510
+Lic #CMTL-2023-00012
+Blue Zushi 7g Smalls
+Sample #
+Receipt Date:
+Completion Date:
+Sampled Gross Weight:
+Sampling Method:
+Product Name:
+Description:
+Matrix:
+Client: Sunburn
+Address:
+Address:
+25548 County Rd 44A
+Eustis, FL  32736
+Batch #:
+Batch Date:
+Extracted From:
+Seed to Sale #:
+Lot ID:
+Cultivars:
+Test Reg State:
+Cultivation Facility:
+Cultivation Date:
+Production Facility:
+Production Date:
+9/25/2025 12:09
+09/30/2025 12:42
+9/25/2025
+28.12 g
+6842117005459019
+9/25/2025
+5445635055486760
+6842117005459019
+8169004352860798
+Blue Zushi
+Cannabis FL
+Winter Garden
+Winter Garden
+8/20/2025
+LAB-028
+Total Batch Wgt or Vol: 7,000g
+Product g/unit: 7.00
+Page
+Definitions and Abbreviations used in this report: Total THC = Delta 9 THC + (THCA*0.877), Total CBD = CBD + (CBDA*0.877), Total Cannabinoids = THC + THCA + CBD + CBDA + CBG + CBGA + Delta 8 THC + THCV + CBDV + CBC + CBN, Total THC and Total CBD are
+expressed as mg in total package weight, (Dilution) = Dilution Factor, (%) = Percent, (mg/g) = Milligrams per Gram, (mg/mL) = Milligrams per Milliliter, (mg/kg) = Milligrams per Kilogram, (ug/kg) = Microgram per Kilogram, (cfu/g) = Colony Forming Unit per Gram,
+Action Limit of Absent is equivalent to < 1 cfu/g, (aw) = Water Activity, (LOD) = Limit of Detection, (LOQ) = Limit of Quantitation; (ppm) = parts per million; (ppb) = parts per billion; Units for ppm also expressed as (mg/kg); Units for ppb also expressed as (ug/kg).All
+measurements and calibrations at Method Testing Labs are traceable to the International System of Units (SI) through an unbroken chain of comparisons and from recognized national metrology institutes. Compounded measurement uncertainty for any analyte is
+available upon request.
+This report shall not be reproduced, without written approval, from Method Testing Labs.  The results of this report relate only to the material or product analyzed.  Test results are confidential unless explicitly waived otherwise.  Accredited by a third-party
+accrediting body as a competent testing laboratory pursuant to ISO/IEC 17025:2017 of the International Organization for Standardization.
+of
+Anthony Repay
+09/30/2025 12:42
+Lab Director
+1
+1

@@ -1,0 +1,254 @@
+       SUMMARY
+TESTED
+Potency
+TESTED
+Mycotoxins
+PASSED
+Terpenes
+TESTED
+Microbials
+PASSED
+Pesticides
+PASSED
+Total Yeast
+and Mold
+PASSED
+Total
+Contaminant
+Load
+PASSED
+Water Activity
+PASSED
+Residual
+Solvents
+NOT TESTED
+Moisture
+PASSED
+PASSED
+Heavy Metals
+Filth and Foreign
+Material
+PASSED
+Total Aerobic
+Bacteria
+NOT TESTED
+Homogeneity
+NOT TESTED
+POTENCY
+TESTED
+      Analyte
+Result
+LOD
+Result
+(mg/g)
+%
+(mg/g)
+mg/unit
+327
+32.7
+0.000012
+THCA
+1140
+10.5
+1.05
+0.000008
+CBGA
+36.8
+5.47
+0.547
+0.00002
+d9-THC
+19.1
+0.984
+0.098
+0.000012
+CBDA
+3.45
+ND
+ND
+0.000004
+CBC
+N/A
+ND
+ND
+0.00001
+CBD
+N/A
+ND
+ND
+0.000017
+CBDV
+N/A
+ND
+ND
+0.000015
+CBG
+N/A
+ND
+ND
+0.000009
+CBN
+N/A
+ND
+ND
+0.000246
+d8-THC
+N/A
+ND
+ND
+0.000015
+THCV
+N/A
+Sample Analyzed By:
+69
+TM-001 Potency
+LC2 Potency 3.batch.bin
+9/5/2025 12:26
+Batch Reviewed By:
+1000
+040
+032
+HPLC
+Date/Time:
+Date/Time:
+9/6/2025 12:26
+Dilution:
+Sample Prepared By:
+Analysis #
+9/6/2025 13:20
+Date/Time:
+0.5307
+Analysis Method:
+Specimen wt (g):
+Instrument Used:
+As Received
+34.4%
+Total THC
+Total CBD
+POTENCY SUMMARY
+Total Cannabinoids
+29.2%
+0.086%
+THC Label Claim
+CBD Label Claim
+N/A
+N/A
+N/A
+N/A
+Total CBD/Unit
+3.02 mg
+Total THC/Unit
+1020 mg
+Total Cannabinoids/Unit
+1202.7 mg
+As Received
+As Received
+As Received
+As Received
+As Received
+TERPENES SUMMARY
+            Analyte
+Result
+Result
+(ug/g)
+%
+beta-Myrcene
+0.605
+6047.12
+E-Caryophyllene
+0.493
+4934.36
+D-Limonene
+0.474
+4743.28
+Linalool
+0.232
+2315.44
+Ocimenes
+0.180
+1798.4
+alpha-Humulene
+0.152
+1517.4
+Guaiol
+0.085
+854.24
+Terpineol
+0.070
+698.004
+beta-Pinene
+0.067
+666.532
+Endo-Fenchyl Alcohol
+0.052
+520.412
+                              Total Terpenes: 2.48%
+Showing top 10 Terpenes, full analysis on the following page.
+9/3/2025
+Sampling Date:
+Rose Especial 3.5g Flower
+Flower
+Certificate of Analysis
+Order #
+2509CBR0001-004
+2509CBR0001
+Method Testing Laboratories
+2720 Broadway Center Blvd.
+Brandon, FL 33510
+Lic #CMTL-2023-00012
+Rose Especial 3.5g Flower
+Sample #
+Receipt Date:
+Completion Date:
+Sampled Gross Weight:
+Sampling Method:
+Product Name:
+Description:
+Matrix:
+Client: Sunburn
+Address:
+Address:
+25548 County Rd 44A
+Eustis, FL  32736
+Batch #:
+Batch Date:
+Extracted From:
+Seed to Sale #:
+Lot ID:
+Cultivars:
+Test Reg State:
+Cultivation Facility:
+Cultivation Date:
+Production Facility:
+Production Date:
+9/4/2025 11:09
+09/08/2025 13:08
+9/4/2025
+28.16 g
+1143955909872322
+9/4/2025
+4999754735163296
+1143955909872322
+4999754735163296
+Rose Especial
+Cannabis FL
+Winter Garden
+Winter Garden
+7/27/2025
+LAB-028
+Total Batch Wgt or Vol: 7,497g
+Product g/unit: 3.50
+Page
+Definitions and Abbreviations used in this report: Total THC = Delta 9 THC + (THCA*0.877), Total CBD = CBD + (CBDA*0.877), Total Cannabinoids = THC + THCA + CBD + CBDA + CBG + CBGA + Delta 8 THC + THCV + CBDV + CBC + CBN, Total THC and Total CBD are
+expressed as mg in total package weight, (Dilution) = Dilution Factor, (%) = Percent, (mg/g) = Milligrams per Gram, (mg/mL) = Milligrams per Milliliter, (mg/kg) = Milligrams per Kilogram, (ug/kg) = Microgram per Kilogram, (cfu/g) = Colony Forming Unit per Gram,
+Action Limit of Absent is equivalent to < 1 cfu/g, (aw) = Water Activity, (LOD) = Limit of Detection, (LOQ) = Limit of Quantitation; (ppm) = parts per million; (ppb) = parts per billion; Units for ppm also expressed as (mg/kg); Units for ppb also expressed as (ug/kg).All
+measurements and calibrations at Method Testing Labs are traceable to the International System of Units (SI) through an unbroken chain of comparisons and from recognized national metrology institutes. Compounded measurement uncertainty for any analyte is
+available upon request.
+This report shall not be reproduced, without written approval, from Method Testing Labs.  The results of this report relate only to the material or product analyzed.  Test results are confidential unless explicitly waived otherwise.  Accredited by a third-party
+accrediting body as a competent testing laboratory pursuant to ISO/IEC 17025:2017 of the International Organization for Standardization.
+of
+Anthony Repay
+09/08/2025 13:08
+Lab Director
+1
+1

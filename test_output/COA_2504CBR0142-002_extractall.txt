@@ -1,0 +1,254 @@
+       SUMMARY
+TESTED
+Potency
+TESTED
+Mycotoxins
+PASSED
+Terpenes
+TESTED
+Microbials
+PASSED
+Pesticides
+PASSED
+Total Yeast
+and Mold
+PASSED
+Total
+Contaminant
+Load
+PASSED
+Water Activity
+PASSED
+Residual
+Solvents
+NOT TESTED
+Moisture
+PASSED
+PASSED
+Heavy Metals
+Filth and Foreign
+Material
+PASSED
+Total Aerobic
+Bacteria
+NOT TESTED
+Homogeneity
+NOT TESTED
+POTENCY
+TESTED
+      Analyte
+Result
+LOD
+Result
+(mg/g)
+%
+(mg/g)
+mg/unit
+259
+25.9
+0.000012
+THCA
+907.56
+12.0
+1.20
+0.000008
+CBGA
+42.169
+2.48
+0.248
+0.00002
+d9-THC
+8.665
+2.25
+0.225
+0.000015
+CBG
+7.865
+ND
+ND
+0.000004
+CBC
+N/A
+ND
+ND
+0.00001
+CBD
+N/A
+ND
+ND
+0.000012
+CBDA
+N/A
+ND
+ND
+0.000017
+CBDV
+N/A
+ND
+ND
+0.000009
+CBN
+N/A
+ND
+ND
+0.000246
+d8-THC
+N/A
+ND
+ND
+0.000015
+THCV
+N/A
+Sample Analyzed By:
+032
+TM-001 Potency
+Conf.batch.bin
+4/25/2025 17:00
+Batch Reviewed By:
+1000
+040
+027
+HPLC
+Date/Time:
+Date/Time:
+4/26/2025 10:43
+Dilution:
+Sample Prepared By:
+Analysis #
+4/27/2025 20:15
+Date/Time:
+0.5376
+Analysis Method:
+Specimen wt (g):
+Instrument Used:
+As Received
+27.6%
+Total THC
+Total CBD
+POTENCY SUMMARY
+Total Cannabinoids
+23.0%
+0.000%
+THC Label Claim
+CBD Label Claim
+N/A
+N/A
+N/A
+N/A
+Total CBD/Unit
+N/A
+Total THC/Unit
+804.6 mg
+Total Cannabinoids/Unit
+966.26 mg
+As Received
+As Received
+As Received
+As Received
+As Received
+TERPENES SUMMARY
+            Analyte
+Result
+Result
+(ug/g)
+%
+D-Limonene
+0.642
+6419.61
+E-Caryophyllene
+0.400
+3998.19
+Ocimenes
+0.370
+3696.6
+alpha-Pinene
+0.265
+2649.8
+beta-Pinene
+0.144
+1443.46
+beta-Myrcene
+0.117
+1168.1
+Terpineol
+0.090
+903.335
+alpha-Bisabolol
+0.087
+865.418
+alpha-Humulene
+0.083
+828.048
+Endo-Fenchyl Alcohol
+0.073
+727.301
+                              Total Terpenes: 2.4%
+Showing top 10 Terpenes, full analysis on the following page.
+4/23/2025
+Sampling Date:
+Banana Punch 3.5g Flower
+Flower
+Certificate of Analysis
+Order #
+2504CBR0142-002
+2504CBR0142
+Method Testing Laboratories
+2720 Broadway Center Blvd.
+Brandon, FL 33510
+Lic #CMTL-2023-00012
+Banana Punch 3.5g Flower
+Sample #
+Receipt Date:
+Completion Date:
+Sampled Gross Weight:
+Sampling Method:
+Product Name:
+Description:
+Matrix:
+Client: Sunburn
+Address:
+Address:
+25548 County Rd 44A
+Eustis, FL  32736
+Batch #:
+Batch Date:
+Extracted From:
+Seed to Sale #:
+Lot ID:
+Cultivars:
+Test Reg State:
+Cultivation Facility:
+Cultivation Date:
+Production Facility:
+Production Date:
+4/24/2025 12:04
+04/28/2025 16:07
+4/24/2025
+38.39 g
+5305879715733636
+4/24/2025
+8295245576172229
+5305879715733636
+8295245576172229
+Banana Punch
+Cannabis FL
+Winter Garden
+Winter Garden
+3/16/2025
+LAB-028
+Total Batch Wgt or Vol: 10,447.5g
+Product g/unit: 3.50
+Page
+Definitions and Abbreviations used in this report: Total THC = Delta 9 THC + (THCA*0.877), Total CBD = CBD + (CBDA*0.877), Total Cannabinoids = THC + THCA + CBD + CBDA + CBG + CBGA + Delta 8 THC + THCV + CBDV + CBC + CBN, Total THC and Total CBD are
+expressed as mg in total package weight, (Dilution) = Dilution Factor, (%) = Percent, (mg/g) = Milligrams per Gram, (mg/mL) = Milligrams per Milliliter, (mg/kg) = Milligrams per Kilogram, (ug/kg) = Microgram per Kilogram, (cfu/g) = Colony Forming Unit per Gram,
+Action Limit of Absent is equivalent to < 1 cfu/g, (aw) = Water Activity, (LOD) = Limit of Detection, (LOQ) = Limit of Quantitation; (ppm) = parts per million; (ppb) = parts per billion; Units for ppm also expressed as (mg/kg); Units for ppb also expressed as (ug/kg).All
+measurements and calibrations at Method Testing Labs are traceable to the International System of Units (SI) through an unbroken chain of comparisons and from recognized national metrology institutes. Compounded measurement uncertainty for any analyte is
+available upon request.
+This report shall not be reproduced, without written approval, from Method Testing Labs.  The results of this report relate only to the material or product analyzed.  Test results are confidential unless explicitly waived otherwise.  Accredited by a third-party
+accrediting body as a competent testing laboratory pursuant to ISO/IEC 17025:2017 of the International Organization for Standardization.
+of
+Anthony Repay
+04/28/2025 16:07
+Lab Director
+1
+1

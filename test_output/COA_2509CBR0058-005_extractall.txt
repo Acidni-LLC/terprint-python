@@ -1,0 +1,254 @@
+       SUMMARY
+TESTED
+Potency
+TESTED
+Mycotoxins
+PASSED
+Terpenes
+TESTED
+Microbials
+PASSED
+Pesticides
+PASSED
+Total Yeast
+and Mold
+PASSED
+Total
+Contaminant
+Load
+PASSED
+Water Activity
+PASSED
+Residual
+Solvents
+NOT TESTED
+Moisture
+PASSED
+PASSED
+Heavy Metals
+Filth and Foreign
+Material
+PASSED
+Total Aerobic
+Bacteria
+NOT TESTED
+Homogeneity
+NOT TESTED
+POTENCY
+TESTED
+      Analyte
+Result
+LOD
+Result
+(mg/g)
+%
+(mg/g)
+mg/unit
+241
+24.1
+0.000012
+THCA
+1690
+11.5
+1.15
+0.000008
+CBGA
+80.4
+6.46
+0.646
+0.00002
+d9-THC
+45.2
+ND
+ND
+0.000004
+CBC
+N/A
+ND
+ND
+0.00001
+CBD
+N/A
+ND
+ND
+0.000012
+CBDA
+N/A
+ND
+ND
+0.000017
+CBDV
+N/A
+ND
+ND
+0.000015
+CBG
+N/A
+ND
+ND
+0.000009
+CBN
+N/A
+ND
+ND
+0.000246
+d8-THC
+N/A
+ND
+ND
+0.000015
+THCV
+N/A
+Sample Analyzed By:
+049
+TM-001 Potency
+LC2 Potency 1.batch.bin
+9/15/2025 15:19
+Batch Reviewed By:
+1000
+049
+029
+HPLC
+Date/Time:
+Date/Time:
+9/15/2025 15:24
+Dilution:
+Sample Prepared By:
+Analysis #
+9/15/2025 15:27
+Date/Time:
+0.5178
+Analysis Method:
+Specimen wt (g):
+Instrument Used:
+As Received
+25.9%
+Total THC
+Total CBD
+POTENCY SUMMARY
+Total Cannabinoids
+21.8%
+0.000%
+THC Label Claim
+CBD Label Claim
+N/A
+N/A
+N/A
+N/A
+Total CBD/Unit
+N/A
+Total THC/Unit
+1520 mg
+Total Cannabinoids/Unit
+1813 mg
+As Received
+As Received
+As Received
+As Received
+As Received
+TERPENES SUMMARY
+            Analyte
+Result
+Result
+(ug/g)
+%
+E-Caryophyllene
+1.100
+11048.4
+D-Limonene
+0.259
+2589.12
+Linalool
+0.254
+2544.48
+beta-Myrcene
+0.237
+2365.92
+alpha-Humulene
+0.224
+2243.16
+alpha-Bisabolol
+0.131
+1305.72
+Ocimenes
+0.093
+927.396
+Terpineol
+0.078
+775.62
+Endo-Fenchyl Alcohol
+0.065
+651.744
+beta-Pinene
+0.051
+512.244
+                              Total Terpenes: 2.56%
+Showing top 10 Terpenes, full analysis on the following page.
+9/10/2025
+Sampling Date:
+Bill's Reserve Animal Mintz 7g Smalls
+Flower
+Certificate of Analysis
+Order #
+2509CBR0058-005
+2509CBR0058
+Method Testing Laboratories
+2720 Broadway Center Blvd.
+Brandon, FL 33510
+Lic #CMTL-2023-00012
+Bill's Reserve Animal Mintz 7g Smalls
+Sample #
+Receipt Date:
+Completion Date:
+Sampled Gross Weight:
+Sampling Method:
+Product Name:
+Description:
+Matrix:
+Client: Sunburn
+Address:
+Address:
+25548 County Rd 44A
+Eustis, FL  32736
+Batch #:
+Batch Date:
+Extracted From:
+Seed to Sale #:
+Lot ID:
+Cultivars:
+Test Reg State:
+Cultivation Facility:
+Cultivation Date:
+Production Facility:
+Production Date:
+9/11/2025 11:09
+09/15/2025 15:29
+9/11/2025
+28.16 g
+0897694578956806
+9/11/2025
+7690457091837607
+0897694578956806
+3740152541042651
+Animal Mintz
+Cannabis FL
+Winter Garden
+Winter Garden
+8/3/2025
+LAB-028
+Total Batch Wgt or Vol: 2,352g
+Product g/unit: 7.00
+Page
+Definitions and Abbreviations used in this report: Total THC = Delta 9 THC + (THCA*0.877), Total CBD = CBD + (CBDA*0.877), Total Cannabinoids = THC + THCA + CBD + CBDA + CBG + CBGA + Delta 8 THC + THCV + CBDV + CBC + CBN, Total THC and Total CBD are
+expressed as mg in total package weight, (Dilution) = Dilution Factor, (%) = Percent, (mg/g) = Milligrams per Gram, (mg/mL) = Milligrams per Milliliter, (mg/kg) = Milligrams per Kilogram, (ug/kg) = Microgram per Kilogram, (cfu/g) = Colony Forming Unit per Gram,
+Action Limit of Absent is equivalent to < 1 cfu/g, (aw) = Water Activity, (LOD) = Limit of Detection, (LOQ) = Limit of Quantitation; (ppm) = parts per million; (ppb) = parts per billion; Units for ppm also expressed as (mg/kg); Units for ppb also expressed as (ug/kg).All
+measurements and calibrations at Method Testing Labs are traceable to the International System of Units (SI) through an unbroken chain of comparisons and from recognized national metrology institutes. Compounded measurement uncertainty for any analyte is
+available upon request.
+This report shall not be reproduced, without written approval, from Method Testing Labs.  The results of this report relate only to the material or product analyzed.  Test results are confidential unless explicitly waived otherwise.  Accredited by a third-party
+accrediting body as a competent testing laboratory pursuant to ISO/IEC 17025:2017 of the International Organization for Standardization.
+of
+Anthony Repay
+09/15/2025 15:29
+Lab Director
+1
+1
