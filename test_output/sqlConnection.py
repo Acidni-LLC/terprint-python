@@ -18,11 +18,21 @@ try:
     cursor = conn.cursor()
     print("Connection successful!")
 
-    # You can now execute SQL queries using the cursor
-    # Example: cursor.execute("SELECT * FROM YourTable")
-    # rows = cursor.fetchall()
-    # for row in rows:
-    #     print(row)
+    #You can now execute SQL queries using the cursor
+    print("terpeneResults")
+
+    cursor.execute("SELECT * FROM terpeneResults")
+    rows = cursor.fetchall()
+    for row in rows:
+        print(row)
+
+    cursor.execute("        INSERT INTO [dbo].[cannabinoidResults]            ([batch], [Index], [Cannabinoid], [percent], [milligrams],   [dispensaryId], [createdBy])        VALUES  ('1111' ,1 ,'THC' ,.025 ,.0025 ,1 ,'jgill@acidnillc.onmicrosoft.com')    ")
+
+    print("cannabinoidResults")
+    cursor.execute("SELECT * FROM cannabinoidResults")
+    rows = cursor.fetchall()
+    for row in rows:
+        print(row)
 
 except pyodbc.Error as ex:
     sqlstate = ex.args[0]
