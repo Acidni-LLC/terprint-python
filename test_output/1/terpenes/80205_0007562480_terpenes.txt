@@ -1,0 +1,9 @@
+Batch,Index,Terpene,Result,Percent
+80205_0007562480,1,Linalool,5.067,0.507%
+80205_0007562480,2,(R)-(+)-Limonene,3.33,0.333%
+80205_0007562480,3,trans-Caryophyllene,3.286,0.329%
+80205_0007562480,4,beta-Myrcene,3.135,0.313%
+80205_0007562480,5,alpha-Humulene,0.939,0.094%
+80205_0007562480,6,trans-Nerolidol,0.827,0.083%
+80205_0007562480,7,Fenchyl Alcohol,0.796,0.08%
+80205_0007562480,8,beta-Pinene,0.382,0.038%

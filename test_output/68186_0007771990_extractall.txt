@@ -1,0 +1,153 @@
+Certificate of Analysis
+Trulieve
+68186_0007771990
+Sample Matrix:
+Whole Flower
+Cultivation Facility:
+Quincy
+Processing Facility:
+Midway
+Batch Size:
+29572 g
+Batch Unit Size:
+3.5 g
+Units Sampled:
+34
+Total Amt. Sampled:
+119 g
+Seed to Sale ID:
+7633274288625210
+QA Sample ID:
+5880463071426368
+Laboratory ID:
+JI03003-02
+Cultivar: 
+Sour Grapez
+Product Name:
+MODERN FLOWER - HYBRID FLOWER
+Description:
+MF-Flower-3.5g-SourGrapez-H-FL
+Admin. Route:
+Inhalation
+Label Claim:
+Sample Date:
+09/03/25
+Received:
+09/03/25 14:51
+Completed:
+09/08/25 10:12
+THC: -- mg | CBD: -- mg
+Batch Date:
+09/03/2025
+POTENCY SUMMARY (As Received)
+%
+Analyte
+mg
+ THCa
+36.2
+1,270
+ CBGa
+2.84
+99.4
+ delta 9-THC
+0.449
+15.7
+ CBG
+0.210
+7.35
+ CBDa
+0.0751
+2.63
+ CBC
+<LOQ
+<LOQ
+ CBD
+<LOQ
+<LOQ
+ CBDV
+<LOQ
+<LOQ
+ CBN
+<LOQ
+<LOQ
+ delta 8-THC
+<LOQ
+<LOQ
+ THCV
+<LOQ
+<LOQ
+TERPENES SUMMARY (Top Ten)
+2.01%
+Total Terpenes
+Analyte
+%
+ 
+0.554
+beta-Caryophyllene
+0.442
+beta-Myrcene
+0.312
+d-Limonene
+0.153
+alpha-Humulene
+0.121
+Linalool
+0.0767
+alpha-Bisabolol
+0.0692
+Guaiol
+0.0512
+trans-Nerolidol
+0.0411
+Isopulegol
+0.0351
+Caryophyllene oxide
+Total CBD
+0.0659% (2.31 mg)
+Total THC
+32.2% (1,130 mg)
+Total Cannabinoids
+39.8% (1,390 mg)
+Completed
+Potency
+Not Tested
+Homogeneity
+Completed
+Terpenes
+Not Tested
+Residual Solvents
+PASS
+% Moisture
+PASS
+Water Activity
+PASS
+Foreign Matter
+PASS
+Pesticides
+PASS
+Mycotoxins
+PASS
+Heavy Metals
+PASS
+Microbials
+Not Applicable
+Label Claim
+ANALYSIS SUMMARY
+LOQ = Limit of Quantification
+ND = Non-Detect 
+RPD = Relative Percent Difference
+  MDL = Method Detection Limit
+PQL = Practical Quantitation Limit
+Copyright © 2025 Modern Canna, LLC. All rights reserved. 
+This report shall not be reproduced, distributed, or transmitted in any form or by any means, without written consent from Modern Canna, LLC.  The 
+results in this report relate only to the products analyzed. The results in this report are confidential. For more information regarding our reporting 
+limits, please visit: www.moderncanna.com/modern-canna-reporting-limits/
+4705 Old Rd 37
+Lakeland, FL 33813
+www.moderncanna.com
+CMTL-0005
+Page 1 of 1
+863-608-7800
+Accreditation #102020
+Richard Dillen
+Laboratory Director
