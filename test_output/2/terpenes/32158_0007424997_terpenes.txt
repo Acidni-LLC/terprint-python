@@ -1,0 +1,11 @@
+Batch,Index,Terpene,Percent
+32158_0007424997, 1, Ocimene, Total,0.685
+32158_0007424997, 2, d-Limonene,0.223
+32158_0007424997, 3, beta-Caryophyllene,0.143
+32158_0007424997, 4, alpha-Pinene,0.0998
+32158_0007424997, 5, Linalool,0.0985
+32158_0007424997, 6, alpha-Bisabolol,0.0898
+32158_0007424997, 7, trans-Nerolidol,0.0781
+32158_0007424997, 8, alpha-Humulene,0.0633
+32158_0007424997, 9, beta-Myrcene,0.0538
+32158_0007424997, 10, Fenchyl Alcohol,0.0532

@@ -14,10 +14,10 @@ namespace Terprint.Web.Data
         {
 
             optionsBuilder
-              //.EnableSensitiveDataLogging()
+                //.EnableSensitiveDataLogging()
 
-              .UseSqlServer(@"Data Source=terprintwebdbserver.database.windows.net;Initial Catalog=Terprint.Web_db;User ID=savitas;Password=sql1234%;Connect Timeout=60;Encrypt=True;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
-              ;
+
+                .UseSqlServer(@"Server=tcp:acidni-sql.database.windows.net,1433;Initial Catalog=terprint;Persist Security Info=False;User ID=adm;Password=sql1234%;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
     }
     public class TerprintWebContext2 : TerprintWebContext
@@ -26,10 +26,10 @@ namespace Terprint.Web.Data
         {
 
             optionsBuilder
-              //.EnableSensitiveDataLogging()
+                //.EnableSensitiveDataLogging()
 
-              .UseSqlServer(@"Data Source=terprintwebdbserver.database.windows.net;Initial Catalog=Terprint.Web_db;User ID=savitas;Password=sql1234%;Connect Timeout=60;Encrypt=True;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
-              ;
+
+                .UseSqlServer(@"Server=tcp:acidni-sql.database.windows.net,1433;Initial Catalog=terprint;Persist Security Info=False;User ID=adm;Password=sql1234%;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
         public TerprintWebContext2(DbContextOptions<TerprintWebContext> options)
             : base(options)
@@ -43,9 +43,9 @@ namespace Terprint.Web.Data
 
 
             optionsBuilder
-               //.EnableSensitiveDataLogging()
+                //.EnableSensitiveDataLogging()
 
-               .UseSqlServer(@"Data Source=terprintwebdbserver.database.windows.net;Initial Catalog=Terprint.Web_db;User ID=savitas;Password=sql1234%;Connect Timeout=60;Encrypt=True;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
+                .UseSqlServer(@"Server=tcp:acidni-sql.database.windows.net,1433;Initial Catalog=terprint;Persist Security Info=False;User ID=adm;Password=sql1234%;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;")
                ;
         }
         public TerprintWebContext3(DbContextOptions<TerprintWebContext> options)
@@ -59,8 +59,8 @@ namespace Terprint.Web.Data
         {
             optionsBuilder
                 //.EnableSensitiveDataLogging()
-
-                .UseSqlServer(@"Data Source=terprintwebdbserver.database.windows.net;Initial Catalog=Terprint.Web_db;User ID=savitas;Password=sql1234%;Connect Timeout=60;Encrypt=True;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
+                //Server=tcp:acidni-sql.database.windows.net,1433;Database=terprint;Uid=adm;Pwd=sql1234%
+                .UseSqlServer(@"Server=tcp:acidni-sql.database.windows.net,1433;Initial Catalog=terprint;Persist Security Info=False;User ID=adm;Password=sql1234%;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;")
                 ;
         }
         public TerprintWebContext (DbContextOptions<TerprintWebContext> options)

@@ -11,9 +11,8 @@ try:
     load_dotenv()
     #conn = connect(getenv("SQL_CONNECTION_STRING"))
     #AZURE_SQL_CONNECTIONSTRING="Driver={ODBC Driver 18 for SQL Server};Server=tcp:acidni-sql.database.windows.net,1433;Database=terprint;Uid=jgill@acidnillc.onmicrosoft.com;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;Authentication=ActiveDirectoryInteractive"
-    AZURE_SQL_CONNECTIONSTRING="Driver={ODBC Driver 18 for SQL Server};Server=tcp:acidni-sql.database.windows.net,1433;Database=terprint;Uid=jgill@acidnillc.onmicrosoft.com;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;Authentication=ActiveDirectoryInteractive"
-    
-#AZURE_SQL_CONNECTIONSTRING="Driver={ODBC Driver 18 for SQL Server};Server=tcp:acidni-sql.database.windows.net,1433;Database=terprint;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30"
+    AZURE_SQL_CONNECTIONSTRING="Driver={ODBC Driver 18 for SQL Server};Server=tcp:acidni-sql.database.windows.net,1433;Database=terprint;Uid=adm;Pwd=sql1234%;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+    ss="Driver={ODBC Driver 17 for SQL Server};Server=tcp:acidni-sql.database.windows.net,1433;Database=terprint;Uid=afb576e9-40702int;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30"
 #connection_string = AZURE_SQL_CONNECTIONSTRING
     #AZURE_SQL_CONNECTIONSTRING="Driver={ODBC Driver 17 for SQL Server};Server=tcp:acidni-sql.database.windows.net,1433;Database=terprint;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30"
     conn = pyodbc.connect(AZURE_SQL_CONNECTIONSTRING)
