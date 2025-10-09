@@ -1,11 +1,31 @@
 Batch,Index,Terpene,Percent
-68679_0007575046, 1, d-Limonene,0.569
-68679_0007575046, 2, beta-Caryophyllene,0.543
-68679_0007575046, 3, Linalool,0.422
-68679_0007575046, 4, alpha-Humulene,0.156
-68679_0007575046, 5, trans-Nerolidol,0.0753
-68679_0007575046, 6, beta-Pinene,0.0603
-68679_0007575046, 7, Fenchyl Alcohol,0.0594
-68679_0007575046, 8, alpha-Terpineol,0.0537
-68679_0007575046, 9, beta-Myrcene,0.0512
-68679_0007575046, 10, alpha-Pinene,0.0511
+68679_0007575046, 1, d-Limonene,0.569, d-Limonene
+68679_0007575046, 1, d-Limonene,0.569, d-Limonene
+
+68679_0007575046, 2, beta-Caryophyllene,0.543, beta-Caryophyllene
+68679_0007575046, 2, beta-Caryophyllene,0.543, beta-Caryophyllene
+
+68679_0007575046, 3, Linalool,0.422, Linalool
+68679_0007575046, 3, Linalool,0.422, Linalool
+
+68679_0007575046, 4, alpha-Humulene,0.156, alpha-Humulene
+68679_0007575046, 4, alpha-Humulene,0.156, alpha-Humulene
+
+68679_0007575046, 5, trans-Nerolidol,0.0753, trans-Nerolidol
+68679_0007575046, 5, trans-Nerolidol,0.0753, trans-Nerolidol
+
+68679_0007575046, 6, beta-Pinene,0.0603, beta-Pinene
+68679_0007575046, 6, beta-Pinene,0.0603, beta-Pinene
+
+68679_0007575046, 7, Fenchyl Alcohol,0.0594, Fenchyl Alcohol
+68679_0007575046, 7, Fenchyl Alcohol,0.0594, Fenchyl Alcohol
+
+68679_0007575046, 8, alpha-Terpineol,0.0537, alpha-Terpineol
+68679_0007575046, 8, alpha-Terpineol,0.0537, alpha-Terpineol
+
+68679_0007575046, 9, beta-Myrcene,0.0512, beta-Myrcene
+68679_0007575046, 9, beta-Myrcene,0.0512, beta-Myrcene
+
+68679_0007575046, 10, alpha-Pinene,0.0511, alpha-Pinene
+68679_0007575046, 10, alpha-Pinene,0.0511, alpha-Pinene
+

@@ -1,10 +1,10 @@
 Batch,Index,Terpene,(ug/g),Percent
-COA_2509CBR0103-001, 1, E-Caryophyllene, 0.373, 3731.68
-COA_2509CBR0103-001, 2, D-Limonene, 0.152, 1517.4
-COA_2509CBR0103-001, 3, alpha-Humulene, 0.083, 830.636
-COA_2509CBR0103-001, 4, Linalool, 0.047, 474.328
-COA_2509CBR0103-001, 5, Ocimenes, 0.047, 466.46
-COA_2509CBR0103-001, 6, Terpineol, 0.025, 246.156
-COA_2509CBR0103-001, 7, beta-Pinene, 0.024, 239.412
-COA_2509CBR0103-001, 8, Endo-Fenchyl Alcohol, 0.019, 192.204
-COA_2509CBR0103-001, 9, alpha-Pinene, 0.013, 133.756
+COA_2509CBR0103-001|gbxxJoq4GqJcnLw, 1, E-Caryophyllene, 0.373, 3731.68
+COA_2509CBR0103-001|gbxxJoq4GqJcnLw, 2, D-Limonene, 0.152, 1517.4
+COA_2509CBR0103-001|gbxxJoq4GqJcnLw, 3, alpha-Humulene, 0.083, 830.636
+COA_2509CBR0103-001|gbxxJoq4GqJcnLw, 4, Linalool, 0.047, 474.328
+COA_2509CBR0103-001|gbxxJoq4GqJcnLw, 5, Ocimenes, 0.047, 466.46
+COA_2509CBR0103-001|gbxxJoq4GqJcnLw, 6, Terpineol, 0.025, 246.156
+COA_2509CBR0103-001|gbxxJoq4GqJcnLw, 7, beta-Pinene, 0.024, 239.412
+COA_2509CBR0103-001|gbxxJoq4GqJcnLw, 8, Endo-Fenchyl Alcohol, 0.019, 192.204
+COA_2509CBR0103-001|gbxxJoq4GqJcnLw, 9, alpha-Pinene, 0.013, 133.756

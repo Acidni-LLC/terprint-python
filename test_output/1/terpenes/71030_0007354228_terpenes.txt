@@ -1,9 +1,9 @@
-Batch,Index,Terpene,Result,Percent
-71030_0007354228,1,trans-Caryophyllene,7.067,0.707%
-71030_0007354228,2,beta-Myrcene,6.198,0.62%
-71030_0007354228,3,Linalool,5.137,0.514%
-71030_0007354228,4,(R)-(+)-Limonene,2.297,0.23%
-71030_0007354228,5,alpha-Humulene,2.095,0.21%
-71030_0007354228,6,alpha-Bisabolol,1.26,0.126%
-71030_0007354228,7,Fenchyl Alcohol,0.373,0.037%
-71030_0007354228,8,beta-Pinene,0.251,0.025%
+Batch|Index|Terpene|Result|Percent
+71030_0007354228|1|trans-Caryophyllene|7.067|0.707%
+71030_0007354228|2|beta-Myrcene|6.198|0.62%
+71030_0007354228|3|Linalool|5.137|0.514%
+71030_0007354228|4|(R)-(+)-Limonene|2.297|0.23%
+71030_0007354228|5|alpha-Humulene|2.095|0.21%
+71030_0007354228|6|alpha-Bisabolol|1.26|0.126%
+71030_0007354228|7|Fenchyl Alcohol|0.373|0.037%
+71030_0007354228|8|beta-Pinene|0.251|0.025%
