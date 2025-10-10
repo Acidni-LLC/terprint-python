@@ -1,13 +1,254 @@
-This application requires JavaScript for correct operation. Please
-enable JavaScript and reload the page.
-COA_2507CBR0187-002.pdf
-Download
-•  Download  (1.1 MB)
-•  Direct link
-•  
-•  Add to your Nextcloud
-•  
-COA_2507CBR0187-002.pdf (1.1 MB)
-Download
-Nextcloud – a safe home for all your data
-Get your own free account
+       SUMMARY
+TESTED
+Potency
+TESTED
+Mycotoxins
+PASSED
+Terpenes
+TESTED
+Microbials
+PASSED
+Pesticides
+PASSED
+Total Yeast
+and Mold
+PASSED
+Total
+Contaminant
+Load
+PASSED
+Water Activity
+PASSED
+Residual
+Solvents
+NOT TESTED
+Moisture
+PASSED
+PASSED
+Heavy Metals
+Filth and Foreign
+Material
+PASSED
+Total Aerobic
+Bacteria
+NOT TESTED
+Homogeneity
+NOT TESTED
+POTENCY
+TESTED
+      Analyte
+Result
+LOD
+Result
+(mg/g)
+%
+(mg/g)
+mg/unit
+320
+32.0
+0.000012
+THCA
+1120
+9.43
+0.943
+0.000008
+CBGA
+33.0
+5.35
+0.535
+0.00002
+d9-THC
+18.7
+1.62
+0.162
+0.000015
+CBG
+5.68
+ND
+ND
+0.000004
+CBC
+N/A
+ND
+ND
+0.00001
+CBD
+N/A
+ND
+ND
+0.000012
+CBDA
+N/A
+ND
+ND
+0.000017
+CBDV
+N/A
+ND
+ND
+0.000009
+CBN
+N/A
+ND
+ND
+0.000246
+d8-THC
+N/A
+ND
+ND
+0.000015
+THCV
+N/A
+Sample Analyzed By:
+69
+TM-001 Potency
+Potency 4.batch.bin
+8/1/2025 17:15
+Batch Reviewed By:
+1000
+040
+027
+HPLC
+Date/Time:
+Date/Time:
+8/2/2025 13:31
+Dilution:
+Sample Prepared By:
+Analysis #
+8/2/2025 14:14
+Date/Time:
+0.5458
+Analysis Method:
+Specimen wt (g):
+Instrument Used:
+As Received
+33.6%
+Total THC
+Total CBD
+POTENCY SUMMARY
+Total Cannabinoids
+28.6%
+0.000%
+THC Label Claim
+CBD Label Claim
+N/A
+N/A
+N/A
+N/A
+Total CBD/Unit
+N/A
+Total THC/Unit
+1000 mg
+Total Cannabinoids/Unit
+1176.1 mg
+As Received
+As Received
+As Received
+As Received
+As Received
+TERPENES SUMMARY
+            Analyte
+Result
+Result
+(ug/g)
+%
+E-Caryophyllene
+1.020
+10216.8
+D-Limonene
+0.614
+6139.21
+alpha-Humulene
+0.353
+3530.9
+beta-Myrcene
+0.240
+2403.29
+Ocimenes
+0.214
+2141.32
+Terpineol
+0.107
+1068.38
+Linalool
+0.103
+1030.8
+Endo-Fenchyl Alcohol
+0.086
+858.806
+beta-Pinene
+0.084
+840.582
+alpha-Bisabolol
+0.081
+810.968
+                              Total Terpenes: 2.97%
+Showing top 10 Terpenes, full analysis on the following page.
+7/30/2025
+Sampling Date:
+Petrol Station 3.5g Flower
+Flower
+Certificate of Analysis
+Order #
+2507CBR0187-002
+2507CBR0187
+Method Testing Laboratories
+2720 Broadway Center Blvd.
+Brandon, FL 33510
+Lic #CMTL-2023-00012
+Petrol Station 3.5g Flower
+Sample #
+Receipt Date:
+Completion Date:
+Sampled Gross Weight:
+Sampling Method:
+Product Name:
+Description:
+Matrix:
+Client: Sunburn
+Address:
+Address:
+25548 County Rd 44A
+Eustis, FL  32736
+Batch #:
+Batch Date:
+Extracted From:
+Seed to Sale #:
+Lot ID:
+Cultivars:
+Test Reg State:
+Cultivation Facility:
+Cultivation Date:
+Production Facility:
+Production Date:
+7/31/2025 12:07
+08/04/2025 16:44
+7/31/2025
+31.62 g
+0071090875278348
+7/31/2025
+9850705443238024
+0071090875278348
+4623941952673998
+Petrol Station
+Cannabis FL
+Winter Garden
+Winter Garden
+6/25/2025
+LAB-028
+Total Batch Wgt or Vol: 8,967g
+Product g/unit: 3.50
+Page
+Definitions and Abbreviations used in this report: Total THC = Delta 9 THC + (THCA*0.877), Total CBD = CBD + (CBDA*0.877), Total Cannabinoids = THC + THCA + CBD + CBDA + CBG + CBGA + Delta 8 THC + THCV + CBDV + CBC + CBN, Total THC and Total CBD are
+expressed as mg in total package weight, (Dilution) = Dilution Factor, (%) = Percent, (mg/g) = Milligrams per Gram, (mg/mL) = Milligrams per Milliliter, (mg/kg) = Milligrams per Kilogram, (ug/kg) = Microgram per Kilogram, (cfu/g) = Colony Forming Unit per Gram,
+Action Limit of Absent is equivalent to < 1 cfu/g, (aw) = Water Activity, (LOD) = Limit of Detection, (LOQ) = Limit of Quantitation; (ppm) = parts per million; (ppb) = parts per billion; Units for ppm also expressed as (mg/kg); Units for ppb also expressed as (ug/kg).All
+measurements and calibrations at Method Testing Labs are traceable to the International System of Units (SI) through an unbroken chain of comparisons and from recognized national metrology institutes. Compounded measurement uncertainty for any analyte is
+available upon request.
+This report shall not be reproduced, without written approval, from Method Testing Labs.  The results of this report relate only to the material or product analyzed.  Test results are confidential unless explicitly waived otherwise.  Accredited by a third-party
+accrediting body as a competent testing laboratory pursuant to ISO/IEC 17025:2017 of the International Organization for Standardization.
+of
+Anthony Repay
+08/04/2025 16:44
+Lab Director
+1
+1

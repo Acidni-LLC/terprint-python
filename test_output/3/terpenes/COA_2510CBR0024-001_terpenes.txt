@@ -1,0 +1,10 @@
+Batch|Index|Terpene|(ug/g)|Percent
+COA_2510CBR0024-001_jKdbRbwgKFijRtc|1|Sabinene Hydrate|0.580|5798.9
+COA_2510CBR0024-001_jKdbRbwgKFijRtc|2|E-Caryophyllene|0.528|5280.94
+COA_2510CBR0024-001_jKdbRbwgKFijRtc|3|Linalool|0.402|4019.82
+COA_2510CBR0024-001_jKdbRbwgKFijRtc|4|beta-Myrcene|0.350|3501.86
+COA_2510CBR0024-001_jKdbRbwgKFijRtc|5|Ocimenes|0.218|2184.44
+COA_2510CBR0024-001_jKdbRbwgKFijRtc|6|Guaiol|0.142|1418.76
+COA_2510CBR0024-001_jKdbRbwgKFijRtc|7|alpha-Humulene|0.116|1159.78
+COA_2510CBR0024-001_jKdbRbwgKFijRtc|8|Terpineol|0.108|1084.34
+COA_2510CBR0024-001_jKdbRbwgKFijRtc|9|beta-Pinene|0.090|904.178
