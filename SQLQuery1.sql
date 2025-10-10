@@ -2,7 +2,8 @@
 
 --SELECT TOP (20) *  FROM [dbo].terpeneResults
 
-DECLARE @dispensaryid int = 2;
+DECLARE @dispensaryid int = 1;
+
   SELECT distinct count(batch)
   FROM vw_cannabinoidResults
   where dispensaryId = @dispensaryid
@@ -14,39 +15,38 @@ DECLARE @dispensaryid int = 2;
   FROM vw_terpeneResults
  where batch not in (select batch from vw_cannabinoidResults) and 
   dispensaryId = @dispensaryid
-  order by batch,[index]
+  order by created desc,batch,[index]
   SELECT *
   FROM vw_cannabinoidResults
  where batch not in (select batch from vw_terpeneResults) and 
   dispensaryId = @dispensaryid
-  order by batch,[index]
+  order by created desc, batch,[index]
   
   SELECT distinct Cannabinoid
   FROM vw_cannabinoidResults
  --where batch ='57901_0007452411'
  
   where dispensaryId = @dispensaryid
-  order by Cannabinoid
+  order by cannabinoidResultId desc
   
   SELECT distinct terpene
   FROM vw_terpeneResults
  --where batch ='57901_0007452411' 
   where dispensaryId = @dispensaryid
-  order by terpene
 
 
   SELECT *
   FROM vw_cannabinoidResults
  --where batch ='57901_0007452411' 
   where dispensaryId = @dispensaryid
-  order by batch,[index]
+  order by cannabinoidResultId desc, batch,[index]
   
 
   SELECT *
   FROM vw_terpeneResults
  --where batch ='57901_0007452411' 
   where dispensaryId = @dispensaryid
-  order by batch,[index]
+  order by terpeneResultId desc, batch,[index]
 
   /*
   delete from terpeneResults  

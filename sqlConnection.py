@@ -8,7 +8,36 @@ from pyodbc import connect
 from bcolors import bcolors
 
 AZURE_SQL_CONNECTIONSTRING="Driver={ODBC Driver 18 for SQL Server};Server=tcp:acidni-sql.database.windows.net,1433;Database=terprint;Uid=adm;Pwd=sql1234%;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
-      
+
+def checkCannabinoid(batch):    
+    load_dotenv()
+    returnvalue = False
+    conn = pyodbc.connect(AZURE_SQL_CONNECTIONSTRING)
+    cursor = conn.cursor()    
+    sql = "SELECT * FROM vw_cannabinoidResults WHERE batch like '%"+batch+"%'"
+    print(sql)
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    for row in rows:
+        print(bcolors.OKGREEN + batch +" cannabinoid record exisits" + bcolors.ENDC)
+        returnvalue = True   
+        break 
+    return returnvalue
+def checkTerpene(batch):
+    load_dotenv()
+    returnvalue = False
+    conn = pyodbc.connect(AZURE_SQL_CONNECTIONSTRING)
+    cursor = conn.cursor()
+    sql = "SELECT * FROM vw_terpeneResults WHERE batch like '%"+batch+"%'"
+    print(sql)
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    for row in rows:
+        returnvalue = True    
+        print(bcolors.OKGREEN + batch +" terpene record exisits" + bcolors.ENDC)
+        break
+    return returnvalue
+
 def insertcannabinoids( 
         batch, 
         Index, 
@@ -19,14 +48,14 @@ def insertcannabinoids(
         createdBy):
     try: 
        # print("C variables in"+ batch+"|"+str(Index)+"|"+Cannabinoid+"|"+percent+"|"+milligrams+"|"+str(dispensaryId)+"|"+createdBy)
-      
+    
         load_dotenv()
         conn = pyodbc.connect(AZURE_SQL_CONNECTIONSTRING)
         cursor = conn.cursor()
-       # print("Connection successful!")
+        # print("Connection successful!")
 
         #You can now execute SQL queries using the cursor
-  
+    
 
         SQL_STATEMENT = """
         INSERT INTO [dbo].[cannabinoidResults]  (
@@ -42,12 +71,12 @@ def insertcannabinoids(
         VALUES (?, ?, ?, ?,?,?, ?,CURRENT_TIMESTAMP)
         """
         
-       # print(SQL_STATEMENT)    
+    # print(SQL_STATEMENT)    
         #print (str(Index) +"---"+batch + "," +        str(Index)  + "," +        Cannabinoid + "," +        percent + "," +        milligrams + "," +          str(dispensaryId) + "," +        createdBy+"---")
         cursor.execute(
         SQL_STATEMENT,
         (
-             batch, 
+            batch, 
         Index, 
         Cannabinoid,
         percent,
@@ -68,8 +97,9 @@ def insertcannabinoids(
         # for row in rows:
         #     print(row)
 
-       # cursor.close()
+    # cursor.close()
         #conn.close()
+        
 
     except pyodbc.Error as ex:
         sqlstate = ex.args[0]
@@ -88,15 +118,15 @@ def insertterpenes(
     dispensaryId        ,
     createdBy):
         
-    try:
+    try: 
         #print("T variables in"+ batch+"|"+str(Index)+"|"+terpene+"|"+percent+"|"+milligrams+"|"+str(dispensaryId)+"|"+createdBy)
         load_dotenv()
         conn = pyodbc.connect(AZURE_SQL_CONNECTIONSTRING)
         cursor = conn.cursor()
-       # print("Connection successful!")
+    # print("Connection successful!")
 
         #You can now execute SQL queries using the cursor
-       # print("terpeneResults")
+    # print("terpeneResults")
     #Terprintpw13579$
         # cursor.execute("SELECT * FROM terpeneResults")
         # rows = cursor.fetchall()
@@ -105,13 +135,13 @@ def insertterpenes(
 
         SQL_STATEMENT = """
         INSERT INTO [dbo].[terpeneResults]
-           ([batch]
-           ,[Index]
-           ,[terpene]
-           ,[percent]
-           ,[milligrams]
-           ,[created]
-           ,[dispensaryId]
+        ([batch]
+        ,[Index]
+        ,[terpene]
+        ,[percent]
+        ,[milligrams]
+        ,[created]
+        ,[dispensaryId]
         ,[createdBy])
         OUTPUT INSERTED.terpeneResultId
         VALUES (?, ?, ?, ?,?,CURRENT_TIMESTAMP,?, ?)
@@ -120,7 +150,7 @@ def insertterpenes(
         cursor.execute(
         SQL_STATEMENT,
         (
-           batch           ,Index           ,terpene           ,percent           ,milligrams           ,dispensaryId        ,createdBy
+        batch           ,Index           ,terpene           ,percent           ,milligrams           ,dispensaryId        ,createdBy
         )
         )
         resultId = cursor.fetchval()
@@ -135,9 +165,9 @@ def insertterpenes(
         # for row in rows:
         #     print(row)
 
-       #cursor.close()
+    #cursor.close()
         #conn.close()
-
+       
     except pyodbc.Error as ex:
         sqlstate = ex.args[0]
         print(bcolors.FAIL + "Error connecting to SQL Server: "+sqlstate)

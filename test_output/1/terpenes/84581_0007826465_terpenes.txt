@@ -1,0 +1,8 @@
+Batch|Index|Terpene|Result|Percent
+84581_0007826465|1|trans-Caryophyllene|8.666|0.867%
+84581_0007826465|2|beta-Myrcene|5.622|0.562%
+84581_0007826465|3|Linalool|5.043|0.504%
+84581_0007826465|4|trans-Nerolidol|2.902|0.29%
+84581_0007826465|5|alpha-Humulene|2.5|0.25%
+84581_0007826465|6|(R)-(+)-Limonene|1.815|0.182%
+84581_0007826465|7|alpha-Bisabolol|1.324|0.132%

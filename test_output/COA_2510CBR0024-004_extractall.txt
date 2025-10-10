@@ -1,0 +1,255 @@
+       SUMMARY
+TESTED
+Potency
+TESTED
+Mycotoxins
+PASSED
+Terpenes
+TESTED
+Microbials
+PASSED
+Pesticides
+PASSED
+Total Yeast
+and Mold
+PASSED
+Total
+Contaminant
+Load
+PASSED
+Water Activity
+PASSED
+Residual
+Solvents
+NOT TESTED
+Moisture
+PASSED
+PASSED
+Heavy Metals
+Filth and Foreign
+Material
+PASSED
+Total Aerobic
+Bacteria
+NOT TESTED
+Homogeneity
+NOT TESTED
+POTENCY
+TESTED
+      Analyte
+Result
+LOD
+Result
+(mg/g)
+%
+(mg/g)
+mg/unit
+198
+19.8
+0.000012
+THCA
+2770
+7.29
+0.729
+0.00002
+d9-THC
+102
+5.54
+0.554
+0.000008
+CBGA
+77.6
+1.40
+0.140
+0.000015
+CBG
+19.6
+ND
+ND
+0.000004
+CBC
+N/A
+ND
+ND
+0.00001
+CBD
+N/A
+ND
+ND
+0.000012
+CBDA
+N/A
+ND
+ND
+0.000017
+CBDV
+N/A
+ND
+ND
+0.000009
+CBN
+N/A
+ND
+ND
+0.000246
+d8-THC
+N/A
+ND
+ND
+0.000015
+THCV
+N/A
+Sample Analyzed By:
+040
+TM-001 Potency
+LC3 Potency 2.batch.bin
+10/6/2025 12:44
+Batch Reviewed By:
+1000
+040
+027
+HPLC
+Date/Time:
+Date/Time:
+10/6/2025 11:51
+Dilution:
+Sample Prepared By:
+Analysis #
+10/6/2025 12:53
+Date/Time:
+0.5310
+Analysis Method:
+Specimen wt (g):
+Instrument Used:
+As Received
+21.2%
+Total THC
+Total CBD
+POTENCY SUMMARY
+Total Cannabinoids
+18.1%
+0.000%
+THC Label Claim
+CBD Label Claim
+N/A
+N/A
+N/A
+N/A
+Total CBD/Unit
+N/A
+Total THC/Unit
+2530 mg
+Total Cannabinoids/Unit
+2969.9 mg
+As Received
+As Received
+As Received
+As Received
+As Received
+TERPENES SUMMARY
+            Analyte
+Result
+Result
+(ug/g)
+%
+E-Caryophyllene
+0.276
+2755.28
+D-Limonene
+0.244
+2444.2
+Linalool
+0.218
+2177.56
+Ocimenes
+0.099
+987.679
+Terpineol
+0.087
+869.913
+beta-Myrcene
+0.079
+794.365
+alpha-Humulene
+0.077
+772.145
+Endo-Fenchyl Alcohol
+0.050
+504.394
+beta-Pinene
+0.034
+343.299
+alpha-Bisabolol
+0.034
+335.522
+                              Total Terpenes: 1.25%
+Showing top 10 Terpenes, full analysis on the following page.
+10/3/2025
+Sampling Date:
+Indica 14g Ground Flower
+Flower
+Certificate of Analysis
+Order #
+2510CBR0024-004
+2510CBR0024
+Method Testing Laboratories
+2720 Broadway Center Blvd.
+Brandon, FL 33510
+Lic #CMTL-2023-00012
+Indica 14g Ground Flower
+Sample #
+Receipt Date:
+Completion Date:
+Sampled Gross Weight:
+Sampling Method:
+Product Name:
+Description:
+Matrix:
+Client: Sunburn
+Address:
+Address:
+25548 County Rd 44A
+Eustis, FL  32736
+Batch #:
+Batch Date:
+Extracted From:
+Seed to Sale #:
+Lot ID:
+Cultivars:
+Test Reg State:
+Cultivation Facility:
+Cultivation Date:
+Production Facility:
+Production Date:
+10/3/2025 18:10
+10/07/2025 14:28
+10/3/2025
+42.02 g
+1141823834299800
+10/3/2025
+0145668274129138
+1141823834299800
+0145668274129138
+Mixed Cultivar
+Cannabis FL
+Winter Garden
+Winter Garden
+8/24/2025
+LAB-028
+Total Batch Wgt or Vol: 5,614g
+Product g/unit: 14.00
+Page
+Definitions and Abbreviations used in this report: Total THC = Delta 9 THC + (THCA*0.877), Total CBD = CBD + (CBDA*0.877), Total Cannabinoids = THC + THCA + CBD + CBDA + CBG + CBGA + Delta 8 THC + THCV + CBDV + CBC + CBN, Total THC and Total CBD are
+expressed as mg in total package weight, (Dilution) = Dilution Factor, (%) = Percent, (mg/g) = Milligrams per Gram, (mg/mL) = Milligrams per Milliliter, (mg/kg) = Milligrams per Kilogram, (ug/kg) = Microgram per Kilogram, (cfu/g) = Colony Forming Unit per Gram,
+Action Limit of Absent is equivalent to < 1 cfu/g, (aw) = Water Activity, (LOD) = Limit of Detection, (LOQ) = Limit of Quantitation; (ppm) = parts per million; (ppb) = parts per billion; Units for ppm also expressed as (mg/kg); Units for ppb also expressed as (ug/kg).All
+measurements and calibrations at Method Testing Labs are traceable to the International System of Units (SI) through an unbroken chain of comparisons and from recognized national metrology institutes. Compounded measurement uncertainty for any analyte is
+available upon request.
+This report shall not be reproduced, without written approval, from Method Testing Labs.  The results of this report relate only to the material or product analyzed.  Test results are confidential unless explicitly waived otherwise.  Accredited by a third-party
+accrediting body as a competent testing laboratory pursuant to ISO/IEC 17025:2017 of the International Organization for Standardization.
+of
+Rhiley Schmidt
+10/07/2025 14:28
+Labratory
+Supervisor
+1
+1
