@@ -1,5 +1,24 @@
-﻿select * from batch order by batchid desc
-select * from THCValues order by created desc
+--SELECT TOP (20) *  FROM [dbo].[cannabinoidResults]
 
---delete from batch where batchid = 72
-delete from THCValues where BatchID=732
+--SELECT TOP (20) *  FROM [dbo].terpeneResults
+
+  SELECT distinct count(batch)
+  FROM vw_cannabinoidResults
+  SELECT distinct count(batch)
+  FROM vw_terpeneResults
+
+  SELECT *
+  FROM vw_cannabinoidResults
+ where batch ='57901_0007452411'
+  order by batch
+  
+
+  SELECT *
+  FROM vw_terpeneResults
+ where batch ='57901_0007452411'
+  order by batch
+
+  /*
+  delete from terpeneResults
+  delete from cannabinoidResults
+  */

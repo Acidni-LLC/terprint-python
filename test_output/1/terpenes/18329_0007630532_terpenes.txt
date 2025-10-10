@@ -1,8 +1,8 @@
-Batch,Index,Terpene,Result,Percent
-18329_0007630532,1,beta-Myrcene,6.003,0.6%
-18329_0007630532,2,trans-Caryophyllene,2.969,0.297%
-18329_0007630532,3,alpha-Pinene,2.701,0.27%
-18329_0007630532,4,Linalool,1.372,0.137%
-18329_0007630532,5,alpha-Humulene,1.263,0.126%
-18329_0007630532,6,beta-Pinene,0.998,0.1%
-18329_0007630532,7,(R)-(+)-Limonene,0.641,0.064%
+Batch|Index|Terpene|Result|Percent
+18329_0007630532|1|beta-Myrcene|6.003|0.6%
+18329_0007630532|2|trans-Caryophyllene|2.969|0.297%
+18329_0007630532|3|alpha-Pinene|2.701|0.27%
+18329_0007630532|4|Linalool|1.372|0.137%
+18329_0007630532|5|alpha-Humulene|1.263|0.126%
+18329_0007630532|6|beta-Pinene|0.998|0.1%
+18329_0007630532|7|(R)-(+)-Limonene|0.641|0.064%

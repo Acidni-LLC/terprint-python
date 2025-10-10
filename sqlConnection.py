@@ -5,6 +5,8 @@ from os import getenv
 from dotenv import load_dotenv
 import pyodbc
 from pyodbc import connect
+from bcolors import bcolors
+
 AZURE_SQL_CONNECTIONSTRING="Driver={ODBC Driver 18 for SQL Server};Server=tcp:acidni-sql.database.windows.net,1433;Database=terprint;Uid=adm;Pwd=sql1234%;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
       
 def insertcannabinoids( 
@@ -39,7 +41,7 @@ def insertcannabinoids(
         """
         
        # print(SQL_STATEMENT)    
-        print (str(Index) +"---"+batch + "," +        str(Index)  + "," +        Cannabinoid + "," +        percent + "," +        milligrams + "," +          str(dispensaryId) + "," +        createdBy+"---")
+        #print (str(Index) +"---"+batch + "," +        str(Index)  + "," +        Cannabinoid + "," +        percent + "," +        milligrams + "," +          str(dispensaryId) + "," +        createdBy+"---")
         cursor.execute(
         SQL_STATEMENT,
         (
@@ -69,7 +71,7 @@ def insertcannabinoids(
 
     except pyodbc.Error as ex:
         sqlstate = ex.args[0]
-        print(f"Error connecting to SQL Server: {sqlstate}")
+        print(bcolors.FAIL + "Error connecting to SQL Server: "+sqlstate)
 
     finally:
         if 'conn' in locals() and conn:
@@ -135,7 +137,7 @@ def insertterpenes(
 
     except pyodbc.Error as ex:
         sqlstate = ex.args[0]
-        print(f"Error connecting to SQL Server: {sqlstate}")
+        print(bcolors.FAIL + "Error connecting to SQL Server: "+sqlstate)
 
     finally:
         if 'conn' in locals() and conn:
