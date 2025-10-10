@@ -17,7 +17,9 @@ def insertcannabinoids(
         milligrams,  
         dispensaryId, 
         createdBy):
-    try:
+    try: 
+       # print("C variables in"+ batch+"|"+str(Index)+"|"+Cannabinoid+"|"+percent+"|"+milligrams+"|"+str(dispensaryId)+"|"+createdBy)
+      
         load_dotenv()
         conn = pyodbc.connect(AZURE_SQL_CONNECTIONSTRING)
         cursor = conn.cursor()
@@ -87,6 +89,7 @@ def insertterpenes(
     createdBy):
         
     try:
+        #print("T variables in"+ batch+"|"+str(Index)+"|"+terpene+"|"+percent+"|"+milligrams+"|"+str(dispensaryId)+"|"+createdBy)
         load_dotenv()
         conn = pyodbc.connect(AZURE_SQL_CONNECTIONSTRING)
         cursor = conn.cursor()
