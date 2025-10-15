@@ -43,7 +43,7 @@ def downloadfile(my_list,dispensaryid):
             print(f"Error downloading file: {e}")
     
 
-my_list = ["gbxxJoq4GqJcnLw","3LpRC3Ckz5XjF6w","WQiipC7sQpiyojx","czKcWBWzTDyCPdT","8K4kMmg8nsTGFxt","FW3xYKXr7WnzAWq","gFAcXTRYpnfkSfk","g47exX3f769D7Np","6z63Dpn43BwkggY","QpgabPXJzZM7StD","sGgQEA54cQ3Y9JW","rqrTmqqezwBGipR","SrGCCkbd2AobjjY","g852X8ybqn7w2pL","LngeNzi2cfXKMiX","33k3sMwNY5TKXTg","Ay2ZkZyeQNDjyfa","JPqWAsffRt99ySJ","nP7REAQ5aQ4RYW2","6DMQwXFGMqs8zX5","jKdbRbwgKFijRtc","rbbr8Ep3qAoPj5y","cZLTKTn3yTTJe7P","eWDcrrGNLEmzbs9","meg9ZNWmCGESgsC","dnyP2drMTRyw87E","SnFSY86MjSfXyB8","gZYK5idR4KdJqma","SfWBtnDxrN9qs2t"]
+my_list = ["gbxxJoq4GqJcnLw","3LpRC3Ckz5XjF6w","L4As3WZDmB5H5y3","WQiipC7sQpiyojx","czKcWBWzTDyCPdT","8K4kMmg8nsTGFxt","3qmgeWwcKYRrawa","fmNHWqZYycqDAgd","n75eWwYNjSbYEqJ","DGCc8Jw2HGRKzNx","g47exX3f769D7Np","6z63Dpn43BwkggY","QpgabPXJzZM7StD","iTCbmGmZEW2KYFw","sGgQEA54cQ3Y9JW","rqrTmqqezwBGipR","SrGCCkbd2AobjjY","n4MkEi4Afr5bLZZ","g852X8ybqn7w2pL","dB6rS35dyT8pKkS","wErCYb5e5NDYAqP","QCcQmpq5e7cF3zW","DNkcJ3BkcEiSg2b","33k3sMwNY5TKXTg","Ay2ZkZyeQNDjyfa","nP7REAQ5aQ4RYW2","6DMQwXFGMqs8zX5","bRRiF8TxnFb7E7A","cZLTKTn3yTTJe7P","eWDcrrGNLEmzbs9","meg9ZNWmCGESgsC","dnyP2drMTRyw87E","pHX6bxL7C5yFWme","8Dp8nq5QiTbAzrC","gZYK5idR4KdJqma"]
 
 
 local_filename = "COA_2509CBR0194-005.pdf"

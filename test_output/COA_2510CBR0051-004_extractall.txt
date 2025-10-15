@@ -1,0 +1,254 @@
+       SUMMARY
+TESTED
+Potency
+TESTED
+Mycotoxins
+PASSED
+Terpenes
+TESTED
+Microbials
+PASSED
+Pesticides
+PASSED
+Total Yeast
+and Mold
+PASSED
+Total
+Contaminant
+Load
+PASSED
+Water Activity
+PASSED
+Residual
+Solvents
+NOT TESTED
+Moisture
+PASSED
+PASSED
+Heavy Metals
+Filth and Foreign
+Material
+PASSED
+Total Aerobic
+Bacteria
+NOT TESTED
+Homogeneity
+NOT TESTED
+POTENCY
+TESTED
+      Analyte
+Result
+LOD
+Result
+(mg/g)
+%
+(mg/g)
+mg/unit
+321
+32.1
+0.000012
+THCA
+2250
+13.0
+1.30
+0.000008
+CBGA
+91.0
+4.46
+0.446
+0.00002
+d9-THC
+31.2
+1.67
+0.167
+0.000015
+CBG
+11.7
+0.962
+0.096
+0.000012
+CBDA
+6.73
+ND
+ND
+0.000004
+CBC
+N/A
+ND
+ND
+0.00001
+CBD
+N/A
+ND
+ND
+0.000017
+CBDV
+N/A
+ND
+ND
+0.000009
+CBN
+N/A
+ND
+ND
+0.000246
+d8-THC
+N/A
+ND
+ND
+0.000015
+THCV
+N/A
+Sample Analyzed By:
+69
+TM-001 Potency
+LC2 Potency 5.batch.bin
+10/10/2025 11:29
+Batch Reviewed By:
+1000
+040
+032
+HPLC
+Date/Time:
+Date/Time:
+10/11/2025 12:48
+Dilution:
+Sample Prepared By:
+Analysis #
+10/11/2025 15:36
+Date/Time:
+0.5432
+Analysis Method:
+Specimen wt (g):
+Instrument Used:
+As Received
+34.1%
+Total THC
+Total CBD
+POTENCY SUMMARY
+Total Cannabinoids
+28.6%
+0.084%
+THC Label Claim
+CBD Label Claim
+N/A
+N/A
+N/A
+N/A
+Total CBD/Unit
+5.9 mg
+Total THC/Unit
+2000 mg
+Total Cannabinoids/Unit
+2386 mg
+As Received
+As Received
+As Received
+As Received
+As Received
+TERPENES SUMMARY
+            Analyte
+Result
+Result
+(ug/g)
+%
+E-Caryophyllene
+0.574
+5742.25
+D-Limonene
+0.435
+4348.5
+beta-Myrcene
+0.362
+3623.75
+Linalool
+0.220
+2196.55
+alpha-Humulene
+0.182
+1817.45
+Ocimenes
+0.172
+1717.1
+Terpineol
+0.104
+1036.95
+Guaiol
+0.103
+1033.61
+beta-Pinene
+0.064
+643.355
+alpha-Pinene
+0.052
+522.935
+                              Total Terpenes: 2.33%
+Showing top 10 Terpenes, full analysis on the following page.
+10/7/2025
+Sampling Date:
+Dulce De Uva 7g Smalls
+Flower
+Certificate of Analysis
+Order #
+2510CBR0051-004
+2510CBR0051
+Method Testing Laboratories
+2720 Broadway Center Blvd.
+Brandon, FL 33510
+Lic #CMTL-2023-00012
+Dulce De Uva 7g Smalls
+Sample #
+Receipt Date:
+Completion Date:
+Sampled Gross Weight:
+Sampling Method:
+Product Name:
+Description:
+Matrix:
+Client: Sunburn
+Address:
+Address:
+25548 County Rd 44A
+Eustis, FL  32736
+Batch #:
+Batch Date:
+Extracted From:
+Seed to Sale #:
+Lot ID:
+Cultivars:
+Test Reg State:
+Cultivation Facility:
+Cultivation Date:
+Production Facility:
+Production Date:
+10/9/2025 12:10
+10/13/2025 13:39
+10/9/2025
+28.24 g
+1295839690920481
+10/9/2025
+6686495994018873
+1295839690920481
+6686495994018873
+Dulce De Uva
+Cannabis FL
+Winter Garden
+Winter Garden
+8/31/2025
+LAB-028
+Total Batch Wgt or Vol: 2,590g
+Product g/unit: 7.00
+Page
+Definitions and Abbreviations used in this report: Total THC = Delta 9 THC + (THCA*0.877), Total CBD = CBD + (CBDA*0.877), Total Cannabinoids = THC + THCA + CBD + CBDA + CBG + CBGA + Delta 8 THC + THCV + CBDV + CBC + CBN, Total THC and Total CBD are
+expressed as mg in total package weight, (Dilution) = Dilution Factor, (%) = Percent, (mg/g) = Milligrams per Gram, (mg/mL) = Milligrams per Milliliter, (mg/kg) = Milligrams per Kilogram, (ug/kg) = Microgram per Kilogram, (cfu/g) = Colony Forming Unit per Gram,
+Action Limit of Absent is equivalent to < 1 cfu/g, (aw) = Water Activity, (LOD) = Limit of Detection, (LOQ) = Limit of Quantitation; (ppm) = parts per million; (ppb) = parts per billion; Units for ppm also expressed as (mg/kg); Units for ppb also expressed as (ug/kg).All
+measurements and calibrations at Method Testing Labs are traceable to the International System of Units (SI) through an unbroken chain of comparisons and from recognized national metrology institutes. Compounded measurement uncertainty for any analyte is
+available upon request.
+This report shall not be reproduced, without written approval, from Method Testing Labs.  The results of this report relate only to the material or product analyzed.  Test results are confidential unless explicitly waived otherwise.  Accredited by a third-party
+accrediting body as a competent testing laboratory pursuant to ISO/IEC 17025:2017 of the International Organization for Standardization.
+of
+Anthony Repay
+10/13/2025 13:39
+Lab Director
+1
+1

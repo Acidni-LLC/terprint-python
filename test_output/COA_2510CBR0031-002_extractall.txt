@@ -1,0 +1,255 @@
+       SUMMARY
+TESTED
+Potency
+TESTED
+Mycotoxins
+PASSED
+Terpenes
+TESTED
+Microbials
+PASSED
+Pesticides
+PASSED
+Total Yeast
+and Mold
+PASSED
+Total
+Contaminant
+Load
+PASSED
+Water Activity
+PASSED
+Residual
+Solvents
+NOT TESTED
+Moisture
+PASSED
+PASSED
+Heavy Metals
+Filth and Foreign
+Material
+PASSED
+Total Aerobic
+Bacteria
+NOT TESTED
+Homogeneity
+NOT TESTED
+POTENCY
+TESTED
+      Analyte
+Result
+LOD
+Result
+(mg/g)
+%
+(mg/g)
+mg/unit
+355
+35.5
+0.000012
+THCA
+2480
+18.6
+1.86
+0.000008
+CBGA
+130
+3.99
+0.399
+0.00002
+d9-THC
+27.9
+1.08
+0.108
+0.000012
+CBDA
+7.53
+ND
+ND
+0.000004
+CBC
+N/A
+ND
+ND
+0.00001
+CBD
+N/A
+ND
+ND
+0.000017
+CBDV
+N/A
+ND
+ND
+0.000015
+CBG
+N/A
+ND
+ND
+0.000009
+CBN
+N/A
+ND
+ND
+0.000246
+d8-THC
+N/A
+ND
+ND
+0.000015
+THCV
+N/A
+Sample Analyzed By:
+69
+TM-001 Potency
+LC2 Potency 1.batch.bin
+10/8/2025 15:39
+Batch Reviewed By:
+1000
+040
+027
+HPLC
+Date/Time:
+Date/Time:
+10/9/2025 9:48
+Dilution:
+Sample Prepared By:
+Analysis #
+10/9/2025 10:23
+Date/Time:
+0.5277
+Analysis Method:
+Specimen wt (g):
+Instrument Used:
+As Received
+37.9%
+Total THC
+Total CBD
+POTENCY SUMMARY
+Total Cannabinoids
+31.5%
+0.094%
+THC Label Claim
+CBD Label Claim
+N/A
+N/A
+N/A
+N/A
+Total CBD/Unit
+6.61 mg
+Total THC/Unit
+2210 mg
+Total Cannabinoids/Unit
+2648.5 mg
+As Received
+As Received
+As Received
+As Received
+As Received
+TERPENES SUMMARY
+            Analyte
+Result
+Result
+(ug/g)
+%
+E-Caryophyllene
+0.604
+6035.88
+D-Limonene
+0.556
+5563.8
+Linalool
+0.430
+4304.92
+alpha-Humulene
+0.218
+2180.56
+Ocimenes
+0.202
+2023.2
+beta-Myrcene
+0.179
+1787.16
+alpha-Bisabolol
+0.124
+1236.4
+beta-Pinene
+0.068
+683.392
+alpha-Pinene
+0.054
+541.768
+Terpineol
+0.053
+532.776
+                              Total Terpenes: 2.56%
+Showing top 10 Terpenes, full analysis on the following page.
+10/6/2025
+Sampling Date:
+Garlic Drip 7g Smalls
+Flower
+Certificate of Analysis
+Order #
+2510CBR0031-002
+2510CBR0031
+Method Testing Laboratories
+2720 Broadway Center Blvd.
+Brandon, FL 33510
+Lic #CMTL-2023-00012
+Garlic Drip 7g Smalls
+Sample #
+Receipt Date:
+Completion Date:
+Sampled Gross Weight:
+Sampling Method:
+Product Name:
+Description:
+Matrix:
+Client: Sunburn
+Address:
+Address:
+25548 County Rd 44A
+Eustis, FL  32736
+Batch #:
+Batch Date:
+Extracted From:
+Seed to Sale #:
+Lot ID:
+Cultivars:
+Test Reg State:
+Cultivation Facility:
+Cultivation Date:
+Production Facility:
+Production Date:
+10/7/2025 12:10
+10/10/2025 09:41
+10/7/2025
+27.80 g
+8877056317935248
+10/7/2025
+0189274678864533
+8877056317935248
+0189274678864533
+Garlic Drip
+Cannabis FL
+Winter Garden
+Winter Garden
+8/31/2025
+LAB-028
+Total Batch Wgt or Vol: 7,609g
+Product g/unit: 7.00
+Page
+Definitions and Abbreviations used in this report: Total THC = Delta 9 THC + (THCA*0.877), Total CBD = CBD + (CBDA*0.877), Total Cannabinoids = THC + THCA + CBD + CBDA + CBG + CBGA + Delta 8 THC + THCV + CBDV + CBC + CBN, Total THC and Total CBD are
+expressed as mg in total package weight, (Dilution) = Dilution Factor, (%) = Percent, (mg/g) = Milligrams per Gram, (mg/mL) = Milligrams per Milliliter, (mg/kg) = Milligrams per Kilogram, (ug/kg) = Microgram per Kilogram, (cfu/g) = Colony Forming Unit per Gram,
+Action Limit of Absent is equivalent to < 1 cfu/g, (aw) = Water Activity, (LOD) = Limit of Detection, (LOQ) = Limit of Quantitation; (ppm) = parts per million; (ppb) = parts per billion; Units for ppm also expressed as (mg/kg); Units for ppb also expressed as (ug/kg).All
+measurements and calibrations at Method Testing Labs are traceable to the International System of Units (SI) through an unbroken chain of comparisons and from recognized national metrology institutes. Compounded measurement uncertainty for any analyte is
+available upon request.
+This report shall not be reproduced, without written approval, from Method Testing Labs.  The results of this report relate only to the material or product analyzed.  Test results are confidential unless explicitly waived otherwise.  Accredited by a third-party
+accrediting body as a competent testing laboratory pursuant to ISO/IEC 17025:2017 of the International Organization for Standardization.
+of
+Rhiley Schmidt
+10/10/2025 09:41
+Labratory
+Supervisor
+1
+1

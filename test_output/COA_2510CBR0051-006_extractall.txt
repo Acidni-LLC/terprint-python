@@ -1,0 +1,254 @@
+       SUMMARY
+TESTED
+Potency
+TESTED
+Mycotoxins
+PASSED
+Terpenes
+TESTED
+Microbials
+PASSED
+Pesticides
+PASSED
+Total Yeast
+and Mold
+PASSED
+Total
+Contaminant
+Load
+PASSED
+Water Activity
+PASSED
+Residual
+Solvents
+NOT TESTED
+Moisture
+PASSED
+PASSED
+Heavy Metals
+Filth and Foreign
+Material
+PASSED
+Total Aerobic
+Bacteria
+NOT TESTED
+Homogeneity
+NOT TESTED
+POTENCY
+TESTED
+      Analyte
+Result
+LOD
+Result
+(mg/g)
+%
+(mg/g)
+mg/unit
+346
+34.6
+0.000012
+THCA
+1210
+10.4
+1.04
+0.00002
+d9-THC
+36.5
+7.73
+0.773
+0.000008
+CBGA
+27.1
+2.26
+0.226
+0.000015
+CBG
+7.90
+1.11
+0.111
+0.000012
+CBDA
+3.87
+ND
+ND
+0.000004
+CBC
+N/A
+ND
+ND
+0.00001
+CBD
+N/A
+ND
+ND
+0.000017
+CBDV
+N/A
+ND
+ND
+0.000009
+CBN
+N/A
+ND
+ND
+0.000246
+d8-THC
+N/A
+ND
+ND
+0.000015
+THCV
+N/A
+Sample Analyzed By:
+69
+TM-001 Potency
+LC2 Potency 5.batch.bin
+10/10/2025 11:29
+Batch Reviewed By:
+1000
+040
+032
+HPLC
+Date/Time:
+Date/Time:
+10/11/2025 12:48
+Dilution:
+Sample Prepared By:
+Analysis #
+10/11/2025 15:36
+Date/Time:
+0.5128
+Analysis Method:
+Specimen wt (g):
+Instrument Used:
+As Received
+36.8%
+Total THC
+Total CBD
+POTENCY SUMMARY
+Total Cannabinoids
+31.4%
+0.097%
+THC Label Claim
+CBD Label Claim
+N/A
+N/A
+N/A
+N/A
+Total CBD/Unit
+3.39 mg
+Total THC/Unit
+1100 mg
+Total Cannabinoids/Unit
+1286.3 mg
+As Received
+As Received
+As Received
+As Received
+As Received
+TERPENES SUMMARY
+            Analyte
+Result
+Result
+(ug/g)
+%
+beta-Myrcene
+0.923
+9225.8
+E-Caryophyllene
+0.650
+6497.68
+D-Limonene
+0.611
+6112.8
+Ocimenes
+0.238
+2377.2
+alpha-Humulene
+0.182
+1822.52
+Linalool
+0.166
+1664.04
+Terpineol
+0.127
+1267.84
+alpha-Bisabolol
+0.103
+1027.86
+beta-Pinene
+0.087
+870.508
+Endo-Fenchyl Alcohol
+0.071
+714.292
+                              Total Terpenes: 3.25%
+Showing top 10 Terpenes, full analysis on the following page.
+10/8/2025
+Sampling Date:
+Daywrecker 3.5g Flower
+Flower
+Certificate of Analysis
+Order #
+2510CBR0051-006
+2510CBR0051
+Method Testing Laboratories
+2720 Broadway Center Blvd.
+Brandon, FL 33510
+Lic #CMTL-2023-00012
+Daywrecker 3.5g Flower
+Sample #
+Receipt Date:
+Completion Date:
+Sampled Gross Weight:
+Sampling Method:
+Product Name:
+Description:
+Matrix:
+Client: Sunburn
+Address:
+Address:
+25548 County Rd 44A
+Eustis, FL  32736
+Batch #:
+Batch Date:
+Extracted From:
+Seed to Sale #:
+Lot ID:
+Cultivars:
+Test Reg State:
+Cultivation Facility:
+Cultivation Date:
+Production Facility:
+Production Date:
+10/9/2025 12:10
+10/13/2025 13:38
+10/9/2025
+28.40 g
+5871461393998601
+10/9/2025
+9992211253666323
+5871461393998601
+9992211253666323
+Daywrecker
+Cannabis FL
+Winter Garden
+Winter Garden
+8/31/2025
+LAB-028
+Total Batch Wgt or Vol: 2,229.5g
+Product g/unit: 3.50
+Page
+Definitions and Abbreviations used in this report: Total THC = Delta 9 THC + (THCA*0.877), Total CBD = CBD + (CBDA*0.877), Total Cannabinoids = THC + THCA + CBD + CBDA + CBG + CBGA + Delta 8 THC + THCV + CBDV + CBC + CBN, Total THC and Total CBD are
+expressed as mg in total package weight, (Dilution) = Dilution Factor, (%) = Percent, (mg/g) = Milligrams per Gram, (mg/mL) = Milligrams per Milliliter, (mg/kg) = Milligrams per Kilogram, (ug/kg) = Microgram per Kilogram, (cfu/g) = Colony Forming Unit per Gram,
+Action Limit of Absent is equivalent to < 1 cfu/g, (aw) = Water Activity, (LOD) = Limit of Detection, (LOQ) = Limit of Quantitation; (ppm) = parts per million; (ppb) = parts per billion; Units for ppm also expressed as (mg/kg); Units for ppb also expressed as (ug/kg).All
+measurements and calibrations at Method Testing Labs are traceable to the International System of Units (SI) through an unbroken chain of comparisons and from recognized national metrology institutes. Compounded measurement uncertainty for any analyte is
+available upon request.
+This report shall not be reproduced, without written approval, from Method Testing Labs.  The results of this report relate only to the material or product analyzed.  Test results are confidential unless explicitly waived otherwise.  Accredited by a third-party
+accrediting body as a competent testing laboratory pursuant to ISO/IEC 17025:2017 of the International Organization for Standardization.
+of
+Anthony Repay
+10/13/2025 13:38
+Lab Director
+1
+1

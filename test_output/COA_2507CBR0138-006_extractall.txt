@@ -1,0 +1,254 @@
+       SUMMARY
+TESTED
+Potency
+TESTED
+Mycotoxins
+PASSED
+Terpenes
+TESTED
+Microbials
+PASSED
+Pesticides
+PASSED
+Total Yeast
+and Mold
+PASSED
+Total
+Contaminant
+Load
+PASSED
+Water Activity
+PASSED
+Residual
+Solvents
+NOT TESTED
+Moisture
+PASSED
+PASSED
+Heavy Metals
+Filth and Foreign
+Material
+PASSED
+Total Aerobic
+Bacteria
+NOT TESTED
+Homogeneity
+NOT TESTED
+POTENCY
+TESTED
+      Analyte
+Result
+LOD
+Result
+(mg/g)
+%
+(mg/g)
+mg/unit
+273
+27.3
+0.000012
+THCA
+955
+8.83
+0.883
+0.00002
+d9-THC
+30.9
+2.62
+0.262
+0.000008
+CBGA
+9.18
+1.39
+0.139
+0.000015
+CBG
+4.85
+ND
+ND
+0.000004
+CBC
+N/A
+ND
+ND
+0.00001
+CBD
+N/A
+ND
+ND
+0.000012
+CBDA
+N/A
+ND
+ND
+0.000017
+CBDV
+N/A
+ND
+ND
+0.000009
+CBN
+N/A
+ND
+ND
+0.000246
+d8-THC
+N/A
+ND
+ND
+0.000015
+THCV
+N/A
+Sample Analyzed By:
+69
+TM-001 Potency
+Potency.batch.bin
+7/25/2025 14:33
+Batch Reviewed By:
+1000
+040
+027
+HPLC
+Date/Time:
+Date/Time:
+7/28/2025 9:44
+Dilution:
+Sample Prepared By:
+Analysis #
+7/28/2025 11:03
+Date/Time:
+0.5191
+Analysis Method:
+Specimen wt (g):
+Instrument Used:
+As Received
+28.6%
+Total THC
+Total CBD
+POTENCY SUMMARY
+Total Cannabinoids
+24.8%
+0.000%
+THC Label Claim
+CBD Label Claim
+N/A
+N/A
+N/A
+N/A
+Total CBD/Unit
+N/A
+Total THC/Unit
+869 mg
+Total Cannabinoids/Unit
+1000.1 mg
+As Received
+As Received
+As Received
+As Received
+As Received
+TERPENES SUMMARY
+            Analyte
+Result
+Result
+(ug/g)
+%
+Linalool
+0.614
+6143.83
+D-Limonene
+0.532
+5321.69
+E-Caryophyllene
+0.379
+3788.51
+beta-Myrcene
+0.196
+1955.36
+Ocimenes
+0.166
+1655.39
+Terpineol
+0.119
+1188.77
+alpha-Humulene
+0.101
+1012.12
+Endo-Fenchyl Alcohol
+0.081
+813.252
+beta-Pinene
+0.068
+677.71
+alpha-Bisabolol
+0.044
+439.956
+                              Total Terpenes: 2.38%
+Showing top 10 Terpenes, full analysis on the following page.
+7/23/2025
+Sampling Date:
+Too Much Nerdz 3.5g Flower
+Flower
+Certificate of Analysis
+Order #
+2507CBR0138-006
+2507CBR0138
+Method Testing Laboratories
+2720 Broadway Center Blvd.
+Brandon, FL 33510
+Lic #CMTL-2023-00012
+Too Much Nerdz 3.5g Flower
+Sample #
+Receipt Date:
+Completion Date:
+Sampled Gross Weight:
+Sampling Method:
+Product Name:
+Description:
+Matrix:
+Client: Sunburn
+Address:
+Address:
+25548 County Rd 44A
+Eustis, FL  32736
+Batch #:
+Batch Date:
+Extracted From:
+Seed to Sale #:
+Lot ID:
+Cultivars:
+Test Reg State:
+Cultivation Facility:
+Cultivation Date:
+Production Facility:
+Production Date:
+7/24/2025 12:07
+07/28/2025 16:40
+7/24/2025
+27.52 g
+1998692335898360
+7/24/2025
+1674052761909258
+1998692335898360
+1058644236091215
+Too Much Nerdz
+Cannabis FL
+Winter Garden
+Winter Garden
+6/25/2025
+LAB-028
+Total Batch Wgt or Vol: 4,042.5g
+Product g/unit: 3.50
+Page
+Definitions and Abbreviations used in this report: Total THC = Delta 9 THC + (THCA*0.877), Total CBD = CBD + (CBDA*0.877), Total Cannabinoids = THC + THCA + CBD + CBDA + CBG + CBGA + Delta 8 THC + THCV + CBDV + CBC + CBN, Total THC and Total CBD are
+expressed as mg in total package weight, (Dilution) = Dilution Factor, (%) = Percent, (mg/g) = Milligrams per Gram, (mg/mL) = Milligrams per Milliliter, (mg/kg) = Milligrams per Kilogram, (ug/kg) = Microgram per Kilogram, (cfu/g) = Colony Forming Unit per Gram,
+Action Limit of Absent is equivalent to < 1 cfu/g, (aw) = Water Activity, (LOD) = Limit of Detection, (LOQ) = Limit of Quantitation; (ppm) = parts per million; (ppb) = parts per billion; Units for ppm also expressed as (mg/kg); Units for ppb also expressed as (ug/kg).All
+measurements and calibrations at Method Testing Labs are traceable to the International System of Units (SI) through an unbroken chain of comparisons and from recognized national metrology institutes. Compounded measurement uncertainty for any analyte is
+available upon request.
+This report shall not be reproduced, without written approval, from Method Testing Labs.  The results of this report relate only to the material or product analyzed.  Test results are confidential unless explicitly waived otherwise.  Accredited by a third-party
+accrediting body as a competent testing laboratory pursuant to ISO/IEC 17025:2017 of the International Organization for Standardization.
+of
+Anthony Repay
+07/28/2025 16:40
+Lab Director
+1
+1

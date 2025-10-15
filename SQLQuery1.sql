@@ -24,10 +24,8 @@ DECLARE @dispensaryid int = 1;
   
   SELECT distinct Cannabinoid
   FROM vw_cannabinoidResults
- --where batch ='57901_0007452411'
- 
+ --where batch ='57901_0007452411' 
   where dispensaryId = @dispensaryid
-  order by cannabinoidResultId desc
   
   SELECT distinct terpene
   FROM vw_terpeneResults
@@ -45,13 +43,20 @@ DECLARE @dispensaryid int = 1;
   SELECT *
   FROM vw_terpeneResults
  --where batch ='57901_0007452411' 
+  --where batch like '%gbxx%'
   where dispensaryId = @dispensaryid
   order by terpeneResultId desc, batch,[index]
 
   /*
   delete from terpeneResults  
   where dispensaryId = @dispensaryid
-  
+
   delete from cannabinoidResults 
   where dispensaryId = @dispensaryid
+
+  delete from cannabinoidResults 
+  where batch like '%gbxx%'
+  
+  delete from terpeneResults  
+ where batch like '%gbxx%'
   */
