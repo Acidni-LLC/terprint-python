@@ -1,10 +1,14 @@
 import msal
+from pbipy import PowerBI, datasets, groups
+import requests
 from bcolors import bcolors
 
 def get_token_for_client(scope):
- client_id = "8cd148e2-a21e-4522-9180-541c6b10f955"
+ client_id = "8cd148e2-a21e-4522-9180-541c6b10f955" #TerprintPrincipal
+ #client_id = "8cf359c9-690d-4d76-9dcf-c2e4dc71e975" #terprint2
  authority_url = "https://login.microsoftonline.com/fa959b35-58f5-4816-9511-a6ead495f2e5"
- client_secret = ""
+ client_secret = "N5V8Q~qLC73Y241AlC3SRv_jTnTYGrq10K6KxaQ-" #TerprintPrincipal
+ #client_secret="DoI8Q~2lmPcLBzy6-i52kLAPV.kK5DGVvQFFCbfO" #terprint2
  app = msal.ConfidentialClientApplication(client_id,authority=authority_url,client_credential=client_secret)
  result = app.acquire_token_for_client(scopes=scope)
  if 'access_token' in result:
@@ -13,5 +17,61 @@ def get_token_for_client(scope):
   print(bcolors.FAIL + 'Error in get_token_username_password:' + result.get("error") + " " + result.get("error_description") + bcolors.ENDC)
 
 scope =['https://analysis.windows.net/powerbi/api/.default']
-token = get_token_for_client(scope)
-print(bcolors.OKGREEN + token + bcolors.ENDC)
+bearer_token =''
+bearer_token = get_token_for_client(scope)
+print(bcolors.OKGREEN + str(bearer_token) + bcolors.ENDC +'\n')
+
+# # Example: Get datasets in a workspace
+# url = "https://app.powerbi.com/groups/b264f22b-fe0d-415f-81ae-d81dea949918/datasets"
+# headers = {"Authorization": f"Bearer {bearer_token}"}
+
+# response = requests.get(url, headers=headers)
+# print('\n'+str(response.json())+'\n')
+
+pbi = PowerBI(bearer_token)
+workspace_id = "b264f22b-fe0d-415f-81ae-d81dea949918"  # Replace with your workspace ID
+dataset_id = "f0dbcb60-b35b-47a1-b77e-d9a33607fae0"      # Replace with your dataset ID
+# Example: List datasets in a workspace
+datasets = pbi.datasets(group=workspace_id)
+dataset = pbi.dataset(dataset_id,workspace_id)
+for dataset in datasets:
+ print(dataset)
+
+dataset = pbi.dataset(dataset_id,workspace_id)
+
+print(dataset.raw)
+
+# Authenticate with Power BI (ensure you have set up authentication properly)
+# Removed PowerBIClient() since it's not defined; use PowerBI instance 'pbi' instead.
+
+# Specify the workspace (group) and dataset ID
+
+# API endpoint to get dataset records
+url = f"https://api.powerbi.com/v1.0/myorg/groups/{workspace_id}/datasets/{dataset_id}/executeQueries"
+
+headers = {
+    "Authorization": f"Bearer {bearer_token}",
+    "Content-Type": "application/json"
+}
+
+body = {
+  "queries": [
+    {
+      
+      "query": "EVALUATE VALUES(sku 1)"
+    }
+  ],
+  "serializerSettings": {
+    "includeNulls": "true"
+  },
+  "impersonatedUserName": "jgill@savitas.net"
+}
+response = requests.post(url, headers=headers, json=body)
+
+if response.status_code == 200:
+    dataset_records = response.json()
+    print("Dataset Records:", dataset_records)
+else:
+    print(f"Failed to fetch dataset records: {response.status_code}, {response.text}")
+
+
