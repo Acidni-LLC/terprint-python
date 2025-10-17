@@ -1,8 +1,9 @@
-﻿<Router AppAssembly="typeof(Program).Assembly" >
+﻿@using Terprint.Web.Components.Account.Shared
+<Router AppAssembly="typeof(Program).Assembly" >
     <Found Context="routeData">
         <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)">
             <NotAuthorized>
-                <RedirectToLogin />
+                <Terprint.Web.Components.Account.Shared.RedirectToLogin />
             </NotAuthorized>
         </AuthorizeRouteView>
         <FocusOnNavigate RouteData="routeData" Selector="h1" />

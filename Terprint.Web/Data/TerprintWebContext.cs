@@ -8,8 +8,25 @@ using Terprint.Web.Models;
 
 namespace Terprint.Web.Data
 {
-    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<ApplicationUser>(options)
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
+        {
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+
+            optionsBuilder
+                //.EnableSensitiveDataLogging()
+
+
+                .UseSqlServer(@"Server=tcp:acidni-sql.database.windows.net,1433;Initial Catalog=terprint;Persist Security Info=False;User ID=adm;Password=sql1234%;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        }
+    }
+    public class ApplicationDbContext1(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<ApplicationUser>(options)
+    {
+   
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 

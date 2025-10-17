@@ -16,7 +16,7 @@ namespace Terprint.Web.Services
         public  Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             
-                var apiKey = "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";
+                var apiKey = "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";
                 var client = new SendGridClient(apiKey);
                 var from = new EmailAddress("jgill@savitas.net", "Jamieson Gill");
                 // var subject = "Sending with SendGrid is Fun";

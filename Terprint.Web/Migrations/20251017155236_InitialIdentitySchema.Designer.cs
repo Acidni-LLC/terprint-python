@@ -12,15 +12,15 @@ using Terprint.Web.Data;
 namespace Terprint.Web.Migrations
 {
     [DbContext(typeof(TerprintWebContext))]
-    [Migration("20251017012530_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20251017155236_InitialIdentitySchema")]
+    partial class InitialIdentitySchema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.10")
+                .HasAnnotation("ProductVersion", "10.0.0-rc.2.25502.107")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
