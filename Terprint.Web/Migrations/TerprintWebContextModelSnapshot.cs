@@ -313,6 +313,9 @@ namespace Terprint.Web.Migrations
                     b.Property<string>("createdby")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("index")
+                        .HasColumnType("int");
+
                     b.HasKey("THCValueId");
 
                     b.HasIndex("BatchID");
@@ -329,6 +332,9 @@ namespace Terprint.Web.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TerpeneValueId"));
 
                     b.Property<int>("BatchID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Index")
                         .HasColumnType("int");
 
                     b.Property<string>("Scale")

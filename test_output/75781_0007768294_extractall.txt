@@ -1,0 +1,153 @@
+Certificate of Analysis
+Trulieve
+75781_0007768294
+Sample Matrix:
+Whole Flower
+Cultivation Facility:
+Quincy
+Processing Facility:
+Midway
+Batch Size:
+18886 g
+Batch Unit Size:
+3.5 g
+Units Sampled:
+23
+Total Amt. Sampled:
+80.5 g
+Seed to Sale ID:
+1929864448565912
+QA Sample ID:
+6438612061710021
+Laboratory ID:
+JJ10002-02
+Cultivar: 
+BABY TURTLE
+Product Name:
+KHALIFA KUSH - SIGNATURE WHOLE FLOWER
+Description:
+KK-Flower-3.5g-BbyTrtl-I-FL
+Admin. Route:
+Inhalation
+Label Claim:
+Sample Date:
+10/10/25
+Received:
+10/10/25 15:53
+Completed:
+10/15/25 10:48
+THC: -- mg | CBD: -- mg
+Batch Date:
+10/08/2025
+POTENCY SUMMARY (As Received)
+%
+Analyte
+mg
+ THCa
+36.4
+1,270
+ delta 9-THC
+1.68
+58.8
+ CBGa
+0.431
+15.1
+ CBG
+0.170
+5.95
+ CBDa
+0.0893
+3.13
+ CBD
+0.0114
+0.399
+ CBN
+0.00365
+0.128
+ CBC
+<LOQ
+<LOQ
+ CBDV
+<LOQ
+<LOQ
+ delta 8-THC
+<LOQ
+<LOQ
+ THCV
+<LOQ
+<LOQ
+TERPENES SUMMARY (Top Ten)
+2.01%
+Total Terpenes
+Analyte
+%
+ 
+0.944
+beta-Myrcene
+0.230
+Linalool
+0.227
+beta-Caryophyllene
+0.142
+d-Limonene
+0.131
+Ocimene, Total
+0.0923
+alpha-Humulene
+0.0831
+trans-Nerolidol
+0.0605
+alpha-Bisabolol
+0.0318
+alpha-Terpineol
+0.0230
+Fenchyl Alcohol
+Total CBD
+0.0898% (3.14 mg)
+Total THC
+33.6% (1,180 mg)
+Total Cannabinoids
+38.8% (1,360 mg)
+Completed
+Potency
+Not Tested
+Homogeneity
+Completed
+Terpenes
+Not Tested
+Residual Solvents
+PASS
+% Moisture
+PASS
+Water Activity
+PASS
+Foreign Matter
+PASS
+Pesticides
+PASS
+Mycotoxins
+PASS
+Heavy Metals
+PASS
+Microbials
+Not Applicable
+Label Claim
+ANALYSIS SUMMARY
+LOQ = Limit of Quantification
+ND = Non-Detect 
+RPD = Relative Percent Difference
+  MDL = Method Detection Limit
+PQL = Practical Quantitation Limit
+Copyright © 2025 Modern Canna, LLC. All rights reserved. 
+This report shall not be reproduced, distributed, or transmitted in any form or by any means, without written consent from Modern Canna, LLC.  The 
+results in this report relate only to the products analyzed. The results in this report are confidential. For more information regarding our reporting 
+limits, please visit: www.moderncanna.com/modern-canna-reporting-limits/
+4705 Old Rd 37
+Lakeland, FL 33813
+www.moderncanna.com
+CMTL-0005
+Page 1 of 1
+863-608-7800
+Accreditation #102020
+Richard Dillen
+Laboratory Director

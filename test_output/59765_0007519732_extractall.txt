@@ -1,0 +1,249 @@
+721 Cortaro Dr.
+Sun City Center, FL 33573
+www.acslab.com
+DEA No. RA0571996
+FL License # CMTL-0003
+MF-Minis-3.5g-SpaceAgeCake-I-FL
+Sample Matrix:
+CANNABIS (MMTC's)
+Flower & Plants
+(Inhalation - Heated)
+Certificate of Analysis
+Patient COA
+Client Information:
+Trulieve - Midway Flower
+Compliance
+6749 Ben Bostic Rd
+Quincy, FL 32351
+Batch # 59765_0007519732
+Batch Date: 2025-08-27
+Seed to Sale # 3584 6846 2857 2671
+Lot ID: 9792 7193 4952 3124
+Cultivars: Space Age Cake
+Test Reg State: Florida
+Cultivation Facility: Quincy, FL
+Production Facility: Midway, FL
+Production Date: 2025-08-27
+Order # TRU250827-100001
+Order Date: 2025-08-27
+Sample # AAHA878
+Sampling Date: 2025-08-27
+Lab Batch Date: 2025-08-27
+Completion Date: 2025-09-04
+Initial Gross Weight: 679.100 g
+Number of Units: 21
+Net Weight per Unit: 3500.000 mg
+Sampling Method: MSP 7.3.1
+Product Image
+Potency
+Tested
+Terpenes
+Tested
+Heavy Metals
+Passed
+Mycotoxins
+Passed
+Pesticides
+Passed
+Residual Solvents
+Not Tested
+Moisture
+Passed
+Water Activity
+Passed
+Pathogenic
+Passed
+Microbiology
+(qPCR)
+Passed
+Filth and Foreign
+Passed
+Total Contaminant
+Load
+Passed
+Potency - 11
+Specimen Weight: 201.960 mg
+Tested
+SOP13.001 (LCUV)
+Analyte
+Dilution
+(1:n)
+LOD
+(%)
+LOQ
+(%)
+Result
+(mg/g)
+(%)
+THCA-A
+150.000
+3.20E-5
+0.015
+294
+29.4
+Delta-9 THC
+15.000
+1.30E-5
+0.015
+13.4
+1.34
+CBGA
+15.000
+8.00E-5
+0.015
+4.29
+0.429
+CBG
+15.000
+2.48E-4
+0.015
+1.04
+0.104
+CBDA
+15.000
+1.00E-5
+0.015
+0.757
+0.0760
+Delta-8 THC
+15.000
+2.60E-5
+0.015
+0.240
+0.0240
+CBC
+15.000
+1.80E-5
+0.015
+<LOQ
+<LOQ
+CBD
+15.000
+5.40E-5
+0.015
+<LOQ
+<LOQ
+CBDV
+15.000
+6.50E-5
+0.015
+<LOQ
+<LOQ
+CBN
+15.000
+1.40E-5
+0.015
+<LOQ
+<LOQ
+THCV
+15.000
+7.00E-6
+0.015
+<LOQ
+<LOQ
+Total Active CBD
+15.000
+0.664
+0.0664
+Total Active THC
+15.000
+271
+27.1
+Prep. By: 1276
+Date: 2025-08-28 10:53:02
+Analyzed By: 1282
+Date: 2025-08-29 19:39:39
+Reviewed By: 1010
+Date: 2025-09-01 13:22:00
+Lab Batch #: AAHA878-450
+Date: 2025-09-01 13:22:00
+Moisture
+Specimen Weight: N/A Dilution Factor: 1.000
+Passed
+SOP13.015
+(Moisture Meter)
+Analyte
+Action Level
+(%)
+Result
+(%)
+Moisture
+15
+9.30
+Prep. By: 1204
+Date: 2025-08-28 16:00:06
+Analyzed By: 1204
+Date: 2025-08-28 16:00:06
+Reviewed By: 1204
+Date: 2025-08-28 16:45:36
+Lab Batch #: AAHA878-10
+Date: 2025-08-28 16:45:36
+This product is tested at this moisture level, not at dry weight.
+Potency Summary
+Total Active THC
+27.1%
+948 mg
+Total Active CBD
+0.0660%
+2.32 mg
+Total CBG
+0.480%
+16.8 mg
+Total CBN
+-
+None Detected
+Total Cannabinoids
+31.3%
+1100 mg
+Terpenes Summary
+Analyte
+Result (mg/g)
+(%)
+trans-Caryophyllene
+11.238
+1.124%
+Linalool
+5.203
+0.52%
+(R)-(+)-Limonene
+4.535
+0.454%
+alpha-Humulene
+3.328
+0.333%
+trans-Nerolidol
+1.812
+0.181%
+beta-Myrcene
+1.727
+0.173%
+Fenchyl Alcohol
+0.951
+0.095%
+alpha-Bisabolol
+0.602
+0.06%
+beta-Pinene
+0.469
+0.047%
+Geranyl acetate
+0.364
+0.036%
+Total Terpenes: 3.023%
+Detailed Terpenes Analysis is on the following page
+Lab Director/Principal Scientist
+Aixia Sun
+D.H.Sc., M.Sc., B.Sc., MT (AAB)
+Definitions and Abbreviations used in this report: Total Active CBD = CBD + (CBD-A * 0.877), *Total CBDV = CBDV + (CBDVA * 0.867), Total Active THC = THCA-A * 0.877 + Delta 9
+THC, Total THCV = THCV + (THCVA * 0.87) , CBG Total = (CBGA * 0.878) + CBG, CBN Total = (CBNA * 0.876) + CBN, Total CBC = CBC + (CBCA * 0.877), Total THC-O-Acetate = Delta 8
+THC-O-Acetate + Delta 9 THC-O-Acetate, Total THCP = Delta8-THCP + Delta9-THCP, Total Cannabinoids = Total percentage of cannabinoids within the sample. (mg/ml) = Milligrams
+per Milliliter, LOQ = Limit of Quantitation, LOD = Limit of Detection, Dilution = Dilution Factor, (ppb) = Parts per Billion, (%) = Percent, (cfu/g) = Colony Forming Unit per Gram, (µg/g) =
+Microgram per Gram, (ppm) = Parts per Million, (ppm) = (µg/g), (aw) = Water Activity, (mg/Kg) = Milligram per Kilogram. ACS uses simple acceptance criteria. Passed –
+Analyte/microbe is not detected or is at the level below the action limit per FL rule 64ER20-39, 5K-4.036, 5K-4.034. Failed – Analyte/microbe is at the level that equal or above the
+action limit per FL rule 64ER20-39, 5K-4.036, 5K-4.034
+Total Contaminant Load (TCL) - The sum of all Heavy Metals and Agricultural Agents present above the LOQ, but below the Acceptable Limit.
+This report shall not be reproduced, without written approval, from ACS Laboratory. The results of this report relate only to the material or product analyzed. Test results are confidential
+unless explicitly waived otherwise. ACS Laboratory is accredited to the ISO/IEC 17025:2017 Standard.
+QA By: 1222 on 2025-09-04 12:17:28 V1
+Page 1 of 1
+Form F672

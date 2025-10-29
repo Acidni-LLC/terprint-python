@@ -30,6 +30,7 @@ print(bcolors.OKGREEN + str(bearer_token) + bcolors.ENDC +'\n')
 
 pbi = PowerBI(bearer_token)
 workspace_id = "b264f22b-fe0d-415f-81ae-d81dea949918"  # Replace with your workspace ID
+#
 dataset_id = "f0dbcb60-b35b-47a1-b77e-d9a33607fae0"      # Replace with your dataset ID
 # Example: List datasets in a workspace
 datasets = pbi.datasets(group=workspace_id)
@@ -47,31 +48,19 @@ print(dataset.raw)
 # Specify the workspace (group) and dataset ID
 
 # API endpoint to get dataset records
-url = f"https://api.powerbi.com/v1.0/myorg/groups/{workspace_id}/datasets/{dataset_id}/executeQueries"
+url = f"https://api.fabric.microsoft.com/eventhouse/{workspace_id}/{dataset_id}/items"
 
 headers = {
     "Authorization": f"Bearer {bearer_token}",
     "Content-Type": "application/json"
 }
 
-body = {
-  "queries": [
-    {
-      
-      "query": "EVALUATE VALUES(sku 1)"
-    }
-  ],
-  "serializerSettings": {
-    "includeNulls": "true"
-  },
-  "impersonatedUserName": "jgill@savitas.net"
-}
-response = requests.post(url, headers=headers, json=body)
+response = requests.get(url, headers=headers)
 
 if response.status_code == 200:
-    dataset_records = response.json()
-    print("Dataset Records:", dataset_records)
+    print("Rows retrieved successfully!")
+    print(response.json())
 else:
-    print(f"Failed to fetch dataset records: {response.status_code}, {response.text}")
+    print(f"Error: {response.status_code}, {response.text}")
 
 

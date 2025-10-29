@@ -2,7 +2,7 @@
 
 --SELECT TOP (20) *  FROM [dbo].terpeneResults
 
-DECLARE @dispensaryid int = 1;
+DECLARE @dispensaryid int = 2;
 
   SELECT distinct count(batch)
   FROM vw_cannabinoidResults

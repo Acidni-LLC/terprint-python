@@ -9,7 +9,7 @@ namespace Terprint.Web.Models
         public DateTime created { get; set; } = DateTime.Now;
         public string? createdby { get; set; }
         public int TerpeneValueId { get; set; }
-        
+        public int? Index { get; set; }
         [Required]
         public double Value { get; set; }
         [Display(Name = "Terpene Name")]

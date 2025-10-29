@@ -11,6 +11,7 @@ namespace Terprint.Web.Models
         public int THCValueId { get; set; }
         [Required]
         public int? BatchID { get; set; }
+        public int? index { get; set; }
 
         public string Analyte { get; set; }
         public string? Dilution { get; set; }
