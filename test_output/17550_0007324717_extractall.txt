@@ -1,0 +1,153 @@
+Certificate of Analysis
+Trulieve
+17550_0007324717
+Sample Matrix:
+Vape
+Cultivation Facility:
+Quincy
+Processing Facility:
+Higdon
+Batch Size:
+1492 g
+Batch Unit Size:
+0.5 g
+Units Sampled:
+31
+Total Amt. Sampled:
+15.5 g
+Seed to Sale ID:
+9715501356034348
+QA Sample ID:
+0348399643452963
+Laboratory ID:
+JD07005-06
+Cultivar: 
+SUNSHINE KUSH by SUNSHINE CANNABIS
+Product Name:
+Cartridge - RATIO
+Description:
+SSC-VapeCart1:8-.5g-SunshineKush--FL
+Admin. Route:
+Inhalation
+Label Claim:
+Sample Date:
+04/07/25
+Received:
+04/07/25 15:44
+Completed:
+04/10/25 16:27
+THC: -- mg | CBD: -- mg
+Batch Date:
+04/04/2025
+POTENCY SUMMARY (As Received)
+%
+Analyte
+mg
+ delta 9-THC
+76.0
+380
+ CBD
+9.93
+49.7
+ CBG
+1.73
+8.65
+ THCV
+0.504
+2.52
+ CBC
+0.356
+1.78
+ CBN
+0.236
+1.18
+ CBDa
+<LOQ
+<LOQ
+ CBDV
+<LOQ
+<LOQ
+ CBGa
+<LOQ
+<LOQ
+ delta 8-THC
+<LOQ
+<LOQ
+ THCa
+<LOQ
+<LOQ
+TERPENES SUMMARY (Top Ten)
+4.92%
+Total Terpenes
+Analyte
+%
+ 
+1.37
+d-Limonene
+0.704
+Linalool
+0.684
+beta-Caryophyllene
+0.629
+beta-Myrcene
+0.307
+alpha-Pinene
+0.191
+alpha-Terpineol
+0.181
+beta-Pinene
+0.178
+Fenchyl Alcohol
+0.137
+alpha-Humulene
+0.135
+alpha-Bisabolol
+Total CBD
+9.93% (49.7 mg)
+Total THC
+76.0% (380 mg)
+Total Cannabinoids
+88.8% (444 mg)
+Completed
+Potency
+Not Tested
+Homogeneity
+Completed
+Terpenes
+PASS
+Residual Solvents
+Not Tested
+% Moisture
+PASS
+Water Activity
+PASS
+Foreign Matter
+PASS
+Pesticides
+PASS
+Mycotoxins
+PASS
+Heavy Metals
+PASS
+Microbials
+Not Applicable
+Label Claim
+ANALYSIS SUMMARY
+LOQ = Limit of Quantification
+ND = Non-Detect 
+RPD = Relative Percent Difference
+  MDL = Method Detection Limit
+PQL = Practical Quantitation Limit
+Copyright © 2025 Modern Canna, LLC. All rights reserved. 
+This report shall not be reproduced, distributed, or transmitted in any form or by any means, without written consent from Modern Canna, LLC.  The 
+results in this report relate only to the products analyzed. The results in this report are confidential. For more information regarding our reporting 
+limits, please visit: www.moderncanna.com/modern-canna-reporting-limits/
+4705 Old Rd 37
+Lakeland, FL 33813
+www.moderncanna.com
+CMTL-0005
+Page 1 of 1
+863-608-7800
+Accreditation #102020
+J. Brian Leapard, M.S.
+     Laboratory Director

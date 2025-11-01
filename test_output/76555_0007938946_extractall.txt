@@ -1,0 +1,153 @@
+Certificate of Analysis
+Trulieve
+76555_0007938946
+Sample Matrix:
+Vape
+Cultivation Facility:
+Quincy
+Processing Facility:
+Higdon
+Batch Size:
+6039 g
+Batch Unit Size:
+1 g
+Units Sampled:
+23
+Total Amt. Sampled:
+23 g
+Seed to Sale ID:
+7274104508128028
+QA Sample ID:
+4308150473081606
+Laboratory ID:
+JJ20002-09
+Cultivar: 
+AFGHAN MOON
+Product Name:
+SUNSHINE CANNABIS - BDT Cartridge - Indica
+Description:
+SSC-VapeCart-1g-AfghanMoon-I-FL
+Admin. Route:
+Inhalation
+Label Claim:
+Sample Date:
+10/20/25
+Received:
+10/20/25 15:54
+Completed:
+10/23/25 11:11
+THC: -- mg | CBD: -- mg
+Batch Date:
+10/17/2025
+POTENCY SUMMARY (As Received)
+%
+Analyte
+mg
+ delta 9-THC
+79.8
+798
+ CBG
+4.16
+41.6
+ THCV
+0.600
+6.00
+ CBC
+0.504
+5.04
+ CBN
+0.266
+2.66
+ CBD
+0.189
+1.89
+ CBDa
+<LOQ
+<LOQ
+ CBDV
+<LOQ
+<LOQ
+ CBGa
+<LOQ
+<LOQ
+ delta 8-THC
+<LOQ
+<LOQ
+ THCa
+<LOQ
+<LOQ
+TERPENES SUMMARY (Top Ten)
+5.63%
+Total Terpenes
+Analyte
+%
+ 
+1.23
+beta-Myrcene
+0.842
+d-Limonene
+0.820
+Linalool
+0.691
+trans-Nerolidol
+0.517
+beta-Caryophyllene
+0.338
+alpha-Terpineol
+0.297
+alpha-Pinene
+0.225
+Terpinolene
+0.205
+alpha-Humulene
+0.142
+beta-Pinene
+Total CBD
+0.189% (1.89 mg)
+Total THC
+79.8% (798 mg)
+Total Cannabinoids
+85.5% (855 mg)
+Completed
+Potency
+Not Tested
+Homogeneity
+Completed
+Terpenes
+PASS
+Residual Solvents
+Not Tested
+% Moisture
+PASS
+Water Activity
+PASS
+Foreign Matter
+PASS
+Pesticides
+PASS
+Mycotoxins
+PASS
+Heavy Metals
+PASS
+Microbials
+Not Applicable
+Label Claim
+ANALYSIS SUMMARY
+LOQ = Limit of Quantification
+ND = Non-Detect 
+RPD = Relative Percent Difference
+  MDL = Method Detection Limit
+PQL = Practical Quantitation Limit
+Copyright © 2025 Modern Canna, LLC. All rights reserved. 
+This report shall not be reproduced, distributed, or transmitted in any form or by any means, without written consent from Modern Canna, LLC.  The 
+results in this report relate only to the products analyzed. The results in this report are confidential. For more information regarding our reporting 
+limits, please visit: www.moderncanna.com/modern-canna-reporting-limits/
+4705 Old Rd 37
+Lakeland, FL 33813
+www.moderncanna.com
+CMTL-0005
+Page 1 of 1
+863-608-7800
+Accreditation #102020
+Richard Dillen
+Laboratory Director

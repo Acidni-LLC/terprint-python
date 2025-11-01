@@ -12,8 +12,8 @@ from bcolors import bcolors
 
 separator ="|"
 redownload = 0
-my_list = ["88372_0007733521","83669_0007814909","82188_0007746062","80965_0007838513","59765_0007826464","76642_0007825663","79086_0007392383","71035_0007701647","65053_0007733301","65045_0007653393","61128_0007614549","79081_0007814998","83669_0007814910","83536_0007540972","76642_0007838512","71247_0007816068","76506_0007814988","74541_0007815392","65217_0007814983","83669_0007685990","83536_0007475961","82188_0007453524","80965_0007514146","76618_0007653473","79041_0007757408","79441_0007605403","75839_0007653555","69670_0007816069","65219_0007814985","63991_0007701090","59765_0007519732","65201_0007815003","83536_0007475408","84605_0007768331","84994_0007685832","24127_0007894509","41839_0007673539","83537_0007584635","82462_0007768510","82049_0007871793","76757_0007768507","81474_0007701644","81283_0007616623","79137_0007861291","79080_0007757408","80205_0007563253","71223_0007814973","76505_0007722540","75785_0007429590","75781_0007768294","75567_0007616845","74556_0007815392","74576_0007826214","73983_0007782311","73727_0007711677","71320_0007848413","72985_0007653554","72984_0007541011","69669_0007711628","70912_0007630058","68679_0007616627","68684_0007732567","69353_0007514153","67988_0007584874","68683_0007405291","68682_0007861296","68673_0007641972","68686_0007826463","68188_0007673697","59710_0007475372","67990_0007861292","59725_0007630100","59721_0007848417","59703_0007828047","67194_0007584970","67342_0007849586","67340_0007562321","18347_0007653567","66760_0007519756","64813_0007595473","64809_0007768258","63549_0007673675","61129_0007424983","61123_0007246497","59680_0007685956","59663_0007453562","58723_0007426355","57901_0007813111","56975_0007814983","56967_0007860769","50657_0007514205","49447_0007541022","46768_0007838611","24134_0007313363","18363_0007530174","18275_0007463761","83699_0007828103","76757_0007746071","79099_0007475608","71219_0007860768","71320_0007465823","72984_0007653555","70912_0007771215","68679_0007425739","68682_0007452924","67542_0007475384","67192_0007530233","67329_0007130897","63715_0007860770","63534_0007519748","58739_0007733523","58723_0007541012","56976_0007814985","56972_0007815003","50657_0007757621","18275_0007450575","88347_0007871804","84994_0007871798","83537_0007746082","82049_0007429610","81468_0007465823","79080_0007541026","80205_0007813108","79099_0007629764","75785_0007354936","75567_0007673680","74576_0007353492","73983_0007711504","72986_0007733531","72985_0007562320","72982_0007798034","69669_0007816069","71030_0007354228","71029_0007509347","68679_0007475377","68684_0007711717","68920_0007687076","68686_0007771993","59721_0007894089","59814_0007353476","67194_0007541009","67342_0007641487","67335_0007530209","67325_0007871796","65044_0007425721","64813_0007584712","60436_0007687376","58739_0007861611","58723_0007442383","50657_0007540652","49447_0007838367","46768_0007826447","43670_0007313365","18275_0007402750","82049_0007861297","76757_0007641641","79080_0007653760","80205_0007848631","76505_0007734156","75785_0007290685","72985_0007530225","68679_0007221624","68684_0007711699","67988_0007815114","81283_0007538669","80205_0007584617","76505_0007734157","68683_0007173428","68673_0007746253","68686_0007848415","64809_0007813112","59664_0007711650","71232_0007816068","75792_0007519660","71320_0007892812","67988_0007828086","68682_0006969917","68673_0007732574","59721_0007575033","59814_0007803308","67325_0007745914","83537_0007475951","74556_0007605467","74576_0007771989","73983_0007848416","67988_0007514131","68186_0007771990","59814_0007366578","18275_0007429612","68186_0007814913","71320_0007758370","66760_0007403890","79137_0007653480","74556_0007711608","83699_0007746079","67342_0007861293","18363_0007224250","81283_0007689754","71223_0007711623","69669_0007653121","68679_0007342760","18329_0007630532","67330_0007519694","80205_0007562480","68186_0007378049","68677_0007355142","59721_0007314474","60421_0007293728","67192_0007101697","67342_0007290175","67279_0007221337","57901_0007452411","49447_0007119352"]
-#my_list = ["19208_0007314750"]
+#my_list = ["73881_0007916126","82057_0007827833","82115_0007827419","76555_0007938946","76692_0007595523","70485_0007815066","70475_0007552442","70455_0007850495","70483_0007826254","74941_0007782358","74940_0007745817","73345_0007487585","66469_0007827816","41743_0006970031","35471_0007723033","35163_0007723031","17699_0007247919","17611_0007773276","17552_0007365581","17551_0007585074","17550_0007324717","17496_0007723032","76692_0007605476","70485_0007814456","78022_0006993920","70483_0007896426","47993_0007425018","35163_0007774147","73877_0007916125","75265_0007848664","77008_0007825590","76555_0007849441","76692_0007326955","70485_0007721957","70455_0007840147","70483_0007895795","74941_0007641946","74940_0007701106","17611_0007353100","76692_0007927817","70483_0007850491","17552_0007838248","17551_0007937998","17550_0007653493","17496_0007782247","81867_0007511894","70475_0007105140","70478_0007026451","74941_0007653489","47993_0006162867","35471_0007782246","17550_0006945103","76692_0007838379","70475_0007757083","80356_0007828495","80354_0007828494","74940_0007803301","17551_0007086534","82057_0007916183","82115_0007916172","70483_0007838370","74941_0007838378","70485_0007746233","74940_0007732801","17699_0007563884","17611_0007641949","74940_0007749037","70487_0007548776","70481_0007541027","70475_0007290332","74941_0007757087","74940_0007685829","67357_0007162123","70475_0007489472","70475_0007529648","70455_0007871718","17552_0007261921","80355_0007828496","80374_0007817803","73997_0007630961","77047_0007771193","77106_0007329103","77124_0007275926","74863_0007277906","76555_0007510590","77132_0007248959","73994_0007223617","77614_0007209427","77078_0007313346","70477_0007136957","70475_0007062037","70455_0007775012","70483_0007208801","70478_0007023639","17611_0007137975"]
+my_list = ["47993_0006162867"]
 dispensary="Trulieve"
 dispensaryid=1
 # my_list = ["gbxxJoq4GqJcnLw","3LpRC3Ckz5XjF6w","WQiipC7sQpiyojx","czKcWBWzTDyCPdT","8K4kMmg8nsTGFxt","FW3xYKXr7WnzAWq","gFAcXTRYpnfkSfk","g47exX3f769D7Np","6z63Dpn43BwkggY","QpgabPXJzZM7StD","sGgQEA54cQ3Y9JW","rqrTmqqezwBGipR","SrGCCkbd2AobjjY","g852X8ybqn7w2pL","LngeNzi2cfXKMiX","33k3sMwNY5TKXTg","Ay2ZkZyeQNDjyfa","JPqWAsffRt99ySJ","nP7REAQ5aQ4RYW2","6DMQwXFGMqs8zX5","jKdbRbwgKFijRtc","rbbr8Ep3qAoPj5y","cZLTKTn3yTTJe7P","eWDcrrGNLEmzbs9","meg9ZNWmCGESgsC","dnyP2drMTRyw87E","SnFSY86MjSfXyB8","gZYK5idR4KdJqma","SfWBtnDxrN9qs2t"]
@@ -100,7 +100,11 @@ for item in my_list:
             if "RA0571996" in extracted_text:
                 format = 1
             elif "Accreditation #102020" in extracted_text:
-                format = 2
+                #mcs 
+                if "Total Cannabinoids" in extracted_text:
+                    format = 2  # example 74941_0007653489
+                elif "Total Active Cannabinoids" in extracted_text:
+                    format = 4  # example 47993_0006162867
             elif "Method Testing Laboratories" in extracted_text:
                 format = 3
                 #Method Testing Laboratories
@@ -422,13 +426,13 @@ for item in my_list:
                     outputtext = cannabinoidtext            
                     f.write(outputtext)
 
-    ###FORMAT 2222222222222222222222222222
+            ###FORMAT 3333333333333333333333333333
 
 
             elif format == 3:
 
 
-            ###FORMAT 222222222222222222222222222
+            ###FORMAT 4444444444444444444444444444
 
                 extracted_text = extract_text_from_pdf(pdf_path)
                 extracted_text1 = extracted_text
@@ -564,6 +568,174 @@ for item in my_list:
                     outputtext = cannabinoidtext            
                     f.write(outputtext)
 
+
+            ###FORMAT 444444444444444444
+            
+            elif format == 4:
+
+            ###FORMAT 444444444444444444
+
+                extracted_text = extract_text_from_pdf(pdf_path)
+                extracted_text1 = extracted_text
+            # print(extracted_text)
+            # with open(batch+"_extractall.txt", "w", encoding='utf-8') as f:
+                # f.write(extracted_text)
+                    
+            # print("2wrote text:\n")
+                terpenetext = extracted_text
+                terpenetext = terpenetext.split("Analyte", maxsplit=1)[1]
+                terpenetext = terpenetext.split("%\n", maxsplit=1)[1]
+                terpenetext = terpenetext.split("Total THC", maxsplit=1)[0]
+
+                print("TERPENES-----------------------")
+                print(terpenetext)
+            #  print("3found terpenes:\n")
+                
+                #terpenetext = extract_text_from_pdf(terpenetext)
+                cannabinoidtext =  extracted_text1
+                cannabinoidtext = cannabinoidtext.split("POTENCY DETAILS", maxsplit=1)[1]
+                cannabinoidtext  =cannabinoidtext.split("Total Terpenes:", maxsplit=1)[0]
+                print("CANNABINOIDS-----------------------")
+                print(cannabinoidtext)
+                ###  Cannabinoid
+                counter =1
+                outputlines = ""
+                outputline = ""
+                c= 1
+                can=""
+                percent=""
+                outputlines = ""
+                c= 1
+                position = 1
+                skipcount = 1
+                index = 1
+                outputlines ="Batch"+separator+"Index"+separator+"Cannabinoid"+separator+"Percent"+separator+"Milligrams\n"
+                for line in cannabinoidtext.splitlines():
+                    print(line)
+                    line = line.strip()
+                    if "Total Active" in line:
+                        break 
+                    if line.strip() == "":
+                        continue
+                    
+                    if counter ==1:
+                        percent = line
+                        outputline = batch + "|"+str(index)+"|" +line 
+                    elif counter ==2: 
+                        can = line                      
+                        outputline = batch + "|"+str(index)+"|" +can         
+                        outputline =  outputline + "|"+  percent +"\n"
+                        # print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
+                        # print(outputline+"\n")
+                        # print ("-----------------------------------------------\n")
+                    # outputline = outputline.split(separator)[0] +    "," + outputline.split(separator)[1] +    "," + outputline.split(separator)[2]+    "," + outputline.split(separator)[3] +    "," + outputline.split(separator)[4]   
+                        inpercent = ""
+                        inanalyte = ""    
+                        print(str(index) +"---"+outputline+"----")            
+                    #  if index == 1:
+                        # else:
+                        #     inpercent = outputline.split(separator)[3]
+                        #     inanalyte = outputline.split(separator)[2]
+                        outputlines = outputlines + outputline
+                    
+                        insertcannabinoids(
+                                        outputline.split(separator)[0],
+                                        outputline.split(separator)[1],
+                                        outputline.split(separator)[2],
+                                        outputline.split(separator)[3],
+                                        0, 
+                                        dispensaryid,
+                                        "jgill@acidnillc.onmicrosoft.com")
+                        outputline=""
+                        counter = 0
+                        position = position + 1
+                        index=index+1
+                        
+                    counter = counter + 1
+
+                cannabinoidtext = outputlines.replace(",,,%,,%,Analyte,,%,Analyte,mg,,%,Analyte,mg,","") 
+                    
+    
+                outputlines=""
+                counter = 1
+                skip = True
+                terp = ""
+                position = 1
+                skip = True
+                index = 1
+                percent=""
+                setheader = True
+                for line in terpenetext.splitlines():    
+                    print(line)
+                    line = line.strip()
+                    if skip == True:
+                        skip = False
+                        continue
+                    
+                    if line=="Ocimene, Total" :
+                        line = "Ocimene"
+                    # print("Line:", line)
+                    # print("Counter:", counter)
+                    # print("Is number:", is_number)
+                    # print("-----")
+                    # Check if the line can be converted to a float
+                    # If it can, it's a number; otherwise, it's not
+                    if counter ==1:
+                        terp = line
+                    elif counter ==2: 
+                        percent = line                      
+                        outputline = batch + "|"+str(index)+"|" +terp
+                        outputline =  outputline + "|"+  percent +"\n"
+                        # print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
+                        # print(outputline+"\n")
+                        # print ("-----------------------------------------------\n")
+                    # outputline = outputline.split(separator)[0] +    "," + outputline.split(separator)[1] +    "," + outputline.split(separator)[2]+    "," + outputline.split(separator)[3] +    "," + outputline.split(separator)[4]   
+                        inpercent = ""
+                        inanalyte = ""    
+                        print(str(index) +"---"+outputline+"----")            
+                    #  if index == 1:
+                        # else:
+                        #     inpercent = outputline.split(separator)[3]
+                        #     inanalyte = outputline.split(separator)[2]
+                        outputlines = outputlines + outputline
+                    
+                        insertterpenes(
+                                        outputline.split(separator)[0],
+                                        outputline.split(separator)[1],
+                                        outputline.split(separator)[2],
+                                        outputline.split(separator)[3],
+                                        0, 
+                                        dispensaryid,
+                                        "jgill@acidnillc.onmicrosoft.com")
+                        outputline=""
+                        counter = 0
+                        position = position + 1
+                        index=index+1
+                    counter = counter + 1
+                    
+                        # if counter == 1:
+                    #     percent = line
+                    #     counter = counter  + 1
+                    # elif counter == 2:
+                    #     terp = line
+                    #     counter = counter  + 1
+                    # elif counter == 3:
+                    #     outputline = terp + " " + percent + "\n"
+                    #     outputlines = outputlines + outputline  
+                    #     counter  =1
+                terpenetext = outputlines
+
+                # print("__________________________________________________")        
+                # print(batch)            
+                # print("2\n"+terpenetext)
+                # print("2\n"+cannabinoidtext)
+        
+                with open(str(format)+"\\terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
+                    outputtext =  terpenetext            
+                    f.write(outputtext)
+                with open(str(format)+"\\cannabinoids\\"+batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
+                    outputtext = cannabinoidtext            
+                    f.write(outputtext)
                                     
 
         except Exception as e:

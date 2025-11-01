@@ -1,0 +1,153 @@
+Certificate of Analysis
+Trulieve
+41743_0006970031
+Sample Matrix:
+Vape
+Cultivation Facility:
+Quincy
+Processing Facility:
+Higdon
+Batch Size:
+1576 g
+Batch Unit Size:
+0.5 g
+Units Sampled:
+31
+Total Amt. Sampled:
+15.5 g
+Seed to Sale ID:
+5909553208484731
+QA Sample ID:
+1958166822182804
+Laboratory ID:
+JA03005-02
+Cultivar: 
+Lavender Jones
+Product Name:
+ALCHEMY - CDT Cartridge - HYBRID
+Description:
+ALC-VapeCartCDT-.5g-LavenderJones-H-FL
+Admin. Route:
+Inhalation
+Label Claim:
+Sample Date:
+01/03/25
+Received:
+01/03/25 13:55
+Completed:
+01/08/25 09:59
+THC: -- mg | CBD: -- mg
+Batch Date:
+01/02/2025
+POTENCY SUMMARY (As Received)
+%
+Analyte
+mg
+ delta 9-THC
+79.0
+395
+ CBG
+1.66
+8.30
+ CBN
+0.632
+3.16
+ THCV
+0.424
+2.12
+ CBC
+0.370
+1.85
+ CBD
+0.292
+1.46
+ CBDa
+<LOQ
+<LOQ
+ CBDV
+<LOQ
+<LOQ
+ CBGa
+<LOQ
+<LOQ
+ delta 8-THC
+<LOQ
+<LOQ
+ THCa
+<LOQ
+<LOQ
+TERPENES SUMMARY (Top Ten)
+3.49%
+Total Terpenes
+Analyte
+%
+ 
+1.39
+beta-Myrcene
+0.874
+beta-Caryophyllene
+0.278
+alpha-Pinene
+0.258
+alpha-Humulene
+0.211
+d-Limonene
+0.131
+alpha-Bisabolol
+0.127
+Linalool
+0.0633
+beta-Pinene
+0.0530
+Guaiol
+0.0395
+Fenchyl Alcohol
+Total CBD
+0.292% (1.46 mg)
+Total THC
+79.0% (395 mg)
+Total Cannabinoids
+82.4% (412 mg)
+Completed
+Potency
+Not Tested
+Homogeneity
+Completed
+Terpenes
+PASS
+Residual Solvents
+Not Tested
+% Moisture
+PASS
+Water Activity
+PASS
+Foreign Matter
+PASS
+Pesticides
+PASS
+Mycotoxins
+PASS
+Heavy Metals
+PASS
+Microbials
+Not Applicable
+Label Claim
+ANALYSIS SUMMARY
+LOQ = Limit of Quantification
+ND = Non-Detect 
+RPD = Relative Percent Difference
+  MDL = Method Detection Limit
+PQL = Practical Quantitation Limit
+Copyright © 2025 Modern Canna, LLC. All rights reserved. 
+This report shall not be reproduced, distributed, or transmitted in any form or by any means, without written consent from Modern Canna, LLC.  The 
+results in this report relate only to the products analyzed. The results in this report are confidential. For more information regarding our reporting 
+limits, please visit: www.moderncanna.com/modern-canna-reporting-limits/
+4705 Old Rd 37
+Lakeland, FL 33813
+www.moderncanna.com
+CMTL-0005
+Page 1 of 1
+863-608-7800
+Accreditation #102020
+Wyatt Bergel
+   Laboratory Director

@@ -1,8 +1,12 @@
 
 select * from TerpeneValues
 select * from batch where name ='gFAcXTRYpnfkSfk'
-select * FROM vw_terpeneResults v where dispensaryId = 1
-
+select * FROM vw_terpeneResults v where batch = '47993_0006162867'
+select * FROM vw_cannabinoidResults v where batch = '47993_0006162867'
+/**
+    delete from cannabinoidResults where batch = '47993_0006162867'
+    delete from terpeneResults  where batch = '47993_0006162867'
+**/
 ----
 
 INSERT INTO TerpeneValues ([created]
@@ -81,7 +85,7 @@ WHERE v.batch in (select name from batch) and ISNUMERIC(Replace(Replace(v.[perce
 order by terpeneResultId
 
 select * FROM vw_terpeneResults v
-delete from TerpeneValues
+--delete from TerpeneValues
 GO
 '0.555 '0.5210.554 0.555 0.521
 

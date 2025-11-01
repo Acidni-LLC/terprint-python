@@ -1,0 +1,11 @@
+Batch|Index|Terpene|Percent
+70485_0007814456|1|alpha-Humulene|1.33
+70485_0007814456|2|beta-Caryophyllene|1.16
+70485_0007814456|3|alpha-Pinene|0.746
+70485_0007814456|4|beta-Myrcene|0.239
+70485_0007814456|5|alpha-Phellandrene|0.179
+70485_0007814456|6|alpha-Bisabolol|0.0721
+70485_0007814456|7|Caryophyllene oxide|0.0666
+70485_0007814456|8|trans-Nerolidol|0.0525
+70485_0007814456|9|Geranyl Acetate|0.0395
+70485_0007814456|10|Linalool|0.0383
