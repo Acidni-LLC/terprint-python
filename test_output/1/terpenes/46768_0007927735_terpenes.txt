@@ -1,0 +1,8 @@
+Batch|Index|Terpene|Result|Percent
+46768_0007927735|1|trans-Caryophyllene|5.65|0.565%
+46768_0007927735|2|beta-Pinene|4.789|0.479%
+46768_0007927735|3|(R)-(+)-Limonene|4.733|0.473%
+46768_0007927735|4|Linalool|3.046|0.305%
+46768_0007927735|5|alpha-Humulene|1.426|0.143%
+46768_0007927735|6|Fenchyl Alcohol|0.664|0.066%
+46768_0007927735|7|alpha-Pinene|0.418|0.042%
