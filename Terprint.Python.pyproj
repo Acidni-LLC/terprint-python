@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{d4b60256-802c-41d8-81ee-bffcf287af22}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>asyncioFileDownload.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+    <Name>Terprint.Python</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="asyncioFileDownload.py" />
+    <Compile Include="attomAPI.py" />
+    <Compile Include="azureAdToken.py" />
+    <Compile Include="batchFromUrl.py" />
+    <Compile Include="bcolors.py" />
+    <Compile Include="def has_decimal_places_str.py" />
+    <Compile Include="downloadFile.py" />
+    <Compile Include="find download link.py" />
+    <Compile Include="import camelot.py" />
+    <Compile Include="import fitz # PyMuPDF.py" />
+    <Compile Include="import pdfplumber.py" />
+    <Compile Include="import tabula.py" />
+    <Compile Include="import textwrap.py" />
+    <Compile Include="pbiApiLogin.py" />
+    <Compile Include="pbiApiLogin2.py" />
+    <Compile Include="pbiApiLogin3.py" />
+    <Compile Include="requestHtml.py" />
+    <Compile Include="seleniumDownload.py" />
+    <Compile Include="seleniumDownload2.py" />
+    <Compile Include="sqlConnection.py" />
+    <Compile Include="test_output\managedidconnect.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="test_output" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
