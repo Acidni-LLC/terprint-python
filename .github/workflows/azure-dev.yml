@@ -30,7 +30,7 @@ jobs:
 
       - name: Install .NET Aspire workload
         run: dotnet workload install aspire
-
+      
  
        
    #   - name: Log in with Azure (Federated Credentials)
