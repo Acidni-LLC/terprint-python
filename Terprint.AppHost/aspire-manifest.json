@@ -24,7 +24,7 @@
     },
     "apiservice": {
       "type": "project.v0",
-      "path": "Terprint.ApiService/Terprint.ApiService.csproj",
+      "path": "../Terprint.ApiService/Terprint.ApiService.csproj",
       "env": {
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
@@ -47,7 +47,7 @@
     },
     "webfrontend": {
       "type": "project.v0",
-      "path": "Terprint.Web/Terprint.Web.csproj",
+      "path": "../Terprint.Web/Terprint.Web.csproj",
       "env": {
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
