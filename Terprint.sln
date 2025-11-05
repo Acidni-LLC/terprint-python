@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# SQL Server Management Studio Version 21
+# Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Terprint.AppHost", "Terprint.AppHost\Terprint.AppHost.csproj", "{706E8B4E-FF32-448B-987D-FC65011DA0FB}"
@@ -11,6 +11,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Terprint.Web", "Terprint.Web\Terprint.Web.csproj", "{D4DB616D-3A91-4101-9907-E5149AE58EBF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Terprint.Tests", "Terprint.Tests\Terprint.Tests.csproj", "{88542AE5-A8F7-4AFA-946F-05DF886E188E}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Terprint.Python", "Terprint.Python.pyproj", "{D4B60256-802C-41D8-81EE-BFFCF287AF22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,9 +46,9 @@ Global
 		{88542AE5-A8F7-4AFA-946F-05DF886E188E}.Default|Any CPU.ActiveCfg = Release|Any CPU
 		{88542AE5-A8F7-4AFA-946F-05DF886E188E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88542AE5-A8F7-4AFA-946F-05DF886E188E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A4855CE4-D503-4305-9880-389A274EA8F4}.Debug|Any CPU.ActiveCfg = Default
-		{A4855CE4-D503-4305-9880-389A274EA8F4}.Default|Any CPU.ActiveCfg = Default
-		{A4855CE4-D503-4305-9880-389A274EA8F4}.Release|Any CPU.ActiveCfg = Default
+		{D4B60256-802C-41D8-81EE-BFFCF287AF22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4B60256-802C-41D8-81EE-BFFCF287AF22}.Default|Any CPU.ActiveCfg = Release|Any CPU
+		{D4B60256-802C-41D8-81EE-BFFCF287AF22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

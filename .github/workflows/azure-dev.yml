@@ -64,7 +64,8 @@ jobs:
             --client-secret "$($info.clientSecret)" `
             --tenant-id "$($info.tenantId)"
         shell: pwsh
-
+        
+       
       #- name: Provision Infrastructure
       #  run: azd provision --no-prompt
         # Required when 
@@ -76,6 +77,8 @@ jobs:
       #  run: azd env refresh --no-prompt
      #  env:
      #     AZURE_LOCATION: ${{ env.AZURE_LOCATION }}
+      
+       
 
       - name: Deploy Application
         run: azd deploy --no-prompt
