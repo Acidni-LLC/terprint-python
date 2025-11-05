@@ -31,6 +31,8 @@ jobs:
 
       - name: Install azd
         uses: Azure/setup-azd@v2
+
+        # not picking up changes
  # Step 2: Setup .NET SDK
       - name: Install .NET SDK 10 
         uses: actions/setup-dotnet@v5
