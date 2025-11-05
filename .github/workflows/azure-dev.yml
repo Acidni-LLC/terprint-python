@@ -28,8 +28,8 @@ jobs:
         uses: Azure/setup-azd@v2
  
 
-     # - name: Install .NET Aspire workload
-     #   run: dotnet workload install aspire
+      - name: Install .NET Aspire workload
+        run: dotnet workload install aspire
 
  
        
