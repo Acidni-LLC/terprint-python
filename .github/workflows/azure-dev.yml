@@ -43,9 +43,9 @@ jobs:
     #    shell: pwsh
 
       - name: Log in with Azure (Client Credentials)
-        if: ${{ secrets.AZURE_CREDENTIALS != '' }}
+        if: ${{ vars.AZURE_CREDENTIALS != '' }}
         run: |
-          $info = $secrets.AZURE_CREDENTIALS | ConvertFrom-Json -AsHashtable;
+          $info = vars.AZURE_CREDENTIALS | ConvertFrom-Json -AsHashtable;
           Write-Host "::add-mask::$($info.clientSecret)"
 
           azd auth login `
