@@ -48,8 +48,8 @@ jobs:
             --tenant-id "$Env:AZURE_TENANT_ID"
         shell: pwsh
         
-      - name: install aspire
-        run: dotnet workload restore [/home/runner/work/Terprint.AppHost/Terprint.AppHost.csproj]
+      - name: Install .NET Aspire workload
+        run: dotnet workload install aspire
         
       - name: Log in with Azure (Client Credentials)
         if: ${{ env.AZURE_CREDENTIALS != '' }}
