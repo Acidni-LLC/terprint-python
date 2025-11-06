@@ -10,7 +10,8 @@ def downloadfile(my_list,dispensaryid):
     totalbatches = str(len(my_list))
     print(my_list.__len__())
     for item in my_list:
-        print (bcolors.OKBLUE+"batch "+ bcolors.OKGREEN+  str(batchescount) +bcolors.ENDC + " of " +bcolors.OKGREEN+   totalbatches + item+bcolors.ENDC+ item+bcolors.ENDC)
+        printstring = f"{bcolors.OKBLUE} batch {bcolors.OKGREEN}  {str(batchescount)} {bcolors.ENDC}  of {bcolors.OKGREEN} {totalbatches} {item+bcolors.ENDC} {item+bcolors.ENDC}"
+        print (printstring)
    
     # url = "https://mete.labdrive.net/s/8K4kMmg8nsTGFxt/download/COA_2510CBR0024-004.pdf"
         headers = {
@@ -18,7 +19,7 @@ def downloadfile(my_list,dispensaryid):
         }
         try: 
             batch = batchFromUrl.batch_from_url(item)
-            local_path ='C:/Users/JamiesonGill/source/repos/Terprint/test_output/'
+            local_path ='C:/Users/JamiesonGill/source/repos/Acidni-LLC/Terprint/Terprint.Python/files/test_output/'
             local_filename =  batch + ".pdf"
             if os.path.exists(local_filename):
                 print(f"File '{batch}' already exists.")
@@ -33,17 +34,17 @@ def downloadfile(my_list,dispensaryid):
                 response = requests.get(url, headers=headers, stream=True, timeout=10)  # Use stream=True for large files
                 response.raise_for_status()  # Raise an exception for bad status codes (4xx or 5xx)
             
-                with open(local_filename, 'wb') as f:
+                with open(local_path+local_filename, 'wb') as f:
                     for chunk in response.iter_content(chunk_size=8192):
                         f.write(chunk)
-                print(f"File '{local_path}' downloaded successfully.")
+                print(f"File '{local_path+local_filename}' downloaded successfully.")
             
             batchescount=batchescount+1
         except requests.exceptions.RequestException as e:
             print(f"Error downloading file: {e}")
     
-
-my_list = ["gbxxJoq4GqJcnLw","3LpRC3Ckz5XjF6w","WQiipC7sQpiyojx","czKcWBWzTDyCPdT","8K4kMmg8nsTGFxt","FW3xYKXr7WnzAWq","gFAcXTRYpnfkSfk","g47exX3f769D7Np","6z63Dpn43BwkggY","QpgabPXJzZM7StD","sGgQEA54cQ3Y9JW","rqrTmqqezwBGipR","SrGCCkbd2AobjjY","g852X8ybqn7w2pL","LngeNzi2cfXKMiX","33k3sMwNY5TKXTg","Ay2ZkZyeQNDjyfa","JPqWAsffRt99ySJ","nP7REAQ5aQ4RYW2","6DMQwXFGMqs8zX5","jKdbRbwgKFijRtc","rbbr8Ep3qAoPj5y","cZLTKTn3yTTJe7P","eWDcrrGNLEmzbs9","meg9ZNWmCGESgsC","dnyP2drMTRyw87E","SnFSY86MjSfXyB8","gZYK5idR4KdJqma","SfWBtnDxrN9qs2t"]
+            
+my_list = ["gbxxJoq4GqJcnLw","WQiipC7sQpiyojx","XF4zAKoQj8yCx3p","fmNHWqZYycqDAgd","j5XgcqBirTe85nG","zpyWAj3mMeADHCt","dfA63am93BqkAeR","ABbmjHwkrRK5F4e","iCm33pB7LjWnd5q","zDF5f7E6ggrca73","Ay2ZkZyeQNDjyfa","nP7REAQ5aQ4RYW2","6DMQwXFGMqs8zX5","4REmwgHG6A5fwcL","9yWQQm4aaRsgHNa","cZLTKTn3yTTJe7P","LF66JqZy3mMr4wy","r87Bi5xrLPpCSfo","xCZ57p6SmP4GkFP","dS6zKbP9cGmtNEY","y8YBxxsizxsCHRE","dnyP2drMTRyw87E","Yad7LeWTiqZc3Jm","je5X9ECWdoC6w4o","NgBasfHjWkQecKP"]
 
 
 local_filename = "COA_2509CBR0194-005.pdf"
