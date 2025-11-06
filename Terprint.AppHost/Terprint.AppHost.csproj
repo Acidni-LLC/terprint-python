@@ -29,4 +29,7 @@
   <ItemGroup>
     <Folder Include="Data\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include=".github\workflows\azure-dev.yaml" />
+  </ItemGroup>
 </Project>
