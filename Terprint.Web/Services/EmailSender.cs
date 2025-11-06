@@ -18,7 +18,7 @@ namespace Terprint.Web.Services
             
                 var apiKey = "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";
                 var client = new SendGridClient(apiKey);
-                var from = new EmailAddress("jgill@savitas.net", "Jamieson Gill");
+                var from = new EmailAddress("jgill@acidni.net", "Jamieson Gill");
                 // var subject = "Sending with SendGrid is Fun";
                 var to = new EmailAddress(email );
                 var plainTextContent = htmlMessage;
