@@ -4,10 +4,10 @@ import requests
 from bcolors import bcolors
 
 def get_token_for_client(scope):
- client_id = "8cd148e2-a21e-4522-9180-541c6b10f955" #TerprintPrincipal
+ client_id = "de9598fc-7ece-4da1-8df7-20d9b4f9ad81" #TerprintPrincipal
  #client_id = "8cf359c9-690d-4d76-9dcf-c2e4dc71e975" #terprint2
- authority_url = "https://login.microsoftonline.com/fa959b35-58f5-4816-9511-a6ead495f2e5"
- client_secret = "N5V8Q~qLC73Y241AlC3SRv_jTnTYGrq10K6KxaQ-" #TerprintPrincipal
+ authority_url = "https://login.microsoftonline.com/3278dcb1-0a18-42e7-8acf-d3b5f8ae33cd"
+ client_secret = "icJ8Q~1Zl9upHqQsXNYyJ_Oxaz1GYyTjklNnbaAl" #TerprintPrincipal
  #client_secret="DoI8Q~2lmPcLBzy6-i52kLAPV.kK5DGVvQFFCbfO" #terprint2
  app = msal.ConfidentialClientApplication(client_id,authority=authority_url,client_credential=client_secret)
  result = app.acquire_token_for_client(scopes=scope)
@@ -29,9 +29,9 @@ print(bcolors.OKGREEN + str(bearer_token) + bcolors.ENDC +'\n')
 # print('\n'+str(response.json())+'\n')
 
 pbi = PowerBI(bearer_token)
-workspace_id = "b264f22b-fe0d-415f-81ae-d81dea949918"  # Replace with your workspace ID
+workspace_id = "bd4ce79f-9b33-4970-acbb-3a6fed220f16"  # Replace with your workspace ID
 #
-dataset_id = "f0dbcb60-b35b-47a1-b77e-d9a33607fae0"      # Replace with your dataset ID
+dataset_id = "1aa05732-eaaf-40b0-a6b2-3766025168e8"      # Replace with your dataset ID
 # Example: List datasets in a workspace
 datasets = pbi.datasets(group=workspace_id)
 dataset = pbi.dataset(dataset_id,workspace_id)
