@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Terprint.Web", "Terprint.We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Terprint.Tests", "Terprint.Tests\Terprint.Tests.csproj", "{88542AE5-A8F7-4AFA-946F-05DF886E188E}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Terprint.Python", "Terprint.Python.pyproj", "{D4B60256-802C-41D8-81EE-BFFCF287AF22}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Terprint.Python", "Terprint.Python\Terprint.Python.pyproj", "{D4B60256-802C-41D8-81EE-BFFCF287AF22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

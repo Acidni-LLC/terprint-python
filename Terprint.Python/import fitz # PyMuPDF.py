@@ -8,6 +8,7 @@ import batchFromUrl
 
 from sqlConnection import insertcannabinoids, insertterpenes,checkTerpene,checkCannabinoid
 from bcolors import bcolors
+
 #from downloadFile import downloadfile
 
 separator ="|"
@@ -22,11 +23,12 @@ dispensary="Sunburn"
 dispensaryid=2
 totalbatches = my_list.__len__()
 batchescount = 0
-
+#if dispensaryid ==2:
+#       downloadfile(my_list,dispensaryid)
 for item in my_list:
     batch = ""
     batchescount = batchescount + 1
-    print (bcolors.OKBLUE+ "batch " + str(batchescount) + " of " + str(totalbatches) + " : " + item+bcolors.ENDC)
+    print (f"{bcolors.OKBLUE} batch {str(batchescount)} {item+bcolors.ENDC} of {bcolors.OKBLUE}  {str(totalbatches)} : {item+bcolors.ENDC}")
     missingfile = 0
     
     if(checkTerpene(item)==True):
@@ -43,14 +45,16 @@ for item in my_list:
             
         #url = "https://mete.labdrive.net/s/g47exX3f769D7Np"
         local_filename = batch+".pdf"  # Replace with your desired local filename
-
-        if os.path.exists(local_filename):
-            print(f"File '{batch}' already exists.")
+        
+        local_path ='C:/Users/JamiesonGill/source/repos/Acidni-LLC/Terprint/Terprint.Python/files/test_output'
+        local_pathandPDFfile = local_path +'/'+ local_filename
+        if os.path.exists(local_pathandPDFfile):
+            print(f"File '{local_pathandPDFfile}' already exists.")
         # continue
             # If you want to redownload the file even if it exists, set redownload to 1
             # redownload = 1
         else:
-            print(f"File '{batch}' does not exist. It will be downloaded.")
+            print(f"File '{local_pathandPDFfile}' does not exist. It will be downloaded.")
             missingfile = 1
 
 
@@ -61,29 +65,29 @@ for item in my_list:
                 }
                 response = requests.get(url, headers=headers, stream=True, timeout=10)  # Use stream=True for large files
                 response.raise_for_status()  # Raise an exception for bad status codes (4xx or 5xx)
-                local_path ='C:/Users/JamiesonGill/source/repos/Terprint/test_output/'
-                local_path = local_path + local_filename
-                with open(local_filename, 'wb') as f:
+                with open(local_pathandPDFfile, 'wb') as f:
                     for chunk in response.iter_content(chunk_size=8192):
                         f.write(chunk)
-                print(f"File '{local_path}' downloaded successfully.")
+                print(f"File '{local_pathandPDFfile}' downloaded successfully.")
  
 
             except requests.exceptions.RequestException as e:
-                print(f"Error downloading file: {e}")
+                print(f"Error downloading file: {local_pathandPDFfile} {e}")
 
 
         #https://www.trulieve.com/content/dam/trulieve/en/lab-reports/84573_0007311573.pdf?download=true
-        pdf_path = "C:\\JamiesonGill\\source\\repos\\Terprint\\test_output\\"+batch+".pdf"
-        pdf_path = local_filename
-        print("PDF Path:" + pdf_path)
-        def extract_text_from_pdf(pdf_path):
+        backslashpath = "C:\\Users\\JamiesonGill\\source\\repos\\Acidni-LLC\\Terprint\\Terprint.Python\\files\\test_output\\"
+        pdf_path = "C:\\Users\\JamiesonGill\\source\\repos\\Acidni-LLC\\Terprint\\Terprint.Python\\files\\test_output\\"+batch+".pdf"
+       # pdf_path = local_path
+        def extract_text_from_pdf(local_pathandfile):
+            print("extracting text from " +pdf_path)
             """Extracts all text from a PDF file."""
             text = ""
             try:
                 with fitz.open(pdf_path) as doc:
                     for page in doc:
                         text += page.get_text()
+                print("text extracted")
             except Exception as e:
                 print(f"Error extracting text: {e}")
             return text
@@ -95,7 +99,7 @@ for item in my_list:
             format = 0
             print(bcolors.OKGREEN + "BEGIN format:" + str(format) + bcolors.ENDC)
             #Example usage
-            extracted_text = extract_text_from_pdf(pdf_path)
+            extracted_text = extract_text_from_pdf(local_pathandPDFfile)
             #DETERMINE IF NEW OR OLD FORMAT
             if "RA0571996" in extracted_text:
                 format = 1
@@ -111,8 +115,8 @@ for item in my_list:
 
             print(bcolors.OKGREEN + "END format:" + str(format) + bcolors.ENDC)
             print(item+":"+str(format))
-
-            with open(batch+"_extractall.txt", "w", encoding='utf-8') as f:
+            local_pathandExtractAllfile =local_path+"/"+ batch+"_extractall.txt"
+            with open(local_pathandExtractAllfile, "w", encoding='utf-8') as f:
                 f.write(extracted_text)
 
             outputline = ""
@@ -244,10 +248,10 @@ for item in my_list:
                 # print("1\n"+terpenetext)
                 # print("1\n"+cannabinoidtext) 
 
-                with open(str(format)+"\\terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
+                with open(backslashpath+str(format)+"\\terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
                     outputtext =  terpenetext            
                     f.write(outputtext)
-                with open(str(format)+"\\cannabinoids\\"+batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
+                with open(backslashpath+str(format)+"\\cannabinoids\\"+batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
                     outputtext = cannabinoidtext            
                     f.write(outputtext)
             
@@ -419,10 +423,10 @@ for item in my_list:
                 # print("2\n"+terpenetext)
                 # print("2\n"+cannabinoidtext)
         
-                with open(str(format)+"\\terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
+                with open(backslashpath+str(format)+"\\terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
                     outputtext =  terpenetext            
                     f.write(outputtext)
-                with open(str(format)+"\\cannabinoids\\"+batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
+                with open(backslashpath+str(format)+"\\cannabinoids\\"+batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
                     outputtext = cannabinoidtext            
                     f.write(outputtext)
 
@@ -561,10 +565,10 @@ for item in my_list:
                 # print("2\n"+terpenetext)
                 # print("2\n"+cannabinoidtext)
         
-                with open(str(format)+"\\terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
+                with open(backslashpath+str(format)+"\\terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
                     outputtext =  terpenetext            
                     f.write(outputtext)
-                with open(str(format)+"\\cannabinoids\\"+batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
+                with open(backslashpath+str(format)+"\\cannabinoids\\"+batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
                     outputtext = cannabinoidtext            
                     f.write(outputtext)
 
@@ -730,10 +734,10 @@ for item in my_list:
                 # print("2\n"+terpenetext)
                 # print("2\n"+cannabinoidtext)
         
-                with open(str(format)+"\\terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
+                with open(backslashpath+str(format)+"\\terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
                     outputtext =  terpenetext            
                     f.write(outputtext)
-                with open(str(format)+"\\cannabinoids\\"+batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
+                with open(backslashpath+str(format)+"\\cannabinoids\\"+batch+"_cannabinoids.txt", "w", encoding='utf-8') as f:
                     outputtext = cannabinoidtext            
                     f.write(outputtext)
                                     
@@ -741,7 +745,7 @@ for item in my_list:
         except Exception as e:
             exception_message = str(e)
             exception_type, exception_object, exception_traceback = sys.exc_info() 
-            print(bcolors.FAIL  +  item + ":" + str(format) + ":"+str(exception_traceback.tb_lineno) +" Error:", e + bcolors.ENDC)
+            print  (item + ":" + str(format) + ":"+str(exception_traceback.tb_lineno) +" Error:", e  )
         # print("\n"+extracted_text)
             print("\n\n--------------------------------")
 def has_decimal_places_str(number):

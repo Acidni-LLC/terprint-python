@@ -1,0 +1,254 @@
+       SUMMARY
+TESTED
+Potency
+TESTED
+Mycotoxins
+PASSED
+Terpenes
+TESTED
+Microbials
+PASSED
+Pesticides
+PASSED
+Total Yeast
+and Mold
+PASSED
+Total
+Contaminant
+Load
+PASSED
+Water Activity
+PASSED
+Residual
+Solvents
+NOT TESTED
+Moisture
+PASSED
+PASSED
+Heavy Metals
+Filth and Foreign
+Material
+PASSED
+Total Aerobic
+Bacteria
+NOT TESTED
+Homogeneity
+NOT TESTED
+POTENCY
+TESTED
+      Analyte
+Result
+LOD
+Result
+(mg/g)
+%
+(mg/g)
+mg/unit
+259
+25.9
+0.000012
+THCA
+907
+8.76
+0.876
+0.000008
+CBGA
+30.7
+8.29
+0.829
+0.00002
+d9-THC
+29.0
+1.17
+0.117
+0.000015
+CBG
+4.08
+ND
+ND
+0.000004
+CBC
+N/A
+ND
+ND
+0.00001
+CBD
+N/A
+ND
+ND
+0.000012
+CBDA
+N/A
+ND
+ND
+0.000017
+CBDV
+N/A
+ND
+ND
+0.000009
+CBN
+N/A
+ND
+ND
+0.000246
+d8-THC
+N/A
+ND
+ND
+0.000015
+THCV
+N/A
+Sample Analyzed By:
+69
+TM-001 Potency
+LC2 Potency 3.batch.bin
+10/24/2025 16:05
+Batch Reviewed By:
+1000
+040
+032
+HPLC
+Date/Time:
+Date/Time:
+10/25/2025 9:15
+Dilution:
+Sample Prepared By:
+Analysis #
+10/25/2025 13:15
+Date/Time:
+0.5028
+Analysis Method:
+Specimen wt (g):
+Instrument Used:
+As Received
+27.7%
+Total THC
+Total CBD
+POTENCY SUMMARY
+Total Cannabinoids
+23.5%
+0.000%
+THC Label Claim
+CBD Label Claim
+N/A
+N/A
+N/A
+N/A
+Total CBD/Unit
+N/A
+Total THC/Unit
+824 mg
+Total Cannabinoids/Unit
+970.4 mg
+As Received
+As Received
+As Received
+As Received
+As Received
+TERPENES SUMMARY
+            Analyte
+Result
+Result
+(ug/g)
+%
+beta-Myrcene
+0.687
+6871.73
+E-Caryophyllene
+0.554
+5537.74
+D-Limonene
+0.303
+3026.7
+Linalool
+0.194
+1939.33
+alpha-Humulene
+0.156
+1558.19
+Ocimenes
+0.106
+1063.83
+alpha-Bisabolol
+0.081
+808.241
+Terpineol
+0.061
+614.308
+beta-Pinene
+0.052
+524.628
+Endo-Fenchyl Alcohol
+0.052
+515.66
+                              Total Terpenes: 2.3%
+Showing top 10 Terpenes, full analysis on the following page.
+10/21/2025
+Sampling Date:
+Bill's Reserve Speaker Knockers 3.5g Flower
+Flower
+Certificate of Analysis
+Order #
+2510CBR0135-001
+2510CBR0135
+Method Testing Laboratories
+2720 Broadway Center Blvd.
+Brandon, FL 33510
+Lic #CMTL-2023-00012
+Bill's Reserve Speaker Knockers 3.5g Flower
+Sample #
+Receipt Date:
+Completion Date:
+Sampled Gross Weight:
+Sampling Method:
+Product Name:
+Description:
+Matrix:
+Client: Sunburn
+Address:
+Address:
+25548 County Rd 44A
+Eustis, FL  32736
+Batch #:
+Batch Date:
+Extracted From:
+Seed to Sale #:
+Lot ID:
+Cultivars:
+Test Reg State:
+Cultivation Facility:
+Cultivation Date:
+Production Facility:
+Production Date:
+10/23/2025 12:10
+10/27/2025 16:12
+10/23/2025
+28.52 g
+7511887661320476
+10/23/2025
+9172193828531841
+7511887661320476
+7399891892903041
+Speaker Knockers
+Cannabis FL
+Winter Garden
+Winter Garden
+9/14/2025
+LAB-028
+Total Batch Wgt or Vol: 4,907g
+Product g/unit: 3.50
+Page
+Definitions and Abbreviations used in this report: Total THC = Delta 9 THC + (THCA*0.877), Total CBD = CBD + (CBDA*0.877), Total Cannabinoids = THC + THCA + CBD + CBDA + CBG + CBGA + Delta 8 THC + THCV + CBDV + CBC + CBN, Total THC and Total CBD are
+expressed as mg in total package weight, (Dilution) = Dilution Factor, (%) = Percent, (mg/g) = Milligrams per Gram, (mg/mL) = Milligrams per Milliliter, (mg/kg) = Milligrams per Kilogram, (ug/kg) = Microgram per Kilogram, (cfu/g) = Colony Forming Unit per Gram,
+Action Limit of Absent is equivalent to < 1 cfu/g, (aw) = Water Activity, (LOD) = Limit of Detection, (LOQ) = Limit of Quantitation; (ppm) = parts per million; (ppb) = parts per billion; Units for ppm also expressed as (mg/kg); Units for ppb also expressed as (ug/kg).All
+measurements and calibrations at Method Testing Labs are traceable to the International System of Units (SI) through an unbroken chain of comparisons and from recognized national metrology institutes. Compounded measurement uncertainty for any analyte is
+available upon request.
+This report shall not be reproduced, without written approval, from Method Testing Labs.  The results of this report relate only to the material or product analyzed.  Test results are confidential unless explicitly waived otherwise.  Accredited by a third-party
+accrediting body as a competent testing laboratory pursuant to ISO/IEC 17025:2017 of the International Organization for Standardization.
+of
+Anthony Repay
+10/27/2025 16:12
+Lab Director
+1
+1
