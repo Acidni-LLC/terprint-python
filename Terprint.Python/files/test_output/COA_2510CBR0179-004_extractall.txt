@@ -1,0 +1,254 @@
+       SUMMARY
+TESTED
+Potency
+TESTED
+Mycotoxins
+PASSED
+Terpenes
+TESTED
+Microbials
+PASSED
+Pesticides
+PASSED
+Total Yeast
+and Mold
+PASSED
+Total
+Contaminant
+Load
+PASSED
+Water Activity
+PASSED
+Residual
+Solvents
+NOT TESTED
+Moisture
+PASSED
+PASSED
+Heavy Metals
+Filth and Foreign
+Material
+PASSED
+Total Aerobic
+Bacteria
+NOT TESTED
+Homogeneity
+NOT TESTED
+POTENCY
+TESTED
+      Analyte
+Result
+LOD
+Result
+(mg/g)
+%
+(mg/g)
+mg/unit
+314
+31.4
+0.000012
+THCA
+1100
+17.5
+1.75
+0.000008
+CBGA
+61.3
+3.61
+0.361
+0.00002
+d9-THC
+12.6
+1.42
+0.142
+0.000015
+CBG
+4.97
+ND
+ND
+0.000004
+CBC
+N/A
+ND
+ND
+0.00001
+CBD
+N/A
+ND
+ND
+0.000012
+CBDA
+N/A
+ND
+ND
+0.000017
+CBDV
+N/A
+ND
+ND
+0.000009
+CBN
+N/A
+ND
+ND
+0.000246
+d8-THC
+N/A
+ND
+ND
+0.000015
+THCV
+N/A
+Sample Analyzed By:
+69
+TM-001 Potency
+LC3 Potency1.batch.bin
+10/29/2025 14:01
+Batch Reviewed By:
+1000
+040
+032
+HPLC
+Date/Time:
+Date/Time:
+10/30/2025 9:59
+Dilution:
+Sample Prepared By:
+Analysis #
+10/30/2025 13:29
+Date/Time:
+0.5254
+Analysis Method:
+Specimen wt (g):
+Instrument Used:
+As Received
+33.7%
+Total THC
+Total CBD
+POTENCY SUMMARY
+Total Cannabinoids
+27.9%
+0.000%
+THC Label Claim
+CBD Label Claim
+N/A
+N/A
+N/A
+N/A
+Total CBD/Unit
+N/A
+Total THC/Unit
+978 mg
+Total Cannabinoids/Unit
+1179.6 mg
+As Received
+As Received
+As Received
+As Received
+As Received
+TERPENES SUMMARY
+            Analyte
+Result
+Result
+(ug/g)
+%
+D-Limonene
+0.861
+8607.06
+E-Caryophyllene
+0.617
+6168.96
+Ocimenes
+0.313
+3129.84
+alpha-Humulene
+0.221
+2211.3
+Linalool
+0.211
+2109.24
+alpha-Pinene
+0.178
+1780.38
+beta-Pinene
+0.134
+1338.12
+Terpineol
+0.121
+1213.38
+beta-Myrcene
+0.116
+1156.68
+Endo-Fenchyl Alcohol
+0.113
+1134
+                              Total Terpenes: 3%
+Showing top 10 Terpenes, full analysis on the following page.
+10/28/2025
+Sampling Date:
+White Gusherz 3.5g Flower
+Flower
+Certificate of Analysis
+Order #
+2510CBR0179-004
+2510CBR0179
+Method Testing Laboratories
+2720 Broadway Center Blvd.
+Brandon, FL 33510
+Lic #CMTL-2023-00012
+White Gusherz 3.5g Flower
+Sample #
+Receipt Date:
+Completion Date:
+Sampled Gross Weight:
+Sampling Method:
+Product Name:
+Description:
+Matrix:
+Client: Sunburn
+Address:
+Address:
+25548 County Rd 44A
+Eustis, FL  32736
+Batch #:
+Batch Date:
+Extracted From:
+Seed to Sale #:
+Lot ID:
+Cultivars:
+Test Reg State:
+Cultivation Facility:
+Cultivation Date:
+Production Facility:
+Production Date:
+10/28/2025 12:10
+10/30/2025 18:49
+10/28/2025
+28.34 g
+9930216802216006
+10/28/2025
+6669742147819303
+9930216802216006
+9432684756223785
+White Gusherz
+Cannabis FL
+Winter Garden
+Winter Garden
+10/10/2025
+LAB-028
+Total Batch Wgt or Vol: 3,552.5g
+Product g/unit: 3.50
+Page
+Definitions and Abbreviations used in this report: Total THC = Delta 9 THC + (THCA*0.877), Total CBD = CBD + (CBDA*0.877), Total Cannabinoids = THC + THCA + CBD + CBDA + CBG + CBGA + Delta 8 THC + THCV + CBDV + CBC + CBN, Total THC and Total CBD are
+expressed as mg in total package weight, (Dilution) = Dilution Factor, (%) = Percent, (mg/g) = Milligrams per Gram, (mg/mL) = Milligrams per Milliliter, (mg/kg) = Milligrams per Kilogram, (ug/kg) = Microgram per Kilogram, (cfu/g) = Colony Forming Unit per Gram,
+Action Limit of Absent is equivalent to < 1 cfu/g, (aw) = Water Activity, (LOD) = Limit of Detection, (LOQ) = Limit of Quantitation; (ppm) = parts per million; (ppb) = parts per billion; Units for ppm also expressed as (mg/kg); Units for ppb also expressed as (ug/kg).All
+measurements and calibrations at Method Testing Labs are traceable to the International System of Units (SI) through an unbroken chain of comparisons and from recognized national metrology institutes. Compounded measurement uncertainty for any analyte is
+available upon request.
+This report shall not be reproduced, without written approval, from Method Testing Labs.  The results of this report relate only to the material or product analyzed.  Test results are confidential unless explicitly waived otherwise.  Accredited by a third-party
+accrediting body as a competent testing laboratory pursuant to ISO/IEC 17025:2017 of the International Organization for Standardization.
+of
+Anthony Repay
+10/30/2025 18:49
+Lab Director
+1
+1

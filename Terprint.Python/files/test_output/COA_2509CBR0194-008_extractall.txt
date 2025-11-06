@@ -1,0 +1,254 @@
+       SUMMARY
+TESTED
+Potency
+TESTED
+Mycotoxins
+PASSED
+Terpenes
+TESTED
+Microbials
+PASSED
+Pesticides
+PASSED
+Total Yeast
+and Mold
+PASSED
+Total
+Contaminant
+Load
+PASSED
+Water Activity
+PASSED
+Residual
+Solvents
+NOT TESTED
+Moisture
+PASSED
+PASSED
+Heavy Metals
+Filth and Foreign
+Material
+PASSED
+Total Aerobic
+Bacteria
+NOT TESTED
+Homogeneity
+NOT TESTED
+POTENCY
+TESTED
+      Analyte
+Result
+LOD
+Result
+(mg/g)
+%
+(mg/g)
+mg/unit
+335
+33.5
+0.000012
+THCA
+1170
+6.41
+0.641
+0.000008
+CBGA
+22.4
+4.64
+0.464
+0.00002
+d9-THC
+16.2
+1.81
+0.181
+0.000015
+CBG
+6.33
+1.05
+0.105
+0.000012
+CBDA
+3.68
+ND
+ND
+0.000004
+CBC
+N/A
+ND
+ND
+0.00001
+CBD
+N/A
+ND
+ND
+0.000017
+CBDV
+N/A
+ND
+ND
+0.000009
+CBN
+N/A
+ND
+ND
+0.000246
+d8-THC
+N/A
+ND
+ND
+0.000015
+THCV
+N/A
+Sample Analyzed By:
+040
+TM-001 Potency
+LC2 Potency.batch.bin
+10/6/2025 15:23
+Batch Reviewed By:
+1000
+040
+029
+HPLC
+Date/Time:
+Date/Time:
+10/6/2025 15:44
+Dilution:
+Sample Prepared By:
+Analysis #
+10/6/2025 16:06
+Date/Time:
+0.5208
+Analysis Method:
+Specimen wt (g):
+Instrument Used:
+As Received
+34.9%
+Total THC
+Total CBD
+POTENCY SUMMARY
+Total Cannabinoids
+29.8%
+0.092%
+THC Label Claim
+CBD Label Claim
+N/A
+N/A
+N/A
+N/A
+Total CBD/Unit
+3.23 mg
+Total THC/Unit
+1040 mg
+Total Cannabinoids/Unit
+1221.1 mg
+As Received
+As Received
+As Received
+As Received
+As Received
+TERPENES SUMMARY
+            Analyte
+Result
+Result
+(ug/g)
+%
+D-Limonene
+0.942
+9419.2
+beta-Myrcene
+0.604
+6036.8
+E-Caryophyllene
+0.566
+5656
+Linalool
+0.451
+4513.6
+Ocimenes
+0.317
+3169.6
+alpha-Humulene
+0.127
+1265.6
+Guaiol
+0.124
+1243.2
+beta-Pinene
+0.111
+1114.4
+Terpineol
+0.091
+913.92
+Endo-Fenchyl Alcohol
+0.091
+910.56
+                              Total Terpenes: 3.59%
+Showing top 10 Terpenes, full analysis on the following page.
+10/2/2025
+Sampling Date:
+Fat Albert 3.5g Flower
+Flower
+Certificate of Analysis
+Order #
+2509CBR0194-008
+2509CBR0194
+Method Testing Laboratories
+2720 Broadway Center Blvd.
+Brandon, FL 33510
+Lic #CMTL-2023-00012
+Fat Albert 3.5g Flower
+Sample #
+Receipt Date:
+Completion Date:
+Sampled Gross Weight:
+Sampling Method:
+Product Name:
+Description:
+Matrix:
+Client: Sunburn
+Address:
+Address:
+25548 County Rd 44A
+Eustis, FL  32736
+Batch #:
+Batch Date:
+Extracted From:
+Seed to Sale #:
+Lot ID:
+Cultivars:
+Test Reg State:
+Cultivation Facility:
+Cultivation Date:
+Production Facility:
+Production Date:
+10/2/2025 11:10
+10/06/2025 16:07
+10/2/2025
+28.40 g
+0451841857131655
+10/2/2025
+0348298372611780
+0451841857131655
+6492173376135906
+Fat Albert
+Cannabis FL
+Winter Garden
+Winter Garden
+8/24/2025
+LAB-028
+Total Batch Wgt or Vol: 1,764g
+Product g/unit: 3.50
+Page
+Definitions and Abbreviations used in this report: Total THC = Delta 9 THC + (THCA*0.877), Total CBD = CBD + (CBDA*0.877), Total Cannabinoids = THC + THCA + CBD + CBDA + CBG + CBGA + Delta 8 THC + THCV + CBDV + CBC + CBN, Total THC and Total CBD are
+expressed as mg in total package weight, (Dilution) = Dilution Factor, (%) = Percent, (mg/g) = Milligrams per Gram, (mg/mL) = Milligrams per Milliliter, (mg/kg) = Milligrams per Kilogram, (ug/kg) = Microgram per Kilogram, (cfu/g) = Colony Forming Unit per Gram,
+Action Limit of Absent is equivalent to < 1 cfu/g, (aw) = Water Activity, (LOD) = Limit of Detection, (LOQ) = Limit of Quantitation; (ppm) = parts per million; (ppb) = parts per billion; Units for ppm also expressed as (mg/kg); Units for ppb also expressed as (ug/kg).All
+measurements and calibrations at Method Testing Labs are traceable to the International System of Units (SI) through an unbroken chain of comparisons and from recognized national metrology institutes. Compounded measurement uncertainty for any analyte is
+available upon request.
+This report shall not be reproduced, without written approval, from Method Testing Labs.  The results of this report relate only to the material or product analyzed.  Test results are confidential unless explicitly waived otherwise.  Accredited by a third-party
+accrediting body as a competent testing laboratory pursuant to ISO/IEC 17025:2017 of the International Organization for Standardization.
+of
+Anthony Repay
+10/06/2025 16:07
+Lab Director
+1
+1
