@@ -27,9 +27,7 @@
     <PackageReference Include="System.Text.Json" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".github\workflows\" />
     <Folder Include="Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".github\workflows\azure-dev.yaml" />
   </ItemGroup>
 </Project>
