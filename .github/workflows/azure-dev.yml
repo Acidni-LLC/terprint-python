@@ -47,7 +47,6 @@ jobs:
             --federated-credential-provider "github" `
             --tenant-id "$Env:AZURE_TENANT_ID"
         shell: pwsh
-
         
       - name: Install .NET Aspire workload
         run: dotnet workload install aspire

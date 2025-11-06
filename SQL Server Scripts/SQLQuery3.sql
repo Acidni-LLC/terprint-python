@@ -1,0 +1,10 @@
+SELECT  
+[crca4_favorite]
+      ,[crca4_name]
+      ,[crca4_sku] 
+      ,[crca4_favoritesid]
+      ,[crca4_title] 
+      ,[crca4_user] 
+      ,[crca4_id] 
+      ,[createdon]
+  FROM [dbo].[convertcsv]
