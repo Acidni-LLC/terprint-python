@@ -3,6 +3,13 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# program output and venv folders
+test_output/
+venv/
+.venv/
+env/
+.env/
+
 # User-specific files
 *.rsuser
 *.suo

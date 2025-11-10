@@ -2,12 +2,14 @@ import requests
 from msal import ConfidentialClientApplication
 import json
 
+# https://learn.microsoft.com/en-us/power-bi/developer/embedded/embed-service-principal?tabs=azure-portal
+
 # --- CONFIGURATION ---
 client_id = "8cf359c9-690d-4d76-9dcf-c2e4dc71e975"
 authority_url = "https://login.microsoftonline.com/fa959b35-58f5-4816-9511-a6ead495f2e5"
 client_secret = "goj8Q~tXbST6NX58rNqrW-h9bBlPTOz2P1Tmxcx~"
 workspace_id = "b264f22b-fe0d-415f-81ae-d81dea949918"  # Replace with your workspace ID
-dataset_id = "9ab5c5c4-95d4-4902-9de0-74fc45ae7757"      # Replace with your dataset ID
+dataset_id = "9ab5c5c4-95d4-4902-9de0-74fc45ae7757"      # Replace with yowhere pythonur dataset ID
 TENANT_ID = 'fa959b35-58f5-4816-9511-a6ead495f2e5'
 CLIENT_ID = client_id
 CLIENT_SECRET = client_secret
