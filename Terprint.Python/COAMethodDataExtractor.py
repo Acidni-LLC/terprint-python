@@ -1,10 +1,12 @@
 
 from __future__ import annotations
+from binascii import Error
 import re
 import json
 from dataclasses import dataclass, field, asdict
 from datetime import datetime
 from typing import Optional, List, Dict, Any
+from bcolors import bcolors
 
 try:
     from dateutil import parser as date_parser  # type: ignore
@@ -159,6 +161,35 @@ class COA:
         """
         if not text:
             return cls(raw_text=text)
+        def find_byline(intext: str, texttofind: str, aboveorbelow: str) -> Optional[str]:
+            try: 
+                text = ""
+                linenumcounter = 0
+                offset =0
+                linenum = 0
+                if(aboveorbelow == "above"):
+                    offset = -1
+                if(aboveorbelow == "below"):
+                    offset = 1 
+                for line in intext.splitlines():
+                    linenumcounter = linenumcounter + 1
+                #    print("if text in line :" +texttofind +"|" + line)
+                    if texttofind == line:
+                        linenum = linenumcounter +offset
+                        print ('found at line:', linenum)
+                linenumcounter = 0
+                for line in intext.splitlines():
+                    linenumcounter = linenumcounter + 1
+                    if linenumcounter == linenum:
+                        text = line.strip()
+                        print ('found:', text)
+                
+            except Error as ex:
+                
+                print(bcolors.FAIL + "Error : "+Error.description + bcolors.ENDC)
+ 
+                
+            return text
 
         def find_single(pattern: str) -> Optional[str]:
             m = re.search(pattern, text, flags=re.IGNORECASE | re.MULTILINE)
@@ -174,7 +205,7 @@ class COA:
             return list(re.finditer(row_pattern, tail, flags=re.IGNORECASE | re.MULTILINE))
 
         # Basic metadata
-        product_name = find_single(r"Product Name:\s*([^\r\n]+)") or find_single(r"^(?:Product|Blue Zushi .*?)\s*3\.5g Flower",)
+        product_name = find_byline(text,"Cannabis FL","above")
         order_number = find_single(r"Order\s*#:\s*([^\r\n]+)") or find_single(r"Order #\s*([^\r\n]+)")
         sample_number = find_single(r"Sample\s*#:\s*([^\r\n]+)") or find_single(r"Sample #:\s*([^\r\n]+)")
         receipt_date = _parse_date(find_single(r"Receipt Date:\s*([^\r\n]+)"))
@@ -243,7 +274,10 @@ class COA:
                 pct = _parse_float(m.group(3))
                 mg_unit = _parse_float(m.group(4))
                 lod = _parse_float(m.group(5))
-                potency_analytes.append(AnalyteResult(name=name, result_mg_per_g=r_mg_g, percent=pct, mg_per_unit=mg_unit, lod=lod))
+                excludeList = {"lab director"}
+                cr = AnalyteResult(name=name, result_mg_per_g=r_mg_g, percent=pct, mg_per_unit=mg_unit, lod=lod)
+                if(cr.name.lower() not in excludeList):
+                    potency_analytes.append(cr)
 
         # Potency summary totals
         total_thc_percent = _parse_float(find_single(r"Total THC\s*[:\-]?\s*([0-9\.\%]+)")) or _parse_float(find_single(r"Total THC\s*[:\-]?\s*([0-9\.\-]+)%"))
@@ -260,7 +294,10 @@ class COA:
             val2 = _parse_float(m.group(3))
             # Heuristic: if second value is large (1000s) it's likely ug/g; keep both as fields
             # Many reports place ug/g then % or ug/g then mg/g — store as ug/g and percent (if percent looks like fraction)
-            terpenes.append(TerpeneResult(name=name, result_ug_per_g=val1, percent=val2))
+            excludeList = {"thca","cbga","lab director","cbg"}
+            tr = TerpeneResult(name=name, result_ug_per_g=val1, percent=val2)
+            if(tr.name.lower() not in excludeList):
+                terpenes.append(tr)
 
         # total terpenes
         total_terpenes_percent = _parse_float(find_single(r"Total Terpenes[:\s]*([0-9\.\%]+)")) or _parse_float(find_single(r"Total Terpenes[:\s]*([0-9\.\-]+)%"))
@@ -293,16 +330,16 @@ class COA:
             production_facility=production_facility,
             production_date=production_date,
             summary_status=summary_status,
-            potency_analytes=potency_analytes,
             total_thc_percent=total_thc_percent,
             total_cbd_percent=total_cbd_percent,
             total_cannabinoids_percent=total_cannabinoids_percent,
             total_thc_mg_per_unit=total_thc_mg_per_unit,
             total_cannabinoids_mg_per_unit=total_cannabinoids_mg_per_unit,
-            terpenes=terpenes,
             total_terpenes_percent=total_terpenes_percent,
             lab_name=lab_name,
             lab_license=lab_license,
             lab_director=lab_director,
-            raw_text=text,
+            terpenes=terpenes,
+            potency_analytes=potency_analytes,
+            raw_text=text
         )

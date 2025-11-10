@@ -6,6 +6,7 @@ import os
 from bs4 import BeautifulSoup
 import batchFromUrl
 import COADataModel
+from COAMethodDataExtractor import COA
 
 from sqlConnection import insertcannabinoids, insertterpenes, checkTerpene, checkCannabinoid, insertBatch
 from bcolors import bcolors
@@ -19,15 +20,16 @@ redownload = 0
 #dispensary="Trulieve"
 #dispensaryid=1
 my_list = ["AfCP8Lj3XkzHems","REYxZB8sRQ4KwKG","NJiRDgnPDYBtAnX","XF4zAKoQj8yCx3p","fmNHWqZYycqDAgd","dfA63am93BqkAeR","ABbmjHwkrRK5F4e","ERHxaFsjM9pyotE","iCm33pB7LjWnd5q","KTcZ6JgHdpqoAEx","zDF5f7E6ggrca73","Ay2ZkZyeQNDjyfa","nP7REAQ5aQ4RYW2","5RzcEb3k8B4ALo4","dxDjCKX2xmAwYtW","6DMQwXFGMqs8zX5","4REmwgHG6A5fwcL","6T5P2wJxs4sBAR4","9yWQQm4aaRsgHNa","cZLTKTn3yTTJe7P","r87Bi5xrLPpCSfo","xCZ57p6SmP4GkFP","y8YBxxsizxsCHRE","mj6WiyWX8HiAFxE","Yad7LeWTiqZc3Jm"]
-# # #my_list = ["SfWBtnDxrN9qs2t"]
+#my_list = ["AfCP8Lj3XkzHems"]
 dispensary="Sunburn"
 dispensaryid=2
 productType ="Flower"
 totalbatches = my_list.__len__()
 batchescount = 0
 #if dispensaryid ==2:
-#       downloadfile(my_list,dispensaryid)
+#       downloadfile(my_list,dispensaryid)ter
 for item in my_list:
+    batchin = item
     batch = ""
     batchescount = batchescount + 1
     print (f"{bcolors.OKBLUE} batch {str(batchescount)} {item+bcolors.ENDC} of {bcolors.OKBLUE}  {str(totalbatches)} : {item+bcolors.ENDC}")
@@ -442,22 +444,27 @@ for item in my_list:
 
                 extracted_text = extract_text_from_pdf(pdf_path)
                 coadata = COADataModel.Batch.from_text(extracted_text)
-               
-                batchid =  insertBatch(coadata, productType, productType, dispensaryid, "jgill@acidnillc.onmicrosoft.com")
+                coa = COA.from_text(extracted_text)
+                json_text = coa.to_json() 
+               # print("\n\n"+json_text+"\n\n")
+                batchName = coadata.order_number +"_"+ batchin
+                batchid =  insertBatch(
+                    coa, productType, 
+                    dispensaryid, "jgill@acidnillc.onmicrosoft.com",json_text, batchName)
             # print(extracted_text)
             # with open(batch+"_extractall.txt", "w", encoding='utf-8') as f:
                 # f.write(extracted_text)
                     
-            # print("2wrote text:\n")
-                terpenetext = extracted_text.split("(ug/g)\n%", maxsplit=1)[1]
-                terpenetext = terpenetext.split("                              Total Terpenes", maxsplit=1)[0]    
+            # # print("2wrote text:\n")
+            #     terpenetext = extracted_text.split("(ug/g)\n%", maxsplit=1)[1]
+            #     terpenetext = terpenetext.split("                              Total Terpenes", maxsplit=1)[0]    
 
-            #  print("3found terpenes:\n")
+            # #  print("3found terpenes:\n")
                 
-                #terpenetext = extract_text_from_pdf(terpenetext)
+            #     #terpenetext = extract_text_from_pdf(terpenetext)
 
-                cannabinoidtext = extracted_text1.split("mg/unit", maxsplit=1)[1]
-                cannabinoidtext  =cannabinoidtext.split("Sample Analyzed By", maxsplit=1)[0]
+            #     cannabinoidtext = extracted_text1.split("mg/unit", maxsplit=1)[1]
+            #     cannabinoidtext  =cannabinoidtext.split("Sample Analyzed By", maxsplit=1)[0]
 
                 outputlines = ""
                 outputline = ""
@@ -472,25 +479,27 @@ for item in my_list:
                 
         #CANNABINOIDS
                 outputlines = ""
-                for cannabinoid in coadata.cannabinoids:
+                
+                for cannabinoid in coa.potency_analytes:
                     outputline = ""
                     outputline = batch +separator+  str(index) + separator+ cannabinoid.name + separator + str(cannabinoid.percent) + separator + str(cannabinoid.mg_per_unit) +    "\n"
                     # print(cannabinoid.name + " " + str(cannabinoid.percent) + " " + str(cannabinoid.mg_per_unit))
                     
                     outputlines = outputlines +  outputline 
-                
-                index = index+ 1
-                print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
-                print(bcolors.OKCYAN + outputline + bcolors.ENDC +"\n")
-                print ("-----------------------------------------------\n")
-                insertcannabinoids(
-                                outputline.split(separator)[0],
-                                outputline.split(separator)[1],
-                                outputline.split(separator)[2],
-                                outputline.split(separator)[4],
-                                outputline.split(separator)[3],           
-                                dispensaryid,
-                                    "jgill@acidnillc.onmicrosoft.com")
+                    
+                    index = index+ 1
+                    print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
+                    print(bcolors.OKCYAN + outputline + bcolors.ENDC +"\n")
+                    print ("-----------------------------------------------\n")
+                    insertcannabinoids(
+                                    outputline.split(separator)[0],
+                                    outputline.split(separator)[1],
+                                    outputline.split(separator)[2],
+                                    outputline.split(separator)[4],
+                                    outputline.split(separator)[3],           
+                                    dispensaryid,
+                                    "jgill@acidnillc.onmicrosoft.com",
+                                    batchid)
                 
                 # for line in cannabinoidtext.splitlines():
                     # line = line.strip()
@@ -551,9 +560,9 @@ for item in my_list:
                 index = 1
                 setheader = True
                 outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"(ug/g)"+separator+"Percent\n"
-                for terp in coadata.terpenes:
+                for terp in coa.terpenes:
                     outputline = ""
-                    outputline =  batch +separator+  str(index) + separator+ terp.name + separator + str(terp.ug_per_g) + separator + str(terp.percent) +    "\n"
+                    outputline =  batch +separator+  str(index) + separator+ terp.name + separator + str(terp.result_ug_per_g) + separator + str(terp.percent) +    "\n"
                     # print(terp.name + " " + str(terp.ug_per_g) + " " + str(terp.percent_of_total))
                     
                     print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
@@ -566,10 +575,11 @@ for item in my_list:
                                     outputline.split(separator)[4], 
                                     outputline.split(separator)[3],
                                     dispensaryid,
-                                    "jgill@acidnillc.onmicrosoft.com")
+                                    "jgill@acidnillc.onmicrosoft.com",
+                                    batchid)
                     outputlines = outputlines + outputline
                     index=index+1
-                    
+                terpenetext = outputlines
                 # for line in terpenetext.splitlines():     
                 #     if position == skipcount:
                 #         outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"(ug/g)"+separator+"Percent\n"
