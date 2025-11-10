@@ -1,0 +1,63 @@
+--SELECT TOP (20) *  FROM [dbo].[cannabinoidResults]
+
+--SELECT TOP (20) *  FROM [dbo].terpeneResults
+
+DECLARE @dispensaryid int = 2;
+DECLARE @date date =      '2025-11-10';     
+  delete from cannabinoidResults 
+  SELECT distinct count(batch)
+  FROM vw_cannabinoidResults
+  where dispensaryId = @dispensaryid
+  SELECT distinct count(batch)
+  FROM vw_terpeneResults
+  where dispensaryId = @dispensaryid
+  
+  SELECT *
+  FROM vw_terpeneResults
+ where batch not in (select batch from vw_cannabinoidResults) and 
+  dispensaryId = @dispensaryid
+  order by created desc,batch,[index]
+  SELECT *
+  FROM vw_cannabinoidResults
+ where batch not in (select batch from vw_terpeneResults) and 
+  dispensaryId = @dispensaryid
+  order by created desc, batch,[index]
+  
+  SELECT distinct Cannabinoid
+  FROM vw_cannabinoidResults
+ --where batch ='57901_0007452411' 
+  where dispensaryId = @dispensaryid and created  >= @date
+  
+  SELECT distinct terpene
+  FROM vw_terpeneResults
+ --where batch ='57901_0007452411' 
+  where dispensaryId = @dispensaryid and created  >= @date
+
+
+  SELECT *
+  FROM vw_cannabinoidResults
+ --where batch ='57901_0007452411' 
+  where dispensaryId = @dispensaryid
+  order by cannabinoidResultId desc, batch,[index]
+  
+
+  SELECT *
+  FROM vw_terpeneResults
+ --where batch ='57901_0007452411' 
+  --where batch like '%gbxx%'
+  where dispensaryId = @dispensaryid
+  order by terpeneResultId desc, batch,[index]
+
+  /*
+  delete from terpeneResults  
+  where dispensaryId = @dispensaryid
+
+  delete from cannabinoidResults 
+  where dispensaryId = @dispensaryid
+
+  delete from cannabinoidResults 
+  where batch like '%gbxx%'
+  
+  delete from terpeneResults  
+ where batch like '%gbxx%'
+  */

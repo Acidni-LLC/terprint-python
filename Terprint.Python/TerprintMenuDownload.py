@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import batchFromUrl
 import COADataModel
 
-from sqlConnection import insertcannabinoids, insertterpenes,checkTerpene,checkCannabinoid
+from sqlConnection import insertcannabinoids, insertterpenes, checkTerpene, checkCannabinoid, insertBatch
 from bcolors import bcolors
 
 #from downloadFile import downloadfile
@@ -22,6 +22,7 @@ my_list = ["AfCP8Lj3XkzHems","REYxZB8sRQ4KwKG","NJiRDgnPDYBtAnX","XF4zAKoQj8yCx3
 # # #my_list = ["SfWBtnDxrN9qs2t"]
 dispensary="Sunburn"
 dispensaryid=2
+productType ="Flower"
 totalbatches = my_list.__len__()
 batchescount = 0
 #if dispensaryid ==2:
@@ -92,34 +93,7 @@ for item in my_list:
             except Exception as e:
                 print(f"Error extracting text: {e}")
             return text
-        def getTotalTerps(text):
-            print("extracting text from " +pdf_path)
-            """Extracts all text from a PDF file."""
-            text = ""
-            try:
-                1+1
-            except Exception as e:
-                print(f"Error extracting text: {e}")
-            return text
-        def getDate(text):
-            print("extracting text from " +pdf_path)
-            """Extracts all text from a PDF file."""
-            text = ""
-            try:
-                1+1
-            except Exception as e:
-                print(f"Error extracting text: {e}")
-            return text
-        def FillCOAReportHeaderData(text):
-            print("extracting text from " +pdf_path)
-            """Extracts all text from a PDF file."""
-            header = COADataModel.Batch.from_text(text)
-            print(header["initial_gross_weight_g"])
-            try:
-                1+1
-            except Exception as e:
-                print(f"Error extracting text: {e}")
-            return header
+     
         
         try:
             
@@ -463,10 +437,13 @@ for item in my_list:
 
             elif format == 3:
 
- 
+
+                 #new code to use extractor class
 
                 extracted_text = extract_text_from_pdf(pdf_path)
-                extracted_text1 = extracted_text
+                coadata = COADataModel.Batch.from_text(extracted_text)
+               
+                batchid =  insertBatch(coadata, productType, productType, dispensaryid, "jgill@acidnillc.onmicrosoft.com")
             # print(extracted_text)
             # with open(batch+"_extractall.txt", "w", encoding='utf-8') as f:
                 # f.write(extracted_text)
@@ -494,53 +471,74 @@ for item in my_list:
                 index = 1
                 
         #CANNABINOIDS
-                for line in cannabinoidtext.splitlines():
-                    line = line.strip()
-                    if position == skipcount:
-                        outputlines ="Batch"+separator+"Index"+separator+"Cannabinoid"+separator+"Dilution"+separator+"LOD"+separator+"LOQ"+separator+"Result"+separator+"Percent\n"
-                        position = position + 1
-                        skip = False 
-                        continue
-                    elif position < skipcount:
-                        position = position + 1
-                        continue
-                    if "Total " in line:
-                        break 
-                    # if "mg/g" in line:    
-                    # if line == "THCA-A" or line == "Delta-9 THC" or line == "CBDA" or line == "CBD" or line == "CBN" or line == "CBG" or line == "CBC" or line == "THCV" or line == "CBDV" or line == "CBGA" or line == "THC-A" or line == "Delta-9-THC" or line =="Total Active CBD"or line =="Total Active THC" or line =="Delta-8 THC":
-                    #     outputline =  outputline + line  
-                    #     outputlines = outputlines +  outputline
+                outputlines = ""
+                for cannabinoid in coadata.cannabinoids:
+                    outputline = ""
+                    outputline = batch +separator+  str(index) + separator+ cannabinoid.name + separator + str(cannabinoid.percent) + separator + str(cannabinoid.mg_per_unit) +    "\n"
+                    # print(cannabinoid.name + " " + str(cannabinoid.percent) + " " + str(cannabinoid.mg_per_unit))
+                    
+                    outputlines = outputlines +  outputline 
+                
+                index = index+ 1
+                print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
+                print(bcolors.OKCYAN + outputline + bcolors.ENDC +"\n")
+                print ("-----------------------------------------------\n")
+                insertcannabinoids(
+                                outputline.split(separator)[0],
+                                outputline.split(separator)[1],
+                                outputline.split(separator)[2],
+                                outputline.split(separator)[4],
+                                outputline.split(separator)[3],           
+                                dispensaryid,
+                                    "jgill@acidnillc.onmicrosoft.com")
+                
+                # for line in cannabinoidtext.splitlines():
+                    # line = line.strip()
+                    # if position == skipcount:
+                    #     outputlines ="Batch"+separator+"Index"+separator+"Cannabinoid"+separator+"Dilution"+separator+"LOD"+separator+"LOQ"+separator+"Result"+separator+"Percent\n"
+                    #     position = position + 1
+                    #     skip = False 
+                    #     continue
+                    # elif position < skipcount:
+                    #     position = position + 1
+                    #     continue
+                    # if "Total " in line:
+                    #     break 
+                    # # if "mg/g" in line:    
+                    # # if line == "THCA-A" or line == "Delta-9 THC" or line == "CBDA" or line == "CBD" or line == "CBN" or line == "CBG" or line == "CBC" or line == "THCV" or line == "CBDV" or line == "CBGA" or line == "THC-A" or line == "Delta-9-THC" or line =="Total Active CBD"or line =="Total Active THC" or line =="Delta-8 THC":
+                    # #     outputline =  outputline + line  
+                    # #     outputlines = outputlines +  outputline
+                    # #     outputline=""
+                    # # else:
+                    # #     outputline = outputline + "," + line  
+                    # if counter ==1:
+                    #     outputline = batch +"_"+item + "|"+str(index)+"|" +line 
+
+                    # elif counter <5:
+                    #     outputline = outputline + "|"+  line 
+                    # elif counter ==5:
+                    #     outputline =  outputline + "|"+  line + "\n"
+                    #     outputlines = outputlines +  outputline 
+                        
+                    #     print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
+                    #     print(bcolors.OKCYAN + outputline + bcolors.ENDC+"\n")
+                    #     print ("-----------------------------------------------\n")
+                    #     insertcannabinoids(
+                    #                     outputline.split(separator)[0],
+                    #                     outputline.split(separator)[1],
+                    #                     outputline.split(separator)[2],
+                    #                     outputline.split(separator)[6],
+                    #                     outputline.split(separator)[5], 
+                    #                     dispensaryid,
+                    #                     "jgill@acidnillc.onmicrosoft.com")
+                        
                     #     outputline=""
-                    # else:
-                    #     outputline = outputline + "," + line  
-                    if counter ==1:
-                        outputline = batch +"_"+item + "|"+str(index)+"|" +line 
+                    #     counter = 0
+                    #     position = position + 1
+                    #     index=index+1
+                    # counter = counter + 1
 
-                    elif counter <5:
-                        outputline = outputline + "|"+  line 
-                    elif counter ==5:
-                        outputline =  outputline + "|"+  line + "\n"
-                        outputlines = outputlines +  outputline 
-                        
-                        print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
-                        print(bcolors.OKCYAN + outputline + bcolors.ENDC+"\n")
-                        print ("-----------------------------------------------\n")
-                        insertcannabinoids(
-                                        outputline.split(separator)[0],
-                                        outputline.split(separator)[1],
-                                        outputline.split(separator)[2],
-                                        outputline.split(separator)[6],
-                                        outputline.split(separator)[5], 
-                                        dispensaryid,
-                                        "jgill@acidnillc.onmicrosoft.com")
-                        
-                        outputline=""
-                        counter = 0
-                        position = position + 1
-                        index=index+1
-                    counter = counter + 1
-
-                cannabinoidtext = outputlines.replace(",,,%,,%,Analyte,,%,Analyte,mg,,%,Analyte,mg,","") 
+                cannabinoidtext = outputlines
                     
     
         #TERPS
@@ -552,43 +550,63 @@ for item in my_list:
                 skip = True
                 index = 1
                 setheader = True
-                for line in terpenetext.splitlines():     
-                    if position == skipcount:
-                        outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"(ug/g)"+separator+"Percent"+separator+"TotalTerps"+separator+"Date\n"
-                        position = position + 1
-                        skip = False 
-                        continue
-                    elif position < skipcount:
-                        position = position + 1
-                        continue
-                    if "Total " in line:
-                        break  
-                    if counter ==1:
-                        outputline = batch +"_"+item + separator+str(index)+separator +line 
+                outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"(ug/g)"+separator+"Percent\n"
+                for terp in coadata.terpenes:
+                    outputline = ""
+                    outputline =  batch +separator+  str(index) + separator+ terp.name + separator + str(terp.ug_per_g) + separator + str(terp.percent) +    "\n"
+                    # print(terp.name + " " + str(terp.ug_per_g) + " " + str(terp.percent_of_total))
+                    
+                    print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
+                    print(bcolors.OKGREEN + outputline + bcolors.ENDC +"\n")
+                    print ("-----------------------------------------------\n")
+                    insertterpenes(
+                                    outputline.split(separator)[0],
+                                    outputline.split(separator)[1],
+                                    outputline.split(separator)[2],
+                                    outputline.split(separator)[4], 
+                                    outputline.split(separator)[3],
+                                    dispensaryid,
+                                    "jgill@acidnillc.onmicrosoft.com")
+                    outputlines = outputlines + outputline
+                    index=index+1
+                    
+                # for line in terpenetext.splitlines():     
+                #     if position == skipcount:
+                #         outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"(ug/g)"+separator+"Percent\n"
+                #         position = position + 1
+                #         skip = False 
+                #         continue
+                #     elif position < skipcount:
+                #         position = position + 1
+                #         continue
+                #     if "Total " in line:
+                #         break  
+                #     if counter ==1:
+                #         outputline = batch +"_"+item + separator+str(index)+separator +line 
 
-                    elif counter <3:
-                        outputline = outputline + separator+  line 
-                    elif counter ==3:
-                        outputline =  outputline +separator+  line + "\n"
-                        outputlines = outputlines +  outputline 
+                #     elif counter <3:
+                #         outputline = outputline + separator+  line 
+                #     elif counter ==3:
+                #         outputline =  outputline +separator+  line + separator+ coadata.totalterps+separator+coadata.date+    "\n"
+                #         outputlines = outputlines +  outputline 
                         
-                        print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
-                        print(bcolors.OKCYAN + outputline + bcolors.ENDC +"\n")
-                        print ("-----------------------------------------------\n")
-                        insertterpenes(
-                                        outputline.split(separator)[0],
-                                        outputline.split(separator)[1],
-                                        outputline.split(separator)[2],
-                                        outputline.split(separator)[4], 
-                                        outputline.split(separator)[3],
-                                        dispensaryid,
-                                        "jgill@acidnillc.onmicrosoft.com")
-                        outputline=""
-                        counter = 0
-                        position = position + 1
-                        index=index+1
-                    counter = counter + 1
-                terpenetext = outputlines
+                #         print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
+                #         print(bcolors.OKCYAN + outputline + bcolors.ENDC +"\n")
+                #         print ("-----------------------------------------------\n")
+                #         insertterpenes(
+                #                         outputline.split(separator)[0],
+                #                         outputline.split(separator)[1],
+                #                         outputline.split(separator)[2],
+                #                         outputline.split(separator)[4], 
+                #                         outputline.split(separator)[3],
+                #                         dispensaryid,
+                #                         "jgill@acidnillc.onmicrosoft.com")
+                #         outputline=""
+                #         counter = 0
+                #         position = position + 1
+                #         index=index+1
+                #     counter = counter + 1
+                # terpenetext = outputlines
 
                 # print("__________________________________________________")        
                 # print(batch)            

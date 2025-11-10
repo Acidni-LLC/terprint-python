@@ -6,6 +6,9 @@ from dotenv import load_dotenv
 import pyodbc
 from pyodbc import connect
 from bcolors import bcolors
+import COAMethodDataExtractor
+from typing import Optional
+from COAMethodDataExtractor import COA
 
 AZURE_SQL_CONNECTIONSTRING="Driver={ODBC Driver 17 for SQL Server};Server=tcp:acidni-sql.database.windows.net,1433;Database=terprint;Uid=adm;Pwd=sql1234%;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
 
@@ -45,7 +48,8 @@ def insertcannabinoids(
         percent,
         milligrams,  
         dispensaryId, 
-        createdBy):
+        createdBy,
+        batchid):
     try: 
        # print("C variables in"+ batch+"|"+str(Index)+"|"+Cannabinoid+"|"+percent+"|"+milligrams+"|"+str(dispensaryId)+"|"+createdBy)
     
@@ -66,7 +70,8 @@ def insertcannabinoids(
         [milligrams],  
         [dispensaryId], 
         [createdBy] ,
-        [created]
+        [created] ,
+        [batchID]
         ) OUTPUT INSERTED.cannabinoidResultId
         VALUES (?, ?, ?, ?,?,?, ?,CURRENT_TIMESTAMP)
         """
@@ -82,7 +87,8 @@ def insertcannabinoids(
         percent,
         milligrams,  
         dispensaryId, 
-        createdBy
+        createdBy,
+        batchid
         )
         )
         resultId = cursor.fetchval()
@@ -108,6 +114,116 @@ def insertcannabinoids(
     finally:
         if 'conn' in locals() and conn:
             conn.close()
+def insertstrain(
+    strainName):
+    strainID = None
+    try:    
+        load_dotenv()
+        conn = pyodbc.connect(AZURE_SQL_CONNECTIONSTRING)
+        cursor = conn.cursor()
+        SQL_STATEMENT = """
+        INSERT INTO [dbo].[Strain]
+           ([Name]
+           ,[created])
+        OUTPUT INSERTED.StrainID
+        VALUES (?, CURRENT_TIMESTAMP)
+        """
+        cursor.execute(
+        SQL_STATEMENT,
+        (
+        strainName,
+        )
+        )
+        strainID = cursor.fetchval()
+        print(f"Inserted StrainID : {strainID} for Strain Name: {strainName}")
+        conn.commit()
+    except pyodbc.Error as ex:
+        sqlstate = ex.args[0]
+        print(bcolors.FAIL + "Error connecting to SQL Server: "+sqlstate)
+    finally:
+        if 'conn' in locals() and conn:
+            conn.close()
+    return strainID
+def getStrainID(strainName):
+    strainID = None
+    try: 
+        load_dotenv()
+        conn = pyodbc.connect(AZURE_SQL_CONNECTIONSTRING)
+        cursor = conn.cursor()
+        sql = "SELECT StrainID FROM Strain WHERE Name = ?"
+        cursor.execute(sql, (strainName))
+        row = cursor.fetchone()
+        if row:
+            strainID = row.StrainID
+            print(f"Found StrainID: {strainID} for Strain Name: {strainName}")
+        else:
+            print(f"No StrainID found for Strain Name: {strainName}")
+            strainID = insertstrain(strainName)
+    except pyodbc.Error as ex:
+        sqlstate = ex.args[0]
+        print(bcolors.FAIL + "Error connecting to SQL Server: "+sqlstate)
+    finally:
+        if 'conn' in locals() and conn:
+            conn.close()
+    return strainID
+
+def insertBatch(
+        coadata:  COA,
+        producttype: str,
+        dispensaryId: int,       # GrowerID   #1 Trulieve #2 Sunburn
+        createdBy: str
+    ) -> Optional[int]:
+    """
+    Insert a Batch record and return the inserted BatchID (int) or None on error.
+    coadata: instance of COAMethodDataExtractor.COA
+    """
+    batchid: Optional[int] = None
+    try:
+        strainid = getStrainID(coadata.strainName if getattr(coadata, "strainName", None) else "Unknown")
+        load_dotenv()
+        conn = pyodbc.connect(AZURE_SQL_CONNECTIONSTRING)
+        cursor = conn.cursor()
+
+        SQL_STATEMENT = """
+       INSERT INTO [dbo].[Batch]
+           ([created]
+           ,[createdby]
+           ,[Name]
+           ,[Type]
+           ,[Date]
+           ,[GrowerID]
+           ,[StrainID]
+           ,[batchJSON])
+        OUTPUT INSERTED.BatchID
+        VALUES (CURRENT_TIMESTAMP, ?, ?, ?,?,?, ?)
+        """
+
+        cursor.execute(
+            SQL_STATEMENT,
+            (
+                createdBy,
+                coadata.batchNumber,
+                producttype,
+                coadata.batchDate,
+                dispensaryId,
+                strainid,
+                coadata.to_json()
+            )
+        )
+        resultId = cursor.fetchval()
+        print(f"Inserted batchid : {resultId}")
+        conn.commit()
+        batchid = resultId
+
+    except pyodbc.Error as ex:
+        sqlstate = ex.args[0]
+        print(bcolors.FAIL + "Error connecting to SQL Server: " + sqlstate)
+
+    finally:
+        if 'conn' in locals() and conn:
+            conn.close()
+    return batchid
+       
 
 def insertterpenes(
     batch           ,
@@ -116,7 +232,8 @@ def insertterpenes(
     percent           ,
     milligrams           ,
     dispensaryId        ,
-    createdBy):
+    createdBy,
+    batchid)  :
         
     try: 
         #print("T variables in"+ batch+"|"+str(Index)+"|"+terpene+"|"+percent+"|"+milligrams+"|"+str(dispensaryId)+"|"+createdBy)
@@ -142,7 +259,8 @@ def insertterpenes(
         ,[milligrams]
         ,[created]
         ,[dispensaryId]
-        ,[createdBy])
+        ,[createdBy]
+        ,[batchID])
         OUTPUT INSERTED.terpeneResultId
         VALUES (?, ?, ?, ?,?,CURRENT_TIMESTAMP,?, ?)
         """
@@ -150,7 +268,7 @@ def insertterpenes(
         cursor.execute(
         SQL_STATEMENT,
         (
-        batch           ,Index           ,terpene           ,percent           ,milligrams           ,dispensaryId        ,createdBy
+        batch, Index, terpene, percent, milligrams, dispensaryId, createdBy, batchid
         )
         )
         resultId = cursor.fetchval()

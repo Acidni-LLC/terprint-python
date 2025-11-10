@@ -1,9 +1,10 @@
 
 from __future__ import annotations
+import re
+import json
 from dataclasses import dataclass, field, asdict
 from datetime import datetime
 from typing import Optional, List, Dict, Any
-import re
 
 try:
     from dateutil import parser as date_parser  # type: ignore
@@ -135,7 +136,21 @@ class COA:
 
     def __str__(self) -> str:
         return f"COA(product={self.product_name!r}, sample={self.sample_number!r}, batch={self.batch_number!r})"
+    def to_json(self, *, indent: Optional[int] = 2, ensure_ascii: bool = False) -> str:
+        """
+        Return a JSON string for this COA.
+        - indent: pretty-print indent (None for compact)
+        - ensure_ascii: pass-through to json.dumps (False to keep unicode)
+        """
+        return json.dumps(self.to_dict(), indent=indent, ensure_ascii=ensure_ascii)
 
+    def save_json(self, path: str, *, indent: Optional[int] = 2, ensure_ascii: bool = False) -> None:
+        """
+        Write the JSON representation to `path`.
+        Overwrites existing file.
+        """
+        with open(path, "w", encoding="utf-8") as fh:
+            json.dump(self.to_dict(), fh, indent=indent, ensure_ascii=ensure_ascii)
     @classmethod
     def from_text(cls, text: str) -> "COA":
         """
