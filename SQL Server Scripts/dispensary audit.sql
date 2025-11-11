@@ -3,14 +3,32 @@
 --SELECT TOP (20) *  FROM [dbo].terpeneResults
 
 DECLARE @dispensaryid int = 2;
-DECLARE @date date =      '2025-11-10';     
+DECLARE @date date =      '2025-11-10';   
+    /*
+DECLARE @dispensaryid int = 2;
+DECLARE @date date =      '2025-11-10';  
   delete from cannabinoidResults 
-  SELECT distinct count(batch)
-  FROM vw_cannabinoidResults
-  where dispensaryId = @dispensaryid
+  where dispensaryId = @dispensaryid and created  >= @date
+  delete from Batch 
+  where BatchId > 220
+  delete from terpeneResults 
+  where dispensaryId = @dispensaryid and created  >= @date
+
+  */
+  select * from Batch where created >= @date
+  SELECT *
+  FROM vw_terpeneResults where created >= @date
+  SELECT *
+  FROM vw_cannabinoidResults where created >= @date
   SELECT distinct count(batch)
   FROM vw_terpeneResults
-  where dispensaryId = @dispensaryid
+  where dispensaryId = @dispensaryid and created  >= @date
+  SELECT distinct count(batch) 
+  FROM vw_cannabinoidResults
+  where dispensaryId = @dispensaryid and created  >= @date
+  SELECT distinct count(batch)
+  FROM vw_terpeneResults
+  where dispensaryId = @dispensaryid and created  >= @date
   
   SELECT *
   FROM vw_terpeneResults
@@ -37,7 +55,7 @@ DECLARE @date date =      '2025-11-10';
   SELECT *
   FROM vw_cannabinoidResults
  --where batch ='57901_0007452411' 
-  where dispensaryId = @dispensaryid
+  where dispensaryId = @dispensaryid and created  >= @date
   order by cannabinoidResultId desc, batch,[index]
   
 
@@ -45,7 +63,7 @@ DECLARE @date date =      '2025-11-10';
   FROM vw_terpeneResults
  --where batch ='57901_0007452411' 
   --where batch like '%gbxx%'
-  where dispensaryId = @dispensaryid
+  where dispensaryId = @dispensaryid and created  >= @date
   order by terpeneResultId desc, batch,[index]
 
   /*

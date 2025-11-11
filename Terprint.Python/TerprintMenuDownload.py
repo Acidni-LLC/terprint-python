@@ -18,8 +18,93 @@ redownload = 0
 #my_list = ["82057_0007827833","82115_0007827419","74853_0007916432","77125_0007916180","76555_0007938946","76692_0007927817","70485_0007815066","70475_0007552442","70455_0007850495","70483_0007826254","74941_0007782358","74940_0007745817","73345_0007487585","66469_0007827816","41743_0006970031","35471_0007723033","35163_0007723031","17699_0007247919","17611_0007773276","17552_0007365581","17551_0007585074","17550_0007324717","17496_0007723032","76692_0007605476","70485_0007814456","70475_0007489472","70455_0007871718","78022_0006993920","70483_0007895795","47993_0007425018","35163_0007774147","77008_0007825590","76555_0007849441","76692_0007326955","70485_0007721957","70455_0007840147","74941_0007641946","74940_0007701106","17611_0007353100","17552_0007838248","73881_0007916126","73877_0007916125","17551_0007937998","17550_0007653493","17496_0007782247","81867_0007511894","70475_0007105140","70478_0007091371","74941_0007653489","47993_0006162867","35471_0007782246","17550_0006945103","76692_0007838379","70475_0007757083","70483_0007896426","75265_0007848664","80356_0007828495","70483_0007850491","74940_0007803301","17551_0007086534","70483_0007838370","74941_0007838378","74940_0007749037","70485_0007746233","74941_0007690847","74940_0007732801","17699_0007563884","17611_0007641949","70487_0007548776","70481_0007541027","70475_0007290332","74941_0007757087","74940_0007685829","67357_0007162123","70475_0007529648","17552_0007261921","80355_0007828496","80354_0007828494","77125_0007812714","73997_0007630961","77047_0007771193","77106_0007329103","77124_0007275926","74863_0007277906","76555_0007510590","77132_0007248959","73994_0007223617","77614_0007209427","76692_0007595523","77078_0007313346","70477_0007136957","70475_0007062037","70455_0007775012","70483_0007208801","70478_0007023639","17611_0007137975"]
 #my_list = ["47993_0006162867"]
 #dispensary="Trulieve"
-#dispensaryid=1
-my_list = ["AfCP8Lj3XkzHems","REYxZB8sRQ4KwKG","NJiRDgnPDYBtAnX","XF4zAKoQj8yCx3p","fmNHWqZYycqDAgd","dfA63am93BqkAeR","ABbmjHwkrRK5F4e","ERHxaFsjM9pyotE","iCm33pB7LjWnd5q","KTcZ6JgHdpqoAEx","zDF5f7E6ggrca73","Ay2ZkZyeQNDjyfa","nP7REAQ5aQ4RYW2","5RzcEb3k8B4ALo4","dxDjCKX2xmAwYtW","6DMQwXFGMqs8zX5","4REmwgHG6A5fwcL","6T5P2wJxs4sBAR4","9yWQQm4aaRsgHNa","cZLTKTn3yTTJe7P","r87Bi5xrLPpCSfo","xCZ57p6SmP4GkFP","y8YBxxsizxsCHRE","mj6WiyWX8HiAFxE","Yad7LeWTiqZc3Jm"]
+#dispensaryid=1         
+my_list = [ 'WQiipC7sQpiyojx',
+'FW3xYKXr7WnzAWq',
+'gFAcXTRYpnfkSfk',
+'g47exX3f769D7Np',
+'6z63Dpn43BwkggY',
+'QpgabPXJzZM7StD',
+'g852X8ybqn7w2pL',
+'LngeNzi2cfXKMiX',
+'33k3sMwNY5TKXTg',
+'Ay2ZkZyeQNDjyfa',
+'LicBAKgsBwt5GMd',
+'6DMQwXFGMqs8zX5',
+'rbbr8Ep3qAoPj5y',
+'cZLTKTn3yTTJe7P',
+'SnFSY86MjSfXyB8',
+'gbxxJoq4GqJcnLw',
+'SfWBtnDxrN9qs2t',
+'czKcWBWzTDyCPdT',
+'8K4kMmg8nsTGFxt',
+'sGgQEA54cQ3Y9JW',
+'rqrTmqqezwBGipR',
+'SrGCCkbd2AobjjY',
+'JPqWAsffRt99ySJ',
+'nP7REAQ5aQ4RYW2',
+'jKdbRbwgKFijRtc',
+'eWDcrrGNLEmzbs9',
+'meg9ZNWmCGESgsC',
+'dnyP2drMTRyw87E',
+'gZYK5idR4KdJqma',
+'L4As3WZDmB5H5y3',
+'3qmgeWwcKYRrawa',
+'fmNHWqZYycqDAgd',
+'n75eWwYNjSbYEqJ',
+'DGCc8Jw2HGRKzNx',
+'iTCbmGmZEW2KYFw',
+'n4MkEi4Afr5bLZZ',
+'dB6rS35dyT8pKkS',
+'wErCYb5e5NDYAqP',
+'QCcQmpq5e7cF3zW',
+'DNkcJ3BkcEiSg2b',
+'bRRiF8TxnFb7E7A',
+'pHX6bxL7C5yFWme',
+'8Dp8nq5QiTbAzrC',
+'Yad7LeWTiqZc3Jm',
+'je5X9ECWdoC6w4o',
+'NgBasfHjWkQecKP',
+'XF4zAKoQj8yCx3p',
+'j5XgcqBirTe85nG',
+'zpyWAj3mMeADHCt',
+'dfA63am93BqkAeR',
+'ABbmjHwkrRK5F4e',
+'iCm33pB7LjWnd5q',
+'zDF5f7E6ggrca73',
+'4REmwgHG6A5fwcL',
+'9yWQQm4aaRsgHNa',
+'LF66JqZy3mMr4wy',
+'r87Bi5xrLPpCSfo',
+'xCZ57p6SmP4GkFP',
+'dS6zKbP9cGmtNEY',
+'y8YBxxsizxsCHRE',
+'AfCP8Lj3XkzHems',
+'REYxZB8sRQ4KwKG',
+'NJiRDgnPDYBtAnX',
+'ERHxaFsjM9pyotE',
+'KTcZ6JgHdpqoAEx',
+'5RzcEb3k8B4ALo4',
+'dxDjCKX2xmAwYtW',
+'6T5P2wJxs4sBAR4',
+'mj6WiyWX8HiAFxE',
+'cZLTKTn3yTTJe7P',
+'eWDcrrGNLEmzbs9',
+'meg9ZNWmCGESgsC',
+'dnyP2drMTRyw87E',
+'pHX6bxL7C5yFWme',
+'8Dp8nq5QiTbAzrC',
+'gZYK5idR4KdJqma',
+'AfCP8Lj3XkzHems',
+'REYxZB8sRQ4KwKG',
+'NJiRDgnPDYBtAnX',
+'ERHxaFsjM9pyotE',
+'KTcZ6JgHdpqoAEx',
+'5RzcEb3k8B4ALo4',
+'dxDjCKX2xmAwYtW',
+'6T5P2wJxs4sBAR4',
+'mj6WiyWX8HiAFxE']
+#my_list = ["AfCP8Lj3XkzHems","REYxZB8sRQ4KwKG","NJiRDgnPDYBtAnX","XF4zAKoQj8yCx3p","fmNHWqZYycqDAgd","dfA63am93BqkAeR","ABbmjHwkrRK5F4e","ERHxaFsjM9pyotE","iCm33pB7LjWnd5q","KTcZ6JgHdpqoAEx","zDF5f7E6ggrca73","Ay2ZkZyeQNDjyfa","nP7REAQ5aQ4RYW2","5RzcEb3k8B4ALo4","dxDjCKX2xmAwYtW","6DMQwXFGMqs8zX5","4REmwgHG6A5fwcL","6T5P2wJxs4sBAR4","9yWQQm4aaRsgHNa","cZLTKTn3yTTJe7P","r87Bi5xrLPpCSfo","xCZ57p6SmP4GkFP","y8YBxxsizxsCHRE","mj6WiyWX8HiAFxE","Yad7LeWTiqZc3Jm"]
 #my_list = ["AfCP8Lj3XkzHems"]
 dispensary="Sunburn"
 dispensaryid=2
@@ -482,7 +567,7 @@ for item in my_list:
                 
                 for cannabinoid in coa.potency_analytes:
                     outputline = ""
-                    outputline = batch +separator+  str(index) + separator+ cannabinoid.name + separator + str(cannabinoid.percent) + separator + str(cannabinoid.mg_per_unit) +    "\n"
+                    outputline = batch +"_"+ batchin +separator+  str(index) + separator+ cannabinoid.name + separator + str(cannabinoid.percent) + separator + str(cannabinoid.mg_per_unit) +    "\n"
                     # print(cannabinoid.name + " " + str(cannabinoid.percent) + " " + str(cannabinoid.mg_per_unit))
                     
                     outputlines = outputlines +  outputline 
@@ -562,7 +647,7 @@ for item in my_list:
                 outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"(ug/g)"+separator+"Percent\n"
                 for terp in coa.terpenes:
                     outputline = ""
-                    outputline =  batch +separator+  str(index) + separator+ terp.name + separator + str(terp.result_ug_per_g) + separator + str(terp.percent) +    "\n"
+                    outputline =  batch +"_"+ batchin +separator+  str(index) + separator+ terp.name + separator + str(terp.result_ug_per_g) + separator + str(terp.percent) +    "\n"
                     # print(terp.name + " " + str(terp.ug_per_g) + " " + str(terp.percent_of_total))
                     
                     print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")

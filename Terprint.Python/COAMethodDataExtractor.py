@@ -294,7 +294,7 @@ class COA:
             val2 = _parse_float(m.group(3))
             # Heuristic: if second value is large (1000s) it's likely ug/g; keep both as fields
             # Many reports place ug/g then % or ug/g then mg/g — store as ug/g and percent (if percent looks like fraction)
-            excludeList = {"thca","cbga","lab director","cbg"}
+            excludeList = {"thca","cbga","lab director","cbg"," labratory supervisor","labratory\nsupervisor"}
             tr = TerpeneResult(name=name, result_ug_per_g=val1, percent=val2)
             if(tr.name.lower() not in excludeList):
                 terpenes.append(tr)
