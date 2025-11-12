@@ -7,7 +7,7 @@ DECLARE @date date =      '2025-11-10';
     /*
 DECLARE @dispensaryid int = 2;
 DECLARE @date date =      '2025-11-10';  
-  delete from cannabinoidResults 
+  delete from cannabinoidResults 2
   where dispensaryId = @dispensaryid and created  >= @date
   delete from Batch 
   where BatchId > 220
