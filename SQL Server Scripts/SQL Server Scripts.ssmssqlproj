@@ -2,7 +2,36 @@
 <SqlWorkbenchSqlProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="SQL Server Scripts">
   <Items>
     <LogicalFolder Name="Connections" Type="2" Sorted="true">
-      <Items />
+      <Items>
+        <ConnectionNode Name="acidni-sql.database.windows.net:jgill@AcidniLLC.onmicrosoft.com">
+          <Created>2025-11-10T13:03:56.0079455-05:00</Created>
+          <Type>SQL</Type>
+          <Server>acidni-sql.database.windows.net</Server>
+          <UserName>jgill@AcidniLLC.onmicrosoft.com</UserName>
+          <Authentication>SQL</Authentication>
+          <InitialDB>terprint</InitialDB>
+          <LoginTimeout>15</LoginTimeout>
+          <TrustServerCertificate>False</TrustServerCertificate>
+          <EncryptionOption>True</EncryptionOption>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="acidni-sql.database.windows.net:jgill@acidnillc.onmicrosoft.com">
+          <Created>2025-11-10T13:21:39.0236673-05:00</Created>
+          <Type>SQL</Type>
+          <Server>acidni-sql.database.windows.net</Server>
+          <UserName>jgill@acidnillc.onmicrosoft.com</UserName>
+          <Authentication>SQL</Authentication>
+          <InitialDB>terprint</InitialDB>
+          <LoginTimeout>15</LoginTimeout>
+          <TrustServerCertificate>False</TrustServerCertificate>
+          <EncryptionOption>True</EncryptionOption>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
     </LogicalFolder>
     <LogicalFolder Name="Queries" Type="0" Sorted="true">
       <Items>
@@ -24,6 +53,42 @@
           <AssociatedConnUserName />
           <FullPath>data move from pbi source to website source.sql</FullPath>
         </FileNode>
+        <FileNode Name="dispensary audit.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:acidni-sql.database.windows.net:False:jgill@AcidniLLC.onmicrosoft.com</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>acidni-sql.database.windows.net</AssociatedConnSrvName>
+          <AssociatedConnUserName>jgill@AcidniLLC.onmicrosoft.com</AssociatedConnUserName>
+          <FullPath>dispensary audit.sql</FullPath>
+        </FileNode>
+        <FileNode Name="insert batch.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>insert batch.sql</FullPath>
+        </FileNode>
+        <FileNode Name="insert data batch 2.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:acidni-sql.database.windows.net:False:jgill@AcidniLLC.onmicrosoft.com</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>acidni-sql.database.windows.net</AssociatedConnSrvName>
+          <AssociatedConnUserName>jgill@AcidniLLC.onmicrosoft.com</AssociatedConnUserName>
+          <FullPath>insert data batch 2.sql</FullPath>
+        </FileNode>
+        <FileNode Name="insert data strain 2.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:acidni-sql.database.windows.net:False:jgill@AcidniLLC.onmicrosoft.com</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>acidni-sql.database.windows.net</AssociatedConnSrvName>
+          <AssociatedConnUserName>jgill@AcidniLLC.onmicrosoft.com</AssociatedConnUserName>
+          <FullPath>insert data strain 2.sql</FullPath>
+        </FileNode>
+        <FileNode Name="insert data strain.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:acidni-sql.database.windows.net:False:jgill@AcidniLLC.onmicrosoft.com</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>acidni-sql.database.windows.net</AssociatedConnSrvName>
+          <AssociatedConnUserName>jgill@AcidniLLC.onmicrosoft.com</AssociatedConnUserName>
+          <FullPath>insert data strain.sql</FullPath>
+        </FileNode>
+        <FileNode Name="move from results to values tables.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:acidni-sql.database.windows.net:False:jgill@AcidniLLC.onmicrosoft.com</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>acidni-sql.database.windows.net</AssociatedConnSrvName>
+          <AssociatedConnUserName>jgill@AcidniLLC.onmicrosoft.com</AssociatedConnUserName>
+          <FullPath>move from results to values tables.sql</FullPath>
+        </FileNode>
         <FileNode Name="SQLQuery1.sql">
           <AssociatedConnectionMoniker />
           <AssociatedConnSrvName />
@@ -31,46 +96,10 @@
           <FullPath>SQLQuery1.sql</FullPath>
         </FileNode>
         <FileNode Name="SQLQuery2.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
-          <AssociatedConnUserName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:acidni-sql.database.windows.net:False:jgill@acidnillc.onmicrosoft.com</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>acidni-sql.database.windows.net</AssociatedConnSrvName>
+          <AssociatedConnUserName>jgill@acidnillc.onmicrosoft.com</AssociatedConnUserName>
           <FullPath>SQLQuery2.sql</FullPath>
-        </FileNode>
-        <FileNode Name="SQLQuery3.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
-          <AssociatedConnUserName />
-          <FullPath>SQLQuery3.sql</FullPath>
-        </FileNode>
-        <FileNode Name="SQLQuery4.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
-          <AssociatedConnUserName />
-          <FullPath>SQLQuery4.sql</FullPath>
-        </FileNode>
-        <FileNode Name="SQLQuery5.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
-          <AssociatedConnUserName />
-          <FullPath>SQLQuery5.sql</FullPath>
-        </FileNode>
-        <FileNode Name="SQLQuery6.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
-          <AssociatedConnUserName />
-          <FullPath>SQLQuery6.sql</FullPath>
-        </FileNode>
-        <FileNode Name="SQLQuery7.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
-          <AssociatedConnUserName />
-          <FullPath>SQLQuery7.sql</FullPath>
-        </FileNode>
-        <FileNode Name="SQLQuery8.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
-          <AssociatedConnUserName />
-          <FullPath>SQLQuery8.sql</FullPath>
         </FileNode>
         <FileNode Name="terpeneResults.sql">
           <AssociatedConnectionMoniker />

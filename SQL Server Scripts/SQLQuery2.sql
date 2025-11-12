@@ -1,102 +1,50 @@
-USE [terprint]
-GO
-delete from strain
+select distinct(terpene) from terpeneresults  order by terpene--where dispensaryid =2
+select distinct(Cannabinoid) from cannabinoidResults  order by Cannabinoid--where dispensaryid =2
 
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Angel Cake','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Animal Mints','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Apples and Bananas','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Atomic Apple','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Baby Turtle','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Banana Juice','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Banana Power','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Biscotti','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Biskante','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Black Tuna','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Blue Steel','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Bomb Pop','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','C99','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Cheesequake','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Cherry Cap','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Cherry Fade','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Chiesel','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Cold Snap','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Creamsickler','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Crimson Queen','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Crippy','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','DeliZiozo','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Diesel Dough','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Double OG Chem','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Dream Queen','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Durban Grapefruit','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Durban Mints','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Earthquake','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','First Frost','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Flamingo Kush','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Freedom Flowers','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Fruit Snacks','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Garlic Cocktail','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Garlic Gas','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Garlic OZ','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Ghost OG','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Goblet of Fire','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Grape Gob','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Grape Kush','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Green Wildfire','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Guava 2.0','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Gush Cake','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Gush Mints','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','High Rise','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','High Society','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','I','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Iron Lion','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Jack of Diamonds','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Jet Juice','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Juice Berry','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Juicy Jane','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Jungle Cake','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Khalifa Kush','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Khalifa Mints','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Koko Puffs','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','LA Grapes','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','LA Kush Cake','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Lemon Cherry x Cap Junky','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Malibuscotti','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Melon Barz','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Miami Queso','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Midnight Magic','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Mob Boss','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Northern Lights','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','OZ Kush','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Pineapple Upside Down Cake','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Point Breeze','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Rainbow Sherbert #11','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Raspberry Punch','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Rattler','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Red Apple Fritterz','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Red Biscotti','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Reefer Shark','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Road Warrior','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Royal Cheese','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Scarlet Black','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Shipwreck','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Silver Spoon','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Singapore Sling','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Sky Warden','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Sly Look','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Solomon Grundy','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Sour Amazon','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Sour Grapez','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Space Coast Cake','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','St. Marks Skunk','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Sun Cake','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Sunset Squeeze','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Sunshine Diesel','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Sunshine State OG','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Tropical Cream Cake','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Tropical Z','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Upper Cut','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','White Sunshine','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','XJ','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Yellowfin','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Zealousy','')
-INSERT INTO [dbo].[Strain]           ([created]           ,[createdby]           ,[StrainName],[StrainDescription])     VALUES           ('10/17/2025  1:44:00 PM','jgill@savitas.net','Zest Zinger','')
+select distinct(batch), created from cannabinoidResults where dispensaryid =2
+select distinct(batch),  created from terpeneResults where dispensaryid =2 
+
+-- Delete specific batches from cannabinoidResults
+DELETE FROM cannabinoidResults 
+WHERE batch IN (
+    'AfCP8Lj3XkzHems','REYxZB8sRQ4KwKG','NJiRDgnPDYBtAnX','XF4zAKoQj8yCx3p',
+    'fmNHWqZYycqDAgd','dfA63am93BqkAeR','ABbmjHwkrRK5F4e','ERHxaFsjM9pyotE',
+    'iCm33pB7LjWnd5q','KTcZ6JgHdpqoAEx','zDF5f7E6ggrca73','Ay2ZkZyeQNDjyfa',
+    'nP7REAQ5aQ4RYW2','5RzcEb3k8B4ALo4','dxDjCKX2xmAwYtW','6DMQwXFGMqs8zX5',
+    '4REmwgHG6A5fwcL','9yWQQm4aaRsgHNa','FMPqqHtKQFdEdMd','r87Bi5xrLPpCSfo',
+    'xCZ57p6SmP4GkFP','y8YBxxsizxsCHRE','mj6WiyWX8HiAFxE','Yad7LeWTiqZc3Jm'
+);
+
+-- Extract date from datetime column examples:
+-- Method 1: Using CAST (recommended for SQL Server 2008+)
+--SELECT distinct(batch), CAST(created AS DATE) AS created 
+SELECT '''' + name + '"',', *
+FROM Batch 
+WHERE GrowerID = 2
+order by created
+
+SELECT *
+FROM cannabinoidResults 
+WHERE dispensaryid = 2
+order by created
+
+-- Method 2: Using CONVERT (alternative method)
+--SELECT distinct(batch), CONVERT(DATE, created) AS created 
+SELECT *
+FROM cannabinoidResults 
+WHERE dispensaryid = 2
+order by created
+
+-- Method 3: Format as string in YYYY-MM-DD format
+SELECT distinct(batch), FORMAT(created, 'yyyy-MM-dd') AS created_date_string 
+FROM cannabinoidResults 
+WHERE dispensaryid = 2
+
+-- Method 4: Remove time by converting to midnight of same day
+SELECT distinct(batch), DATEADD(dd, 0, DATEDIFF(dd, 0, created)) AS created_date_midnight 
+FROM cannabinoidResults 
+WHERE dispensaryid = 2 
+
+
+
+-- Remove leading and trailing spaces from cannabinoid names
