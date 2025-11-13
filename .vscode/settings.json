@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
         "./test_output"
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "off"
 }

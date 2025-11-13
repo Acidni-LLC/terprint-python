@@ -1,7 +1,6 @@
 """
 Connects to a SQL database using pyodbc
 """
-from os import getenv
 from dotenv import load_dotenv
 import pyodbc
 from pyodbc import connect
@@ -12,7 +11,7 @@ from COAMethodDataExtractor import COA
 
 AZURE_SQL_CONNECTIONSTRING="Driver={ODBC Driver 17 for SQL Server};Server=tcp:acidni-sql.database.windows.net,1433;Database=terprint;Uid=adm;Pwd=sql1234%;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
 
-def checkCannabinoid(batch):    
+def checkCannabinoid(batch: str):    
     load_dotenv()
     returnvalue = False
     conn = pyodbc.connect(AZURE_SQL_CONNECTIONSTRING)
@@ -26,7 +25,7 @@ def checkCannabinoid(batch):
         returnvalue = True   
         break 
     return returnvalue
-def checkTerpene(batch):
+def checkTerpene(batch: str):
     load_dotenv()
     returnvalue = False
     conn = pyodbc.connect(AZURE_SQL_CONNECTIONSTRING)
@@ -42,14 +41,14 @@ def checkTerpene(batch):
     return returnvalue
 
 def insertcannabinoids( 
-        batch, 
-        Index, 
-        Cannabinoid,
-        percent,
-        milligrams,  
-        dispensaryId, 
-        createdBy,
-        batchid):
+        batch: str, 
+        Index: int, 
+        Cannabinoid: str,
+        percent: str,
+        milligrams: str,  
+        dispensaryId: int, 
+        createdBy: str,
+        batchid: int):
     try: 
        # print("C variables in"+ batch+"|"+str(Index)+"|"+Cannabinoid+"|"+percent+"|"+milligrams+"|"+str(dispensaryId)+"|"+createdBy)
     
@@ -114,8 +113,7 @@ def insertcannabinoids(
     finally:
         if 'conn' in locals() and conn:
             conn.close()
-def insertstrain(
-    strainName):
+def insertstrain(strainName: str):
     strainID = None
     try:    
         print ("Inserting strain")
@@ -174,7 +172,7 @@ def getStrainID(strainName):
         if 'conn' in locals() and conn:
             conn.close()
     return strainID
-def getBatchID(batchName):
+def getBatchID(batchName: str) -> Optional[int]:
     BatchID = None
     try: 
         print ("Looking up batch")
@@ -211,13 +209,14 @@ def insertBatch(
     Insert a Batch record and return the inserted BatchID (int) or None on error.
     coadata: instance of COAMethodDataExtractor.COA
     """
+    conn = None
     try:
         batchid: Optional[int] = None
         print (batchid)
         batchid =  getBatchID(batchName) 
         print (batchid)
         if batchid == 0:
-            print("get straind id for "+ coadata.product_name)
+            print("get straind id for "+ (coadata.product_name or "Unknown"))
             strainid = getStrainID(coadata.product_name)
             load_dotenv()
             conn = pyodbc.connect(AZURE_SQL_CONNECTIONSTRING)
@@ -275,16 +274,14 @@ def insertBatch(
        
 
 def insertterpenes(
-    
-    
-    batch           ,
-    Index           ,
-    terpene           ,
-    percent           ,
-    milligrams           ,
-    dispensaryId        ,
-    createdBy,
-    batchid)  :
+    batch: str,
+    Index: int,
+    terpene: str,
+    percent: str,
+    milligrams: str,
+    dispensaryId: int,
+    createdBy: str,
+    batchid: int):
         
     try: 
         #print("T variables in"+ batch+"|"+str(Index)+"|"+terpene+"|"+percent+"|"+milligrams+"|"+str(dispensaryId)+"|"+createdBy)

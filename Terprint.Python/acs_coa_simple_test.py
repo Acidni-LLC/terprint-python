@@ -1,0 +1,286 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from ACS_COA_Simple import ACS_COA_Simple
+
+# Your sample text
+acs_text = """721 Cortaro Dr.
+Sun City Center, FL 33573
+www.acslab.com
+DEA No. RA0571996
+FL License # CMTL-0003
+TRU-Flower-3.5g-St.MarksSkunk-I-FL
+Sample Matrix:
+CANNABIS (MMTC's)
+Flower & Plants
+(Inhalation - Heated)
+Certificate of Analysis
+Patient COA
+Client Information:
+Trulieve - Midway Flower
+Compliance
+6749 Ben Bostic Rd
+Quincy, FL 32351
+Batch # 81410_0007711669
+Batch Date: 2025-09-25
+Seed to Sale # 6303 8306 8578 9104
+Lot ID: 8340 3765 9399 6202
+Cultivars: St. Marks Skunk
+Test Reg State: Florida
+Cultivation Facility: Quincy, FL
+Production Facility: Midway, FL
+Production Date: 2025-09-25
+Order # TRU250926-050001
+Order Date: 2025-09-26
+Sample # AAHC664
+Sampling Date: 2025-09-26
+Lab Batch Date: 2025-09-26
+Completion Date: 2025-10-01
+Initial Gross Weight: 1527.200 g
+Number of Units: 46
+Net Weight per Unit: 3500.000 mg
+Sampling Method: MSP 7.3.1
+Product Image
+Potency
+Tested
+Terpenes
+Tested
+Heavy Metals
+Passed
+Mycotoxins
+Passed
+Pesticides
+Passed
+Residual Solvents
+Not Tested
+Moisture
+Passed
+Water Activity
+Passed
+Pathogenic
+Microbiology
+Passed
+Microbiology
+(qPCR)
+Passed
+Filth and Foreign
+Passed
+Total Contaminant
+Load
+Passed
+Potency - 11
+Specimen Weight: 206.130 mg
+Tested
+SOP13.001 (LCUV)
+Analyte
+Dilution
+(1:n)
+LOD
+(%)
+LOQ
+(%)
+Result
+(mg/g)
+(%)
+THCA-A
+150.000
+3.20E-5
+0.015
+350
+35.0
+CBGA
+15.000
+8.00E-5
+0.015
+8.56
+0.856
+Delta-9 THC
+15.000
+1.30E-5
+0.015
+5.82
+0.582
+CBG
+15.000
+2.48E-4
+0.015
+1.62
+0.162
+CBDA
+15.000
+1.00E-5
+0.015
+0.854
+0.0850
+CBC
+15.000
+1.80E-5
+0.015
+<LOQ
+<LOQ
+CBD
+15.000
+5.40E-5
+0.015
+<LOQ
+<LOQ
+CBDV
+15.000
+6.50E-5
+0.015
+<LOQ
+<LOQ
+CBN
+15.000
+1.40E-5
+0.015
+<LOQ
+<LOQ
+Delta-8 THC
+15.000
+2.60E-5
+0.015
+<LOQ
+<LOQ
+THCV
+15.000
+7.00E-6
+0.015
+<LOQ
+<LOQ
+Total Active CBD
+15.000
+0.749
+0.0749
+Total Active THC
+15.000
+313
+31.3
+Prep. By: 1282
+Date: 2025-09-27 13:30:44
+Analyzed By: 1264
+Date: 2025-09-27 14:11:53
+Reviewed By: 1010
+Date: 2025-09-29 09:52:02
+Lab Batch #: AAHC664-450
+Date: 2025-09-29 09:52:02
+Moisture
+Specimen Weight: N/A Dilution Factor: 1.000
+Passed
+SOP13.015
+(Moisture Meter)
+Analyte
+Action Level
+(%)
+Result
+(%)
+Moisture
+15
+12.0
+Prep. By: 1282
+Date: 2025-09-27 17:17:23
+Analyzed By: 1282
+Date: 2025-09-27 17:17:23
+Reviewed By: 1282
+Date: 2025-09-27 18:23:27
+Lab Batch #: AAHC664-10
+Date: 2025-09-27 18:23:27
+This product is tested at this moisture level, not at dry weight.
+Potency Summary
+Total Active THC
+31.3%
+1090 mg
+Total Active CBD
+0.0750%
+2.62 mg
+Total CBG
+0.913%
+31.9 mg
+Total CBN
+-
+None Detected
+Total Cannabinoids
+36.7%
+1280 mg
+Terpenes Summary
+Analyte
+Result (mg/g)
+(%)
+(R)-(+)-Limonene
+9.713
+0.971%
+trans-Caryophyllene
+8.614
+0.861%
+alpha-Humulene
+3.265
+0.327%
+Linalool
+3.095
+0.31%
+alpha-Pinene
+1.568
+0.157%
+trans-Nerolidol
+1.323
+0.132%
+Fenchyl Alcohol
+1.277
+0.128%
+alpha-Cedrene
+0.921
+0.092%
+beta-Pinene
+0.787
+0.079%
+beta-Myrcene
+0.777
+0.078%
+alpha-Bisabolol
+0.592
+0.059%
+Ocimene
+0.187
+0.019%
+Total Terpenes: 3.213%
+Detailed Terpenes Analysis is on the following page
+Lab Director/Principal Scientist
+Aixia Sun
+D.H.Sc., M.Sc., B.Sc., MT (AAB)
+Definitions and Abbreviations used in this report: Total Active CBD = CBD + (CBD-A * 0.877), *Total CBDV = CBDV + (CBDVA * 0.867), Total Active THC = THCA-A * 0.877 + Delta 9
+THC, Total THCV = THCV + (THCVA * 0.87) , CBG Total = (CBGA * 0.878) + CBG, CBN Total = (CBNA * 0.876) + CBN, Total CBC = CBC + (CBCA * 0.877), Total THC-O-Acetate = Delta 8
+THC-O-Acetate + Delta 9 THC-O-Acetate, Total THCP = Delta8-THCP + Delta9-THCP, Total Cannabinoids = Total percentage of cannabinoids within the sample. (mg/ml) = Milligrams
+per Milliliter, LOQ = Limit of Quantitation, LOD = Limit of Detection, Dilution = Dilution Factor, (ppb) = Parts per Billion, (%) = Percent, (cfu/g) = Colony Forming Unit per Gram, (µg/g) =
+Microgram per Gram, (ppm) = Parts per Million, (ppm) = (µg/g), (aw) = Water Activity, (mg/Kg) = Milligram per Kilogram. ACS uses simple acceptance criteria. Passed –
+Analyte/microbe is not detected or is at the level below the action limit per FL rule 64ER20-39, 5K-4.036, 5K-4.034. Failed – Analyte/microbe is at the level that equal or above the
+action limit per FL rule 64ER20-39, 5K-4.036, 5K-4.034
+Total Contaminant Load (TCL) - The sum of all Heavy Metals and Agricultural Agents present above the LOQ, but below the Acceptable Limit.
+This report shall not be reproduced, without written approval, from ACS Laboratory. The results of this report relate only to the material or product analyzed. Test results are confidential
+unless explicitly waived otherwise. ACS Laboratory is accredited to the ISO/IEC 17025:2017 Standard.
+QA By: 1057 on 2025-10-01 11:42:08 V1
+Page 1 of 1
+Form F672
+"""
+
+# Parse the COA
+coa = ACS_COA_Simple.from_text(acs_text)
+
+# Output as JSON
+print(coa.to_json1())
+
+# Save to file
+#coa.save_json('acs_coa_output.json')
+
+# Access specific data
+print(f"Batch: {coa.batch_number}")
+print(f"THC: {coa.total_active_thc_percent}% ({coa.total_active_thc_mg} mg)")
+print(f"Lab Director: {coa.lab_data.director}")
+
+# Access analytes
+for analyte in coa.potency_analytes:
+    if analyte.result_percent:
+        print(f"{analyte.name}: {analyte.result_percent}%")
+
+# Access terpenes
+for terpene in coa.terpenes:
+    print(f"{terpene.name}: {terpene.result_percent}%")
