@@ -1,7 +1,7 @@
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from ACS_COA_Simple import ACS_COA_Simple
+from COA_ACS_Simple import ACS_COA_Simple
 
 # Your sample text
 acs_text = """721 Cortaro Dr.

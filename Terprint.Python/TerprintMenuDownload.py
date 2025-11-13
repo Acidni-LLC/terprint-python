@@ -6,7 +6,9 @@ import os
 from bs4 import BeautifulSoup
 import batchFromUrl
 import COADataModel
-from COAMethodDataExtractor import COA
+from COA_MethodDataExtractor import COA
+from COA_ACS_Simple import COA_ACS_Simple
+from COA_ModernCanna01 import ModernCanna_COA
 
 from sqlConnection import insertcannabinoids, insertterpenes, checkTerpene, checkCannabinoid, insertBatch
 from bcolors import bcolors
@@ -190,17 +192,17 @@ for item in my_list:
             #Example usage
             extracted_text = extract_text_from_pdf(local_pathandPDFfile)
             #DETERMINE IF NEW OR OLD FORMAT
-            if "RA0571996" in extracted_text:
-                format = 1
+            if "RA0571996" in extracted_text: 
+                format = 1  # ACS  81410_0007711669  #ACS_COA_Simple.py  trulieve 
             elif "Accreditation #102020" in extracted_text:
                 #mcs 
                 if "Total Cannabinoids" in extracted_text:
-                    format = 2  # example 74941_0007653489
+                    format = 2  # example 74941_0007653489  ModernCanna_COA trulieve
                 elif "Total Active Cannabinoids" in extracted_text:
-                    format = 4  # example 47993_0006162867
-            elif "Method Testing Laboratories" in extracted_text: #sunburn sample 6DMQwXFGMqs8zX5 COA_2510CBR0031-006
+                    format = 4  # example 47993_0006162867  trulieve  COA_ModernCanna01.py
+            elif "Method Testing Laboratories" in extracted_text: #sunburn sample 6DMQwXFGMqs8zX5 
                 format = 3
-                #Method Testing Laboratories
+                #Method Testing Laboratories COAMethodDataExtractor.py   COA_2510CBR0031-006
 
             print(bcolors.OKGREEN + "END format:" + str(format) + bcolors.ENDC)
             print(item+":"+str(format))
@@ -216,20 +218,18 @@ for item in my_list:
             
             #FORMAT 1111111111111111111111111111
 
-            if format == 1:
+            if format == 1:  # ACS  81410_0007711669  #COA_ACS_Simple.py
 
             #FORMAT 111111111111111111111111111
-
-                if "Result " in extracted_text:
-                    terpenetext = extracted_text.split("Result ", maxsplit=1)[1]
-                elif "Result\n(mg/g)\n%" in extracted_text:
-                    terpenetext = extracted_text.split("Result\n(mg/g)\n%\n", maxsplit=1)[1]
-                elif "Result (mg/g)\n" in extracted_text:
-                    terpenetext = extracted_text.split("Result (mg/g)\n", maxsplit=1)[1]
-    
-                terpenetext  =terpenetext.split("Total Terpenes:", maxsplit=1)[0]
-                terpenetext  =terpenetext.replace("(mg/g)\n(%)","")#(mg/g) (%)
-                terpenetext  =terpenetext.replace("(mg/g) (%)","")#
+                coa = COA_ACS_Simple.from_text(extracted_text)
+                
+                json_text = coa.to_json() 
+               # print("\n\n"+json_text+"\n\n")
+                batchName = coadata.order_number +"_"+ batchin
+                batchid =  insertBatch(
+                    coa, productType, 
+                    dispensaryid, "jgill@acidnillc.onmicrosoft.com",json_text, batchName)
+                
             # print("1\n"+terpenetext)
                 #print(extracted_text)
                 counter =1
@@ -239,23 +239,14 @@ for item in my_list:
                 
                 counter = 1
                 position = 1
+                index=1
             # print(terpenetext)
                 skip = True
-                for line in terpenetext.splitlines():    
-                    line = line.strip()
-                    if line=="Ocimene, Total" :
-                        line = "Ocimene"
-                    if skip == True:
-                        outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"Result"+separator+"Percent"
-                        skip = False
-                        continue
-                    if counter  ==1 :
-                        outputline =  batch + "|"+str(position)+"|" + line 
-                        #outputline =   terp + "," + str(percent)+ "|" +  str(counter) + "|"
-                    elif counter  == 2:
-                        outputline = outputline + separator  + line
-                    elif counter  == 3:
-                        outputline = outputline + separator + line   
+                outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"Result"+separator+"Percent"
+                for line in coa.terpenes:    
+                    
+                    
+                        outputline =  batch + "|"+str(index)+"|" + line.name + "|" + str(line.mg) + "|" + str(line.percent)
                         
                         # print("-----\n")
                         # print (outputline+"\n")
@@ -272,7 +263,7 @@ for item in my_list:
                         outputline = ""
                         counter = 0                
                         position = position + 1                
-                    counter = counter  + 1
+                        index = index +1
             
                 
 
@@ -347,7 +338,7 @@ for item in my_list:
             ###FORMAT 2222222222222222222222222222
 
 
-            elif format == 2:
+            elif format == 2:  # example 74941_0007653489  COA_ModernCanna01.py
 
 
             ###FORMAT 222222222222222222222222222
@@ -522,7 +513,7 @@ for item in my_list:
     ###FORMAT 3333333333333333333333333333
 
 
-            elif format == 3:
+            elif format == 3: # COA_MethodDataExtractor.py    sunburn
 
 
                  #new code to use extractor class
@@ -718,7 +709,7 @@ for item in my_list:
 
     ###FORMAT 444444444444444444
             
-            elif format == 4:
+            elif format == 4:  #  COA_ModernCanna01.py   47993_0006162867 trulieve
 
 
                 extracted_text = extract_text_from_pdf(pdf_path)

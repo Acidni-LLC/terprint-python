@@ -5,9 +5,9 @@ from dotenv import load_dotenv
 import pyodbc
 from pyodbc import connect
 from bcolors import bcolors
-import COAMethodDataExtractor
+import COA_MethodDataExtractor
 from typing import Optional
-from COAMethodDataExtractor import COA
+from COA_MethodDataExtractor import COA
 
 AZURE_SQL_CONNECTIONSTRING="Driver={ODBC Driver 17 for SQL Server};Server=tcp:acidni-sql.database.windows.net,1433;Database=terprint;Uid=adm;Pwd=sql1234%;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
 
