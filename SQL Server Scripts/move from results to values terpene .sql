@@ -1,9 +1,7 @@
 -- Combined count query for all tables
 SELECT 
     (SELECT COUNT(*) FROM terpeneresults) AS terpeneresults_count,
-    (SELECT COUNT(*) FROM TerpeneValues) AS TerpeneValues_count,
-    (SELECT COUNT(*) FROM cannabinoidResults) AS cannabinoidResults_count,
-    (SELECT COUNT(*) FROM THCValues) AS THCValues_count
+    (SELECT COUNT(*) FROM TerpeneValues) AS TerpeneValues_count
 
 select * from terpeneresults where batchid not in (select batchid from TerpeneValues) and batchid is not null
 select * from TerpeneValues  order by created desc
@@ -12,9 +10,9 @@ select * from TerpeneValues  order by created desc
 
 SELECT 
     (SELECT COUNT(*) FROM terpeneresults) AS terpeneresults_count,
-    (SELECT COUNT(*) FROM TerpeneValues) AS TerpeneValues_count,
-    (SELECT COUNT(*) FROM cannabinoidResults) AS cannabinoidResults_count,
-    (SELECT COUNT(*) FROM THCValues) AS THCValues_count
+    (SELECT COUNT(*) FROM TerpeneValues) AS TerpeneValues_count
+    select terpeneresults_count - TerpeneValues_count  as difference_count
+
 INSERT INTO [dbo].[TerpeneValues]
            ([created]
            ,[createdby]

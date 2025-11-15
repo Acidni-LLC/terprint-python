@@ -242,7 +242,7 @@ def insertBatch(
             OUTPUT INSERTED.BatchID
             VALUES (?, ?, ?,?,?, ?,?,?,?,CURRENT_TIMESTAMP)
             """ 
-            print("batch sql" + SQL_STATEMENT)
+            #print("batch sql" + SQL_STATEMENT)
             cursor.execute(
                 SQL_STATEMENT,
                 (

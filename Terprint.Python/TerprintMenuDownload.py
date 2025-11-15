@@ -17,11 +17,8 @@ from bcolors import bcolors
 
 separator ="|"
 redownload = 0
-my_list = ["82803_0007917542"]#,"84605_0007838588","84573_0007814969","83537_0007927819","82049_0007871793",
-            
-            # "76757_0007641641","81283_0007616623","79080_0007757408","80205_0007584617","71223_0007917546","76505_0007734157","75785_0007429590","75781_0007812531","75838_0007826259","75084_0007768280","74556_0007815392","74576_0007826214","73727_0007745861","71320_0007905682","72986_0007616857","72985_0007653554","72984_0007541011","70912_0007630058","71029_0007584610","68187_0007451732","67988_0007616849","68186_0007653750","68682_0007452924","68673_0007771213","68677_0007976196","68686_0007861609","59725_0007630100","59721_0007575033","67194_0007614543","67192_0007530233","67342_0007849586","67340_0007562321","67325_0007871796","67236_0007861610","18347_0007653567","66760_0007519756","64809_0007813112","63868_0007562376","63549_0007673675","61129_0007424983","59680_0007685956","58739_0007927439","58723_0007826261","56975_0007814983","50657_0007514205","49447_0007541022","46768_0007927735","24134_0007313363","18275_0007976638","84573_0007746218","79112_0007861686","81283_0007689754","79080_0007861679","80205_0007848631","76505_0007722540","71320_0007770949","72984_0007745899","69669_0007917621","70912_0007771215","69353_0007598101","68683_0007405291","59721_0007848417","67342_0007861293","67340_0007673898","67325_0007745914","64809_0007643290","61123_0007246497","58723_0007541012","56974_0007917544","50657_0007540652","18275_0007450575","83537_0007746082","82049_0007674240","80205_0007563253","79099_0007475608","75785_0007290685","75838_0007792608","75567_0007939541","75084_0007937997","73983_0007782311","71320_0007465823","72985_0007562320","72982_0007828070","69669_0007816069","71029_0007509347","68679_0007475377","69353_0007514153","68673_0007905940","68686_0007894512","59710_0007509349","67990_0007746016","59814_0007353476","67194_0007584970","67335_0007530209","67236_0007895791","67065_0007860767","61129_0007450580","59663_0007453562","58739_0007711502","58723_0007426355","49447_0007838367","46768_0007826447","43670_0007313365","18363_0007530174","18275_0007429612","83537_0007771994","80205_0007616847","76505_0007734156","69665_0007861694","69661_0007861700","68679_0007616627","56976_0007917548","83537_0007563272","81283_0007538669","75838_0007848659","72985_0007530225","67194_0007541009","67325_0007892809","18275_0007463761","79124_0007861289","75781_0007848428","59725_0007687418","59721_0007916123","49447_0007803309","84605_0007768331","82049_0007905680","79099_0007629764","76505_0007757622","74556_0007605467","71030_0007354228","67988_0007514131","68186_0007814913","68682_0007861296","59703_0007828047","64809_0007905681","56976_0007814985","82462_0007768510","76757_0007768507","67988_0007828086","59814_0007366578","63534_0007519748","46768_0007838611","41839_0007673539","75792_0007519660","75567_0007616845","74576_0007771989","69669_0007711628","66760_0007403890","50657_0007564075","67988_0007815114","58723_0007442383","50657_0007757621","76505_0007771991","67988_0007916422","67342_0007509324","18365_0007509364","50657_0007220619","79132_0007861294","75838_0007769182","59814_0007803308","67342_0007641508","58739_0007861611","18329_0007630532","76757_0007746071","74556_0007711608","71320_0007892812","67988_0007584874","68186_0007378049","68686_0007848415","59721_0007475993",
-            
-            #"60421_0007293728","67342_0007365528","57901_0007813111","49447_0007119352"]
+my_list = ["82803_0007917542","84605_0007838588","84573_0007814969","83537_0007927819","82049_0007871793","76757_0007641641","81283_0007616623","79080_0007757408","80205_0007584617","71223_0007917546","76505_0007734157","75785_0007429590","75781_0007812531","75838_0007826259","75084_0007768280","74556_0007815392","74576_0007826214","73727_0007745861","71320_0007905682","72986_0007616857","72985_0007653554","72984_0007541011","70912_0007630058","71029_0007584610","68187_0007451732","67988_0007616849","68186_0007653750","68682_0007452924","68673_0007771213","68677_0007976196","68686_0007861609","59725_0007630100","59721_0007575033","67194_0007614543","67192_0007530233","67342_0007849586","67340_0007562321","67325_0007871796","67236_0007861610","18347_0007653567","66760_0007519756","64809_0007813112","63868_0007562376","63549_0007673675","61129_0007424983","59680_0007685956","58739_0007927439","58723_0007826261","56975_0007814983","50657_0007514205","49447_0007541022","46768_0007927735","24134_0007313363","18275_0007976638","84573_0007746218","79112_0007861686","81283_0007689754","79080_0007861679","80205_0007848631","76505_0007722540","71320_0007770949","72984_0007745899","69669_0007917621","70912_0007771215","69353_0007598101","68683_0007405291","59721_0007848417","67342_0007861293","67340_0007673898","67325_0007745914","64809_0007643290","61123_0007246497","58723_0007541012","56974_0007917544","50657_0007540652","18275_0007450575","83537_0007746082","82049_0007674240","80205_0007563253","79099_0007475608","75785_0007290685","75838_0007792608","75567_0007939541","75084_0007937997","73983_0007782311","71320_0007465823","72985_0007562320","72982_0007828070","69669_0007816069","71029_0007509347","68679_0007475377","69353_0007514153","68673_0007905940","68686_0007894512","59710_0007509349","67990_0007746016","59814_0007353476","67194_0007584970","67335_0007530209","67236_0007895791","67065_0007860767","61129_0007450580","59663_0007453562","58739_0007711502","58723_0007426355","49447_0007838367","46768_0007826447","43670_0007313365","18363_0007530174","18275_0007429612","83537_0007771994","80205_0007616847","76505_0007734156","69665_0007861694","69661_0007861700","68679_0007616627","56976_0007917548","83537_0007563272","81283_0007538669","75838_0007848659","72985_0007530225","67194_0007541009","67325_0007892809","18275_0007463761","79124_0007861289","75781_0007848428","59725_0007687418","59721_0007916123","49447_0007803309","84605_0007768331","82049_0007905680","79099_0007629764","76505_0007757622","74556_0007605467","71030_0007354228","67988_0007514131","68186_0007814913","68682_0007861296","59703_0007828047","64809_0007905681","56976_0007814985","82462_0007768510","76757_0007768507","67988_0007828086","59814_0007366578","63534_0007519748","46768_0007838611","41839_0007673539","75792_0007519660","75567_0007616845","74576_0007771989","69669_0007711628","66760_0007403890","50657_0007564075","67988_0007815114","58723_0007442383","50657_0007757621","76505_0007771991","67988_0007916422","67342_0007509324","18365_0007509364","50657_0007220619","79132_0007861294","75838_0007769182","59814_0007803308","67342_0007641508","58739_0007861611","18329_0007630532","76757_0007746071","74556_0007711608","71320_0007892812","67988_0007584874","68186_0007378049","68686_0007848415","59721_0007475993",            
+            "60421_0007293728","67342_0007365528","57901_0007813111","49447_0007119352"]
 #my_list = ["47993_0006162867"]
 dispensary="Trulieve"
 dispensaryid=1      
@@ -34,13 +31,16 @@ totalbatches = my_list.__len__()
 batchescount = 0
 #if dispensaryid ==2:
 #       downloadfile(my_list,dispensaryid)ter
+
+bigindex = 0
+
 for item in my_list:
     batchin = item
-    batch = ""
+    batch = batchin
     batchescount = batchescount + 1
-    print (f"{bcolors.OKBLUE} batch {str(batchescount)} {item+bcolors.ENDC} of {bcolors.OKBLUE}  {str(totalbatches)} : {item+bcolors.ENDC}")
+    print (f"{bcolors.OKGREEN} batch {batchin}  {bcolors.ENDC}- {bcolors.OKBLUE}{str(batchescount)} {bcolors.ENDC} of {bcolors.OKBLUE}  {str(totalbatches)}  {bcolors.ENDC}")
     missingfile = 0
-    
+    bigindex=bigindex+1
     if(checkTerpene(item)==True):
         print(bcolors.OKCYAN + item +" terpene record exisits" + bcolors.ENDC)        
     else:
@@ -143,7 +143,7 @@ for item in my_list:
                 coa = ACS_COA_Simple.from_text(extracted_text)
                 
                 json_text = coa.to_json1() 
-                print("\n\n"+json_text+"\n\n")
+                #print("\n\n"+json_text+"\n\n")
                 batchName = coa.order_number +"_"+ batchin
                 batchid =  insertBatch(
                     coa, productType, 
@@ -238,34 +238,21 @@ for item in my_list:
             ###FORMAT 222222222222222222222222222
 
 
-                coa = ModernCanna_COA.from_text(extracted_text)
+                coa2 = ModernCanna_COA.from_text(extracted_text)
                 
-                json_text = coa.to_json() 
+                json_text = coa2.to_json() 
                 print("\n\n"+json_text+"\n\n")
-                batchName = coadata.order_number +"_"+ batchin
+                batchName =  batchin
                 batchid =  insertBatch(
-                    coa, productType, 
-                    dispensaryid, "jgill@acidnillc.onmicrosoft.com",json_text, batchName,coa.total_terpenes_percent,coa.total_active_cannabinoids_percent,coa.received_date,coa.sample_alias)
+                    coa2, productType, 
+                    dispensaryid, "jgill@acidnillc.onmicrosoft.com",json_text, batchName,coa2.total_terpenes_percent,coa2.total_active_cannabinoids_percent,coa2.received_date,coa2.cultivar)
                 
-                
-                extracted_text = extract_text_from_pdf(pdf_path)
-                extracted_text1 = extracted_text
-                
-                counter =1
-                outputlines = ""
-                outputline = ""
-                c= 1
-                can=""
-                percent=""
-                outputlines = ""
-                c= 1
-                position = 1
-                skipcount = 1
+           
                 index = 1
                 outputlines ="Batch"+separator+"Index"+separator+"Cannabinoid"+separator+"Percent"+separator+"Milligrams\n"
-                for line in coa.cannabinoids:
+                for line in coa2.cannabinoids:
                   
-                        outputline = batch + "|"+str(index)+"|" +line.name + "|" +line .percent + "|" + line.mg   +"\n"
+                        outputline = batch + "|"+str(index)+"|" +line.name + "|" +str(line.percent) + "|" + str(line.mg)   +"\n"
                         # print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
                         # print(outputline+"\n")
                         # print ("-----------------------------------------------\n")
@@ -288,7 +275,6 @@ for item in my_list:
                                         batchid)
                         outputline=""
                         counter = 0
-                        position = position + 1
                         index=index+1 
  
                     
@@ -297,11 +283,10 @@ for item in my_list:
                 counter = 1
                 skip = True
                 terp = ""
-                position = 1
                 skip = True
                 index = 1
                 setheader = True
-                for line in coa.terpenes:    
+                for line in coa2.terpenes:    
                     outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"Percent\n"
                     
                                             
@@ -351,18 +336,17 @@ for item in my_list:
                  #new code to use extractor class
 
                 extracted_text = extract_text_from_pdf(pdf_path)
-                coadata = COADataModel.Batch.from_text(extracted_text)
-                coa = COA.from_text(extracted_text)
+                coa3 = COADataModel.Batch.from_text(extracted_text) 
                 json_text = coa.to_json() 
                 print("\n\n"+json_text+"\n\n")
-                batchName = coadata.order_number +"_"+ batchin
+                batchName = coa3.order_number +"_"+ batchin
                 batchid =  insertBatch(
-                    coa, productType, 
+                    coa3, productType, 
                     dispensaryid, "jgill@acidnillc.onmicrosoft.com",json_text, batchName,
-                    coa.total_terpenes_percent,
-                    coa.total_cannabinoids_percent,
-                    coa.batch_date,
-                    coa.cultivars[0] if coa.cultivars else "")
+                    coa3.total_terpenes_percent,
+                    coa3.total_cannabinoids_percent,
+                    coa3.batch_date,
+                    coa3.cultivars[0] if coa3.cultivars else "")
             # print(extracted_text)
             # with open(batch+"_extractall.txt", "w", encoding='utf-8') as f:
                 # f.write(extracted_text)
@@ -392,7 +376,7 @@ for item in my_list:
         #CANNABINOIDS
                 outputlines = ""
                 
-                for cannabinoid in coa.potency_analytes:
+                for cannabinoid in coa3.potency_analytes:
                     outputline = ""
                     outputline = batch +"_"+ batchin +separator+  str(index) + separator+ cannabinoid.name + separator + str(cannabinoid.percent) + separator + str(cannabinoid.mg_per_unit) +    "\n"
                     # print(cannabinoid.name + " " + str(cannabinoid.percent) + " " + str(cannabinoid.mg_per_unit))
@@ -427,7 +411,7 @@ for item in my_list:
                 index = 1
                 setheader = True
                 outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"(ug/g)"+separator+"Percent\n"
-                for terp in coa.terpenes:
+                for terp in coa3.terpenes:
                     outputline = ""
                     outputline =  batch +"_"+ batchin +separator+  str(index) + separator+ terp.name + separator + str(terp.result_ug_per_g) + separator + str(terp.percent) +    "\n"
                     # print(terp.name + " " + str(terp.ug_per_g) + " " + str(terp.percent_of_total))
@@ -463,22 +447,22 @@ for item in my_list:
                 
                 extracted_text = extract_text_from_pdf(pdf_path)
                 extracted_text1 = extracted_text
-                coa = ModernCanna_COA.from_text(extracted_text) 
+                coa4 = ModernCanna_COA.from_text(extracted_text) 
                 
-                json_text = coa.to_json() 
+                json_text = coa4.to_json() 
                 print("\n\n"+json_text+"\n\n")
                 
                 batchid =  insertBatch(
-                    coa, productType, 
+                    coa4, productType, 
                     dispensaryid, "jgill@acidnillc.onmicrosoft.com",json_text, batch,
-                    coa.total_terpenes_percent,
-                    coa.total_cannabinoids_percent,
-                    coa.sample_date,
-                    coa.sample_alias)
+                    coa4.total_terpenes_percent,
+                    coa4.total_cannabinoids_percent,
+                    coa4.sample_date,
+                    coa4.sample_alias)
                 
                 index = 1
                 outputlines ="Batch"+separator+"Index"+separator+"Cannabinoid"+separator+"Percent"+separator+"Milligrams\n"
-                for line in coa.cannabinoids:
+                for line in coa4.cannabinoids:
                     outputline = ""
                     outputline = batch + "|"+str(index)+"|" +line.name + "|" +line.percent + "|" + line.mg   +"\n"
                     # print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
@@ -513,7 +497,7 @@ for item in my_list:
                 outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"Percent\n"
                 percent=""
                 setheader = True
-                for line in coa.terpenes :   
+                for line in coa4.terpenes :   
                                           
                     outputline = batch + "|"+str(index)+"|" +line.name + "|" + str(line.percent)+"\n"
                     
