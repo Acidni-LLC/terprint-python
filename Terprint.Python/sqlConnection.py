@@ -203,7 +203,11 @@ def insertBatch(
         dispensaryId: int,       # GrowerID   #1 Trulieve #2 Sunburn
         createdBy: str,        
         jsonstring: str,        
-        batchName: str
+        batchName: str,
+        total_terpenes_percent: float,
+        total_cannabinoids_percent: float,
+        batchDate: str,
+        strainName: str = ""
     ) -> Optional[int]:
     """
     Insert a Batch record and return the inserted BatchID (int) or None on error.
@@ -216,8 +220,8 @@ def insertBatch(
         batchid =  getBatchID(batchName) 
         print (batchid)
         if batchid == 0:
-            print("get straind id for "+ (coadata.product_name or "Unknown"))
-            strainid = getStrainID(coadata.product_name)
+            print("get straind id for "+ (strainName or "Unknown"))
+            strainid = getStrainID(strainName)
             load_dotenv()
             conn = pyodbc.connect(AZURE_SQL_CONNECTIONSTRING)
             cursor = conn.cursor()
@@ -245,12 +249,12 @@ def insertBatch(
                     createdBy,
                     batchName,
                     producttype,
-                    coadata.production_date,
+                    batchDate,
                     dispensaryId,
                     strainid, 
                     jsonstring,
-                    coadata.total_terpenes_percent,
-                    coadata.total_cannabinoids_percent
+                    total_terpenes_percent,
+                    total_cannabinoids_percent
                 )
             )
             resultId = cursor.fetchval()

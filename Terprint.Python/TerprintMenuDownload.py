@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import batchFromUrl
 import COADataModel
 from COA_MethodDataExtractor import COA
-from COA_ACS_Simple import COA_ACS_Simple
+from COA_ACS_Simple import ACS_COA_Simple
 from COA_ModernCanna01 import ModernCanna_COA
 
 from sqlConnection import insertcannabinoids, insertterpenes, checkTerpene, checkCannabinoid, insertBatch
@@ -17,99 +17,18 @@ from bcolors import bcolors
 
 separator ="|"
 redownload = 0
-#my_list = ["82057_0007827833","82115_0007827419","74853_0007916432","77125_0007916180","76555_0007938946","76692_0007927817","70485_0007815066","70475_0007552442","70455_0007850495","70483_0007826254","74941_0007782358","74940_0007745817","73345_0007487585","66469_0007827816","41743_0006970031","35471_0007723033","35163_0007723031","17699_0007247919","17611_0007773276","17552_0007365581","17551_0007585074","17550_0007324717","17496_0007723032","76692_0007605476","70485_0007814456","70475_0007489472","70455_0007871718","78022_0006993920","70483_0007895795","47993_0007425018","35163_0007774147","77008_0007825590","76555_0007849441","76692_0007326955","70485_0007721957","70455_0007840147","74941_0007641946","74940_0007701106","17611_0007353100","17552_0007838248","73881_0007916126","73877_0007916125","17551_0007937998","17550_0007653493","17496_0007782247","81867_0007511894","70475_0007105140","70478_0007091371","74941_0007653489","47993_0006162867","35471_0007782246","17550_0006945103","76692_0007838379","70475_0007757083","70483_0007896426","75265_0007848664","80356_0007828495","70483_0007850491","74940_0007803301","17551_0007086534","70483_0007838370","74941_0007838378","74940_0007749037","70485_0007746233","74941_0007690847","74940_0007732801","17699_0007563884","17611_0007641949","70487_0007548776","70481_0007541027","70475_0007290332","74941_0007757087","74940_0007685829","67357_0007162123","70475_0007529648","17552_0007261921","80355_0007828496","80354_0007828494","77125_0007812714","73997_0007630961","77047_0007771193","77106_0007329103","77124_0007275926","74863_0007277906","76555_0007510590","77132_0007248959","73994_0007223617","77614_0007209427","76692_0007595523","77078_0007313346","70477_0007136957","70475_0007062037","70455_0007775012","70483_0007208801","70478_0007023639","17611_0007137975"]
+my_list = ["82803_0007917542"]#,"84605_0007838588","84573_0007814969","83537_0007927819","82049_0007871793",
+            
+            # "76757_0007641641","81283_0007616623","79080_0007757408","80205_0007584617","71223_0007917546","76505_0007734157","75785_0007429590","75781_0007812531","75838_0007826259","75084_0007768280","74556_0007815392","74576_0007826214","73727_0007745861","71320_0007905682","72986_0007616857","72985_0007653554","72984_0007541011","70912_0007630058","71029_0007584610","68187_0007451732","67988_0007616849","68186_0007653750","68682_0007452924","68673_0007771213","68677_0007976196","68686_0007861609","59725_0007630100","59721_0007575033","67194_0007614543","67192_0007530233","67342_0007849586","67340_0007562321","67325_0007871796","67236_0007861610","18347_0007653567","66760_0007519756","64809_0007813112","63868_0007562376","63549_0007673675","61129_0007424983","59680_0007685956","58739_0007927439","58723_0007826261","56975_0007814983","50657_0007514205","49447_0007541022","46768_0007927735","24134_0007313363","18275_0007976638","84573_0007746218","79112_0007861686","81283_0007689754","79080_0007861679","80205_0007848631","76505_0007722540","71320_0007770949","72984_0007745899","69669_0007917621","70912_0007771215","69353_0007598101","68683_0007405291","59721_0007848417","67342_0007861293","67340_0007673898","67325_0007745914","64809_0007643290","61123_0007246497","58723_0007541012","56974_0007917544","50657_0007540652","18275_0007450575","83537_0007746082","82049_0007674240","80205_0007563253","79099_0007475608","75785_0007290685","75838_0007792608","75567_0007939541","75084_0007937997","73983_0007782311","71320_0007465823","72985_0007562320","72982_0007828070","69669_0007816069","71029_0007509347","68679_0007475377","69353_0007514153","68673_0007905940","68686_0007894512","59710_0007509349","67990_0007746016","59814_0007353476","67194_0007584970","67335_0007530209","67236_0007895791","67065_0007860767","61129_0007450580","59663_0007453562","58739_0007711502","58723_0007426355","49447_0007838367","46768_0007826447","43670_0007313365","18363_0007530174","18275_0007429612","83537_0007771994","80205_0007616847","76505_0007734156","69665_0007861694","69661_0007861700","68679_0007616627","56976_0007917548","83537_0007563272","81283_0007538669","75838_0007848659","72985_0007530225","67194_0007541009","67325_0007892809","18275_0007463761","79124_0007861289","75781_0007848428","59725_0007687418","59721_0007916123","49447_0007803309","84605_0007768331","82049_0007905680","79099_0007629764","76505_0007757622","74556_0007605467","71030_0007354228","67988_0007514131","68186_0007814913","68682_0007861296","59703_0007828047","64809_0007905681","56976_0007814985","82462_0007768510","76757_0007768507","67988_0007828086","59814_0007366578","63534_0007519748","46768_0007838611","41839_0007673539","75792_0007519660","75567_0007616845","74576_0007771989","69669_0007711628","66760_0007403890","50657_0007564075","67988_0007815114","58723_0007442383","50657_0007757621","76505_0007771991","67988_0007916422","67342_0007509324","18365_0007509364","50657_0007220619","79132_0007861294","75838_0007769182","59814_0007803308","67342_0007641508","58739_0007861611","18329_0007630532","76757_0007746071","74556_0007711608","71320_0007892812","67988_0007584874","68186_0007378049","68686_0007848415","59721_0007475993",
+            
+            #"60421_0007293728","67342_0007365528","57901_0007813111","49447_0007119352"]
 #my_list = ["47993_0006162867"]
-#dispensary="Trulieve"
-#dispensaryid=1         
-my_list = [ 'WQiipC7sQpiyojx',
-'FW3xYKXr7WnzAWq',
-'gFAcXTRYpnfkSfk',
-'g47exX3f769D7Np',
-'6z63Dpn43BwkggY',
-'QpgabPXJzZM7StD',
-'g852X8ybqn7w2pL',
-'LngeNzi2cfXKMiX',
-'33k3sMwNY5TKXTg',
-'Ay2ZkZyeQNDjyfa',
-'LicBAKgsBwt5GMd',
-'6DMQwXFGMqs8zX5',
-'rbbr8Ep3qAoPj5y',
-'cZLTKTn3yTTJe7P',
-'SnFSY86MjSfXyB8',
-'gbxxJoq4GqJcnLw',
-'SfWBtnDxrN9qs2t',
-'czKcWBWzTDyCPdT',
-'8K4kMmg8nsTGFxt',
-'sGgQEA54cQ3Y9JW',
-'rqrTmqqezwBGipR',
-'SrGCCkbd2AobjjY',
-'JPqWAsffRt99ySJ',
-'nP7REAQ5aQ4RYW2',
-'jKdbRbwgKFijRtc',
-'eWDcrrGNLEmzbs9',
-'meg9ZNWmCGESgsC',
-'dnyP2drMTRyw87E',
-'gZYK5idR4KdJqma',
-'L4As3WZDmB5H5y3',
-'3qmgeWwcKYRrawa',
-'fmNHWqZYycqDAgd',
-'n75eWwYNjSbYEqJ',
-'DGCc8Jw2HGRKzNx',
-'iTCbmGmZEW2KYFw',
-'n4MkEi4Afr5bLZZ',
-'dB6rS35dyT8pKkS',
-'wErCYb5e5NDYAqP',
-'QCcQmpq5e7cF3zW',
-'DNkcJ3BkcEiSg2b',
-'bRRiF8TxnFb7E7A',
-'pHX6bxL7C5yFWme',
-'8Dp8nq5QiTbAzrC',
-'Yad7LeWTiqZc3Jm',
-'je5X9ECWdoC6w4o',
-'NgBasfHjWkQecKP',
-'XF4zAKoQj8yCx3p',
-'j5XgcqBirTe85nG',
-'zpyWAj3mMeADHCt',
-'dfA63am93BqkAeR',
-'ABbmjHwkrRK5F4e',
-'iCm33pB7LjWnd5q',
-'zDF5f7E6ggrca73',
-'4REmwgHG6A5fwcL',
-'9yWQQm4aaRsgHNa',
-'LF66JqZy3mMr4wy',
-'r87Bi5xrLPpCSfo',
-'xCZ57p6SmP4GkFP',
-'dS6zKbP9cGmtNEY',
-'y8YBxxsizxsCHRE',
-'AfCP8Lj3XkzHems',
-'REYxZB8sRQ4KwKG',
-'NJiRDgnPDYBtAnX',
-'ERHxaFsjM9pyotE',
-'KTcZ6JgHdpqoAEx',
-'5RzcEb3k8B4ALo4',
-'dxDjCKX2xmAwYtW',
-'6T5P2wJxs4sBAR4',
-'mj6WiyWX8HiAFxE',
-'cZLTKTn3yTTJe7P',
-'eWDcrrGNLEmzbs9',
-'meg9ZNWmCGESgsC',
-'dnyP2drMTRyw87E',
-'pHX6bxL7C5yFWme',
-'8Dp8nq5QiTbAzrC',
-'gZYK5idR4KdJqma',
-'AfCP8Lj3XkzHems',
-'REYxZB8sRQ4KwKG',
-'NJiRDgnPDYBtAnX',
-'ERHxaFsjM9pyotE',
-'KTcZ6JgHdpqoAEx',
-'5RzcEb3k8B4ALo4',
-'dxDjCKX2xmAwYtW',
-'6T5P2wJxs4sBAR4',
-'mj6WiyWX8HiAFxE']
+dispensary="Trulieve"
+dispensaryid=1      
 #my_list = ["AfCP8Lj3XkzHems","REYxZB8sRQ4KwKG","NJiRDgnPDYBtAnX","XF4zAKoQj8yCx3p","fmNHWqZYycqDAgd","dfA63am93BqkAeR","ABbmjHwkrRK5F4e","ERHxaFsjM9pyotE","iCm33pB7LjWnd5q","KTcZ6JgHdpqoAEx","zDF5f7E6ggrca73","Ay2ZkZyeQNDjyfa","nP7REAQ5aQ4RYW2","5RzcEb3k8B4ALo4","dxDjCKX2xmAwYtW","6DMQwXFGMqs8zX5","4REmwgHG6A5fwcL","6T5P2wJxs4sBAR4","9yWQQm4aaRsgHNa","cZLTKTn3yTTJe7P","r87Bi5xrLPpCSfo","xCZ57p6SmP4GkFP","y8YBxxsizxsCHRE","mj6WiyWX8HiAFxE","Yad7LeWTiqZc3Jm"]
 #my_list = ["AfCP8Lj3XkzHems"]
-dispensary="Sunburn"
-dispensaryid=2
+# dispensary="Sunburn"
+# dispensaryid=2
 productType ="Flower"
 totalbatches = my_list.__len__()
 batchescount = 0
@@ -221,15 +140,14 @@ for item in my_list:
             if format == 1:  # ACS  81410_0007711669  #COA_ACS_Simple.py
 
             #FORMAT 111111111111111111111111111
-                coa = COA_ACS_Simple.from_text(extracted_text)
+                coa = ACS_COA_Simple.from_text(extracted_text)
                 
-                json_text = coa.to_json() 
-               # print("\n\n"+json_text+"\n\n")
-                batchName = coadata.order_number +"_"+ batchin
+                json_text = coa.to_json1() 
+                print("\n\n"+json_text+"\n\n")
+                batchName = coa.order_number +"_"+ batchin
                 batchid =  insertBatch(
                     coa, productType, 
-                    dispensaryid, "jgill@acidnillc.onmicrosoft.com",json_text, batchName)
-                
+                    dispensaryid, "jgill@acidnillc.onmicrosoft.com",json_text, batchin,coa.total_terpenes_percent,coa.total_cannabinoids_percent,coa.batch_date,coa.cultivar)
             # print("1\n"+terpenetext)
                 #print(extracted_text)
                 counter =1
@@ -246,7 +164,7 @@ for item in my_list:
                 for line in coa.terpenes:    
                     
                     
-                        outputline =  batch + "|"+str(index)+"|" + line.name + "|" + str(line.mg) + "|" + str(line.percent)
+                        outputline =  batch + "|"+str(index)+"|" + line.name + "|" + str(line.result_mg_per_g) + "|" + str(line.result_percent)
                         
                         # print("-----\n")
                         # print (outputline+"\n")
@@ -258,7 +176,8 @@ for item in my_list:
                                     outputline.split(separator)[4], 
                                     outputline.split(separator)[3],           
                                     dispensaryid,
-                                    "jgill@acidnillc.onmicrosoft.com")
+                                    "jgill@acidnillc.onmicrosoft.com",
+                                    batchid)
                         outputlines = outputlines+  "\n"+  outputline                     
                         outputline = ""
                         counter = 0                
@@ -278,55 +197,30 @@ for item in my_list:
                 newcan = 0 
                 position =1
                 setheader = True
-                for line in cannabinoidtext.splitlines():
+                for line in coa.potency_analytes:
                     
-                    if "Total Active" in line:
-                        break 
-                    # if skip == True:
-                    #     outputlines ="Batch,Index,Cannabinoid,Dilution,LOD,LOQ,Result,Percent\n"
-                    #     skip = False
-                    #     outputline =   line 
-                    #     continue
-                    # if "mg/g" in line:    
-                    # if line == "THCA-A" or line == "Delta-9 THC" or line == "CBDA" or line == "CBD" or line == "CBN" or line == "CBG" or line == "CBC" or line == "THCV" or line == "CBDV" or line == "CBGA" or line == "THC-A" or line == "Delta-9-THC" or line =="Total Active CBD"or line =="Total Active THC" or line =="Delta-8 THC":
-                    #     outputline =  outputline + line  
-                    #     outputlines = outputlines +  outputline
-                    #     outputline=""
-                    # else:
-                    #     outputline = outputline + "," + line  
-                    if counter ==1:
-                        if setheader == True:
-                            outputlines ="Batch"+separator+"Index"+separator+"Cannabinoid"+separator+"Dilution"+separator+"LOD"+separator+"LOQ"+separator+"Result"+separator+"Percent\n"
-                            setheader=False
-                        outputline = batch + separator+str(position)+separator+line +separator+ outputline
+                    outputlines ="Batch"+separator+"Index"+separator+"Cannabinoid"+separator+"Dilution"+separator+"LOD"+separator+"LOQ"+separator+"Result"+separator+"Percent\n"
+                    setheader=False
+                    outputline = batchin + separator+str(position)+separator+line.name +separator+ str(line.dilution)+separator+ str(line.lod_percent)+separator+ str(line.loq_percent)+separator+ str(line.result_mg_per_g)+separator+ str(line.result_percent) +"\n"
 
-                    elif counter <6:
-                        outputline = outputline + separator+  line 
-                    elif counter ==6:
-                        outputline =  outputline + separator+  line + "\n"
-                        outputlines = outputlines +  outputline 
                         
-                        print("-----")
-                        print (outputline)
-                        print("-----") 
-                        insertcannabinoids(
-                                        outputline.split(separator)[0],
-                                        outputline.split(separator)[1],
-                                        outputline.split(separator)[2],
-                                        outputline.split(separator)[8],
-                                        outputline.split(separator)[7], 
-                                        dispensaryid,
-                                        "jgill@acidnillc.onmicrosoft.com")
-                        outputline=""
-                        counter = 0
-                        position = position + 1
+                    print("-----")
+                    print (outputline)
+                    print("-----") 
+                    insertcannabinoids(
+                                    outputline.split(separator)[0],
+                                    outputline.split(separator)[1],
+                                    outputline.split(separator)[2],
+                                    outputline.split(separator)[7],
+                                    outputline.split(separator)[6], 
+                                    dispensaryid,
+                                    "jgill@acidnillc.onmicrosoft.com",
+                                    batchid)
+                    outputlines = outputlines + outputline
+                    outputline=""
+                    counter = 0
+                    position = position + 1
                     counter = counter + 1
-
-                cannabinoidtext = outputlines.replace(",Analyte,Result (mg/g) (%)\n","")
-                # print("__________________________________________________")      
-                # print(batch)            
-                # print("1\n"+terpenetext)
-                # print("1\n"+cannabinoidtext) 
 
                 with open(backslashpath+str(format)+"\\terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
                     outputtext =  terpenetext            
@@ -343,25 +237,19 @@ for item in my_list:
 
             ###FORMAT 222222222222222222222222222
 
+
+                coa = ModernCanna_COA.from_text(extracted_text)
+                
+                json_text = coa.to_json() 
+                print("\n\n"+json_text+"\n\n")
+                batchName = coadata.order_number +"_"+ batchin
+                batchid =  insertBatch(
+                    coa, productType, 
+                    dispensaryid, "jgill@acidnillc.onmicrosoft.com",json_text, batchName,coa.total_terpenes_percent,coa.total_active_cannabinoids_percent,coa.received_date,coa.sample_alias)
+                
+                
                 extracted_text = extract_text_from_pdf(pdf_path)
                 extracted_text1 = extracted_text
-            # print(extracted_text)
-            # with open(batch+"_extractall.txt", "w", encoding='utf-8') as f:
-                # f.write(extracted_text)
-                    
-            # print("2wrote text:\n")
-                terpenetext = extracted_text.split("TERPENES SUMMARY (Top Ten)", maxsplit=1)[1]
-                terpenetext = terpenetext.split("Completed", maxsplit=1)[0]
-                terpenetext  =terpenetext.split("Total CBD", maxsplit=1)[0]
-                terpenetext  =terpenetext.split("%\n ", maxsplit=1)[1]
-
-            #  print("3found terpenes:\n")
-                
-                #terpenetext = extract_text_from_pdf(terpenetext)
-
-                cannabinoidtext = extracted_text1.split("Analyte\nmg\n", maxsplit=1)[1]
-                cannabinoidtext  =cannabinoidtext.split("TERPENES SUMMARY (Top Ten)", maxsplit=1)[0]
-                
                 
                 counter =1
                 outputlines = ""
@@ -375,37 +263,13 @@ for item in my_list:
                 skipcount = 1
                 index = 1
                 outputlines ="Batch"+separator+"Index"+separator+"Cannabinoid"+separator+"Percent"+separator+"Milligrams\n"
-                for line in cannabinoidtext.splitlines():
-                
-                    if "Total Active" in line:
-                        break 
-                    # line = line.strip()
-                    # print ("-----------------------------------------------\n")
-                    # print (str(counter)+"\n")
-                    # print (line+"\n")
-                    # print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
-                    # #print(cannabinoidtext+"\n")
-                    # print ("-----------------------------------------------\n")
-                
-                    # if "mg/g" in line:    
-                    # if line == "THCA-A" or line == "Delta-9 THC" or line == "CBDA" or line == "CBD" or line == "CBN" or line == "CBG" or line == "CBC" or line == "THCV" or line == "CBDV" or line == "CBGA" or line == "THC-A" or line == "Delta-9-THC" or line =="Total Active CBD"or line =="Total Active THC" or line =="Delta-8 THC":
-                    #     outputline =  outputline + line  
-                    #     outputlines = outputlines +  outputline
-                    #     outputline=""
-                    # else:
-                    #     outputline = outputline + "," + line  
-                    if counter ==1:
-                        outputline = batch + "|"+str(index)+"|" +line 
-                    elif counter ==2:
-                        outputline =  outputline + "|" +line 
-                    elif counter ==3:                             
-                        outputline =  outputline + "|"+  line +"\n"
+                for line in coa.cannabinoids:
+                  
+                        outputline = batch + "|"+str(index)+"|" +line.name + "|" +line .percent + "|" + line.mg   +"\n"
                         # print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
                         # print(outputline+"\n")
                         # print ("-----------------------------------------------\n")
-                    # outputline = outputline.split(separator)[0] +    "," + outputline.split(separator)[1] +    "," + outputline.split(separator)[2]+    "," + outputline.split(separator)[3] +    "," + outputline.split(separator)[4]   
-                        inpercent = ""
-                        inanalyte = ""    
+                    # outputline = outputline.split(separator)[0] +    "," + outputline.split(separator)[1] +    "," + outputline.split(separator)[2]+    "," + outputline.split(separator)[3] +    "," + outputline.split(separator)[4]      
                         print(str(index) +"---"+outputline+"----")            
                     #  if index == 1:
                         # else:
@@ -420,14 +284,13 @@ for item in my_list:
                                         outputline.split(separator)[3],
                                         outputline.split(separator)[4], 
                                         dispensaryid,
-                                        "jgill@acidnillc.onmicrosoft.com")
+                                        "jgill@acidnillc.onmicrosoft.com",
+                                        batchid)
                         outputline=""
                         counter = 0
                         position = position + 1
-                        index=index+1
-                    counter = counter + 1
-
-                cannabinoidtext = outputlines.replace(",,,%,,%,Analyte,,%,Analyte,mg,,%,Analyte,mg,","") 
+                        index=index+1 
+ 
                     
     
                 outputlines=""
@@ -438,55 +301,24 @@ for item in my_list:
                 skip = True
                 index = 1
                 setheader = True
-                for line in terpenetext.splitlines():    
-                    if skip == True:
-                        skip = False
-                        continue
+                for line in coa.terpenes:    
+                    outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"Percent\n"
                     
-                    if line=="Ocimene, Total" :
-                        line = "Ocimene"
-                    # print("Line:", line)
-                    # print("Counter:", counter)
-                    # print("Is number:", is_number)
-                    # print("-----")
-                    # Check if the line can be converted to a float
-                    # If it can, it's a number; otherwise, it's not
-                    try:
-                        float(line)
-                        is_number = True
-                    except ValueError:
-                        is_number = False
-                    # print("Not a number:", line)
-
-                    if is_number == True :
-                        percent = line  
-                        outputline =  terp + ", " + percent
-                        # counter = counter  + 1
-                    else:
-                        if setheader == True:
-                            outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"Percent\n"
-                            setheader=False
                                             
-                        terp = batch + "|" + str(index)+"|" + line
-                        outputline =   terp + "|" + percent
-                        if setheader == False:                            
-                            outputline =  outputline + "\n"
-                            # #outputlines = outputlines +  outputline 
-                            # print("-----\n")
-                            # print (outputline+"\n")
-                            # print("-----\n")
-                            insertterpenes(
-                                            outputline.split(separator)[0],
-                                            outputline.split(separator)[1],
-                                            outputline.split(separator)[2],
-                                            outputline.split(separator)[3], 
-                                            0,                                        
-                                            dispensaryid,
-                                            "jgill@acidnillc.onmicrosoft.com")
-                        outputlines = outputlines+ outputline 
-                        index = index + 1
-                    
-                        # if counter == 1:
+                    outputline = batch + "|" + str(index)+"|" + line.name + "|" + str(line.percent)
+                    insertterpenes(
+                                    outputline.split(separator)[0],
+                                    outputline.split(separator)[1],
+                                    outputline.split(separator)[2],
+                                    outputline.split(separator)[3], 
+                                    0,                                        
+                                    dispensaryid,
+                                    "jgill@acidnillc.onmicrosoft.com",
+                                    batchid)
+                    outputlines = outputlines+ outputline 
+                    index = index + 1
+                
+                    # if counter == 1:
                     #     percent = line
                     #     counter = counter  + 1
                     # elif counter == 2:
@@ -522,11 +354,15 @@ for item in my_list:
                 coadata = COADataModel.Batch.from_text(extracted_text)
                 coa = COA.from_text(extracted_text)
                 json_text = coa.to_json() 
-               # print("\n\n"+json_text+"\n\n")
+                print("\n\n"+json_text+"\n\n")
                 batchName = coadata.order_number +"_"+ batchin
                 batchid =  insertBatch(
                     coa, productType, 
-                    dispensaryid, "jgill@acidnillc.onmicrosoft.com",json_text, batchName)
+                    dispensaryid, "jgill@acidnillc.onmicrosoft.com",json_text, batchName,
+                    coa.total_terpenes_percent,
+                    coa.total_cannabinoids_percent,
+                    coa.batch_date,
+                    coa.cultivars[0] if coa.cultivars else "")
             # print(extracted_text)
             # with open(batch+"_extractall.txt", "w", encoding='utf-8') as f:
                 # f.write(extracted_text)
@@ -576,52 +412,7 @@ for item in my_list:
                                     dispensaryid,
                                     "jgill@acidnillc.onmicrosoft.com",
                                     batchid)
-                
-                # for line in cannabinoidtext.splitlines():
-                    # line = line.strip()
-                    # if position == skipcount:
-                    #     outputlines ="Batch"+separator+"Index"+separator+"Cannabinoid"+separator+"Dilution"+separator+"LOD"+separator+"LOQ"+separator+"Result"+separator+"Percent\n"
-                    #     position = position + 1
-                    #     skip = False 
-                    #     continue
-                    # elif position < skipcount:
-                    #     position = position + 1
-                    #     continue
-                    # if "Total " in line:
-                    #     break 
-                    # # if "mg/g" in line:    
-                    # # if line == "THCA-A" or line == "Delta-9 THC" or line == "CBDA" or line == "CBD" or line == "CBN" or line == "CBG" or line == "CBC" or line == "THCV" or line == "CBDV" or line == "CBGA" or line == "THC-A" or line == "Delta-9-THC" or line =="Total Active CBD"or line =="Total Active THC" or line =="Delta-8 THC":
-                    # #     outputline =  outputline + line  
-                    # #     outputlines = outputlines +  outputline
-                    # #     outputline=""
-                    # # else:
-                    # #     outputline = outputline + "," + line  
-                    # if counter ==1:
-                    #     outputline = batch +"_"+item + "|"+str(index)+"|" +line 
-
-                    # elif counter <5:
-                    #     outputline = outputline + "|"+  line 
-                    # elif counter ==5:
-                    #     outputline =  outputline + "|"+  line + "\n"
-                    #     outputlines = outputlines +  outputline 
-                        
-                    #     print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
-                    #     print(bcolors.OKCYAN + outputline + bcolors.ENDC+"\n")
-                    #     print ("-----------------------------------------------\n")
-                    #     insertcannabinoids(
-                    #                     outputline.split(separator)[0],
-                    #                     outputline.split(separator)[1],
-                    #                     outputline.split(separator)[2],
-                    #                     outputline.split(separator)[6],
-                    #                     outputline.split(separator)[5], 
-                    #                     dispensaryid,
-                    #                     "jgill@acidnillc.onmicrosoft.com")
-                        
-                    #     outputline=""
-                    #     counter = 0
-                    #     position = position + 1
-                    #     index=index+1
-                    # counter = counter + 1
+                 
 
                 cannabinoidtext = outputlines
                     
@@ -656,48 +447,6 @@ for item in my_list:
                     outputlines = outputlines + outputline
                     index=index+1
                 terpenetext = outputlines
-                # for line in terpenetext.splitlines():     
-                #     if position == skipcount:
-                #         outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"(ug/g)"+separator+"Percent\n"
-                #         position = position + 1
-                #         skip = False 
-                #         continue
-                #     elif position < skipcount:
-                #         position = position + 1
-                #         continue
-                #     if "Total " in line:
-                #         break  
-                #     if counter ==1:
-                #         outputline = batch +"_"+item + separator+str(index)+separator +line 
-
-                #     elif counter <3:
-                #         outputline = outputline + separator+  line 
-                #     elif counter ==3:
-                #         outputline =  outputline +separator+  line + separator+ coadata.totalterps+separator+coadata.date+    "\n"
-                #         outputlines = outputlines +  outputline 
-                        
-                #         print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
-                #         print(bcolors.OKCYAN + outputline + bcolors.ENDC +"\n")
-                #         print ("-----------------------------------------------\n")
-                #         insertterpenes(
-                #                         outputline.split(separator)[0],
-                #                         outputline.split(separator)[1],
-                #                         outputline.split(separator)[2],
-                #                         outputline.split(separator)[4], 
-                #                         outputline.split(separator)[3],
-                #                         dispensaryid,
-                #                         "jgill@acidnillc.onmicrosoft.com")
-                #         outputline=""
-                #         counter = 0
-                #         position = position + 1
-                #         index=index+1
-                #     counter = counter + 1
-                # terpenetext = outputlines
-
-                # print("__________________________________________________")        
-                # print(batch)            
-                # print("2\n"+terpenetext)
-                # print("2\n"+cannabinoidtext)
         
                 with open(backslashpath+str(format)+"\\terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
                     outputtext =  terpenetext            
@@ -711,87 +460,48 @@ for item in my_list:
             
             elif format == 4:  #  COA_ModernCanna01.py   47993_0006162867 trulieve
 
-
+                
                 extracted_text = extract_text_from_pdf(pdf_path)
                 extracted_text1 = extracted_text
-            # print(extracted_text)
-            # with open(batch+"_extractall.txt", "w", encoding='utf-8') as f:
-                # f.write(extracted_text)
-                    
-            # print("2wrote text:\n")
-                terpenetext = extracted_text
-                terpenetext = terpenetext.split("Analyte", maxsplit=1)[1]
-                terpenetext = terpenetext.split("%\n", maxsplit=1)[1]
-                terpenetext = terpenetext.split("Total THC", maxsplit=1)[0]
-
-                print("TERPENES-----------------------")
-                print(terpenetext)
-            #  print("3found terpenes:\n")
+                coa = ModernCanna_COA.from_text(extracted_text) 
                 
-                #terpenetext = extract_text_from_pdf(terpenetext)
-                cannabinoidtext =  extracted_text1
-                cannabinoidtext = cannabinoidtext.split("POTENCY DETAILS", maxsplit=1)[1]
-                cannabinoidtext  =cannabinoidtext.split("Total Terpenes:", maxsplit=1)[0]
-                print("CANNABINOIDS-----------------------")
-                print(cannabinoidtext)
-                ###  Cannabinoid
-                counter =1
-                outputlines = ""
-                outputline = ""
-                c= 1
-                can=""
-                percent=""
-                outputlines = ""
-                c= 1
-                position = 1
-                skipcount = 1
+                json_text = coa.to_json() 
+                print("\n\n"+json_text+"\n\n")
+                
+                batchid =  insertBatch(
+                    coa, productType, 
+                    dispensaryid, "jgill@acidnillc.onmicrosoft.com",json_text, batch,
+                    coa.total_terpenes_percent,
+                    coa.total_cannabinoids_percent,
+                    coa.sample_date,
+                    coa.sample_alias)
+                
                 index = 1
                 outputlines ="Batch"+separator+"Index"+separator+"Cannabinoid"+separator+"Percent"+separator+"Milligrams\n"
-                for line in cannabinoidtext.splitlines():
-                    print(line)
-                    line = line.strip()
-                    if "Total Active" in line:
-                        break 
-                    if line.strip() == "":
-                        continue
+                for line in coa.cannabinoids:
+                    outputline = ""
+                    outputline = batch + "|"+str(index)+"|" +line.name + "|" +line.percent + "|" + line.mg   +"\n"
+                    # print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
                     
-                    if counter ==1:
-                        percent = line
-                        outputline = batch + "|"+str(index)+"|" +line 
-                    elif counter ==2: 
-                        can = line                      
-                        outputline = batch + "|"+str(index)+"|" +can         
-                        outputline =  outputline + "|"+  percent +"\n"
-                        # print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
-                        # print(outputline+"\n")
-                        # print ("-----------------------------------------------\n")
-                    # outputline = outputline.split(separator)[0] +    "," + outputline.split(separator)[1] +    "," + outputline.split(separator)[2]+    "," + outputline.split(separator)[3] +    "," + outputline.split(separator)[4]   
-                        inpercent = ""
-                        inanalyte = ""    
-                        print(str(index) +"---"+outputline+"----")            
-                    #  if index == 1:
-                        # else:
-                        #     inpercent = outputline.split(separator)[3]
-                        #     inanalyte = outputline.split(separator)[2]
-                        outputlines = outputlines + outputline
+                    outputlines = outputlines + outputline
                     
-                        insertcannabinoids(
-                                        outputline.split(separator)[0],
-                                        outputline.split(separator)[1],
-                                        outputline.split(separator)[2],
-                                        outputline.split(separator)[3],
-                                        0, 
-                                        dispensaryid,
-                                        "jgill@acidnillc.onmicrosoft.com")
-                        outputline=""
-                        counter = 0
-                        position = position + 1
-                        index=index+1
-                        
+                    insertcannabinoids(
+                                    outputline.split(separator)[0],
+                                    outputline.split(separator)[1],
+                                    outputline.split(separator)[2],
+                                    outputline.split(separator)[3],
+                                    0, 
+                                    dispensaryid,
+                                    "jgill@acidnillc.onmicrosoft.com",
+                                    batchid,
+                                    coa)
+                    outputline=""
+                    counter = 0
+                    position = position + 1
+                    index=index+1
+                    
                     counter = counter + 1
 
-                cannabinoidtext = outputlines.replace(",,,%,,%,Analyte,,%,Analyte,mg,,%,Analyte,mg,","") 
-                    
     
                 outputlines=""
                 counter = 1
@@ -800,72 +510,28 @@ for item in my_list:
                 position = 1
                 skip = True
                 index = 1
+                outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"Percent\n"
                 percent=""
                 setheader = True
-                for line in terpenetext.splitlines():    
-                    print(line)
-                    line = line.strip()
-                    if skip == True:
-                        skip = False
-                        continue
+                for line in coa.terpenes :   
+                                          
+                    outputline = batch + "|"+str(index)+"|" +line.name + "|" + str(line.percent)+"\n"
                     
-                    if line=="Ocimene, Total" :
-                        line = "Ocimene"
-                    # print("Line:", line)
-                    # print("Counter:", counter)
-                    # print("Is number:", is_number)
-                    # print("-----")
-                    # Check if the line can be converted to a float
-                    # If it can, it's a number; otherwise, it's not
-                    if counter ==1:
-                        terp = line
-                    elif counter ==2: 
-                        percent = line                      
-                        outputline = batch + "|"+str(index)+"|" +terp
-                        outputline =  outputline + "|"+  percent +"\n"
-                        # print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
-                        # print(outputline+"\n")
-                        # print ("-----------------------------------------------\n")
-                    # outputline = outputline.split(separator)[0] +    "," + outputline.split(separator)[1] +    "," + outputline.split(separator)[2]+    "," + outputline.split(separator)[3] +    "," + outputline.split(separator)[4]   
-                        inpercent = ""
-                        inanalyte = ""    
-                        print(str(index) +"---"+outputline+"----")            
-                    #  if index == 1:
-                        # else:
-                        #     inpercent = outputline.split(separator)[3]
-                        #     inanalyte = outputline.split(separator)[2]
-                        outputlines = outputlines + outputline
-                    
-                        insertterpenes(
-                                        outputline.split(separator)[0],
-                                        outputline.split(separator)[1],
-                                        outputline.split(separator)[2],
-                                        outputline.split(separator)[3],
-                                        0, 
-                                        dispensaryid,
-                                        "jgill@acidnillc.onmicrosoft.com")
-                        outputline=""
-                        counter = 0
-                        position = position + 1
-                        index=index+1
-                    counter = counter + 1
-                    
-                        # if counter == 1:
-                    #     percent = line
-                    #     counter = counter  + 1
-                    # elif counter == 2:
-                    #     terp = line
-                    #     counter = counter  + 1
-                    # elif counter == 3:
-                    #     outputline = terp + " " + percent + "\n"
-                    #     outputlines = outputlines + outputline  
-                    #     counter  =1
-                terpenetext = outputlines
-
-                # print("__________________________________________________")        
-                # print(batch)            
-                # print("2\n"+terpenetext)
-                # print("2\n"+cannabinoidtext)
+                    outputlines = outputlines + outputline
+                
+                    insertterpenes(
+                                    outputline.split(separator)[0],
+                                    outputline.split(separator)[1],
+                                    outputline.split(separator)[2],
+                                    outputline.split(separator)[3],
+                                    0, 
+                                    dispensaryid,
+                                    "jgill@acidnillc.onmicrosoft.com",
+                                    batchid)
+                    outputline="" 
+                    position = position + 1
+                    index=index+1 
+                     
         
                 with open(backslashpath+str(format)+"\\terpenes\\"+batch+"_terpenes.txt", "w", encoding='utf-8') as f:
                     outputtext =  terpenetext            
