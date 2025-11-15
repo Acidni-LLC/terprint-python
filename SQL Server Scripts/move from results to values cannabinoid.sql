@@ -31,7 +31,7 @@ SELECT
     'mg/g' AS [LOD],
     [Index]
 FROM [dbo].[cannabinoidResults]
-WHERE batchid NOT IN (SELECT batchid FROM THCValues ) and  batchid IS NOT NULL and  [milligrams]  not in  ('ND','<LOQ','None') and milligrams >0.0
+WHERE batchid NOT IN (SELECT batchid FROM THCValues ) and  batchid IS NOT NULL and  [milligrams]  not in  ('ND','<LOQ','None') and TRY_CAST(ISNULL([milligrams], '0') AS FLOAT)  >0.0
 order by milligrams
 
 
