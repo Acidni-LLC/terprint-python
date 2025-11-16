@@ -83,6 +83,7 @@ class ModernCanna_COA:
     sample_alias: Optional[str] = None
     sample_matrix: Optional[str] = None
     lab_id: Optional[str] = None
+    cultivar: Optional[str] = None
     
     # Dates
     sample_date: Optional[datetime] = None
@@ -135,6 +136,7 @@ class ModernCanna_COA:
         instance.sample_alias = find(r'Sample Alias:\s*([^\n]+)')
         instance.sample_matrix = find(r'Sample Matrix:\s*([^\n]+)')
         instance.lab_id = find(r'Lab ID:\s*([^\n]+)')
+        instance.cultivar = find(r'Cultivar:\s*([^\n]+)')
         
         # Dates
         instance.sample_date = _parse_date(find(r'Sample Date:\s*([^\n]+)'))

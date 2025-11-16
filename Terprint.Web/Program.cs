@@ -13,6 +13,7 @@ using Blazored.LocalStorage;
 using Aspire.Hosting.Redis;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Terprint.Web.Services;
+using Microsoft.Identity.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +46,17 @@ builder.Services.AddAuthentication(options =>
 })
     .AddIdentityCookies();
 
+builder.Services.AddAuthentication()
+    .AddOpenIdConnect("Microsoft", "Microsoft", options =>
+    {
+        options.Authority = "https://login.microsoftonline.com/3278dcb1-0a18-42e7-8acf-d3b5f8ae33cd";
+        options.ClientId = "de9598fc-7ece-4da1-8df7-20d9b4f9ad81";
+        options.ClientSecret = "icJ8Q~1Zl9upHqQsXNYyJ_Oxaz1GYyTjklNnbaAl";
+        options.ResponseType = "code";
+        options.SaveTokens = true;
+        options.CallbackPath = "/signin-oidc";
+        options.SignInScheme = IdentityConstants.ExternalScheme;
+    });
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
@@ -67,7 +79,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddSignInManager()
     .AddDefaultTokenProviders();

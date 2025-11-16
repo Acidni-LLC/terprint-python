@@ -1,8 +1,9 @@
-Batch,Index,Terpene,Result,Percent
-80965_0007663473,1,trans-Caryophyllene,5.589,0.559%
-80965_0007663473,2,beta-Myrcene,3.256,0.326%
-80965_0007663473,3,Linalool,3.071,0.307%
-80965_0007663473,4,trans-Nerolidol,1.946,0.195%
-80965_0007663473,5,(R)-(+)-Limonene,1.785,0.179%
-80965_0007663473,6,alpha-Humulene,1.544,0.154%
-80965_0007663473,7,alpha-Bisabolol,0.649,0.065%
+Batch|Index|Terpene|Result|Percent
+80965_0007663473|1|)
+trans-Caryophyllene|5.589|0.559
+80965_0007663473|2|beta-Myrcene|3.256|0.326
+80965_0007663473|3|Linalool|3.071|0.307
+80965_0007663473|4|trans-Nerolidol|1.946|0.195
+80965_0007663473|5|(R)-(+)-Limonene|1.785|0.179
+80965_0007663473|6|alpha-Humulene|1.544|0.154
+80965_0007663473|7|alpha-Bisabolol|0.649|0.065

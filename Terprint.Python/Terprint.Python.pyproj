@@ -25,11 +25,15 @@
     <Compile Include="azureAdToken.py" />
     <Compile Include="batchFromUrl.py" />
     <Compile Include="bcolors.py" />
+    <Compile Include="COADataModel.py" />
+    <Compile Include="COA_ACS_Simple.py" />
+    <Compile Include="COA_MethodDataExtractor.py" />
+    <Compile Include="COA_ModernCanna01.py" />
+    <Compile Include="COA_test_acs_coa_simple_test.py" />
+    <Compile Include="COA_test_ModernCanna01.py" />
     <Compile Include="def has_decimal_places_str.py" />
-    <Compile Include="downloadFile.py" />
     <Compile Include="find download link.py" />
     <Compile Include="import camelot.py" />
-    <Compile Include="import fitz # PyMuPDF.py" />
     <Compile Include="import pdfplumber.py" />
     <Compile Include="import tabula.py" />
     <Compile Include="import textwrap.py" />
@@ -39,11 +43,16 @@
     <Compile Include="requestHtml.py" />
     <Compile Include="seleniumDownload.py" />
     <Compile Include="seleniumDownload2.py" />
+    <Compile Include="SQL Endpoint.py" />
     <Compile Include="sqlConnection.py" />
+    <Compile Include="terprintDownloadFile.py" />
+    <Compile Include="terprintMenuDownload.py" />
     <Compile Include="test_output\managedidconnect.py" />
+    <Compile Include="util\directoryList.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="test_output" />
+    <Folder Include="util\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
@@ -55,6 +64,9 @@
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
       <Architecture>X64</Architecture>
     </Interpreter>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="requirements.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
 </Project>

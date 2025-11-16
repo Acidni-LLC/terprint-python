@@ -1,8 +1,9 @@
-Batch,Index,Terpene,Result,Percent
-68746_0007025018,1,trans-Caryophyllene,7.216,0.722%
-68746_0007025018,2,alpha-Humulene,1.505,0.15%
-68746_0007025018,3,(R)-(+)-Limonene,0.747,0.075%
-68746_0007025018,4,beta-Myrcene,0.594,0.059%
-68746_0007025018,5,Linalool,0.489,0.049%
-68746_0007025018,6,alpha-Bisabolol,0.353,0.035%
-68746_0007025018,7,Caryophyllene oxide,0.315,0.032%
+Batch|Index|Terpene|Result|Percent
+68746_0007025018|1|)
+trans-Caryophyllene|7.216|0.722
+68746_0007025018|2|alpha-Humulene|1.505|0.15
+68746_0007025018|3|(R)-(+)-Limonene|0.747|0.075
+68746_0007025018|4|beta-Myrcene|0.594|0.059
+68746_0007025018|5|Linalool|0.489|0.049
+68746_0007025018|6|alpha-Bisabolol|0.353|0.035
+68746_0007025018|7|Caryophyllene oxide|0.315|0.032
