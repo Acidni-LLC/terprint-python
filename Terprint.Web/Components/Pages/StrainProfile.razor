@@ -5,12 +5,12 @@
 @using Microsoft.AspNetCore.WebUtilities
 @using Terprint.Web.Models
 @using Terprint.Web.Services
+@inject AuthService AuthService
 @inject NavigationManager NavManager
 @inject Terprint.Web.Data.TerprintWebContext DB
 @inject Terprint.Web.Components.ChooserBatch ChooserBatch
 @inject Terprint.Web.Components.ChooserRatingCategory ChooserRatingCategory
 @inject common.AppState appstate
-@inject AuthService AuthService
 @rendermode InteractiveServer
 
 @{
