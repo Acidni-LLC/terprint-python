@@ -1,11 +1,13 @@
 ﻿@using Microsoft.AspNetCore.WebUtilities
 @using Microsoft.AspNetCore.Mvc
 @using Terprint.Web.Models
+@using Terprint.Web.Services
 
 @inject common.AppState.StateContainer.Strain appstatestrain
 @inject common.AppState.StateContainer.Batch appstatebatch
 @inject NavigationManager nm
 @inject Terprint.Web.Data.TerprintWebContext DB
+@inject AuthService AuthService
 
 @rendermode InteractiveServer
 
@@ -20,6 +22,13 @@
     public Components.ChooserBatch.BatchData bd = new ChooserBatch.BatchData();
 
     public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandtitle;
+
+    private bool isAuthenticated;
+
+    protected override async Task OnInitializedAsync()
+    {
+        isAuthenticated = await AuthService.IsAuthenticatedAsync();
+    }
 
     [FromQuery(Name = "matrix")]
     public int? matrix
@@ -76,7 +85,8 @@
     }
 }
 
-@{
+@{ 
+    if(isAuthenticated)
     foreach (var batch in appstatebatch.Batches.OrderByDescending(t=>t.Date).ToList())
     {
 
@@ -87,6 +97,11 @@
             </div>
         </div>
 
+        }
+    else
+    {
+        <p>There are @appstatebatch.Batches.Count() batches in the database.</p>
+        <p><a href="/Account/Login">Log in</a> to view the list.</p>
     }
 
-}
+}<isAuthenticated></isAuthenticated>

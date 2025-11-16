@@ -1,0 +1,22 @@
+﻿@using Terprint.Web.Services
+@inject AuthService AuthService
+
+@if (isAuth)
+{
+
+    <h3>isAuthenticated</h3>
+}
+else
+{
+
+    <h3>isNOTAuthenticated</h3>
+}
+
+@code {
+    public  bool isAuth { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        isAuth = await AuthService.IsAuthenticatedAsync();
+    }
+}

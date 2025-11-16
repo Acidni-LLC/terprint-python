@@ -114,6 +114,7 @@ builder.Services.AddHttpClient<WeatherApiClient>(client =>
     });
 
 builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuthenticationStateProvider>();
+builder.Services.AddScoped<AuthService>();
 
 
 var app = builder.Build();

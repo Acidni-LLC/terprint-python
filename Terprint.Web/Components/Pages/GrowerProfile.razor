@@ -1,8 +1,9 @@
-﻿@page "/GrowerProfile"
+﻿ @page "/GrowerProfile"
 
 @using Microsoft.AspNetCore.Mvc
 @using Microsoft.AspNetCore.WebUtilities
 @using Terprint.Web.Models
+@using Terprint.Web.Services
 @inject NavigationManager NavManager
 @inject Terprint.Web.Data.TerprintWebContext DB
 @inject Terprint.Web.Components.ChooserBatch ChooserBatch
@@ -11,6 +12,7 @@
 @inject common.AppState.StateContainer.Batch asBatch
 @inject common.AppState.StateContainer.Strain asStrain
 @inject common.AppState appstate
+@inject AuthService AuthService
 @rendermode InteractiveServer
 
 @{
@@ -19,6 +21,14 @@
 }
 <PageTitle>@title</PageTitle>
 @code { 
+
+    public bool isAuth { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        isAuth = await AuthService.IsAuthenticatedAsync();
+    }
+
     public Components.ChooserBatch.BatchData bd = new ChooserBatch.BatchData();
 
     public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandheader;
@@ -67,11 +77,11 @@
                     .Where(t => t.Name == grower)
                     .Select(t => t.GrowerId).FirstOrDefault();
     var batches = asBatch.Batches
-        .OrderBy (t => asStrain.Strains.Where(t1 => t1.StrainId == t.StrainID).FirstOrDefault().StrainName)
-       // .OrderByDescending(t => t.Date)
+
+        .OrderByDescending(t => t.Date)
+        // .OrderByDescending(t => t.Date)
         .Where(t => t.GrowerID == growerid)
         .ToList();
-
 }
 
 <div class="card">
@@ -83,15 +93,24 @@
     </div>
 </div>
 @{
-    foreach (var batch in batches)
+    if (isAuth)
+    {
+        foreach (var batch in batches)
+        {
+
+            { bd = new ChooserBatch.BatchData() { batch = batch.Name, batchId = (int)batch.BatchId }; }
+            <div class="card">
+                <div class="card-body">
+                    <TerprintTable @bind-batch="@batch.Name" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
+                </div>
+            </div>
+
+        }
+    }
+    else
     {
 
-        { bd = new ChooserBatch.BatchData() { batch = batch.Name, batchId = (int)batch.BatchId }; }
-        <div class="card">
-            <div class="card-body">
-                <TerprintTable @bind-batch="@batch.Name" @bind-batchData="@bd" @bind-matrix="@matrix" @bind-size="@size" @bind-rendermode="@rm"></TerprintTable>
-            </div>
-        </div>
-
+        <p>There are @batches.Count() batches in the database.</p>
+        <p><a href="/Account/Login">Log in</a> to view the list.</p>
     }
 }
