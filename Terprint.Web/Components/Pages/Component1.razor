@@ -1,0 +1,14 @@
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.WebUtilities
+@using Terprint.Web.Models
+
+
+int growerid = asGrower.Growers
+                .Where(t => t.Name == grower)
+                .Select(t => t.GrowerId).FirstOrDefault();
+var batches = asBatch.Batches
+    .OrderBy (t => asStrain.Strains.Where(t1 => t1.StrainId == t.StrainID).FirstOrDefault().StrainName)
+   // .OrderByDescending(t => t.Date)
+    .Where(t => t.GrowerID == growerid)
+    .ToList();
+
