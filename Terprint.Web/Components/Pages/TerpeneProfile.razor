@@ -2,6 +2,8 @@
 @using Microsoft.AspNetCore.Mvc
 @using Microsoft.AspNetCore.WebUtilities
 @using Terprint.Web.Models
+@using Terprint.Web.Services
+@inject AuthService AuthService
 @inject NavigationManager NavManager
 @inject Terprint.Web.Data.TerprintWebContext DB
 @inject Terprint.Web.Components.ChooserBatch ChooserBatch
@@ -21,6 +23,12 @@
 @code {
     public Components.ChooserBatch.BatchData bd = new ChooserBatch.BatchData();
 
+    private bool isAuthenticated;
+
+    protected override async Task OnInitializedAsync()
+    {
+        isAuthenticated = await AuthService.IsAuthenticatedAsync();
+    }
     public TerprintTable.renderMode rm { get; set; } = TerprintTable.renderMode.tableandheader;
     public string terpcolor { get; set; }
     [FromQuery(Name = "terpene")]
@@ -92,6 +100,8 @@
             <h6>@terpenevalueslist.Count Batches</h6>
         </div>
     </div>
+    if (isAuthenticated)
+    {
     foreach (var t in terpenevalueslist.OrderByDescending(t=>t.Value))
     {
         { bd = new ChooserBatch.BatchData() { batch = t.Name, batchId = (int)t.batchid }; }
@@ -101,7 +111,15 @@
             </div>
         </div>
         i++;
+    
     }
+    else
+        {
+
+            <p>There are @terpenevalueslist.Count()  values for @terpene in the database.</p>
+            <p><a href="/Account/Login">Log in</a> to view the list.</p>
+        }
+
 
 
 }
