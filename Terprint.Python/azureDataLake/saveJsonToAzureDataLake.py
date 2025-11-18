@@ -62,11 +62,10 @@ class AzureDataLakeManager:
             # Get file client
             file_client = self.file_system_client.get_file_client(file_path)
             
-            # Upload the file
+            # Upload the file - FIXED: removed content_type parameter
             file_client.upload_data(
                 data=json_string,
-                overwrite=overwrite,
-                content_type='application/json'
+                overwrite=overwrite
             )
             
             self.logger.info(f"Successfully saved JSON to: {file_path}")
@@ -100,11 +99,10 @@ class AzureDataLakeManager:
             # Get file client
             file_client = self.file_system_client.get_file_client(remote_file_path)
             
-            # Upload the file
+            # Upload the file - FIXED: removed content_type parameter
             file_client.upload_data(
                 data=json_data,
-                overwrite=overwrite,
-                content_type='application/json'
+                overwrite=overwrite
             )
             
             self.logger.info(f"Successfully uploaded {local_file_path} to: {remote_file_path}")
