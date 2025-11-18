@@ -5,6 +5,8 @@ from bcolors import bcolors
 
 #https://learn.microsoft.com/en-us/power-bi/developer/embedded/embed-service-principal?tabs=azure-portal
 2
+
+## ACIDNI TERPRINT
 def get_token_for_client(scope):
  client_id = "de9598fc-7ece-4da1-8df7-20d9b4f9ad81" #TerprintPrincipal
  #client_id = "8cf359c9-690d-4d76-9dcf-c2e4dc71e975" #terprint2
