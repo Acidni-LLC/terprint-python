@@ -1,7 +1,0 @@
-{
-    "python.analysis.extraPaths": [
-        "./test_output",
-        "./Terprint.Python/azureDataLake"
-    ],
-    "python.analysis.typeCheckingMode": "off"
-}
