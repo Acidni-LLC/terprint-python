@@ -1,0 +1,30 @@
+{
+  "collection_timestamp": "2025-11-17T22:07:28.714940",
+  "total_products": 0,
+  "working_stores": 0,
+  "summary": {
+    "total_products": 0,
+    "stores_by_category": {},
+    "working_configurations": [],
+    "failed_configurations": [
+      "palatka:MjEy",
+      "palm_coast:MjEy",
+      "st_augustine_a1a:MjEy",
+      "st_augustine_two:MjEy",
+      "palm_coast_sr100:MjEy",
+      "palatka:MjA4",
+      "palm_coast:MjA4",
+      "st_augustine_a1a:MjA4",
+      "st_augustine_two:MjA4",
+      "palm_coast_sr100:MjA4",
+      "jacksonville_southside:MjA4",
+      "jacksonville_beach:MjA4",
+      "jacksonville_arrowhead:MjA4",
+      "jacksonville_baymeadows:MjA4",
+      "daytona_beach:MjA4",
+      "port_orange:MjA4",
+      "oakland_park:MjA4"
+    ]
+  },
+  "products": []
+}

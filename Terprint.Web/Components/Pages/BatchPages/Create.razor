@@ -7,6 +7,12 @@
 @inject NavigationManager NavigationManager
 @attribute [Authorize]
 @inject common.AppState.StateContainer.Batch asbatch
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
+@using Terprint.Web.Data
+@inject Terprint.Web.Data.TerprintWebContext3 DB
+@inject Terprint.Web.Services.ICacheService CacheService
+
 <PageTitle>Create Batch</PageTitle>
 
 
@@ -125,6 +131,7 @@
         DB.Batch.AddAsync(Batch);
         asbatch.Batches.Add(Batch);
         await DB.SaveChangesAsync();
+        await CacheService.RemoveAsync("batches:all");
         NavigationManager.NavigateTo("/terpenevalues/paste");
     }
 }

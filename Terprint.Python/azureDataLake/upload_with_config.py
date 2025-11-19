@@ -64,9 +64,24 @@ def upload_muv_data():
             credential=credential
         )
         
+        # Test connection first
+        print("🔍 Testing connection...")
+        container_info = dl_manager.get_container_info()
+        if container_info:
+            print(f"✅ Connected to container: {container_info['name']}")
+        else:
+            print("❌ Could not connect to container")
+            return False
+        
         # Generate file path using config
         file_path = get_file_path("muv_products.json", "muv")
         print(f"📤 Uploading to: {file_path}")
+        
+        # Ensure the directory exists
+        directory_path = "/".join(file_path.split("/")[:-1])  # Remove filename
+        if directory_path:
+            print(f"📁 Ensuring directory exists: {directory_path}")
+            dl_manager.ensure_directory_exists(directory_path)
         
         # Upload file
         success = dl_manager.save_json_to_data_lake(muv_data, file_path)
@@ -83,10 +98,24 @@ def upload_muv_data():
             
             # List some files to verify
             try:
-                print("\n📁 Recent files in container:")
-                files = dl_manager.list_files("muv")
-                for file in files[-5:]:  # Show last 5 files
-                    print(f"   📄 {file}")
+                print("\n📁 Files in container:")
+                
+                # List root files
+                root_files = dl_manager.list_files("")
+                if root_files:
+                    print("   Root files:")
+                    for file in root_files[:3]:  # Show first 3
+                        print(f"     📄 {file}")
+                
+                # List muv directory if it exists
+                muv_files = dl_manager.list_files("muv")
+                if muv_files:
+                    print("   MÜV directory:")
+                    for file in muv_files[-3:]:  # Show last 3
+                        print(f"     📄 {file}")
+                elif not muv_files:
+                    print("   📁 muv/ directory is empty or doesn't exist yet")
+                
             except Exception as e:
                 print(f"⚠️  Could not list files: {e}")
             

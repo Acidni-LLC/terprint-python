@@ -5,6 +5,7 @@
 @inject NavigationManager NavigationManager
 @using Microsoft.EntityFrameworkCore
 @inject common.AppState.StateContainer.Grower asgrower
+@inject Terprint.Web.Services.ICacheService CacheService
 
 <PageTitle>Edit Growers</PageTitle>
 
@@ -65,6 +66,7 @@ else
         try
         {
             await DB.SaveChangesAsync();
+            await CacheService.RemoveAsync("growers:all");
         }
         catch (DbUpdateConcurrencyException)
         {

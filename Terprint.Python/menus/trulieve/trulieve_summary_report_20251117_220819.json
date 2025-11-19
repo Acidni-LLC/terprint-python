@@ -1,0 +1,98 @@
+{
+  "collection_timestamp": "2025-11-17T22:07:28.714940",
+  "total_stores_attempted": 17,
+  "successful_stores": 0,
+  "failed_stores": 17,
+  "total_products_collected": 0,
+  "working_configurations": [],
+  "failed_configurations": [
+    "palatka:MjEy",
+    "palm_coast:MjEy",
+    "st_augustine_a1a:MjEy",
+    "st_augustine_two:MjEy",
+    "palm_coast_sr100:MjEy",
+    "palatka:MjA4",
+    "palm_coast:MjA4",
+    "st_augustine_a1a:MjA4",
+    "st_augustine_two:MjA4",
+    "palm_coast_sr100:MjA4",
+    "jacksonville_southside:MjA4",
+    "jacksonville_beach:MjA4",
+    "jacksonville_arrowhead:MjA4",
+    "jacksonville_baymeadows:MjA4",
+    "daytona_beach:MjA4",
+    "port_orange:MjA4",
+    "oakland_park:MjA4"
+  ],
+  "stores_by_category": {},
+  "store_performance": {
+    "palatka:MjEy": {
+      "success": false,
+      "products": 0
+    },
+    "palm_coast:MjEy": {
+      "success": false,
+      "products": 0
+    },
+    "st_augustine_a1a:MjEy": {
+      "success": false,
+      "products": 0
+    },
+    "st_augustine_two:MjEy": {
+      "success": false,
+      "products": 0
+    },
+    "palm_coast_sr100:MjEy": {
+      "success": false,
+      "products": 0
+    },
+    "palatka:MjA4": {
+      "success": false,
+      "products": 0
+    },
+    "palm_coast:MjA4": {
+      "success": false,
+      "products": 0
+    },
+    "st_augustine_a1a:MjA4": {
+      "success": false,
+      "products": 0
+    },
+    "st_augustine_two:MjA4": {
+      "success": false,
+      "products": 0
+    },
+    "palm_coast_sr100:MjA4": {
+      "success": false,
+      "products": 0
+    },
+    "jacksonville_southside:MjA4": {
+      "success": false,
+      "products": 0
+    },
+    "jacksonville_beach:MjA4": {
+      "success": false,
+      "products": 0
+    },
+    "jacksonville_arrowhead:MjA4": {
+      "success": false,
+      "products": 0
+    },
+    "jacksonville_baymeadows:MjA4": {
+      "success": false,
+      "products": 0
+    },
+    "daytona_beach:MjA4": {
+      "success": false,
+      "products": 0
+    },
+    "port_orange:MjA4": {
+      "success": false,
+      "products": 0
+    },
+    "oakland_park:MjA4": {
+      "success": false,
+      "products": 0
+    }
+  }
+}

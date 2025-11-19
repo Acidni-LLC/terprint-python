@@ -4,6 +4,7 @@
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
 @using Microsoft.EntityFrameworkCore
+@inject Terprint.Web.Services.ICacheService CacheService
 
 <PageTitle>Edit RatingCategory</PageTitle>
 
@@ -79,6 +80,7 @@ else
         try
         {
             await DB.SaveChangesAsync();
+            await CacheService.RemoveAsync("ratingcats:all");
         }
         catch (DbUpdateConcurrencyException)
         {

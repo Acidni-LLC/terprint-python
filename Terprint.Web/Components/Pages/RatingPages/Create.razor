@@ -8,6 +8,11 @@
 @inject Terprint.Web.Components.ChooserRatingCategory ChooserRatingCategory
 @rendermode InteractiveServer
 @inject common.AppState appstate
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
+@using Terprint.Web.Data
+@inject Terprint.Web.Data.TerprintWebContext3 DBCache
+@inject Terprint.Web.Services.ICacheService CacheService
 
 @{
 
@@ -122,5 +127,6 @@
         DB.Rating.Add(Rating);
         await DB.SaveChangesAsync();
         NavigationManager.NavigateTo("/ratings");
+        await CacheService.RemoveAsync("ratings:all");
     }
 }

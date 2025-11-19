@@ -116,6 +116,18 @@ builder.Services.AddHttpClient<WeatherApiClient>(client =>
 builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuthenticationStateProvider>();
 builder.Services.AddScoped<AuthService>();
 
+// Redis cache registration and cache service
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetValue<string>("Redis:Configuration") ?? "localhost:6379";
+    options.InstanceName = "Terprint:";
+});
+
+builder.Services.AddScoped<ICacheService, RedisCacheService>();
+
+// register AuthService
+builder.Services.AddScoped<Terprint.Web.Services.AuthService>();
+
 
 var app = builder.Build();
 

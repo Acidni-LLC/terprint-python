@@ -5,6 +5,10 @@
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
 @inject common.AppState.StateContainer.RatingCategory asRatingCategory
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
+@using Terprint.Web.Data
+@inject Terprint.Web.Services.ICacheService CacheService
 
 <PageTitle>Create RatingCategory</PageTitle>
 
@@ -64,6 +68,7 @@
         DB.RatingCategory.Add(RatingCategory);
         await DB.SaveChangesAsync();
         asRatingCategory.RatingCategories.Add(RatingCategory);
+        await CacheService.RemoveAsync("ratingcats:all");
         NavigationManager.NavigateTo("/ratingcategories");
     }
 }

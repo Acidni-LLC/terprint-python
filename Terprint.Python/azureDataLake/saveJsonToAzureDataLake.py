@@ -1,7 +1,7 @@
 import json
 import os
 from datetime import datetime
-from azure.storage.filedatalake import DataLakeServiceClient
+from azure.storage.filedatalake import DataLakeServiceClient, ContentSettings
 from azure.identity import DefaultAzureCredential, ClientSecretCredential
 import logging
 
@@ -40,6 +40,81 @@ class AzureDataLakeManager:
         logging.basicConfig(level=logging.INFO)
         self.logger = logging.getLogger(__name__)
 
+    def get_container_info(self):
+        """
+        Get container/filesystem information to test connection
+        
+        Returns:
+            dict: Container properties or None if failed
+        """
+        try:
+            properties = self.file_system_client.get_file_system_properties()
+            return {
+                'name': self.container_name,
+                'account': self.account_name,
+                'last_modified': properties.last_modified,
+                'etag': properties.etag
+            }
+        except Exception as e:
+            self.logger.error(f"Error getting container info: {str(e)}")
+            return None
+
+    def ensure_directory_exists(self, directory_path):
+        """
+        Ensure a directory path exists in the data lake
+        
+        Args:
+            directory_path (str): Directory path to create
+            
+        Returns:
+            bool: True if directory exists/was created
+        """
+        try:
+            if not directory_path:
+                return True
+                
+            directory_client = self.file_system_client.get_directory_client(directory_path)
+            
+            # Try to get properties first to see if it exists
+            try:
+                directory_client.get_directory_properties()
+                self.logger.info(f"Directory already exists: {directory_path}")
+                return True
+            except:
+                # Directory doesn't exist, create it
+                directory_client.create_directory()
+                self.logger.info(f"Created directory: {directory_path}")
+                return True
+                
+        except Exception as e:
+            self.logger.error(f"Error ensuring directory exists: {str(e)}")
+            return False
+
+    def set_content_properties(self, file_path, content_type):
+        """
+        Set content properties for a file
+        
+        Args:
+            file_path (str): Path to the file
+            content_type (str): MIME content type (e.g., 'application/json')
+            
+        Returns:
+            bool: Success status
+        """
+        try:
+            file_client = self.file_system_client.get_file_client(file_path)
+            
+            # Set content settings
+            content_settings = ContentSettings(content_type=content_type)
+            file_client.set_http_headers(content_settings=content_settings)
+            
+            self.logger.info(f"Set content type '{content_type}' for: {file_path}")
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Error setting content properties: {str(e)}")
+            return False
+
     def save_json_to_data_lake(self, json_data, file_path, overwrite=True):
         """
         Save JSON data to Azure Data Lake
@@ -62,7 +137,7 @@ class AzureDataLakeManager:
             # Get file client
             file_client = self.file_system_client.get_file_client(file_path)
             
-            # Upload the file - FIXED: removed content_type parameter
+            # Upload the file
             file_client.upload_data(
                 data=json_string,
                 overwrite=overwrite
@@ -99,7 +174,7 @@ class AzureDataLakeManager:
             # Get file client
             file_client = self.file_system_client.get_file_client(remote_file_path)
             
-            # Upload the file - FIXED: removed content_type parameter
+            # Upload the file
             file_client.upload_data(
                 data=json_data,
                 overwrite=overwrite
@@ -155,7 +230,20 @@ class AzureDataLakeManager:
             list: List of file names
         """
         try:
-            paths = self.file_system_client.get_paths(path=directory_path)
+            # Handle empty directory path
+            if not directory_path:
+                paths = self.file_system_client.get_paths()
+            else:
+                # Check if directory exists first
+                try:
+                    directory_client = self.file_system_client.get_directory_client(directory_path)
+                    directory_client.get_directory_properties()
+                    paths = self.file_system_client.get_paths(path=directory_path)
+                except:
+                    # Directory doesn't exist
+                    self.logger.warning(f"Directory not found: {directory_path}")
+                    return []
+            
             files = [path.name for path in paths if not path.is_directory]
             return files
             
@@ -297,8 +385,6 @@ if __name__ == "__main__":
     # List files
     files = dl_manager.list_files("dispensaries/muv/products/")
     print("Files in directory:", files)
-    
-    import os
 
 def setup_azure_environment():
     """

@@ -1,7 +1,12 @@
 ﻿@attribute [Authorize]
 @page "/terpenevalues/create"
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
+@using Terprint.Web.Data
 @inject Terprint.Web.Data.TerprintWebContext DB
 @inject Terprint.Web.Data.TerprintWebContext2 DB2
+@inject Terprint.Web.Data.TerprintWebContext3 DB
+@inject Terprint.Web.Services.ICacheService CacheService
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
 @inject common.AppState.StateContainer.TerpeneValue asterpenevalues
@@ -83,6 +88,7 @@
         DB.TerpeneValues.Add(TerpeneValue);
         await DB.SaveChangesAsync();
         asterpenevalues.TerpeneValues.Add(TerpeneValue);
+        await CacheService.RemoveAsync("terpenes:all");
         NavigationManager.NavigateTo("/terpenevalues");
     }
 }

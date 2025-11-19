@@ -4,6 +4,7 @@
 @inject NavigationManager NavigationManager
 @using Microsoft.EntityFrameworkCore
 @inject common.AppState.StateContainer.RatingCategory asRatingCategory
+@inject Terprint.Web.Services.ICacheService CacheService
 
 <PageTitle>Delete RatingCategory</PageTitle>
 
@@ -63,6 +64,7 @@
         await DB.SaveChangesAsync();
 
         asRatingCategory.RatingCategories.Remove(ratingcategory!);
+        await CacheService.RemoveAsync("ratingcats:all");
         NavigationManager.NavigateTo("/ratingcategories");
     }
 }

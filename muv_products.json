@@ -78,16 +78,6 @@
           }
         },
         {
-          "id": 995478,
-          "name": "$20 OFF",
-          "disabled": null,
-          "selected": false,
-          "tooltip": {
-            "title": "$20 OFF",
-            "description": "Offer valid November 17 - 20 while strains and supplies last. Must have valid recommendation to receive offer. May not be combined with other offers. We reserve the right to modify or cancel the promotion without notice. "
-          }
-        },
-        {
           "id": 995436,
           "name": "25% OFF",
           "disabled": null,
@@ -218,13 +208,6 @@
       "key": "subcategory",
       "type": "Multiple",
       "options": [
-        {
-          "id": 425020,
-          "name": "Ground",
-          "disabled": null,
-          "selected": false,
-          "tooltip": null
-        },
         {
           "id": 425021,
           "name": "Smalls",
@@ -543,6 +526,13 @@
           "tooltip": null
         },
         {
+          "id": 12,
+          "name": "Phellandrene",
+          "disabled": null,
+          "selected": false,
+          "tooltip": null
+        },
+        {
           "id": 3,
           "name": "Pinene",
           "disabled": null,
@@ -552,6 +542,13 @@
         {
           "id": 24,
           "name": "Pulegone",
+          "disabled": null,
+          "selected": false,
+          "tooltip": null
+        },
+        {
+          "id": 15,
+          "name": "Terpinene",
           "disabled": null,
           "selected": false,
           "tooltip": null
@@ -891,7 +888,7 @@
       "displayInUpsellModal": false,
       "displayInCatalog": false,
       "productImages": [
-        "https://media.sweedpos.com/store/production/1732125069_cd49af3e-eb96-48f0-a623-9e0a233269c0.jpg",
+        "https://media.sweedpos.com/store/production/1732123478_a69670d1-c951-43b0-98f0-a9d6f4d4b858.jpg",
         "https://media.sweedpos.com/store/production/1732123578_60a106be-b053-4a54-bcbe-b06aa5d20d0d.jpg"
       ],
       "filter": null,
@@ -954,45 +951,6 @@
       "shopInShop": null
     },
     {
-      "id": 86543,
-      "name": "Super Savings: 40% OFF",
-      "shortName": "40% OFF",
-      "description": "Offer valid on select products while strains and supplies last. Must have valid recommendation to receive offer. May not be combined with other offers. We reserve the right to modify or cancel the promotion without notice",
-      "isBogo": null,
-      "startDate": null,
-      "endDate": null,
-      "interval": null,
-      "bannerUrl": "https://media.sweedpos.com/store/production/1753800277_4d52decf-2372-4aed-b1e6-0dfd0ad85f68.jpg",
-      "mobileBannerUrl": "https://media.sweedpos.com/store/production/1753800277_c8424d8f-89ef-4f87-84a1-632ee590c592.jpg",
-      "displayInUpsellModal": false,
-      "displayInCatalog": false,
-      "productImages": [
-        "https://media.sweedpos.com/store/production/1732123478_a69670d1-c951-43b0-98f0-a9d6f4d4b858.jpg",
-        "https://media.sweedpos.com/store/production/1731701558_19334f7d-94d1-4d9c-ba64-ed2ceae710e4.jpg",
-        "https://media.sweedpos.com/store/production/1731701872_8ffaaca3-ddcd-45f5-bc07-bbff00ba6e98.jpg"
-      ],
-      "filter": null,
-      "displayInDiscountMenu": true,
-      "isConditional": false,
-      "applicationMode": null,
-      "discountAmount": null,
-      "discountPercent": null,
-      "minCartAmount": null,
-      "minCartAmountNeeded": null,
-      "matchedUserSegmentIds": null,
-      "scheduleDisplayText": {
-        "rangeType": "Daily",
-        "days": "",
-        "datePart": "",
-        "timePart": "",
-        "full": "Daily"
-      },
-      "isActiveBySchedule": true,
-      "fulfilmentTypes": [],
-      "promoWizardGeneration": null,
-      "shopInShop": null
-    },
-    {
       "id": 103173,
       "name": "$15 OFF Savvy 7g Flower",
       "shortName": "$15 OFF",
@@ -1025,6 +983,45 @@
         "datePart": "Till 05:15 PM November 30",
         "timePart": "",
         "full": "Till 05:15 PM November 30"
+      },
+      "isActiveBySchedule": true,
+      "fulfilmentTypes": [],
+      "promoWizardGeneration": null,
+      "shopInShop": null
+    },
+    {
+      "id": 86543,
+      "name": "Super Savings: 40% OFF",
+      "shortName": "40% OFF",
+      "description": "Offer valid on select products while strains and supplies last. Must have valid recommendation to receive offer. May not be combined with other offers. We reserve the right to modify or cancel the promotion without notice",
+      "isBogo": null,
+      "startDate": null,
+      "endDate": null,
+      "interval": null,
+      "bannerUrl": "https://media.sweedpos.com/store/production/1753800277_4d52decf-2372-4aed-b1e6-0dfd0ad85f68.jpg",
+      "mobileBannerUrl": "https://media.sweedpos.com/store/production/1753800277_c8424d8f-89ef-4f87-84a1-632ee590c592.jpg",
+      "displayInUpsellModal": false,
+      "displayInCatalog": false,
+      "productImages": [
+        "https://media.sweedpos.com/store/production/1731701558_19334f7d-94d1-4d9c-ba64-ed2ceae710e4.jpg",
+        "https://media.sweedpos.com/store/production/1731701872_8ffaaca3-ddcd-45f5-bc07-bbff00ba6e98.jpg",
+        "https://media.sweedpos.com/store/production/1731516578_1f81f6ef-b65f-4d26-a333-aba3f1169fcd.jpg"
+      ],
+      "filter": null,
+      "displayInDiscountMenu": true,
+      "isConditional": false,
+      "applicationMode": null,
+      "discountAmount": null,
+      "discountPercent": null,
+      "minCartAmount": null,
+      "minCartAmountNeeded": null,
+      "matchedUserSegmentIds": null,
+      "scheduleDisplayText": {
+        "rangeType": "Daily",
+        "days": "",
+        "datePart": "",
+        "timePart": "",
+        "full": "Daily"
       },
       "isActiveBySchedule": true,
       "fulfilmentTypes": [],
@@ -1146,48 +1143,11 @@
       "fulfilmentTypes": [],
       "promoWizardGeneration": null,
       "shopInShop": null
-    },
-    {
-      "id": 104100,
-      "name": "$20 OFF MÜV 7g Ground Flower",
-      "shortName": "$20 OFF",
-      "description": "Offer valid November 17 - 20 while strains and supplies last. Must have valid recommendation to receive offer. May not be combined with other offers. We reserve the right to modify or cancel the promotion without notice. ",
-      "isBogo": null,
-      "startDate": null,
-      "endDate": null,
-      "interval": null,
-      "bannerUrl": "https://media.sweedpos.com/store/production/1763134541_10d5e418-10e4-41fc-a0aa-78267217c1a3.jpg",
-      "mobileBannerUrl": "https://media.sweedpos.com/store/production/1763134541_86c6a2cb-76c8-4039-87ac-51bd3cf8c98e.jpg",
-      "displayInUpsellModal": false,
-      "displayInCatalog": false,
-      "productImages": [
-        "https://media.sweedpos.com/store/production/1734361143_1f722e92-bebd-41cd-ad17-b4fb6b00b821.jpg"
-      ],
-      "filter": null,
-      "displayInDiscountMenu": true,
-      "isConditional": false,
-      "applicationMode": null,
-      "discountAmount": null,
-      "discountPercent": null,
-      "minCartAmount": null,
-      "minCartAmountNeeded": null,
-      "matchedUserSegmentIds": null,
-      "scheduleDisplayText": {
-        "rangeType": "",
-        "days": "",
-        "datePart": "Till 07:15 PM November 20",
-        "timePart": "",
-        "full": "Till 07:15 PM November 20"
-      },
-      "isActiveBySchedule": true,
-      "fulfilmentTypes": [],
-      "promoWizardGeneration": null,
-      "shopInShop": null
     }
   ],
   "page": 1,
   "pageSize": 100,
-  "total": 55,
+  "total": 53,
   "list": [
     {
       "id": 141027,
@@ -1257,7 +1217,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 33.0,
+          "availableQty": 31.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
@@ -1360,6 +1320,124 @@
       "customName": null
     },
     {
+      "id": 141115,
+      "name": "Cherry Punch",
+      "description": "Cherry Punch was created by crossing Cherry AK-47 and Purple Punch, two celebrated strains. This sweet strain has strong notes of fruit and berry, with undertones of skunk and earth and is a potent hybrid reported to ease various moods.\n\nSkip to the good part with trichome-coated flower by Sweet Supply. Yummy strains galore will leave you wanting more with each puff. Live the sweet life in good supply. ",
+      "category": {
+        "id": 425003,
+        "name": "Flower"
+      },
+      "subcategory": {
+        "id": 425019,
+        "name": "Whole"
+      },
+      "images": [
+        "https://media.sweedpos.com/store/production/1732125069_cd49af3e-eb96-48f0-a623-9e0a233269c0.jpg"
+      ],
+      "brand": {
+        "name": "Sweet Supply",
+        "filter": null,
+        "tagId": null
+      },
+      "strain": {
+        "name": "Cherry Punch",
+        "prevalence": {
+          "name": "Hybrid"
+        },
+        "flavors": [],
+        "terpenes": [
+          {
+            "name": "Myrcene"
+          },
+          {
+            "name": "Limonene"
+          },
+          {
+            "name": "Caryophyllene"
+          },
+          {
+            "name": "Humulene"
+          }
+        ]
+      },
+      "tags": [],
+      "effects": [],
+      "qualityLine": null,
+      "productType": null,
+      "variants": [
+        {
+          "id": 193449,
+          "name": "3.5g",
+          "sku": "Sweet Supply Flower - 3.5g - ChryPnch",
+          "images": [],
+          "strengthLevel": null,
+          "labTests": {
+            "thc": {
+              "value": [
+                22.0
+              ],
+              "unitAbbr": "%"
+            },
+            "cbd": {
+              "value": [
+                0.046
+              ],
+              "unitAbbr": "%"
+            },
+            "displayThc": null
+          },
+          "saleType": "Both",
+          "availableQty": 42.0,
+          "unitSize": {
+            "value": 3.5,
+            "unitAbbr": "G"
+          },
+          "unitsInPackage": 1,
+          "price": 40.0,
+          "promoPrice": 25.0,
+          "discount": 0,
+          "tierPricePresetId": null,
+          "tierPricing": [],
+          "promos": [
+            {
+              "id": 104086,
+              "name": null,
+              "shortName": "$15 OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
+          "reminderStatus": null,
+          "isPacked": true,
+          "qtyStepSize": 1.0,
+          "stockType": "Default"
+        }
+      ],
+      "customName": null
+    },
+    {
       "id": 141435,
       "name": "GMO S1",
       "description": "Reserve Flower encompasses an array of premium cannabis genetics. These exotic strains have been rigorously phenohunted in the MÜV Cultivation and present striking features: dense trichome production, unique bud structures, and robust THC content.\nGMO is an indica-dominant cross of Chemdawg 91 and GSC. Also known as Garlic Cookies, GMO Cookies or GMO Garlic Cookies, this strain provides strong flavors of diesel and a notable garlic aftertaste. Often used for pain relief, GMO S1 offers an effective body relaxation, with some cerebral stimulation and euphoria.\n\nLineage: Chemdawg x GSC\n\nEffects: Body Relaxation, Pain Relief, Euphoric\n\nFlavors: Diesel, Garlic, Herbal",
@@ -1427,7 +1505,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 82.0,
+          "availableQty": 78.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
@@ -1448,27 +1526,28 @@
       "customName": null
     },
     {
-      "id": 141115,
-      "name": "Cherry Punch",
-      "description": "Cherry Punch was created by crossing Cherry AK-47 and Purple Punch, two celebrated strains. This sweet strain has strong notes of fruit and berry, with undertones of skunk and earth and is a potent hybrid reported to ease various moods.\n\nSkip to the good part with trichome-coated flower by Sweet Supply. Yummy strains galore will leave you wanting more with each puff. Live the sweet life in good supply. ",
+      "id": 141202,
+      "name": "Grape Bubblegum",
+      "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nGrape Bubblegum is a deliciously deep purple hybrid that produces a grape gushing flavor with unique, spicy undertones. Known for its pain relief properties, Grape Bubblegum makes for a great aid in getting your TLC.\n",
       "category": {
         "id": 425003,
         "name": "Flower"
       },
       "subcategory": {
-        "id": 425019,
-        "name": "Whole"
+        "id": 425021,
+        "name": "Smalls"
       },
       "images": [
-        "https://media.sweedpos.com/store/production/1732125069_cd49af3e-eb96-48f0-a623-9e0a233269c0.jpg"
+        "https://media.sweedpos.com/store/production/1731701770_e5555a82-4322-4f3b-b337-50636c227b03.jpg",
+        "https://media.sweedpos.com/store/production/1740776390_cbc83516-6ab5-4a49-9078-caed0fe6a2db.png"
       ],
       "brand": {
-        "name": "Sweet Supply",
+        "name": "Savvy",
         "filter": null,
         "tagId": null
       },
       "strain": {
-        "name": "Cherry Punch",
+        "name": "Grape Bubblegum",
         "prevalence": {
           "name": "Hybrid"
         },
@@ -1478,6 +1557,12 @@
             "name": "Myrcene"
           },
           {
+            "name": "Linalool"
+          },
+          {
+            "name": "Pinene"
+          },
+          {
             "name": "Limonene"
           },
           {
@@ -1485,6 +1570,54 @@
           },
           {
             "name": "Humulene"
+          },
+          {
+            "name": "Ocimene"
+          },
+          {
+            "name": "Terpinolene"
+          },
+          {
+            "name": "Terpineol"
+          },
+          {
+            "name": "Phellandrene"
+          },
+          {
+            "name": "Carene"
+          },
+          {
+            "name": "Fenchol"
+          },
+          {
+            "name": "Terpinene"
+          },
+          {
+            "name": "Borneol"
+          },
+          {
+            "name": "Bisabolol"
+          },
+          {
+            "name": "Nerolidol"
+          },
+          {
+            "name": "Cedrene"
+          },
+          {
+            "name": "Pulegone"
+          },
+          {
+            "name": "Guaiol"
+          },
+          {
+            "name": "Caryophyllene Oxide"
+          },
+          {
+            "name": "A Pinene"
+          },
+          {
+            "name": "Farnesene"
           }
         ]
       },
@@ -1494,72 +1627,41 @@
       "productType": null,
       "variants": [
         {
-          "id": 193449,
-          "name": "3.5g",
-          "sku": "Sweet Supply Flower - 3.5g - ChryPnch",
+          "id": 193385,
+          "name": "7g",
+          "sku": "Savvy Flower - 7g - GrpeBblGm",
           "images": [],
           "strengthLevel": null,
           "labTests": {
             "thc": {
               "value": [
-                22.0,
-                23.3
+                21.6
               ],
               "unitAbbr": "%"
             },
             "cbd": {
               "value": [
-                0.046,
-                0.0648
+                0.047
               ],
               "unitAbbr": "%"
             },
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 49.0,
+          "availableQty": 25.0,
           "unitSize": {
-            "value": 3.5,
+            "value": 7.0,
             "unitAbbr": "G"
           },
           "unitsInPackage": 1,
-          "price": 40.0,
-          "promoPrice": 20.0,
+          "price": 45.0,
+          "promoPrice": 30.0,
           "discount": 0,
           "tierPricePresetId": null,
           "tierPricing": [],
           "promos": [
             {
-              "id": 86545,
-              "name": null,
-              "shortName": "50% OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            },
-            {
-              "id": 104086,
+              "id": 103173,
               "name": null,
               "shortName": "$15 OFF",
               "description": null,
@@ -1592,93 +1694,57 @@
           "isPacked": true,
           "qtyStepSize": 1.0,
           "stockType": "Default"
-        }
-      ],
-      "customName": null
-    },
-    {
-      "id": 235033,
-      "name": "E85",
-      "description": "Reserve Flower encompasses an array of premium cannabis genetics. These exotic strains have been rigorously phenohunted in the MÜV Cultivation and present striking features: dense trichome production, unique bud structures, and robust THC content.\n\nNothing but gas. E85 is the sweet sativa cross of Wedding Cake and Project 4516, delivering a potent punch of euphoria, deep relaxation, and a tingling body buzz. Its bold, dessert-like aroma is matched by a sweet, fruity blend of berry and citrus flavors with hints of diesel, creating a smooth yet powerful smoke.",
-      "category": {
-        "id": 425003,
-        "name": "Flower"
-      },
-      "subcategory": {
-        "id": 425019,
-        "name": "Whole"
-      },
-      "images": [
-        "https://media.sweedpos.com/store/production/1742329919_9d4682ef-526a-4c0b-aca9-f7aa508877d7.jpg"
-      ],
-      "brand": {
-        "name": "Verano",
-        "filter": null,
-        "tagId": null
-      },
-      "strain": {
-        "name": "E85",
-        "prevalence": {
-          "name": "Sativa"
         },
-        "flavors": [],
-        "terpenes": [
-          {
-            "name": "Linalool"
-          },
-          {
-            "name": "Limonene"
-          },
-          {
-            "name": "Caryophyllene"
-          },
-          {
-            "name": "Bisabolol"
-          }
-        ]
-      },
-      "tags": [],
-      "effects": [],
-      "qualityLine": null,
-      "productType": null,
-      "variants": [
         {
-          "id": 328454,
+          "id": 193384,
           "name": "3.5g",
-          "sku": "Verano Reserve Flower - 3.5g - E85",
+          "sku": null,
           "images": [],
           "strengthLevel": null,
-          "labTests": {
-            "thc": {
-              "value": [
-                25.8
-              ],
-              "unitAbbr": "%"
-            },
-            "cbd": {
-              "value": [
-                0.06
-              ],
-              "unitAbbr": "%"
-            },
-            "displayThc": null
-          },
+          "labTests": null,
           "saleType": "Both",
-          "availableQty": 37.0,
-          "unitSize": {
-            "value": 3.5,
-            "unitAbbr": "G"
-          },
-          "unitsInPackage": 1,
-          "price": 60.0,
-          "promoPrice": null,
+          "availableQty": 48.0,
+          "unitSize": null,
+          "unitsInPackage": 0,
+          "price": 25.0,
+          "promoPrice": 17.5,
           "discount": 0,
           "tierPricePresetId": null,
           "tierPricing": [],
-          "promos": [],
+          "promos": [
+            {
+              "id": 86542,
+              "name": null,
+              "shortName": "30% OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
           "reminderStatus": null,
           "isPacked": true,
-          "qtyStepSize": 1.0,
+          "qtyStepSize": 0,
           "stockType": "Default"
         }
       ],
@@ -1796,7 +1862,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 33.0,
+          "availableQty": 32.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
@@ -1914,7 +1980,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 58.0,
+          "availableQty": 56.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
@@ -1965,36 +2031,32 @@
       "customName": null
     },
     {
-      "id": 230632,
-      "name": "Gush Mints",
-      "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nGet a rush with Gush Mints. An indica cross of Kush Mints with (F1 Durb x Gushers), this strain delivers a fusion of sweet berry, fruity gas, and icy menthol flavors for a smoke that’s as smooth as it is memorable. Expect a wave of calming euphoria, creative sparks, and happy vibes, making every hit a cool, uplifting escape.",
+      "id": 235033,
+      "name": "E85",
+      "description": "Reserve Flower encompasses an array of premium cannabis genetics. These exotic strains have been rigorously phenohunted in the MÜV Cultivation and present striking features: dense trichome production, unique bud structures, and robust THC content.\n\nNothing but gas. E85 is the sweet sativa cross of Wedding Cake and Project 4516, delivering a potent punch of euphoria, deep relaxation, and a tingling body buzz. Its bold, dessert-like aroma is matched by a sweet, fruity blend of berry and citrus flavors with hints of diesel, creating a smooth yet powerful smoke.",
       "category": {
         "id": 425003,
         "name": "Flower"
       },
       "subcategory": {
-        "id": 425021,
-        "name": "Smalls"
+        "id": 425019,
+        "name": "Whole"
       },
       "images": [
-        "https://media.sweedpos.com/store/production/1740595665_e2a3b5f3-519b-44f0-9e60-1f9f8e08ed7b.jpg",
-        "https://media.sweedpos.com/store/production/1740776471_31094f2d-d8b3-4906-8fb2-75d56801c797.png"
+        "https://media.sweedpos.com/store/production/1742329919_9d4682ef-526a-4c0b-aca9-f7aa508877d7.jpg"
       ],
       "brand": {
-        "name": "Savvy",
+        "name": "Verano",
         "filter": null,
         "tagId": null
       },
       "strain": {
-        "name": "Gush Mints",
+        "name": "E85",
         "prevalence": {
-          "name": "Indica"
+          "name": "Sativa"
         },
         "flavors": [],
         "terpenes": [
-          {
-            "name": "Myrcene"
-          },
           {
             "name": "Linalool"
           },
@@ -2003,6 +2065,9 @@
           },
           {
             "name": "Caryophyllene"
+          },
+          {
+            "name": "Bisabolol"
           }
         ]
       },
@@ -2012,69 +2077,39 @@
       "productType": null,
       "variants": [
         {
-          "id": 322690,
+          "id": 328454,
           "name": "3.5g",
-          "sku": "Savvy Flower - 3.5g - Gsh Mnts",
+          "sku": "Verano Reserve Flower - 3.5g - E85",
           "images": [],
           "strengthLevel": null,
           "labTests": {
             "thc": {
               "value": [
-                23.1
+                25.8
               ],
               "unitAbbr": "%"
             },
             "cbd": {
               "value": [
-                0.0272
+                0.06
               ],
               "unitAbbr": "%"
             },
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 6.0,
+          "availableQty": 35.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
           },
           "unitsInPackage": 1,
-          "price": 25.0,
-          "promoPrice": 17.5,
+          "price": 60.0,
+          "promoPrice": null,
           "discount": 0,
           "tierPricePresetId": null,
           "tierPricing": [],
-          "promos": [
-            {
-              "id": 86542,
-              "name": null,
-              "shortName": "30% OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
+          "promos": [],
           "reminderStatus": null,
           "isPacked": true,
           "qtyStepSize": 1.0,
@@ -2151,22 +2186,22 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 36.0,
+          "availableQty": 32.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
           },
           "unitsInPackage": 1,
           "price": 40.0,
-          "promoPrice": 24.0,
+          "promoPrice": 20.0,
           "discount": 0,
           "tierPricePresetId": null,
           "tierPricing": [],
           "promos": [
             {
-              "id": 86543,
+              "id": 86545,
               "name": null,
-              "shortName": "40% OFF",
+              "shortName": "50% OFF",
               "description": null,
               "isBogo": null,
               "startDate": null,
@@ -2194,6 +2229,125 @@
             },
             {
               "id": 104086,
+              "name": null,
+              "shortName": "$15 OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
+          "reminderStatus": null,
+          "isPacked": true,
+          "qtyStepSize": 1.0,
+          "stockType": "Default"
+        }
+      ],
+      "customName": null
+    },
+    {
+      "id": 223967,
+      "name": "Pink Certz",
+      "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nLineage: The Menthol x Grape Gasoline\n\n",
+      "category": {
+        "id": 425003,
+        "name": "Flower"
+      },
+      "subcategory": {
+        "id": 425021,
+        "name": "Smalls"
+      },
+      "images": [
+        "https://media.sweedpos.com/store/production/1747070536_28da7474-093c-48cb-b02e-13ba4cb8edb8.jpg",
+        "https://media.sweedpos.com/store/production/1740776716_6b7702a6-3d93-45e3-bea3-139fa7c55ad9.png"
+      ],
+      "brand": {
+        "name": "Savvy",
+        "filter": null,
+        "tagId": null
+      },
+      "strain": {
+        "name": "Pink Certz",
+        "prevalence": {
+          "name": "Hybrid"
+        },
+        "flavors": [],
+        "terpenes": [
+          {
+            "name": "Myrcene"
+          },
+          {
+            "name": "Linalool"
+          },
+          {
+            "name": "Limonene"
+          },
+          {
+            "name": "Caryophyllene"
+          }
+        ]
+      },
+      "tags": [],
+      "effects": [],
+      "qualityLine": null,
+      "productType": null,
+      "variants": [
+        {
+          "id": 313700,
+          "name": "7g",
+          "sku": "Savvy Flower - 7g - Pnk Crtz",
+          "images": [],
+          "strengthLevel": null,
+          "labTests": {
+            "thc": {
+              "value": [
+                25.1
+              ],
+              "unitAbbr": "%"
+            },
+            "cbd": {
+              "value": [
+                0.057
+              ],
+              "unitAbbr": "%"
+            },
+            "displayThc": null
+          },
+          "saleType": "Both",
+          "availableQty": 13.0,
+          "unitSize": {
+            "value": 7.0,
+            "unitAbbr": "G"
+          },
+          "unitsInPackage": 1,
+          "price": 45.0,
+          "promoPrice": 30.0,
+          "discount": 0,
+          "tierPricePresetId": null,
+          "tierPricing": [],
+          "promos": [
+            {
+              "id": 103173,
               "name": null,
               "shortName": "$15 OFF",
               "description": null,
@@ -2297,7 +2451,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 66.0,
+          "availableQty": 63.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
@@ -2415,7 +2569,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 72.0,
+          "availableQty": 70.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
@@ -2466,9 +2620,9 @@
       "customName": null
     },
     {
-      "id": 223967,
-      "name": "Pink Certz",
-      "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nLineage: The Menthol x Grape Gasoline\n\n",
+      "id": 153317,
+      "name": "Gelato ",
+      "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nThis Bay Area-native gets its name from its fruity, dessert-like aroma. Gelato buds have distinct, fiery orange hairs and a shining white coat of crystal resin. Novices should approach this powerhouse with caution, but those with a high tolerance will delight in its heavy-handed euphoria.",
       "category": {
         "id": 425003,
         "name": "Flower"
@@ -2478,8 +2632,8 @@
         "name": "Smalls"
       },
       "images": [
-        "https://media.sweedpos.com/store/production/1747070536_28da7474-093c-48cb-b02e-13ba4cb8edb8.jpg",
-        "https://media.sweedpos.com/store/production/1740776716_6b7702a6-3d93-45e3-bea3-139fa7c55ad9.png"
+        "https://media.sweedpos.com/store/production/1731701685_63430715-dbc5-4548-b77f-1f86f2cfe0cc.jpg",
+        "https://media.sweedpos.com/store/production/1740776307_76b69a8d-0d16-4226-807b-dfe6a6834007.png"
       ],
       "brand": {
         "name": "Savvy",
@@ -2487,9 +2641,9 @@
         "tagId": null
       },
       "strain": {
-        "name": "Pink Certz",
+        "name": "Gelato",
         "prevalence": {
-          "name": "Hybrid"
+          "name": "Indica"
         },
         "flavors": [],
         "terpenes": [
@@ -2497,13 +2651,13 @@
             "name": "Myrcene"
           },
           {
-            "name": "Linalool"
-          },
-          {
             "name": "Limonene"
           },
           {
             "name": "Caryophyllene"
+          },
+          {
+            "name": "Humulene"
           }
         ]
       },
@@ -2513,15 +2667,16 @@
       "productType": null,
       "variants": [
         {
-          "id": 313700,
+          "id": 208744,
           "name": "7g",
-          "sku": "Savvy Flower - 7g - Pnk Crtz",
+          "sku": "Savvy Flower - 7g - Glto",
           "images": [],
           "strengthLevel": null,
           "labTests": {
             "thc": {
               "value": [
-                25.1
+                22.6,
+                24.6
               ],
               "unitAbbr": "%"
             },
@@ -2534,7 +2689,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 22.0,
+          "availableQty": 73.0,
           "unitSize": {
             "value": 7.0,
             "unitAbbr": "G"
@@ -2550,6 +2705,154 @@
               "id": 103173,
               "name": null,
               "shortName": "$15 OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
+          "reminderStatus": null,
+          "isPacked": true,
+          "qtyStepSize": 1.0,
+          "stockType": "Default"
+        }
+      ],
+      "customName": null
+    },
+    {
+      "id": 229317,
+      "name": "Tropical Teeth #8",
+      "description": "An expansive collection of both novel and timeless genetics on regular rotation, harvested and cured for optimal taste, aroma and experience. (the) Essence genetics are carefully selected, bred and pheno-hunted by a team of local master growers to deliver hand-crafted quality, consistency and variety.\n\nThe root to relaxation. Tropical Teeth is an indica cross of Tiramisu with Grape Teeth #8 , creating dark, dense bud with frosted purple hues. A relaxing sensation for body and mind coalesces to soothing sedation, enhanced by the scents and flavors of sweet grape, earth, and spice.\n--\nLineage: Ice Cream Cake x Grape Teeth (Grape Pie x False Teeth)\n--\nType: Indica\n--\nEffects: Relaxing, Body Buzz, Soothing\n--\nFlavors: Grape, Earthy, Herbal",
+      "category": {
+        "id": 425003,
+        "name": "Flower"
+      },
+      "subcategory": {
+        "id": 425019,
+        "name": "Whole"
+      },
+      "images": [
+        "https://media.sweedpos.com/store/production/1740071873_4a000bd5-292d-479e-9929-a07b93bb6e17.jpg"
+      ],
+      "brand": {
+        "name": "(the) Essence",
+        "filter": null,
+        "tagId": null
+      },
+      "strain": {
+        "name": "Tropical Teeth #8",
+        "prevalence": {
+          "name": "Indica"
+        },
+        "flavors": [],
+        "terpenes": [
+          {
+            "name": "Linalool"
+          },
+          {
+            "name": "Limonene"
+          },
+          {
+            "name": "Caryophyllene"
+          },
+          {
+            "name": "Humulene"
+          }
+        ]
+      },
+      "tags": [],
+      "effects": [],
+      "qualityLine": null,
+      "productType": null,
+      "variants": [
+        {
+          "id": 320827,
+          "name": "3.5g",
+          "sku": "Esnc Flower - 3.5g - Trop Teeth #8",
+          "images": [],
+          "strengthLevel": null,
+          "labTests": {
+            "thc": {
+              "value": [
+                24.1
+              ],
+              "unitAbbr": "%"
+            },
+            "cbd": {
+              "value": [
+                0.0573,
+                0.058
+              ],
+              "unitAbbr": "%"
+            },
+            "displayThc": null
+          },
+          "saleType": "Both",
+          "availableQty": 74.0,
+          "unitSize": {
+            "value": 3.5,
+            "unitAbbr": "G"
+          },
+          "unitsInPackage": 1,
+          "price": 50.0,
+          "promoPrice": 25.0,
+          "discount": 0,
+          "tierPricePresetId": null,
+          "tierPricing": [],
+          "promos": [
+            {
+              "id": 86545,
+              "name": null,
+              "shortName": "50% OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            },
+            {
+              "id": 104084,
+              "name": null,
+              "shortName": "40% OFF",
               "description": null,
               "isBogo": null,
               "startDate": null,
@@ -2725,129 +3028,9 @@
       "customName": null
     },
     {
-      "id": 153317,
-      "name": "Gelato ",
-      "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nThis Bay Area-native gets its name from its fruity, dessert-like aroma. Gelato buds have distinct, fiery orange hairs and a shining white coat of crystal resin. Novices should approach this powerhouse with caution, but those with a high tolerance will delight in its heavy-handed euphoria.",
-      "category": {
-        "id": 425003,
-        "name": "Flower"
-      },
-      "subcategory": {
-        "id": 425021,
-        "name": "Smalls"
-      },
-      "images": [
-        "https://media.sweedpos.com/store/production/1731701685_63430715-dbc5-4548-b77f-1f86f2cfe0cc.jpg",
-        "https://media.sweedpos.com/store/production/1740776307_76b69a8d-0d16-4226-807b-dfe6a6834007.png"
-      ],
-      "brand": {
-        "name": "Savvy",
-        "filter": null,
-        "tagId": null
-      },
-      "strain": {
-        "name": "Gelato",
-        "prevalence": {
-          "name": "Indica"
-        },
-        "flavors": [],
-        "terpenes": [
-          {
-            "name": "Myrcene"
-          },
-          {
-            "name": "Limonene"
-          },
-          {
-            "name": "Caryophyllene"
-          },
-          {
-            "name": "Humulene"
-          }
-        ]
-      },
-      "tags": [],
-      "effects": [],
-      "qualityLine": null,
-      "productType": null,
-      "variants": [
-        {
-          "id": 208744,
-          "name": "7g",
-          "sku": "Savvy Flower - 7g - Glto",
-          "images": [],
-          "strengthLevel": null,
-          "labTests": {
-            "thc": {
-              "value": [
-                22.6,
-                24.6
-              ],
-              "unitAbbr": "%"
-            },
-            "cbd": {
-              "value": [
-                0.057
-              ],
-              "unitAbbr": "%"
-            },
-            "displayThc": null
-          },
-          "saleType": "Both",
-          "availableQty": 75.0,
-          "unitSize": {
-            "value": 7.0,
-            "unitAbbr": "G"
-          },
-          "unitsInPackage": 1,
-          "price": 45.0,
-          "promoPrice": 30.0,
-          "discount": 0,
-          "tierPricePresetId": null,
-          "tierPricing": [],
-          "promos": [
-            {
-              "id": 103173,
-              "name": null,
-              "shortName": "$15 OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
-          "reminderStatus": null,
-          "isPacked": true,
-          "qtyStepSize": 1.0,
-          "stockType": "Default"
-        }
-      ],
-      "customName": null
-    },
-    {
-      "id": 229317,
-      "name": "Tropical Teeth #8",
-      "description": "An expansive collection of both novel and timeless genetics on regular rotation, harvested and cured for optimal taste, aroma and experience. (the) Essence genetics are carefully selected, bred and pheno-hunted by a team of local master growers to deliver hand-crafted quality, consistency and variety.\n\nThe root to relaxation. Tropical Teeth is an indica cross of Tiramisu with Grape Teeth #8 , creating dark, dense bud with frosted purple hues. A relaxing sensation for body and mind coalesces to soothing sedation, enhanced by the scents and flavors of sweet grape, earth, and spice.\n--\nLineage: Ice Cream Cake x Grape Teeth (Grape Pie x False Teeth)\n--\nType: Indica\n--\nEffects: Relaxing, Body Buzz, Soothing\n--\nFlavors: Grape, Earthy, Herbal",
+      "id": 141192,
+      "name": "GMO Jungle Cake",
+      "description": "MÜV premium cannabis flower is meticulously grown at our state-of-the-art indoor facilities in Apollo Beach and Palatka. By carefully monitoring and controlling the cultivation environment and avoiding harmful pesticides, we produce the highest quality flower on the market. With our cutting-edge methods, MÜV produces a variety of colorful and aromatic cannabis strains, each with their own unique characteristics and flavor profiles. For MÜV patients, these traits satisfy both personal preferences and medicinal needs. \n\nFunk, straight from the jungle. GMO Jungle Cake is a potent hybrid, crafted by crossing (you guessed it) GMO with Jungle Cake. The effects from this strain are immaculate - expect immensely relaxing and soothing benefits for body and mind - but the scent and flavor are the true standouts. The strong scent of funky gas intoxicates, complemented by hints of garlic on inhale and sweet fruit on exhale for an experience you won't soon forget.\n\nLineage: GMO x Jungle Cake",
       "category": {
         "id": 425003,
         "name": "Flower"
@@ -2857,20 +3040,23 @@
         "name": "Whole"
       },
       "images": [
-        "https://media.sweedpos.com/store/production/1740071873_4a000bd5-292d-479e-9929-a07b93bb6e17.jpg"
+        "https://media.sweedpos.com/store/production/1734728070_b373e052-f12e-4098-a384-2daa400c0216.jpg"
       ],
       "brand": {
-        "name": "(the) Essence",
+        "name": "MÜV",
         "filter": null,
         "tagId": null
       },
       "strain": {
-        "name": "Tropical Teeth #8",
+        "name": "GMO Jungle Cake",
         "prevalence": {
-          "name": "Indica"
+          "name": "Hybrid"
         },
         "flavors": [],
         "terpenes": [
+          {
+            "name": "Myrcene"
+          },
           {
             "name": "Linalool"
           },
@@ -2879,9 +3065,6 @@
           },
           {
             "name": "Caryophyllene"
-          },
-          {
-            "name": "Humulene"
           }
         ]
       },
@@ -2891,28 +3074,28 @@
       "productType": null,
       "variants": [
         {
-          "id": 320827,
+          "id": 193137,
           "name": "3.5g",
-          "sku": "Esnc Flower - 3.5g - Trop Teeth #8",
+          "sku": "MUV Flower - 3.5g - GMO x Jungle Cke",
           "images": [],
           "strengthLevel": null,
           "labTests": {
             "thc": {
               "value": [
-                24.1
+                23.8
               ],
               "unitAbbr": "%"
             },
             "cbd": {
               "value": [
-                0.0573
+                0.0551
               ],
               "unitAbbr": "%"
             },
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 27.0,
+          "availableQty": 23.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
@@ -2987,6 +3170,58 @@
           "isPacked": true,
           "qtyStepSize": 1.0,
           "stockType": "Default"
+        },
+        {
+          "id": 357511,
+          "name": "7g",
+          "sku": null,
+          "images": [],
+          "strengthLevel": null,
+          "labTests": null,
+          "saleType": "Both",
+          "availableQty": 15.0,
+          "unitSize": null,
+          "unitsInPackage": 0,
+          "price": 90.0,
+          "promoPrice": 67.5,
+          "discount": 0,
+          "tierPricePresetId": null,
+          "tierPricing": [],
+          "promos": [
+            {
+              "id": 104085,
+              "name": null,
+              "shortName": "25% OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
+          "reminderStatus": null,
+          "isPacked": true,
+          "qtyStepSize": 0,
+          "stockType": "Default"
         }
       ],
       "customName": null
@@ -3059,7 +3294,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 41.0,
+          "availableQty": 44.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
@@ -3126,124 +3361,6 @@
           "reminderStatus": null,
           "isPacked": true,
           "qtyStepSize": 0,
-          "stockType": "Default"
-        }
-      ],
-      "customName": null
-    },
-    {
-      "id": 181610,
-      "name": "Pineapple Upside Down Cake - Ground",
-      "description": "MÜV Premium Flower Ground Shake is a convenient option to consume whole flower. While some companies may solely collect the bits and pieces that fall naturally off the bud while handled, or collect a myriad of strains and mix them together, that is not the case at MÜV. Shake is the same strain-specific Premium Cannabis sold in whole flower simply ground for ease of use. The 7 g flower option provides a diverse spectrum of colors and aromas, with the occasional stem or sugar leaf.\n\nLineage: Pineapple Trainwreck x Cookie Monster",
-      "category": {
-        "id": 425003,
-        "name": "Flower"
-      },
-      "subcategory": {
-        "id": 425020,
-        "name": "Ground"
-      },
-      "images": [
-        "https://media.sweedpos.com/store/production/1734361143_1f722e92-bebd-41cd-ad17-b4fb6b00b821.jpg"
-      ],
-      "brand": {
-        "name": "MÜV",
-        "filter": null,
-        "tagId": null
-      },
-      "strain": {
-        "name": "Pineapple Upside Down Cake",
-        "prevalence": {
-          "name": "Hybrid"
-        },
-        "flavors": [],
-        "terpenes": [
-          {
-            "name": "Caryophyllene"
-          },
-          {
-            "name": "Humulene"
-          },
-          {
-            "name": "Ocimene"
-          },
-          {
-            "name": "Bisabolol"
-          }
-        ]
-      },
-      "tags": [],
-      "effects": [],
-      "qualityLine": null,
-      "productType": null,
-      "variants": [
-        {
-          "id": 264624,
-          "name": "7g",
-          "sku": "MUV Ground Flower - 7g - Pinappl Upside Dwn Cke",
-          "images": [],
-          "strengthLevel": null,
-          "labTests": {
-            "thc": {
-              "value": [
-                25.1
-              ],
-              "unitAbbr": "%"
-            },
-            "cbd": {
-              "value": [
-                0.037
-              ],
-              "unitAbbr": "%"
-            },
-            "displayThc": null
-          },
-          "saleType": "Both",
-          "availableQty": 1.0,
-          "unitSize": {
-            "value": 7.0,
-            "unitAbbr": "G"
-          },
-          "unitsInPackage": 1,
-          "price": 40.0,
-          "promoPrice": 20.0,
-          "discount": 0,
-          "tierPricePresetId": null,
-          "tierPricing": [],
-          "promos": [
-            {
-              "id": 104100,
-              "name": null,
-              "shortName": "$20 OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
-          "reminderStatus": null,
-          "isPacked": true,
-          "qtyStepSize": 1.0,
           "stockType": "Default"
         }
       ],
@@ -3317,7 +3434,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 95.0,
+          "availableQty": 91.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
@@ -3333,6 +3450,243 @@
               "id": 104084,
               "name": null,
               "shortName": "40% OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
+          "reminderStatus": null,
+          "isPacked": true,
+          "qtyStepSize": 1.0,
+          "stockType": "Default"
+        }
+      ],
+      "customName": null
+    },
+    {
+      "id": 234378,
+      "name": "Applescotti",
+      "description": "MÜV premium cannabis flower is meticulously grown at our state-of-the-art indoor facilities in Apollo Beach and Palatka. By carefully monitoring and controlling the cultivation environment and avoiding harmful pesticides, we produce the highest quality flower on the market. With our cutting-edge methods, MÜV produces a variety of colorful and aromatic cannabis strains, each with their own unique characteristics and flavor profiles. For MÜV patients, these traits satisfy both personal preferences and medicinal needs. \n\nFreshly baked, just for you. Applescotti fuses crisp apple and nutty biscotti for a mouthwatering wave of flavor with every hit. This indica cross of Apples & Bananas and Biscotti strikes the perfect balance between deep relaxation and a euphoric, creative spark. Whether you're unwinding after a long day or fueling fresh ideas, Applescotti is a treat you won’t want to put down.\n",
+      "category": {
+        "id": 425003,
+        "name": "Flower"
+      },
+      "subcategory": {
+        "id": 425019,
+        "name": "Whole"
+      },
+      "images": [
+        "https://media.sweedpos.com/store/production/1742076530_6479659d-a6c2-472d-b94c-db64c260a85b.jpg"
+      ],
+      "brand": {
+        "name": "MÜV",
+        "filter": null,
+        "tagId": null
+      },
+      "strain": {
+        "name": "Applescotti",
+        "prevalence": {
+          "name": "Indica"
+        },
+        "flavors": [],
+        "terpenes": [
+          {
+            "name": "Limonene"
+          },
+          {
+            "name": "Caryophyllene"
+          },
+          {
+            "name": "Humulene"
+          },
+          {
+            "name": "Bisabolol"
+          }
+        ]
+      },
+      "tags": [],
+      "effects": [],
+      "qualityLine": null,
+      "productType": null,
+      "variants": [
+        {
+          "id": 327628,
+          "name": "3.5g",
+          "sku": "MUV Flower - 3.5g - Applscotti",
+          "images": [],
+          "strengthLevel": null,
+          "labTests": {
+            "thc": {
+              "value": [
+                30.1
+              ],
+              "unitAbbr": "%"
+            },
+            "cbd": {
+              "value": [
+                0.072
+              ],
+              "unitAbbr": "%"
+            },
+            "displayThc": null
+          },
+          "saleType": "Both",
+          "availableQty": 26.0,
+          "unitSize": {
+            "value": 3.5,
+            "unitAbbr": "G"
+          },
+          "unitsInPackage": 1,
+          "price": 50.0,
+          "promoPrice": 37.5,
+          "discount": 0,
+          "tierPricePresetId": null,
+          "tierPricing": [],
+          "promos": [
+            {
+              "id": 104085,
+              "name": null,
+              "shortName": "25% OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
+          "reminderStatus": null,
+          "isPacked": true,
+          "qtyStepSize": 1.0,
+          "stockType": "Default"
+        }
+      ],
+      "customName": null
+    },
+    {
+      "id": 229345,
+      "name": "Tropical Teeth #8",
+      "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nLineage: Ice Cream Cake x Grape Teeth (Grape Pie x False Teeth)",
+      "category": {
+        "id": 425003,
+        "name": "Flower"
+      },
+      "subcategory": {
+        "id": 425021,
+        "name": "Smalls"
+      },
+      "images": [
+        "https://media.sweedpos.com/store/production/1740071795_336f1ba5-6062-418d-8c70-b2a3bc43b261.jpg",
+        "https://media.sweedpos.com/store/production/1747747433_bc6cbc65-db66-4882-b161-788b3a5f2b6d.png"
+      ],
+      "brand": {
+        "name": "Savvy",
+        "filter": null,
+        "tagId": null
+      },
+      "strain": {
+        "name": "Tropical Teeth #8",
+        "prevalence": {
+          "name": "Indica"
+        },
+        "flavors": [],
+        "terpenes": [
+          {
+            "name": "Linalool"
+          },
+          {
+            "name": "Limonene"
+          },
+          {
+            "name": "Caryophyllene"
+          },
+          {
+            "name": "Humulene"
+          }
+        ]
+      },
+      "tags": [],
+      "effects": [],
+      "qualityLine": null,
+      "productType": null,
+      "variants": [
+        {
+          "id": 320864,
+          "name": "7g",
+          "sku": "Savvy Flower - 7g - Trop Teeth #8",
+          "images": [],
+          "strengthLevel": null,
+          "labTests": {
+            "thc": {
+              "value": [
+                24.0
+              ],
+              "unitAbbr": "%"
+            },
+            "cbd": {
+              "value": [
+                0.044
+              ],
+              "unitAbbr": "%"
+            },
+            "displayThc": null
+          },
+          "saleType": "Both",
+          "availableQty": 42.0,
+          "unitSize": {
+            "value": 7.0,
+            "unitAbbr": "G"
+          },
+          "unitsInPackage": 1,
+          "price": 45.0,
+          "promoPrice": 30.0,
+          "discount": 0,
+          "tierPricePresetId": null,
+          "tierPricing": [],
+          "promos": [
+            {
+              "id": 103173,
+              "name": null,
+              "shortName": "$15 OFF",
               "description": null,
               "isBogo": null,
               "startDate": null,
@@ -3437,7 +3791,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 27.0,
+          "availableQty": 26.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
@@ -3482,205 +3836,6 @@
           "reminderStatus": null,
           "isPacked": true,
           "qtyStepSize": 1.0,
-          "stockType": "Default"
-        }
-      ],
-      "customName": null
-    },
-    {
-      "id": 141192,
-      "name": "GMO Jungle Cake",
-      "description": "MÜV premium cannabis flower is meticulously grown at our state-of-the-art indoor facilities in Apollo Beach and Palatka. By carefully monitoring and controlling the cultivation environment and avoiding harmful pesticides, we produce the highest quality flower on the market. With our cutting-edge methods, MÜV produces a variety of colorful and aromatic cannabis strains, each with their own unique characteristics and flavor profiles. For MÜV patients, these traits satisfy both personal preferences and medicinal needs. \n\nFunk, straight from the jungle. GMO Jungle Cake is a potent hybrid, crafted by crossing (you guessed it) GMO with Jungle Cake. The effects from this strain are immaculate - expect immensely relaxing and soothing benefits for body and mind - but the scent and flavor are the true standouts. The strong scent of funky gas intoxicates, complemented by hints of garlic on inhale and sweet fruit on exhale for an experience you won't soon forget.\n\nLineage: GMO x Jungle Cake",
-      "category": {
-        "id": 425003,
-        "name": "Flower"
-      },
-      "subcategory": {
-        "id": 425019,
-        "name": "Whole"
-      },
-      "images": [
-        "https://media.sweedpos.com/store/production/1734728070_b373e052-f12e-4098-a384-2daa400c0216.jpg"
-      ],
-      "brand": {
-        "name": "MÜV",
-        "filter": null,
-        "tagId": null
-      },
-      "strain": {
-        "name": "GMO Jungle Cake",
-        "prevalence": {
-          "name": "Hybrid"
-        },
-        "flavors": [],
-        "terpenes": [
-          {
-            "name": "Myrcene"
-          },
-          {
-            "name": "Linalool"
-          },
-          {
-            "name": "Limonene"
-          },
-          {
-            "name": "Caryophyllene"
-          }
-        ]
-      },
-      "tags": [],
-      "effects": [],
-      "qualityLine": null,
-      "productType": null,
-      "variants": [
-        {
-          "id": 193137,
-          "name": "3.5g",
-          "sku": "MUV Flower - 3.5g - GMO x Jungle Cke",
-          "images": [],
-          "strengthLevel": null,
-          "labTests": {
-            "thc": {
-              "value": [
-                23.8
-              ],
-              "unitAbbr": "%"
-            },
-            "cbd": {
-              "value": [
-                0.0551
-              ],
-              "unitAbbr": "%"
-            },
-            "displayThc": null
-          },
-          "saleType": "Both",
-          "availableQty": 25.0,
-          "unitSize": {
-            "value": 3.5,
-            "unitAbbr": "G"
-          },
-          "unitsInPackage": 1,
-          "price": 50.0,
-          "promoPrice": 25.0,
-          "discount": 0,
-          "tierPricePresetId": null,
-          "tierPricing": [],
-          "promos": [
-            {
-              "id": 86545,
-              "name": null,
-              "shortName": "50% OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            },
-            {
-              "id": 104084,
-              "name": null,
-              "shortName": "40% OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
-          "reminderStatus": null,
-          "isPacked": true,
-          "qtyStepSize": 1.0,
-          "stockType": "Default"
-        },
-        {
-          "id": 357511,
-          "name": "7g",
-          "sku": null,
-          "images": [],
-          "strengthLevel": null,
-          "labTests": null,
-          "saleType": "Both",
-          "availableQty": 16.0,
-          "unitSize": null,
-          "unitsInPackage": 0,
-          "price": 90.0,
-          "promoPrice": 67.5,
-          "discount": 0,
-          "tierPricePresetId": null,
-          "tierPricing": [],
-          "promos": [
-            {
-              "id": 104085,
-              "name": null,
-              "shortName": "25% OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
-          "reminderStatus": null,
-          "isPacked": true,
-          "qtyStepSize": 0,
           "stockType": "Default"
         }
       ],
@@ -3791,7 +3946,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 14.0,
+          "availableQty": 13.0,
           "unitSize": {
             "value": 7.0,
             "unitAbbr": "G"
@@ -3807,125 +3962,6 @@
               "id": 103173,
               "name": null,
               "shortName": "$15 OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
-          "reminderStatus": null,
-          "isPacked": true,
-          "qtyStepSize": 1.0,
-          "stockType": "Default"
-        }
-      ],
-      "customName": null
-    },
-    {
-      "id": 141202,
-      "name": "Grape Bubblegum",
-      "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nGrape Bubblegum is a deliciously deep purple hybrid that produces a grape gushing flavor with unique, spicy undertones. Known for its pain relief properties, Grape Bubblegum makes for a great aid in getting your TLC.\n",
-      "category": {
-        "id": 425003,
-        "name": "Flower"
-      },
-      "subcategory": {
-        "id": 425021,
-        "name": "Smalls"
-      },
-      "images": [
-        "https://media.sweedpos.com/store/production/1731701770_e5555a82-4322-4f3b-b337-50636c227b03.jpg",
-        "https://media.sweedpos.com/store/production/1740776390_cbc83516-6ab5-4a49-9078-caed0fe6a2db.png"
-      ],
-      "brand": {
-        "name": "Savvy",
-        "filter": null,
-        "tagId": null
-      },
-      "strain": {
-        "name": "Grape Bubblegum",
-        "prevalence": {
-          "name": "Hybrid"
-        },
-        "flavors": [],
-        "terpenes": [
-          {
-            "name": "Myrcene"
-          },
-          {
-            "name": "Limonene"
-          },
-          {
-            "name": "Caryophyllene"
-          },
-          {
-            "name": "Humulene"
-          }
-        ]
-      },
-      "tags": [],
-      "effects": [],
-      "qualityLine": null,
-      "productType": null,
-      "variants": [
-        {
-          "id": 193384,
-          "name": "3.5g",
-          "sku": "Savvy Flower - 3.5g - GrpeBblGm",
-          "images": [],
-          "strengthLevel": null,
-          "labTests": {
-            "thc": {
-              "value": [
-                22.1
-              ],
-              "unitAbbr": "%"
-            },
-            "cbd": {
-              "value": [
-                0.049
-              ],
-              "unitAbbr": "%"
-            },
-            "displayThc": null
-          },
-          "saleType": "Both",
-          "availableQty": 49.0,
-          "unitSize": {
-            "value": 3.5,
-            "unitAbbr": "G"
-          },
-          "unitsInPackage": 1,
-          "price": 25.0,
-          "promoPrice": 17.5,
-          "discount": 0,
-          "tierPricePresetId": null,
-          "tierPricing": [],
-          "promos": [
-            {
-              "id": 86542,
-              "name": null,
-              "shortName": "30% OFF",
               "description": null,
               "isBogo": null,
               "startDate": null,
@@ -4102,35 +4138,6 @@
               "fulfilmentTypes": [],
               "promoWizardGeneration": null,
               "shopInShop": null
-            },
-            {
-              "id": 86543,
-              "name": null,
-              "shortName": "40% OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
             }
           ],
           "reminderStatus": null,
@@ -4139,8 +4146,8 @@
           "stockType": "Default"
         },
         {
-          "id": 349667,
-          "name": "7g",
+          "id": 379693,
+          "name": "14g",
           "sku": null,
           "images": [],
           "strengthLevel": null,
@@ -4149,8 +4156,8 @@
           "availableQty": 20.0,
           "unitSize": null,
           "unitsInPackage": 0,
-          "price": 90.0,
-          "promoPrice": 54.0,
+          "price": 160.0,
+          "promoPrice": 96.0,
           "discount": 0,
           "tierPricePresetId": null,
           "tierPricing": [],
@@ -4191,8 +4198,8 @@
           "stockType": "Default"
         },
         {
-          "id": 379693,
-          "name": "14g",
+          "id": 349667,
+          "name": "7g",
           "sku": null,
           "images": [],
           "strengthLevel": null,
@@ -4201,8 +4208,8 @@
           "availableQty": 20.0,
           "unitSize": null,
           "unitsInPackage": 0,
-          "price": 160.0,
-          "promoPrice": 96.0,
+          "price": 90.0,
+          "promoPrice": 54.0,
           "discount": 0,
           "tierPricePresetId": null,
           "tierPricing": [],
@@ -4314,126 +4321,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 47.0,
-          "unitSize": {
-            "value": 7.0,
-            "unitAbbr": "G"
-          },
-          "unitsInPackage": 1,
-          "price": 45.0,
-          "promoPrice": 30.0,
-          "discount": 0,
-          "tierPricePresetId": null,
-          "tierPricing": [],
-          "promos": [
-            {
-              "id": 103173,
-              "name": null,
-              "shortName": "$15 OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
-          "reminderStatus": null,
-          "isPacked": true,
-          "qtyStepSize": 1.0,
-          "stockType": "Default"
-        }
-      ],
-      "customName": null
-    },
-    {
-      "id": 229345,
-      "name": "Tropical Teeth #8",
-      "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nLineage: Ice Cream Cake x Grape Teeth (Grape Pie x False Teeth)",
-      "category": {
-        "id": 425003,
-        "name": "Flower"
-      },
-      "subcategory": {
-        "id": 425021,
-        "name": "Smalls"
-      },
-      "images": [
-        "https://media.sweedpos.com/store/production/1740071795_336f1ba5-6062-418d-8c70-b2a3bc43b261.jpg",
-        "https://media.sweedpos.com/store/production/1747747433_bc6cbc65-db66-4882-b161-788b3a5f2b6d.png"
-      ],
-      "brand": {
-        "name": "Savvy",
-        "filter": null,
-        "tagId": null
-      },
-      "strain": {
-        "name": "Tropical Teeth #8",
-        "prevalence": {
-          "name": "Indica"
-        },
-        "flavors": [],
-        "terpenes": [
-          {
-            "name": "Linalool"
-          },
-          {
-            "name": "Limonene"
-          },
-          {
-            "name": "Caryophyllene"
-          },
-          {
-            "name": "Humulene"
-          }
-        ]
-      },
-      "tags": [],
-      "effects": [],
-      "qualityLine": null,
-      "productType": null,
-      "variants": [
-        {
-          "id": 320864,
-          "name": "7g",
-          "sku": "Savvy Flower - 7g - Trop Teeth #8",
-          "images": [],
-          "strengthLevel": null,
-          "labTests": {
-            "thc": {
-              "value": [
-                24.0
-              ],
-              "unitAbbr": "%"
-            },
-            "cbd": {
-              "value": [
-                0.044
-              ],
-              "unitAbbr": "%"
-            },
-            "displayThc": null
-          },
-          "saleType": "Both",
-          "availableQty": 46.0,
+          "availableQty": 45.0,
           "unitSize": {
             "value": 7.0,
             "unitAbbr": "G"
@@ -4604,124 +4492,6 @@
       "customName": null
     },
     {
-      "id": 234378,
-      "name": "Applescotti",
-      "description": "MÜV premium cannabis flower is meticulously grown at our state-of-the-art indoor facilities in Apollo Beach and Palatka. By carefully monitoring and controlling the cultivation environment and avoiding harmful pesticides, we produce the highest quality flower on the market. With our cutting-edge methods, MÜV produces a variety of colorful and aromatic cannabis strains, each with their own unique characteristics and flavor profiles. For MÜV patients, these traits satisfy both personal preferences and medicinal needs. \n\nFreshly baked, just for you. Applescotti fuses crisp apple and nutty biscotti for a mouthwatering wave of flavor with every hit. This indica cross of Apples & Bananas and Biscotti strikes the perfect balance between deep relaxation and a euphoric, creative spark. Whether you're unwinding after a long day or fueling fresh ideas, Applescotti is a treat you won’t want to put down.\n",
-      "category": {
-        "id": 425003,
-        "name": "Flower"
-      },
-      "subcategory": {
-        "id": 425019,
-        "name": "Whole"
-      },
-      "images": [
-        "https://media.sweedpos.com/store/production/1742076530_6479659d-a6c2-472d-b94c-db64c260a85b.jpg"
-      ],
-      "brand": {
-        "name": "MÜV",
-        "filter": null,
-        "tagId": null
-      },
-      "strain": {
-        "name": "Applescotti",
-        "prevalence": {
-          "name": "Indica"
-        },
-        "flavors": [],
-        "terpenes": [
-          {
-            "name": "Limonene"
-          },
-          {
-            "name": "Caryophyllene"
-          },
-          {
-            "name": "Humulene"
-          },
-          {
-            "name": "Bisabolol"
-          }
-        ]
-      },
-      "tags": [],
-      "effects": [],
-      "qualityLine": null,
-      "productType": null,
-      "variants": [
-        {
-          "id": 327628,
-          "name": "3.5g",
-          "sku": "MUV Flower - 3.5g - Applscotti",
-          "images": [],
-          "strengthLevel": null,
-          "labTests": {
-            "thc": {
-              "value": [
-                30.1
-              ],
-              "unitAbbr": "%"
-            },
-            "cbd": {
-              "value": [
-                0.072
-              ],
-              "unitAbbr": "%"
-            },
-            "displayThc": null
-          },
-          "saleType": "Both",
-          "availableQty": 37.0,
-          "unitSize": {
-            "value": 3.5,
-            "unitAbbr": "G"
-          },
-          "unitsInPackage": 1,
-          "price": 50.0,
-          "promoPrice": 37.5,
-          "discount": 0,
-          "tierPricePresetId": null,
-          "tierPricing": [],
-          "promos": [
-            {
-              "id": 104085,
-              "name": null,
-              "shortName": "25% OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
-          "reminderStatus": null,
-          "isPacked": true,
-          "qtyStepSize": 1.0,
-          "stockType": "Default"
-        }
-      ],
-      "customName": null
-    },
-    {
       "id": 234113,
       "name": "E85",
       "description": "Verano Reserve Flower encompasses an array of premium cannabis genetics that are carefully phenohunted and cultivated to achieve the highest quality.\n\n\nSavvy-sized Reserve strains are available, in limited supply, at a Savvy price.",
@@ -4789,7 +4559,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 25.0,
+          "availableQty": 22.0,
           "unitSize": {
             "value": 7.0,
             "unitAbbr": "G"
@@ -4933,7 +4703,7 @@
           "strengthLevel": null,
           "labTests": null,
           "saleType": "Both",
-          "availableQty": 68.0,
+          "availableQty": 66.0,
           "unitSize": null,
           "unitsInPackage": 0,
           "price": 45.0,
@@ -5100,124 +4870,6 @@
       "customName": null
     },
     {
-      "id": 153865,
-      "name": "Gelato",
-      "description": "MÜV premium cannabis flower is meticulously grown at our state-of-the-art indoor facilities in Apollo Beach and Palatka. By carefully monitoring and controlling the cultivation environment and avoiding harmful pesticides, we produce the highest quality flower on the market. With our cutting-edge methods, MÜV produces a variety of colorful and aromatic cannabis strains, each with their own unique characteristics and flavor profiles. For MÜV patients, these traits satisfy both personal preferences and medicinal needs. \n\nThis Bay Area-native gets its name from its fruity, dessert-like aroma. Gelato buds have distinct, fiery orange hairs and a shining white coat of crystal resin. Novices should approach this powerhouse with caution, but those with a high tolerance will delight in its heavy-handed euphoria\n\nLineage: Sunset Sherbet x Thin Mint Cookies",
-      "category": {
-        "id": 425003,
-        "name": "Flower"
-      },
-      "subcategory": {
-        "id": 425019,
-        "name": "Whole"
-      },
-      "images": [
-        "https://media.sweedpos.com/store/production/1731516473_6887b6b2-1fb1-4f2f-a859-640fb2b3c791.jpg"
-      ],
-      "brand": {
-        "name": "MÜV",
-        "filter": null,
-        "tagId": null
-      },
-      "strain": {
-        "name": "Gelato",
-        "prevalence": {
-          "name": "Indica"
-        },
-        "flavors": [],
-        "terpenes": [
-          {
-            "name": "Myrcene"
-          },
-          {
-            "name": "Limonene"
-          },
-          {
-            "name": "Caryophyllene"
-          },
-          {
-            "name": "Humulene"
-          }
-        ]
-      },
-      "tags": [],
-      "effects": [],
-      "qualityLine": null,
-      "productType": null,
-      "variants": [
-        {
-          "id": 209428,
-          "name": "3.5g",
-          "sku": "MUV Flower - 3.5g - Glto",
-          "images": [],
-          "strengthLevel": null,
-          "labTests": {
-            "thc": {
-              "value": [
-                23.3
-              ],
-              "unitAbbr": "%"
-            },
-            "cbd": {
-              "value": [
-                0.062
-              ],
-              "unitAbbr": "%"
-            },
-            "displayThc": null
-          },
-          "saleType": "Both",
-          "availableQty": 76.0,
-          "unitSize": {
-            "value": 3.5,
-            "unitAbbr": "G"
-          },
-          "unitsInPackage": 1,
-          "price": 50.0,
-          "promoPrice": 30.0,
-          "discount": 0,
-          "tierPricePresetId": null,
-          "tierPricing": [],
-          "promos": [
-            {
-              "id": 104084,
-              "name": null,
-              "shortName": "40% OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
-          "reminderStatus": null,
-          "isPacked": true,
-          "qtyStepSize": 1.0,
-          "stockType": "Default"
-        }
-      ],
-      "customName": null
-    },
-    {
       "id": 238922,
       "name": "Jokerz Candy",
       "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nLineage: Gummiez X Grape Gas",
@@ -5286,7 +4938,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 55.0,
+          "availableQty": 54.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
@@ -5341,7 +4993,7 @@
           "strengthLevel": null,
           "labTests": null,
           "saleType": "Both",
-          "availableQty": 33.0,
+          "availableQty": 32.0,
           "unitSize": null,
           "unitsInPackage": 0,
           "price": 45.0,
@@ -5409,6 +5061,234 @@
               "shopInShop": null
             }
           ],
+          "reminderStatus": null,
+          "isPacked": true,
+          "qtyStepSize": 0,
+          "stockType": "Default"
+        }
+      ],
+      "customName": null
+    },
+    {
+      "id": 259077,
+      "name": "Black Amber",
+      "description": "MÜV premium cannabis flower is meticulously grown at our state-of-the-art indoor facilities in Apollo Beach and Palatka. By carefully monitoring and controlling the cultivation environment and avoiding harmful pesticides, we produce the highest quality flower on the market. With our cutting-edge methods, MÜV produces a variety of colorful and aromatic cannabis strains, each with their own unique characteristics and flavor profiles. For MÜV patients, these traits satisfy both personal preferences and medicinal needs. \n\nLineage: GMO x OZ Kush Bx2\n\n\n",
+      "category": {
+        "id": 425003,
+        "name": "Flower"
+      },
+      "subcategory": {
+        "id": 425019,
+        "name": "Whole"
+      },
+      "images": [
+        "https://media.sweedpos.com/store/production/1750093375_9de39f39-29ea-402d-9943-d003a00ddb9f.jpg"
+      ],
+      "brand": {
+        "name": "MÜV",
+        "filter": null,
+        "tagId": null
+      },
+      "strain": {
+        "name": "Black Amber",
+        "prevalence": {
+          "name": "Indica"
+        },
+        "flavors": [],
+        "terpenes": [
+          {
+            "name": "Myrcene"
+          },
+          {
+            "name": "Linalool"
+          },
+          {
+            "name": "Limonene"
+          },
+          {
+            "name": "Caryophyllene"
+          }
+        ]
+      },
+      "tags": [],
+      "effects": [],
+      "qualityLine": null,
+      "productType": null,
+      "variants": [
+        {
+          "id": 358936,
+          "name": "3.5g",
+          "sku": "MUV Flower - 3.5g - Black Amber",
+          "images": [],
+          "strengthLevel": null,
+          "labTests": {
+            "thc": {
+              "value": [
+                25.8
+              ],
+              "unitAbbr": "%"
+            },
+            "cbd": {
+              "value": [
+                0.035
+              ],
+              "unitAbbr": "%"
+            },
+            "displayThc": null
+          },
+          "saleType": "Both",
+          "availableQty": 56.0,
+          "unitSize": {
+            "value": 3.5,
+            "unitAbbr": "G"
+          },
+          "unitsInPackage": 1,
+          "price": 50.0,
+          "promoPrice": 30.0,
+          "discount": 0,
+          "tierPricePresetId": null,
+          "tierPricing": [],
+          "promos": [
+            {
+              "id": 104084,
+              "name": null,
+              "shortName": "40% OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
+          "reminderStatus": null,
+          "isPacked": true,
+          "qtyStepSize": 1.0,
+          "stockType": "Default"
+        }
+      ],
+      "customName": null
+    },
+    {
+      "id": 141391,
+      "name": "Ice Cream Candy",
+      "description": "Verano Reserve Flower encompasses an array of premium cannabis genetics that are carefully phenohunted and cultivated to achieve the highest quality.\n\nSavvy-sized Reserve strains are available, in limited supply, at a Savvy price.\n\nYour sweet escape is only a puff away with Ice Cream Candy. This hybrid cross of Dolato x Slurricane 23 is both calming and stimulating. While Ice Cream Candy often produces a relaxing effect, it simultaneously acts as a mood-booster and can be beneficial to those prone to anxiety. Flavors of sugar-coated cloves and earthy undertones are just the icing on the cake… or candy!",
+      "category": {
+        "id": 425003,
+        "name": "Flower"
+      },
+      "subcategory": {
+        "id": 425021,
+        "name": "Smalls"
+      },
+      "images": [
+        "https://media.sweedpos.com/store/production/1733425118_3288e262-36b0-4172-80a1-408693be87c4.jpg"
+      ],
+      "brand": {
+        "name": "Savvy Reserve",
+        "filter": null,
+        "tagId": null
+      },
+      "strain": {
+        "name": "Ice Cream Candy",
+        "prevalence": {
+          "name": "Hybrid"
+        },
+        "flavors": [],
+        "terpenes": [
+          {
+            "name": "Linalool"
+          },
+          {
+            "name": "Limonene"
+          },
+          {
+            "name": "Caryophyllene"
+          },
+          {
+            "name": "Ocimene"
+          }
+        ]
+      },
+      "tags": [],
+      "effects": [],
+      "qualityLine": null,
+      "productType": null,
+      "variants": [
+        {
+          "id": 287638,
+          "name": "7g",
+          "sku": "Savvy Reserve Flower - 7g - IcCremCndy",
+          "images": [],
+          "strengthLevel": null,
+          "labTests": {
+            "thc": {
+              "value": [
+                22.7
+              ],
+              "unitAbbr": "%"
+            },
+            "cbd": {
+              "value": [
+                0.051
+              ],
+              "unitAbbr": "%"
+            },
+            "displayThc": null
+          },
+          "saleType": "Both",
+          "availableQty": 4.0,
+          "unitSize": {
+            "value": 7.0,
+            "unitAbbr": "G"
+          },
+          "unitsInPackage": 1,
+          "price": 60.0,
+          "promoPrice": null,
+          "discount": 0,
+          "tierPricePresetId": null,
+          "tierPricing": [],
+          "promos": [],
+          "reminderStatus": null,
+          "isPacked": true,
+          "qtyStepSize": 1.0,
+          "stockType": "Default"
+        },
+        {
+          "id": 193411,
+          "name": "3.5g",
+          "sku": null,
+          "images": [],
+          "strengthLevel": null,
+          "labTests": null,
+          "saleType": "Both",
+          "availableQty": 40.0,
+          "unitSize": null,
+          "unitsInPackage": 0,
+          "price": 35.0,
+          "promoPrice": null,
+          "discount": 0,
+          "tierPricePresetId": null,
+          "tierPricing": [],
+          "promos": [],
           "reminderStatus": null,
           "isPacked": true,
           "qtyStepSize": 0,
@@ -5536,9 +5416,326 @@
       "customName": null
     },
     {
-      "id": 141391,
-      "name": "Ice Cream Candy",
-      "description": "Verano Reserve Flower encompasses an array of premium cannabis genetics that are carefully phenohunted and cultivated to achieve the highest quality.\n\nSavvy-sized Reserve strains are available, in limited supply, at a Savvy price.\n\nYour sweet escape is only a puff away with Ice Cream Candy. This hybrid cross of Dolato x Slurricane 23 is both calming and stimulating. While Ice Cream Candy often produces a relaxing effect, it simultaneously acts as a mood-booster and can be beneficial to those prone to anxiety. Flavors of sugar-coated cloves and earthy undertones are just the icing on the cake… or candy!",
+      "id": 153865,
+      "name": "Gelato",
+      "description": "MÜV premium cannabis flower is meticulously grown at our state-of-the-art indoor facilities in Apollo Beach and Palatka. By carefully monitoring and controlling the cultivation environment and avoiding harmful pesticides, we produce the highest quality flower on the market. With our cutting-edge methods, MÜV produces a variety of colorful and aromatic cannabis strains, each with their own unique characteristics and flavor profiles. For MÜV patients, these traits satisfy both personal preferences and medicinal needs. \n\nThis Bay Area-native gets its name from its fruity, dessert-like aroma. Gelato buds have distinct, fiery orange hairs and a shining white coat of crystal resin. Novices should approach this powerhouse with caution, but those with a high tolerance will delight in its heavy-handed euphoria\n\nLineage: Sunset Sherbet x Thin Mint Cookies",
+      "category": {
+        "id": 425003,
+        "name": "Flower"
+      },
+      "subcategory": {
+        "id": 425019,
+        "name": "Whole"
+      },
+      "images": [
+        "https://media.sweedpos.com/store/production/1731516473_6887b6b2-1fb1-4f2f-a859-640fb2b3c791.jpg"
+      ],
+      "brand": {
+        "name": "MÜV",
+        "filter": null,
+        "tagId": null
+      },
+      "strain": {
+        "name": "Gelato",
+        "prevalence": {
+          "name": "Indica"
+        },
+        "flavors": [],
+        "terpenes": [
+          {
+            "name": "Myrcene"
+          },
+          {
+            "name": "Limonene"
+          },
+          {
+            "name": "Caryophyllene"
+          },
+          {
+            "name": "Humulene"
+          }
+        ]
+      },
+      "tags": [],
+      "effects": [],
+      "qualityLine": null,
+      "productType": null,
+      "variants": [
+        {
+          "id": 209428,
+          "name": "3.5g",
+          "sku": "MUV Flower - 3.5g - Glto",
+          "images": [],
+          "strengthLevel": null,
+          "labTests": {
+            "thc": {
+              "value": [
+                23.3
+              ],
+              "unitAbbr": "%"
+            },
+            "cbd": {
+              "value": [
+                0.062
+              ],
+              "unitAbbr": "%"
+            },
+            "displayThc": null
+          },
+          "saleType": "Both",
+          "availableQty": 75.0,
+          "unitSize": {
+            "value": 3.5,
+            "unitAbbr": "G"
+          },
+          "unitsInPackage": 1,
+          "price": 50.0,
+          "promoPrice": 30.0,
+          "discount": 0,
+          "tierPricePresetId": null,
+          "tierPricing": [],
+          "promos": [
+            {
+              "id": 104084,
+              "name": null,
+              "shortName": "40% OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
+          "reminderStatus": null,
+          "isPacked": true,
+          "qtyStepSize": 1.0,
+          "stockType": "Default"
+        }
+      ],
+      "customName": null
+    },
+    {
+      "id": 141167,
+      "name": "Fruit Pops",
+      "description": "Fruit Pops showcases notes of grapefruit and diesel that linger on the exhale. Known for its peaceful, calming nature and ability to relieve pain, Fruit Pops is ideal for indica fans.\n\nSkip to the good part with trichome-coated flower by Sweet Supply. Yummy strains galore will leave you wanting more with each puff. Live the sweet life in good supply. ",
+      "category": {
+        "id": 425003,
+        "name": "Flower"
+      },
+      "subcategory": {
+        "id": 425019,
+        "name": "Whole"
+      },
+      "images": [
+        "https://media.sweedpos.com/store/production/1732123578_60a106be-b053-4a54-bcbe-b06aa5d20d0d.jpg"
+      ],
+      "brand": {
+        "name": "Sweet Supply",
+        "filter": null,
+        "tagId": null
+      },
+      "strain": {
+        "name": "Fruit Pops",
+        "prevalence": {
+          "name": "Indica"
+        },
+        "flavors": [],
+        "terpenes": [
+          {
+            "name": "Myrcene"
+          },
+          {
+            "name": "Linalool"
+          },
+          {
+            "name": "Limonene"
+          },
+          {
+            "name": "Caryophyllene"
+          }
+        ]
+      },
+      "tags": [],
+      "effects": [],
+      "qualityLine": null,
+      "productType": null,
+      "variants": [
+        {
+          "id": 287591,
+          "name": "7g",
+          "sku": "Sweet Supply Flower - 7g - FrtPops",
+          "images": [],
+          "strengthLevel": null,
+          "labTests": {
+            "thc": {
+              "value": [
+                21.9
+              ],
+              "unitAbbr": "%"
+            },
+            "cbd": {
+              "value": [
+                0.0546
+              ],
+              "unitAbbr": "%"
+            },
+            "displayThc": null
+          },
+          "saleType": "Both",
+          "availableQty": 8.0,
+          "unitSize": {
+            "value": 7.0,
+            "unitAbbr": "G"
+          },
+          "unitsInPackage": 1,
+          "price": 70.0,
+          "promoPrice": 35.0,
+          "discount": 0,
+          "tierPricePresetId": null,
+          "tierPricing": [],
+          "promos": [
+            {
+              "id": 86545,
+              "name": null,
+              "shortName": "50% OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
+          "reminderStatus": null,
+          "isPacked": true,
+          "qtyStepSize": 1.0,
+          "stockType": "Default"
+        },
+        {
+          "id": 193461,
+          "name": "3.5g",
+          "sku": null,
+          "images": [],
+          "strengthLevel": null,
+          "labTests": null,
+          "saleType": "Both",
+          "availableQty": 64.0,
+          "unitSize": null,
+          "unitsInPackage": 0,
+          "price": 40.0,
+          "promoPrice": 20.0,
+          "discount": 0,
+          "tierPricePresetId": null,
+          "tierPricing": [],
+          "promos": [
+            {
+              "id": 86545,
+              "name": null,
+              "shortName": "50% OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            },
+            {
+              "id": 104086,
+              "name": null,
+              "shortName": "$15 OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
+          "reminderStatus": null,
+          "isPacked": true,
+          "qtyStepSize": 0,
+          "stockType": "Default"
+        }
+      ],
+      "customName": null
+    },
+    {
+      "id": 231699,
+      "name": "Wino #4",
+      "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nLineage: Cherry Punch x Grape Teeth (Grape Pie x False Teeth)",
       "category": {
         "id": 425003,
         "name": "Flower"
@@ -5548,25 +5745,26 @@
         "name": "Smalls"
       },
       "images": [
-        "https://media.sweedpos.com/store/production/1733425118_3288e262-36b0-4172-80a1-408693be87c4.jpg"
+        "https://media.sweedpos.com/store/production/1741030525_6031b19c-c578-48ab-bf66-1f4f70f8824a.jpg",
+        "https://media.sweedpos.com/store/production/1743797386_4861643c-aa69-4422-accd-f05d21ea6584.png"
       ],
       "brand": {
-        "name": "Savvy Reserve",
+        "name": "Savvy",
         "filter": null,
         "tagId": null
       },
       "strain": {
-        "name": "Ice Cream Candy",
+        "name": "Wino #4",
         "prevalence": {
-          "name": "Hybrid"
+          "name": "Indica"
         },
         "flavors": [],
         "terpenes": [
           {
-            "name": "Linalool"
+            "name": "Myrcene"
           },
           {
-            "name": "Limonene"
+            "name": "Pinene"
           },
           {
             "name": "Caryophyllene"
@@ -5582,64 +5780,72 @@
       "productType": null,
       "variants": [
         {
-          "id": 287638,
-          "name": "7g",
-          "sku": "Savvy Reserve Flower - 7g - IcCremCndy",
+          "id": 324179,
+          "name": "3.5g",
+          "sku": "Savvy Flower - 3.5g - WnCHP x GrpeTeeth #4",
           "images": [],
           "strengthLevel": null,
           "labTests": {
             "thc": {
               "value": [
-                22.7
+                22.4
               ],
               "unitAbbr": "%"
             },
             "cbd": {
               "value": [
-                0.051
+                0.0688
               ],
               "unitAbbr": "%"
             },
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 6.0,
+          "availableQty": 63.0,
           "unitSize": {
-            "value": 7.0,
+            "value": 3.5,
             "unitAbbr": "G"
           },
           "unitsInPackage": 1,
-          "price": 60.0,
-          "promoPrice": null,
+          "price": 25.0,
+          "promoPrice": 17.5,
           "discount": 0,
           "tierPricePresetId": null,
           "tierPricing": [],
-          "promos": [],
+          "promos": [
+            {
+              "id": 86542,
+              "name": null,
+              "shortName": "30% OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
           "reminderStatus": null,
           "isPacked": true,
           "qtyStepSize": 1.0,
-          "stockType": "Default"
-        },
-        {
-          "id": 193411,
-          "name": "3.5g",
-          "sku": null,
-          "images": [],
-          "strengthLevel": null,
-          "labTests": null,
-          "saleType": "Both",
-          "availableQty": 40.0,
-          "unitSize": null,
-          "unitsInPackage": 0,
-          "price": 35.0,
-          "promoPrice": null,
-          "discount": 0,
-          "tierPricePresetId": null,
-          "tierPricing": [],
-          "promos": [],
-          "reminderStatus": null,
-          "isPacked": true,
-          "qtyStepSize": 0,
           "stockType": "Default"
         }
       ],
@@ -5787,9 +5993,9 @@
       "customName": null
     },
     {
-      "id": 231699,
-      "name": "Wino #4",
-      "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nLineage: Cherry Punch x Grape Teeth (Grape Pie x False Teeth)",
+      "id": 142367,
+      "name": "Cherry Punch",
+      "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nCherry Punch was created by crossing Cherry AK-47 and Purple Punch, two celebrated strains. This sweet strain has strong notes of fruit and berry, with undertones of skunk and earth and is a potent hybrid reported to ease various moods.\n\n",
       "category": {
         "id": 425003,
         "name": "Flower"
@@ -5799,8 +6005,8 @@
         "name": "Smalls"
       },
       "images": [
-        "https://media.sweedpos.com/store/production/1741030525_6031b19c-c578-48ab-bf66-1f4f70f8824a.jpg",
-        "https://media.sweedpos.com/store/production/1743797386_4861643c-aa69-4422-accd-f05d21ea6584.png"
+        "https://media.sweedpos.com/store/production/1731701465_22cd8b1c-eb55-4efa-8a08-96e1a0a46570.jpg",
+        "https://media.sweedpos.com/store/production/1740776024_9155a934-88be-4502-b89f-facb6b674eb8.png"
       ],
       "brand": {
         "name": "Savvy",
@@ -5808,135 +6014,14 @@
         "tagId": null
       },
       "strain": {
-        "name": "Wino #4",
+        "name": "Cherry Punch",
         "prevalence": {
-          "name": "Indica"
+          "name": "Hybrid"
         },
         "flavors": [],
         "terpenes": [
           {
             "name": "Myrcene"
-          },
-          {
-            "name": "Pinene"
-          },
-          {
-            "name": "Caryophyllene"
-          },
-          {
-            "name": "Ocimene"
-          }
-        ]
-      },
-      "tags": [],
-      "effects": [],
-      "qualityLine": null,
-      "productType": null,
-      "variants": [
-        {
-          "id": 324179,
-          "name": "3.5g",
-          "sku": "Savvy Flower - 3.5g - WnCHP x GrpeTeeth #4",
-          "images": [],
-          "strengthLevel": null,
-          "labTests": {
-            "thc": {
-              "value": [
-                22.4
-              ],
-              "unitAbbr": "%"
-            },
-            "cbd": {
-              "value": [
-                0.0688
-              ],
-              "unitAbbr": "%"
-            },
-            "displayThc": null
-          },
-          "saleType": "Both",
-          "availableQty": 62.0,
-          "unitSize": {
-            "value": 3.5,
-            "unitAbbr": "G"
-          },
-          "unitsInPackage": 1,
-          "price": 25.0,
-          "promoPrice": 17.5,
-          "discount": 0,
-          "tierPricePresetId": null,
-          "tierPricing": [],
-          "promos": [
-            {
-              "id": 86542,
-              "name": null,
-              "shortName": "30% OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
-          "reminderStatus": null,
-          "isPacked": true,
-          "qtyStepSize": 1.0,
-          "stockType": "Default"
-        }
-      ],
-      "customName": null
-    },
-    {
-      "id": 259077,
-      "name": "Black Amber",
-      "description": "MÜV premium cannabis flower is meticulously grown at our state-of-the-art indoor facilities in Apollo Beach and Palatka. By carefully monitoring and controlling the cultivation environment and avoiding harmful pesticides, we produce the highest quality flower on the market. With our cutting-edge methods, MÜV produces a variety of colorful and aromatic cannabis strains, each with their own unique characteristics and flavor profiles. For MÜV patients, these traits satisfy both personal preferences and medicinal needs. \n\nLineage: GMO x OZ Kush Bx2\n\n\n",
-      "category": {
-        "id": 425003,
-        "name": "Flower"
-      },
-      "subcategory": {
-        "id": 425019,
-        "name": "Whole"
-      },
-      "images": [
-        "https://media.sweedpos.com/store/production/1750093375_9de39f39-29ea-402d-9943-d003a00ddb9f.jpg"
-      ],
-      "brand": {
-        "name": "MÜV",
-        "filter": null,
-        "tagId": null
-      },
-      "strain": {
-        "name": "Black Amber",
-        "prevalence": {
-          "name": "Indica"
-        },
-        "flavors": [],
-        "terpenes": [
-          {
-            "name": "Myrcene"
-          },
-          {
-            "name": "Linalool"
           },
           {
             "name": "Limonene"
@@ -5952,69 +6037,39 @@
       "productType": null,
       "variants": [
         {
-          "id": 358936,
-          "name": "3.5g",
-          "sku": "MUV Flower - 3.5g - Black Amber",
+          "id": 194625,
+          "name": "14g",
+          "sku": "Savvy Flower - 14g - ChryPnch",
           "images": [],
           "strengthLevel": null,
           "labTests": {
             "thc": {
               "value": [
-                25.8
+                23.2
               ],
               "unitAbbr": "%"
             },
             "cbd": {
               "value": [
-                0.035
+                0.051
               ],
               "unitAbbr": "%"
             },
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 59.0,
+          "availableQty": 15.0,
           "unitSize": {
-            "value": 3.5,
+            "value": 14.0,
             "unitAbbr": "G"
           },
           "unitsInPackage": 1,
-          "price": 50.0,
-          "promoPrice": 30.0,
+          "price": 80.0,
+          "promoPrice": null,
           "discount": 0,
           "tierPricePresetId": null,
           "tierPricing": [],
-          "promos": [
-            {
-              "id": 104084,
-              "name": null,
-              "shortName": "40% OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
+          "promos": [],
           "reminderStatus": null,
           "isPacked": true,
           "qtyStepSize": 1.0,
@@ -6024,34 +6079,34 @@
       "customName": null
     },
     {
-      "id": 141453,
-      "name": "Strawberry Milkshake",
-      "description": "Frosted with dense trichomes and a rich vanilla flavor, Strawberry Milkshake is a sedating strain with euphoric effects. Expect gassy undertones on exhale and a calmer state of mind within minutes.\n\nSkip to the good part with trichome-coated flower by Sweet Supply. Yummy strains galore will leave you wanting more with each puff. Live the sweet life in good supply. ",
+      "id": 235052,
+      "name": "GMO S1",
+      "description": "Verano Reserve Flower encompasses an array of premium cannabis genetics that are carefully phenohunted and cultivated to achieve the highest quality.\n\n\nSavvy-sized Reserve strains are available, in limited supply, at a Savvy price.\n\nLineage: Chemdawg 91 X GSC",
       "category": {
         "id": 425003,
         "name": "Flower"
       },
       "subcategory": {
-        "id": 425019,
-        "name": "Whole"
+        "id": 425021,
+        "name": "Smalls"
       },
       "images": [
-        "https://media.sweedpos.com/store/production/1732125853_cb0e19ef-6630-4b63-ac2a-23ab67b4610d.jpg"
+        "https://media.sweedpos.com/store/production/1742329857_6222944c-d36f-4be0-95f6-ed19bb4f3595.jpg"
       ],
       "brand": {
-        "name": "Sweet Supply",
+        "name": "Savvy Reserve",
         "filter": null,
         "tagId": null
       },
       "strain": {
-        "name": "Strawberry Milkshake",
+        "name": "GMO S1",
         "prevalence": {
           "name": "Indica"
         },
         "flavors": [],
         "terpenes": [
           {
-            "name": "Linalool"
+            "name": "Myrcene"
           },
           {
             "name": "Limonene"
@@ -6070,349 +6125,61 @@
       "productType": null,
       "variants": [
         {
-          "id": 193534,
-          "name": "3.5g",
-          "sku": "Sweet Supply Flower - 3.5g - StrawBrryMlkshk",
+          "id": 328487,
+          "name": "7g",
+          "sku": "Savvy Reserve Flower - 7g - GMO S1",
           "images": [],
           "strengthLevel": null,
           "labTests": {
             "thc": {
               "value": [
-                20.0
+                25.7
               ],
               "unitAbbr": "%"
             },
             "cbd": {
               "value": [
-                0.0285
+                0.061
               ],
               "unitAbbr": "%"
             },
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 57.0,
-          "unitSize": {
-            "value": 3.5,
-            "unitAbbr": "G"
-          },
-          "unitsInPackage": 1,
-          "price": 40.0,
-          "promoPrice": 20.0,
-          "discount": 0,
-          "tierPricePresetId": null,
-          "tierPricing": [],
-          "promos": [
-            {
-              "id": 86545,
-              "name": null,
-              "shortName": "50% OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            },
-            {
-              "id": 104086,
-              "name": null,
-              "shortName": "$15 OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
-          "reminderStatus": null,
-          "isPacked": true,
-          "qtyStepSize": 1.0,
-          "stockType": "Default"
-        },
-        {
-          "id": 287574,
-          "name": "7g",
-          "sku": null,
-          "images": [],
-          "strengthLevel": null,
-          "labTests": null,
-          "saleType": "Both",
-          "availableQty": 28.0,
-          "unitSize": null,
-          "unitsInPackage": 0,
-          "price": 70.0,
-          "promoPrice": 42.0,
-          "discount": 0,
-          "tierPricePresetId": null,
-          "tierPricing": [],
-          "promos": [
-            {
-              "id": 86543,
-              "name": null,
-              "shortName": "40% OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
-          "reminderStatus": null,
-          "isPacked": true,
-          "qtyStepSize": 0,
-          "stockType": "Default"
-        }
-      ],
-      "customName": null
-    },
-    {
-      "id": 141167,
-      "name": "Fruit Pops",
-      "description": "Fruit Pops showcases notes of grapefruit and diesel that linger on the exhale. Known for its peaceful, calming nature and ability to relieve pain, Fruit Pops is ideal for indica fans.\n\nSkip to the good part with trichome-coated flower by Sweet Supply. Yummy strains galore will leave you wanting more with each puff. Live the sweet life in good supply. ",
-      "category": {
-        "id": 425003,
-        "name": "Flower"
-      },
-      "subcategory": {
-        "id": 425019,
-        "name": "Whole"
-      },
-      "images": [
-        "https://media.sweedpos.com/store/production/1732123578_60a106be-b053-4a54-bcbe-b06aa5d20d0d.jpg"
-      ],
-      "brand": {
-        "name": "Sweet Supply",
-        "filter": null,
-        "tagId": null
-      },
-      "strain": {
-        "name": "Fruit Pops",
-        "prevalence": {
-          "name": "Indica"
-        },
-        "flavors": [],
-        "terpenes": [
-          {
-            "name": "Myrcene"
-          },
-          {
-            "name": "Linalool"
-          },
-          {
-            "name": "Limonene"
-          },
-          {
-            "name": "Caryophyllene"
-          }
-        ]
-      },
-      "tags": [],
-      "effects": [],
-      "qualityLine": null,
-      "productType": null,
-      "variants": [
-        {
-          "id": 287591,
-          "name": "7g",
-          "sku": "Sweet Supply Flower - 7g - FrtPops",
-          "images": [],
-          "strengthLevel": null,
-          "labTests": {
-            "thc": {
-              "value": [
-                21.9
-              ],
-              "unitAbbr": "%"
-            },
-            "cbd": {
-              "value": [
-                0.0546
-              ],
-              "unitAbbr": "%"
-            },
-            "displayThc": null
-          },
-          "saleType": "Both",
-          "availableQty": 12.0,
+          "availableQty": 21.0,
           "unitSize": {
             "value": 7.0,
             "unitAbbr": "G"
           },
           "unitsInPackage": 1,
-          "price": 70.0,
-          "promoPrice": 35.0,
+          "price": 60.0,
+          "promoPrice": null,
           "discount": 0,
           "tierPricePresetId": null,
           "tierPricing": [],
-          "promos": [
-            {
-              "id": 86545,
-              "name": null,
-              "shortName": "50% OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
+          "promos": [],
           "reminderStatus": null,
           "isPacked": true,
           "qtyStepSize": 1.0,
           "stockType": "Default"
         },
         {
-          "id": 193461,
+          "id": 328486,
           "name": "3.5g",
           "sku": null,
           "images": [],
           "strengthLevel": null,
           "labTests": null,
           "saleType": "Both",
-          "availableQty": 64.0,
+          "availableQty": 45.0,
           "unitSize": null,
           "unitsInPackage": 0,
-          "price": 40.0,
-          "promoPrice": 20.0,
+          "price": 35.0,
+          "promoPrice": null,
           "discount": 0,
           "tierPricePresetId": null,
           "tierPricing": [],
-          "promos": [
-            {
-              "id": 86545,
-              "name": null,
-              "shortName": "50% OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            },
-            {
-              "id": 104086,
-              "name": null,
-              "shortName": "$15 OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
+          "promos": [],
           "reminderStatus": null,
           "isPacked": true,
           "qtyStepSize": 0,
@@ -6574,28 +6341,27 @@
       "customName": null
     },
     {
-      "id": 142367,
-      "name": "Cherry Punch",
-      "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nCherry Punch was created by crossing Cherry AK-47 and Purple Punch, two celebrated strains. This sweet strain has strong notes of fruit and berry, with undertones of skunk and earth and is a potent hybrid reported to ease various moods.\n\n",
+      "id": 249837,
+      "name": "Pink Certz",
+      "description": "MÜV premium cannabis flower is meticulously grown at our state-of-the-art indoor facilities in Apollo Beach and Palatka. By carefully monitoring and controlling the cultivation environment and avoiding harmful pesticides, we produce the highest quality flower on the market. With our cutting-edge methods, MÜV produces a variety of colorful and aromatic cannabis strains, each with their own unique characteristics and flavor profiles. For MÜV patients, these traits satisfy both personal preferences and medicinal needs. \n\n\nLineage: ",
       "category": {
         "id": 425003,
         "name": "Flower"
       },
       "subcategory": {
-        "id": 425021,
-        "name": "Smalls"
+        "id": 425019,
+        "name": "Whole"
       },
       "images": [
-        "https://media.sweedpos.com/store/production/1731701465_22cd8b1c-eb55-4efa-8a08-96e1a0a46570.jpg",
-        "https://media.sweedpos.com/store/production/1740776024_9155a934-88be-4502-b89f-facb6b674eb8.png"
+        "https://media.sweedpos.com/store/production/1747070605_86e6e0a1-18ca-4143-9613-4b145361909c.jpg"
       ],
       "brand": {
-        "name": "Savvy",
+        "name": "MÜV",
         "filter": null,
         "tagId": null
       },
       "strain": {
-        "name": "Cherry Punch",
+        "name": "Pink Certz",
         "prevalence": {
           "name": "Hybrid"
         },
@@ -6603,6 +6369,9 @@
         "terpenes": [
           {
             "name": "Myrcene"
+          },
+          {
+            "name": "Linalool"
           },
           {
             "name": "Limonene"
@@ -6618,42 +6387,274 @@
       "productType": null,
       "variants": [
         {
-          "id": 194625,
-          "name": "14g",
-          "sku": "Savvy Flower - 14g - ChryPnch",
+          "id": 346999,
+          "name": "3.5g",
+          "sku": "MUV Flower - 3.5g - Pnk Crtz",
           "images": [],
           "strengthLevel": null,
           "labTests": {
             "thc": {
               "value": [
-                23.2
+                22.9,
+                26.7
               ],
               "unitAbbr": "%"
             },
             "cbd": {
               "value": [
-                0.051
+                0.0579,
+                0.063
               ],
               "unitAbbr": "%"
             },
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 18.0,
+          "availableQty": 99.0,
           "unitSize": {
-            "value": 14.0,
+            "value": 3.5,
             "unitAbbr": "G"
           },
           "unitsInPackage": 1,
-          "price": 80.0,
-          "promoPrice": null,
+          "price": 50.0,
+          "promoPrice": 25.0,
           "discount": 0,
           "tierPricePresetId": null,
           "tierPricing": [],
-          "promos": [],
+          "promos": [
+            {
+              "id": 86545,
+              "name": null,
+              "shortName": "50% OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            },
+            {
+              "id": 104084,
+              "name": null,
+              "shortName": "40% OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
           "reminderStatus": null,
           "isPacked": true,
           "qtyStepSize": 1.0,
+          "stockType": "Default"
+        }
+      ],
+      "customName": null
+    },
+    {
+      "id": 142114,
+      "name": "Mint Diesel",
+      "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nHit the gas with Mint Diesel. This hybrid cross of The Menthol and Grape Diesel provides a buzzy yet calming boost, bringing focus and energy to new levels. Mint Diesel provides loud notes of mint and gas that will keep you coming back for more.\n\n",
+      "category": {
+        "id": 425003,
+        "name": "Flower"
+      },
+      "subcategory": {
+        "id": 425021,
+        "name": "Smalls"
+      },
+      "images": [
+        "https://media.sweedpos.com/store/production/1731701872_8ffaaca3-ddcd-45f5-bc07-bbff00ba6e98.jpg",
+        "https://media.sweedpos.com/store/production/1740776520_aee49bad-e46f-4e29-bdb6-05697c9e4b18.png"
+      ],
+      "brand": {
+        "name": "Savvy",
+        "filter": null,
+        "tagId": null
+      },
+      "strain": {
+        "name": "Mint Diesel",
+        "prevalence": {
+          "name": "Hybrid"
+        },
+        "flavors": [],
+        "terpenes": [
+          {
+            "name": "Myrcene"
+          },
+          {
+            "name": "Linalool"
+          },
+          {
+            "name": "Limonene"
+          },
+          {
+            "name": "Caryophyllene"
+          }
+        ]
+      },
+      "tags": [],
+      "effects": [],
+      "qualityLine": null,
+      "productType": null,
+      "variants": [
+        {
+          "id": 194290,
+          "name": "3.5g",
+          "sku": "Savvy Flower - 3.5g - Mnt Diesel",
+          "images": [],
+          "strengthLevel": null,
+          "labTests": {
+            "thc": {
+              "value": [
+                19.4
+              ],
+              "unitAbbr": "%"
+            },
+            "cbd": {
+              "value": [
+                0.0516
+              ],
+              "unitAbbr": "%"
+            },
+            "displayThc": null
+          },
+          "saleType": "Both",
+          "availableQty": 30.0,
+          "unitSize": {
+            "value": 3.5,
+            "unitAbbr": "G"
+          },
+          "unitsInPackage": 1,
+          "price": 25.0,
+          "promoPrice": 15.0,
+          "discount": 0,
+          "tierPricePresetId": null,
+          "tierPricing": [],
+          "promos": [
+            {
+              "id": 86543,
+              "name": null,
+              "shortName": "40% OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
+          "reminderStatus": null,
+          "isPacked": true,
+          "qtyStepSize": 1.0,
+          "stockType": "Default"
+        },
+        {
+          "id": 281467,
+          "name": "7g",
+          "sku": null,
+          "images": [],
+          "strengthLevel": null,
+          "labTests": null,
+          "saleType": "Both",
+          "availableQty": 72.0,
+          "unitSize": null,
+          "unitsInPackage": 0,
+          "price": 45.0,
+          "promoPrice": 30.0,
+          "discount": 0,
+          "tierPricePresetId": null,
+          "tierPricing": [],
+          "promos": [
+            {
+              "id": 103173,
+              "name": null,
+              "shortName": "$15 OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
+          "reminderStatus": null,
+          "isPacked": true,
+          "qtyStepSize": 0,
           "stockType": "Default"
         }
       ],
@@ -6860,34 +6861,34 @@
       "customName": null
     },
     {
-      "id": 235052,
-      "name": "GMO S1",
-      "description": "Verano Reserve Flower encompasses an array of premium cannabis genetics that are carefully phenohunted and cultivated to achieve the highest quality.\n\n\nSavvy-sized Reserve strains are available, in limited supply, at a Savvy price.\n\nLineage: Chemdawg 91 X GSC",
+      "id": 141453,
+      "name": "Strawberry Milkshake",
+      "description": "Frosted with dense trichomes and a rich vanilla flavor, Strawberry Milkshake is a sedating strain with euphoric effects. Expect gassy undertones on exhale and a calmer state of mind within minutes.\n\nSkip to the good part with trichome-coated flower by Sweet Supply. Yummy strains galore will leave you wanting more with each puff. Live the sweet life in good supply. ",
       "category": {
         "id": 425003,
         "name": "Flower"
       },
       "subcategory": {
-        "id": 425021,
-        "name": "Smalls"
+        "id": 425019,
+        "name": "Whole"
       },
       "images": [
-        "https://media.sweedpos.com/store/production/1742329857_6222944c-d36f-4be0-95f6-ed19bb4f3595.jpg"
+        "https://media.sweedpos.com/store/production/1732125853_cb0e19ef-6630-4b63-ac2a-23ab67b4610d.jpg"
       ],
       "brand": {
-        "name": "Savvy Reserve",
+        "name": "Sweet Supply",
         "filter": null,
         "tagId": null
       },
       "strain": {
-        "name": "GMO S1",
+        "name": "Strawberry Milkshake",
         "prevalence": {
           "name": "Indica"
         },
         "flavors": [],
         "terpenes": [
           {
-            "name": "Myrcene"
+            "name": "Linalool"
           },
           {
             "name": "Limonene"
@@ -6906,266 +6907,35 @@
       "productType": null,
       "variants": [
         {
-          "id": 328487,
-          "name": "7g",
-          "sku": "Savvy Reserve Flower - 7g - GMO S1",
+          "id": 193534,
+          "name": "3.5g",
+          "sku": "Sweet Supply Flower - 3.5g - StrawBrryMlkshk",
           "images": [],
           "strengthLevel": null,
           "labTests": {
             "thc": {
               "value": [
-                25.7
+                20.0
               ],
               "unitAbbr": "%"
             },
             "cbd": {
               "value": [
-                0.061
+                0.0285
               ],
               "unitAbbr": "%"
             },
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 22.0,
-          "unitSize": {
-            "value": 7.0,
-            "unitAbbr": "G"
-          },
-          "unitsInPackage": 1,
-          "price": 60.0,
-          "promoPrice": null,
-          "discount": 0,
-          "tierPricePresetId": null,
-          "tierPricing": [],
-          "promos": [],
-          "reminderStatus": null,
-          "isPacked": true,
-          "qtyStepSize": 1.0,
-          "stockType": "Default"
-        },
-        {
-          "id": 328486,
-          "name": "3.5g",
-          "sku": null,
-          "images": [],
-          "strengthLevel": null,
-          "labTests": null,
-          "saleType": "Both",
-          "availableQty": 47.0,
-          "unitSize": null,
-          "unitsInPackage": 0,
-          "price": 35.0,
-          "promoPrice": null,
-          "discount": 0,
-          "tierPricePresetId": null,
-          "tierPricing": [],
-          "promos": [],
-          "reminderStatus": null,
-          "isPacked": true,
-          "qtyStepSize": 0,
-          "stockType": "Default"
-        }
-      ],
-      "customName": null
-    },
-    {
-      "id": 142114,
-      "name": "Mint Diesel",
-      "description": "Good flower, no fluff. Savvy is your go-to for flavor, potency, and value. Bud for sesh-makers, stash-builders, and the always-stocked.\n\nHit the gas with Mint Diesel. This hybrid cross of The Menthol and Grape Diesel provides a buzzy yet calming boost, bringing focus and energy to new levels. Mint Diesel provides loud notes of mint and gas that will keep you coming back for more.\n\n",
-      "category": {
-        "id": 425003,
-        "name": "Flower"
-      },
-      "subcategory": {
-        "id": 425021,
-        "name": "Smalls"
-      },
-      "images": [
-        "https://media.sweedpos.com/store/production/1731701872_8ffaaca3-ddcd-45f5-bc07-bbff00ba6e98.jpg",
-        "https://media.sweedpos.com/store/production/1740776520_aee49bad-e46f-4e29-bdb6-05697c9e4b18.png"
-      ],
-      "brand": {
-        "name": "Savvy",
-        "filter": null,
-        "tagId": null
-      },
-      "strain": {
-        "name": "Mint Diesel",
-        "prevalence": {
-          "name": "Hybrid"
-        },
-        "flavors": [],
-        "terpenes": [
-          {
-            "name": "Myrcene"
-          },
-          {
-            "name": "Linalool"
-          },
-          {
-            "name": "Limonene"
-          },
-          {
-            "name": "Caryophyllene"
-          }
-        ]
-      },
-      "tags": [],
-      "effects": [],
-      "qualityLine": null,
-      "productType": null,
-      "variants": [
-        {
-          "id": 194290,
-          "name": "3.5g",
-          "sku": "Savvy Flower - 3.5g - Mnt Diesel",
-          "images": [],
-          "strengthLevel": null,
-          "labTests": {
-            "thc": {
-              "value": [
-                19.4
-              ],
-              "unitAbbr": "%"
-            },
-            "cbd": {
-              "value": [
-                0.0516
-              ],
-              "unitAbbr": "%"
-            },
-            "displayThc": null
-          },
-          "saleType": "Both",
-          "availableQty": 30.0,
+          "availableQty": 57.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
           },
           "unitsInPackage": 1,
-          "price": 25.0,
-          "promoPrice": 15.0,
-          "discount": 0,
-          "tierPricePresetId": null,
-          "tierPricing": [],
-          "promos": [
-            {
-              "id": 86543,
-              "name": null,
-              "shortName": "40% OFF",
-              "description": null,
-              "isBogo": null,
-              "startDate": null,
-              "endDate": null,
-              "interval": null,
-              "bannerUrl": null,
-              "mobileBannerUrl": null,
-              "displayInUpsellModal": false,
-              "displayInCatalog": false,
-              "productImages": null,
-              "filter": null,
-              "displayInDiscountMenu": false,
-              "isConditional": false,
-              "applicationMode": null,
-              "discountAmount": null,
-              "discountPercent": null,
-              "minCartAmount": null,
-              "minCartAmountNeeded": null,
-              "matchedUserSegmentIds": null,
-              "scheduleDisplayText": null,
-              "isActiveBySchedule": true,
-              "fulfilmentTypes": [],
-              "promoWizardGeneration": null,
-              "shopInShop": null
-            }
-          ],
-          "reminderStatus": null,
-          "isPacked": true,
-          "qtyStepSize": 1.0,
-          "stockType": "Default"
-        }
-      ],
-      "customName": null
-    },
-    {
-      "id": 249837,
-      "name": "Pink Certz",
-      "description": "MÜV premium cannabis flower is meticulously grown at our state-of-the-art indoor facilities in Apollo Beach and Palatka. By carefully monitoring and controlling the cultivation environment and avoiding harmful pesticides, we produce the highest quality flower on the market. With our cutting-edge methods, MÜV produces a variety of colorful and aromatic cannabis strains, each with their own unique characteristics and flavor profiles. For MÜV patients, these traits satisfy both personal preferences and medicinal needs. \n\n\nLineage: ",
-      "category": {
-        "id": 425003,
-        "name": "Flower"
-      },
-      "subcategory": {
-        "id": 425019,
-        "name": "Whole"
-      },
-      "images": [
-        "https://media.sweedpos.com/store/production/1747070605_86e6e0a1-18ca-4143-9613-4b145361909c.jpg"
-      ],
-      "brand": {
-        "name": "MÜV",
-        "filter": null,
-        "tagId": null
-      },
-      "strain": {
-        "name": "Pink Certz",
-        "prevalence": {
-          "name": "Hybrid"
-        },
-        "flavors": [],
-        "terpenes": [
-          {
-            "name": "Myrcene"
-          },
-          {
-            "name": "Linalool"
-          },
-          {
-            "name": "Limonene"
-          },
-          {
-            "name": "Caryophyllene"
-          }
-        ]
-      },
-      "tags": [],
-      "effects": [],
-      "qualityLine": null,
-      "productType": null,
-      "variants": [
-        {
-          "id": 346999,
-          "name": "3.5g",
-          "sku": "MUV Flower - 3.5g - Pnk Crtz",
-          "images": [],
-          "strengthLevel": null,
-          "labTests": {
-            "thc": {
-              "value": [
-                22.9,
-                26.7
-              ],
-              "unitAbbr": "%"
-            },
-            "cbd": {
-              "value": [
-                0.0579,
-                0.063
-              ],
-              "unitAbbr": "%"
-            },
-            "displayThc": null
-          },
-          "saleType": "Both",
-          "availableQty": 100.0,
-          "unitSize": {
-            "value": 3.5,
-            "unitAbbr": "G"
-          },
-          "unitsInPackage": 1,
-          "price": 50.0,
-          "promoPrice": 25.0,
+          "price": 40.0,
+          "promoPrice": 20.0,
           "discount": 0,
           "tierPricePresetId": null,
           "tierPricing": [],
@@ -7200,9 +6970,9 @@
               "shopInShop": null
             },
             {
-              "id": 104084,
+              "id": 104086,
               "name": null,
-              "shortName": "40% OFF",
+              "shortName": "$15 OFF",
               "description": null,
               "isBogo": null,
               "startDate": null,
@@ -7232,6 +7002,58 @@
           "reminderStatus": null,
           "isPacked": true,
           "qtyStepSize": 1.0,
+          "stockType": "Default"
+        },
+        {
+          "id": 287574,
+          "name": "7g",
+          "sku": null,
+          "images": [],
+          "strengthLevel": null,
+          "labTests": null,
+          "saleType": "Both",
+          "availableQty": 28.0,
+          "unitSize": null,
+          "unitsInPackage": 0,
+          "price": 70.0,
+          "promoPrice": 35.0,
+          "discount": 0,
+          "tierPricePresetId": null,
+          "tierPricing": [],
+          "promos": [
+            {
+              "id": 86545,
+              "name": null,
+              "shortName": "50% OFF",
+              "description": null,
+              "isBogo": null,
+              "startDate": null,
+              "endDate": null,
+              "interval": null,
+              "bannerUrl": null,
+              "mobileBannerUrl": null,
+              "displayInUpsellModal": false,
+              "displayInCatalog": false,
+              "productImages": null,
+              "filter": null,
+              "displayInDiscountMenu": false,
+              "isConditional": false,
+              "applicationMode": null,
+              "discountAmount": null,
+              "discountPercent": null,
+              "minCartAmount": null,
+              "minCartAmountNeeded": null,
+              "matchedUserSegmentIds": null,
+              "scheduleDisplayText": null,
+              "isActiveBySchedule": true,
+              "fulfilmentTypes": [],
+              "promoWizardGeneration": null,
+              "shopInShop": null
+            }
+          ],
+          "reminderStatus": null,
+          "isPacked": true,
+          "qtyStepSize": 0,
           "stockType": "Default"
         }
       ],
@@ -7286,7 +7108,7 @@
         {
           "id": 322481,
           "name": "3.5g",
-          "sku": "Esnc Flower - 3.5g -  WnCHP x GrpeTeeth #9",
+          "sku": "Esnc Flower - 3.5g - WnCHP x GrpeTeeth #9",
           "images": [],
           "strengthLevel": null,
           "labTests": {
@@ -7452,7 +7274,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 81.0,
+          "availableQty": 79.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
@@ -8006,7 +7828,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 44.0,
+          "availableQty": 43.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"
@@ -8523,7 +8345,7 @@
             "displayThc": null
           },
           "saleType": "Both",
-          "availableQty": 88.0,
+          "availableQty": 87.0,
           "unitSize": {
             "value": 3.5,
             "unitAbbr": "G"

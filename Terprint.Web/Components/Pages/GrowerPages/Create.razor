@@ -1,8 +1,13 @@
 ﻿@attribute [Authorize]
 @page "/growers/create"
+@using Terprint.Web.Services
 @inject Terprint.Web.Data.TerprintWebContext DB
 @using Terprint.Web.Models
 @inject NavigationManager NavigationManager
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
+@using Terprint.Web.Data
+@inject Terprint.Web.Services.ICacheService CacheService
 
 @inject common.AppState.StateContainer.Grower asgrower
 <PageTitle>Create Grower</PageTitle>
@@ -48,6 +53,8 @@
         DB.Grower.Add(Grower);
         await DB.SaveChangesAsync();
         asgrower.Growers.Add(Grower);
+        // invalidate cache
+        await CacheService.RemoveAsync(CacheKeys.GrowersAll);
         NavigationManager.NavigateTo("/strains/create");
     }
 }

@@ -1,51 +1,10 @@
-ï»¿@inject Data.TerprintWebContext3 DB
-@inject NavigationManager _navigationManager
-@inject common.AppState.StateContainer.Strain appstatestrain
-@inject common.AppState.StateContainer.Batch appstatebatch
-@inject common.AppState.StateContainer.Grower appstategrower
-@inject common.AppState.StateContainer.TerpeneValue asTerpeneValue
-@inject common.AppState.StateContainer.THCValue asTHCValue
-@inject common.AppState.StateContainer.RatingCategory asRatingCategory
-@inject common.AppState.StateContainer.Rating  asRating
+@using Terprint.Web.Services
+@using Microsoft.EntityFrameworkCore
+@inject Terprint.Web.Data.TerprintWebContext3 DB
+@inject ICacheService CacheService
+@inject AuthService AuthService
 @inject NavigationManager NavigationManager
 
-@{
-
-    #region appstate load
-
-    if (appstategrower.Growers == null)
-    {
-        appstategrower.Growers = DB.Grower.ToList();
-        //return appstategrower.Growers;
-    }
-    if (appstatestrain.Strains == null)
-    {
-        appstatestrain.Strains = DB.Strain.ToList();
-    }
-    if (appstatebatch.Batches == null)
-    {
-        appstatebatch.Batches = DB.Batch.ToList();
-    }
-    if (asTerpeneValue.TerpeneValues == null)
-    {
-        asTerpeneValue.TerpeneValues = DB.TerpeneValues.ToList();
-    }
-    if (asTHCValue.THCValues == null)
-    {
-        asTHCValue.THCValues = DB.THCValues.ToList();
-    }
-    if (asRatingCategory.RatingCategories == null)
-    {
-        asRatingCategory.RatingCategories = DB.RatingCategory.ToList();
-    }
-    if (asRating.Ratings == null)
-    {
-        asRating.Ratings = DB.Rating.ToList();
-    }
-
-
-    #endregion
-}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/"></a>
@@ -56,185 +15,120 @@
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="/"></a> </li>
 
+                <li class="nav-item"><a class="nav-link" href="/"></a> </li>
                 <li class="nav-item"><a class="nav-link" href="/">Home </a> </li>
                 <li class="nav-item"><a class="nav-link" href="/straincompare"> Strain Compare </a></li>
                 <li class="nav-item"><a class="nav-link" href="/strainmatcher"> Strain Matcher </a></li>
                 <li class="nav-item"><a class="nav-link" href="/CannabinoidMatcher"> Cannabinoid Strain Finder </a></li>
                 <li class="nav-item"><a class="nav-link" href="/List"> List </a></li>
+
                 <li class="nav-item dropdown" id="myDropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Growers   </a>
                     <ul class="dropdown-menu">
-                        @{
-
-                            List<Grower> GetGrowers()
+                        @if (growers?.Any() == true)
+                        {
+                            @foreach (var grower in growers)
                             {
-                                // e.g. Put a database call here
-                                if (appstategrower.Growers == null)
-                                {
-                                    appstategrower.Growers = DB.Grower.ToList();
-                                    return appstategrower.Growers;
-                                }
-                                else
-                                {
-                                    return appstategrower.Growers;
-                                }
-
-                                //return Terprint.common.Strains.GetBatches(strain);
-
+                                var urlencoded = System.Web.HttpUtility.UrlEncode(grower.Name);
+                                var path = $"/GrowerProfile?grower={urlencoded}";
+                                <li>
+                                    <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All">@grower.Name</NavLink>
+                                </li>
                             }
                         }
-                        @{
-                            common.Components c = new common.Components();
-                        }
-                        @foreach (var grower in GetGrowers())
-                        {
-                            string urlencoded = System.Web.HttpUtility.UrlEncode(grower.Name);
-                            string path = "/GrowerProfile?grower=" + @urlencoded;
-                            <li>
-                                <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@grower.Name</NavLink>
-
-                            </li>
-                        }
-
                     </ul>
                 </li>
+
                 <li class="nav-item dropdown" id="myDropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Ratings   </a>
                     <ul class="dropdown-menu">
-
-                        @foreach (var rc in asRatingCategory.RatingCategories)
+                        @if (ratingCategories?.Any() == true)
                         {
-                            string urlencoded = System.Web.HttpUtility.UrlEncode(@rc.RatingCategoryId.ToString());
-                            string path = "/Ratinglist?RatingCategoryID=" + @urlencoded;
-                            <li>
-                                <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@rc.CategoryTitle</NavLink>
-
-                            </li>
+                            @foreach (var rc in ratingCategories)
+                            {
+                                var urlencoded = System.Web.HttpUtility.UrlEncode(rc.RatingCategoryId.ToString());
+                                var path = $"/Ratinglist?RatingCategoryID={urlencoded}";
+                                <li>
+                                    <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All">@rc.CategoryTitle</NavLink>
+                                </li>
+                            }
                         }
-
                     </ul>
                 </li>
-                 
-
 
                 <li class="nav-item dropdown" id="myDropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Strains menu  </a>
                     <ul class="dropdown-menu">
-                        @{
-                            List<Strain> GetStrains()
-                            {
-                                // e.g. Put a database call here
-                                if (appstatestrain.Strains == null)
-                                {
-                                    appstatestrain.Strains = DB.Strain.ToList();
-                                    return appstatestrain.Strains;
-                                }
-                                else
-                                {
-                                    return appstatestrain.Strains;
-                                }
-                                // Terprint.common.Strains.GetStrains();
-
-                            }
-                            List<Batch> GetBatches(string strain)
-                            {
-                                // e.g. Put a database call here
-                                if (appstatebatch.Batches == null)
-                                {
-                                    appstatebatch.Batches = DB.Batch.ToList();
-                                }
-
-                                // e.g. Put a database call here
-
-                                return appstatebatch.Batches.Where(
-                                t => t.StrainID == GetStrains()
-                                .Where(t1 => t1.StrainName == strain)
-                                .Select(t => t.StrainId)
-                                .FirstOrDefault())
-                                //.Select(t => t.Name)
-                                .ToList();
-                                //return Terprint.common.Strains.GetBatches(strain);
-
-                            }
-                        }
-                        @foreach (var strain in GetStrains().OrderBy(t=>t.StrainName))
+                        @if (strains?.Any() == true)
                         {
-                            string path = "/StrainProfile?strain=" + System.Web.HttpUtility.UrlEncode(strain.StrainName);
-                            <li>
-                                <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@strain.StrainName &raquo;</NavLink>
-                                <ul class="submenu dropdown-menu">
-                                    @foreach (var batch in GetBatches(strain.StrainName))
-                                    {
-                                        string urlencoded = System.Web.HttpUtility.UrlEncode(@batch.Name);
-                                        path = "/BatchProfile?size=medium&matrix=1&batch=" + @urlencoded;
-                                        <li>
-                                            <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@batch.Name</NavLink>
-                                        </li>
-                                    }
-
-                                </ul>
-                            </li>
+                            @foreach (var strain in strains.OrderBy(t => t.StrainName))
+                            {
+                                var strainPath = $"/StrainProfile?strain={System.Web.HttpUtility.UrlEncode(strain.StrainName)}";
+                                <li>
+                                    <NavLink class="dropdown-item" href="@strainPath" Match="NavLinkMatch.All">@strain.StrainName &raquo;</NavLink>
+                                    <ul class="submenu dropdown-menu">
+                                        @if (batches?.Any() == true)
+                                        {
+                                            @foreach (var batch in batches.Where(b => b.StrainID == strain.StrainId))
+                                            {
+                                                var urlencoded = System.Web.HttpUtility.UrlEncode(batch.Name);
+                                                var batchPath = $"/BatchProfile?size=medium&matrix=1&batch={urlencoded}";
+                                                <li>
+                                                    <NavLink class="dropdown-item" href="@batchPath" Match="NavLinkMatch.All">@batch.Name</NavLink>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                </li>
+                            }
                         }
-
                     </ul>
                 </li>
+
                 <li class="nav-item dropdown" id="myDropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Terpenes   </a>
                     <ul class="dropdown-menu">
-                        @{
-
-                            List<string> GetTerpenes()
+                        @if (terpeneList?.Any() == true)
+                        {
+                            @foreach (var terpene in terpeneList)
                             {
-                                // e.g. Put a database call here
-
-                                common.Components c = new common.Components();
-                                return c.GetTerpeneList();
-
-                                //return Terprint.common.Strains.GetBatches(strain);
-
+                                var terpcolor = c.GetTerpeneColor(terpene);
+                                var urlencoded = System.Web.HttpUtility.UrlEncode(terpene);
+                                var path = $"/TerpeneProfile?terpene={urlencoded}";
+                                <li style="background-color: @terpcolor">
+                                    <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All">@terpene</NavLink>
+                                </li>
                             }
                         }
-                        @foreach (var terpene in GetTerpenes())
-                        {
-                            string terpcolor = c.GetTerpeneColor(terpene);
-                            string urlencoded = System.Web.HttpUtility.UrlEncode(@terpene);
-                            string path = "/TerpeneProfile?terpene=" + @urlencoded;
-                            <li style="background-color: @terpcolor">
-                                <NavLink class="dropdown-item" href="@path" Match="NavLinkMatch.All" onclick="location.href=this.href;return true;">@terpene</NavLink>
-
-                            </li>
-                        }
-
                     </ul>
                 </li>
-
 
                 <li class="nav-item dropdown">
                     <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Admin </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
-                            <a class="dropdown-item" href="/growers">Growers Â» </a>
+                            <a class="dropdown-item" href="/growers">Growers » </a>
                             <ul class="submenu submenu-left dropdown-menu">
                                 <li><a class="dropdown-item" href="/growers">View</a></li>
                                 <li><a class="dropdown-item" href="/growers/create">Enter Grower</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/strains">Strains Â» </a>
+                            <a class="dropdown-item" href="/strains">Strains » </a>
                             <ul class="submenu submenu-left dropdown-menu">
                                 <li><a class="dropdown-item" href="/strains">View</a></li>
                                 <li><a class="dropdown-item" href="/strains/create">Enter Strain</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/batches">Batches Â» </a>
+                            <a class="dropdown-item" href="/batches">Batches » </a>
                             <ul class="submenu submenu-left dropdown-menu">
                                 <li><a class="dropdown-item" href="/batches">View</a></li>
                                 <li><a class="dropdown-item" href="/batches/create">Enter Batch</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/terpenevalues">Terpene Values Â» </a>
+                            <a class="dropdown-item" href="/terpenevalues">Terpene Values » </a>
                             <ul class="submenu submenu-left dropdown-menu">
                                 <li><a class="dropdown-item" href="/terpenevalues">View</a></li>
                                 <li><a class="dropdown-item" href="/terpenevalues/create">Enter Values</a></li>
@@ -242,7 +136,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/thcvalues">THC Values Â» </a>
+                            <a class="dropdown-item" href="/thcvalues">THC Values » </a>
                             <ul class="submenu submenu-left dropdown-menu">
                                 <li><a class="dropdown-item" href="/thcvalues">View</a></li>
                                 <li><a class="dropdown-item" href="/thcvalues/create">Enter Values</a></li>
@@ -250,14 +144,14 @@
                             </ul>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/ratingcategories">Rating Categories Â» </a>
+                            <a class="dropdown-item" href="/ratingcategories">Rating Categories » </a>
                             <ul class="submenu submenu-left dropdown-menu">
                                 <li><a class="dropdown-item" href="/ratingcategories">View</a></li>
                                 <li><a class="dropdown-item" href="/ratingcategories/create">Enter Values</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/ratings">Ratings Â» </a>
+                            <a class="dropdown-item" href="/ratings">Ratings » </a>
                             <ul class="submenu submenu-left dropdown-menu">
                                 <li><a class="dropdown-item" href="/ratings">View</a></li>
                                 <li><a class="dropdown-item" href="/ratings/create">Enter Values</a></li>
@@ -292,14 +186,37 @@
     </div>
     <!-- container-fluid.// -->
 </nav>
+
 @code {
+    private List<Grower> growers = new();
+    private List<Strain> strains = new();
+    private List<Batch> batches = new();
+    private List<TerpeneValue> terpenes = new();
+    private List<THCValue> thcs = new();
+    private List<RatingCategory> ratingCategories = new();
+    private List<Rating> ratings = new();
+    private common.Components c = new common.Components();
+    private List<string> terpeneList = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        growers = await CacheService.GetOrCreateAsync("growers:all", async () => await DB.Grower.ToListAsync(), TimeSpan.FromMinutes(30));
+        strains = await CacheService.GetOrCreateAsync("strains:all", async () => await DB.Strain.ToListAsync(), TimeSpan.FromMinutes(30));
+        batches = await CacheService.GetOrCreateAsync("batches:all", async () => await DB.Batch.ToListAsync(), TimeSpan.FromMinutes(30));
+        terpenes = await CacheService.GetOrCreateAsync("terpenes:all", async () => await DB.TerpeneValues.ToListAsync(), TimeSpan.FromMinutes(30));
+        thcs = await CacheService.GetOrCreateAsync("thc:all", async () => await DB.THCValues.ToListAsync(), TimeSpan.FromMinutes(30));
+        ratingCategories = await CacheService.GetOrCreateAsync("ratingcats:all", async () => await DB.RatingCategory.ToListAsync(), TimeSpan.FromMinutes(30));
+        ratings = await CacheService.GetOrCreateAsync("ratings:all", async () => await DB.Rating.ToListAsync(), TimeSpan.FromMinutes(30));
+
+        // terpene list comes from common.Components
+        terpeneList = c.GetTerpeneList() ?? new List<string>();
+    }
 
     void NevigateToYourUrl(string path)
     {
-        _navigationManager.NavigateTo(path, true);
+        NavigationManager.NavigateTo(path, true);
     }
-}
-@code {
+
     private string? currentUrl;
     protected override void OnInitialized()
     {

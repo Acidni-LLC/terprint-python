@@ -1,10 +1,12 @@
 ﻿@attribute [Authorize]
 @page "/strains/create"
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
+@using Terprint.Web.Data
 @inject Terprint.Web.Data.TerprintWebContext DB
-@using Terprint.Web.Models
+@inject Terprint.Web.Services.ICacheService CacheService
 @inject NavigationManager NavigationManager
 
-@inject common.AppState.StateContainer.Strain asstrain
 <PageTitle>Create Strain</PageTitle>
  
 
@@ -57,7 +59,7 @@
         Strain.StrainName = Strain.StrainName.Trim();
         DB.Strain.Add(Strain);
         await DB.SaveChangesAsync();
-        asstrain.Strains.Add(Strain);
+        await CacheService.RemoveAsync("strains:all");
         NavigationManager.NavigateTo("/batches/create");
     }
 }

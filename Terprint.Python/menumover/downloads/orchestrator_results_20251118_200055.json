@@ -1,0 +1,45 @@
+{
+  "timestamp": "2025-11-18T20:00:46.554715",
+  "downloads": {
+    "trulieve": {
+      "success": true,
+      "files": 0,
+      "files_list": []
+    },
+    "muv": {
+      "success": true,
+      "files": 1,
+      "files_list": [
+        "muv_products_store_298_20251118_200049.json"
+      ]
+    }
+  },
+  "uploads": {
+    "muv": {
+      "success": true,
+      "files": [
+        {
+          "filename": "muv_products_store_298_20251118_200049.json",
+          "azure_path": "dispensaries/muv/muv_products_store_298_20251118_200049_20251118_200054.json",
+          "local_path": "c:\\Users\\JamiesonGill\\source\\repos\\Acidni-LLC\\Terprint\\Terprint.Python\\menumover\\downloads\\muv_products_store_298_20251118_200049.json",
+          "file_size": 286165,
+          "success": true
+        }
+      ]
+    }
+  },
+  "errors": [
+    "Trulieve download: 'TrulieveAPIClient' object has no attribute 'get_all_products_for_all_stores'"
+  ],
+  "summary": {
+    "start_time": "2025-11-18T20:00:46.554716",
+    "end_time": "2025-11-18T20:00:55.957629",
+    "duration_seconds": 9.4,
+    "total_dispensaries": 2,
+    "successful_downloads": 1,
+    "total_files_downloaded": 1,
+    "azure_upload_attempted": true,
+    "azure_upload_success": true,
+    "overall_success": true
+  }
+}

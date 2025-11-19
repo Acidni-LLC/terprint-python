@@ -1,0 +1,135 @@
+{
+  "collection_timestamp": "2025-11-17T22:07:28.714940",
+  "total_stores_attempted": 17,
+  "successful_stores": 0,
+  "failed_stores": 17,
+  "stores": {
+    "palatka:MjEy": {
+      "store_id": "palatka",
+      "category_id": "MjEy",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "palm_coast:MjEy": {
+      "store_id": "palm_coast",
+      "category_id": "MjEy",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "st_augustine_a1a:MjEy": {
+      "store_id": "st_augustine_a1a",
+      "category_id": "MjEy",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "st_augustine_two:MjEy": {
+      "store_id": "st_augustine_two",
+      "category_id": "MjEy",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "palm_coast_sr100:MjEy": {
+      "store_id": "palm_coast_sr100",
+      "category_id": "MjEy",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "palatka:MjA4": {
+      "store_id": "palatka",
+      "category_id": "MjA4",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "palm_coast:MjA4": {
+      "store_id": "palm_coast",
+      "category_id": "MjA4",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "st_augustine_a1a:MjA4": {
+      "store_id": "st_augustine_a1a",
+      "category_id": "MjA4",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "st_augustine_two:MjA4": {
+      "store_id": "st_augustine_two",
+      "category_id": "MjA4",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "palm_coast_sr100:MjA4": {
+      "store_id": "palm_coast_sr100",
+      "category_id": "MjA4",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "jacksonville_southside:MjA4": {
+      "store_id": "jacksonville_southside",
+      "category_id": "MjA4",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "jacksonville_beach:MjA4": {
+      "store_id": "jacksonville_beach",
+      "category_id": "MjA4",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "jacksonville_arrowhead:MjA4": {
+      "store_id": "jacksonville_arrowhead",
+      "category_id": "MjA4",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "jacksonville_baymeadows:MjA4": {
+      "store_id": "jacksonville_baymeadows",
+      "category_id": "MjA4",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "daytona_beach:MjA4": {
+      "store_id": "daytona_beach",
+      "category_id": "MjA4",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "port_orange:MjA4": {
+      "store_id": "port_orange",
+      "category_id": "MjA4",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    },
+    "oakland_park:MjA4": {
+      "store_id": "oakland_park",
+      "category_id": "MjA4",
+      "success": false,
+      "error": "Failed to retrieve product data"
+    }
+  },
+  "combined_products": [],
+  "summary": {
+    "total_products": 0,
+    "stores_by_category": {},
+    "working_configurations": [],
+    "failed_configurations": [
+      "palatka:MjEy",
+      "palm_coast:MjEy",
+      "st_augustine_a1a:MjEy",
+      "st_augustine_two:MjEy",
+      "palm_coast_sr100:MjEy",
+      "palatka:MjA4",
+      "palm_coast:MjA4",
+      "st_augustine_a1a:MjA4",
+      "st_augustine_two:MjA4",
+      "palm_coast_sr100:MjA4",
+      "jacksonville_southside:MjA4",
+      "jacksonville_beach:MjA4",
+      "jacksonville_arrowhead:MjA4",
+      "jacksonville_baymeadows:MjA4",
+      "daytona_beach:MjA4",
+      "port_orange:MjA4",
+      "oakland_park:MjA4"
+    ]
+  }
+}
