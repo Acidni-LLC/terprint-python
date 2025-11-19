@@ -10,7 +10,6 @@ using Terprint.Web.Data;
 using Terprint.Web.Components.Account;
 using Microsoft.AspNetCore.Components.Web;
 using Blazored.LocalStorage;
-using Aspire.Hosting.Redis;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Terprint.Web.Services;
 using Microsoft.Identity.Web;
@@ -25,13 +24,47 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
 
-builder.AddRedisClient("cache");
-//builder.AddRedis("cache");
-//builder.Services.AddStackExchangeRedisCache(options =>
-//{
-//    options.Configuration = "localhost:6000"; // Your Redis server connection string
-//    options.InstanceName = "myApp"; // Optional: Prefix for cache keys
-//});
+// Use Aspire Redis when available, fallback to manual/memory cache
+try
+{
+    // Try Aspire Redis first (when running via AppHost)
+    builder.AddRedisClient("cache");
+    builder.Services.AddStackExchangeRedisCache(options =>
+    {
+        options.Configuration = builder.Configuration.GetConnectionString("cache");
+        options.InstanceName = "Terprint:";
+    });
+    Console.WriteLine("✓ Using Aspire-managed Redis cache");
+}
+catch
+{
+    // Fallback to manual Redis configuration (when running standalone)
+    var redisConnectionString = builder.Configuration["Redis:Configuration"];
+    if (!string.IsNullOrEmpty(redisConnectionString))
+    {
+        try
+        {
+            builder.Services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = redisConnectionString;
+                options.InstanceName = "Terprint:";
+            });
+            Console.WriteLine("✓ Using manually configured Redis cache");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"⚠ Redis connection failed: {ex.Message}. Using in-memory cache.");
+            builder.Services.AddDistributedMemoryCache();
+        }
+    }
+    else
+    {
+        Console.WriteLine("⚠ No Redis configuration found. Using in-memory cache.");
+        builder.Services.AddDistributedMemoryCache();
+    }
+}
+
+builder.Services.AddScoped<ICacheService, RedisCacheService>();
  
 
 builder.Services.AddCascadingAuthenticationState();
@@ -115,15 +148,6 @@ builder.Services.AddHttpClient<WeatherApiClient>(client =>
 
 builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuthenticationStateProvider>();
 builder.Services.AddScoped<AuthService>();
-
-// Redis cache registration and cache service
-builder.Services.AddStackExchangeRedisCache(options =>
-{
-    options.Configuration = builder.Configuration.GetValue<string>("Redis:Configuration") ?? "localhost:6379";
-    options.InstanceName = "Terprint:";
-});
-
-builder.Services.AddScoped<ICacheService, RedisCacheService>();
 
 // register AuthService
 builder.Services.AddScoped<Terprint.Web.Services.AuthService>();

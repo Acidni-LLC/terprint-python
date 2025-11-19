@@ -1,0 +1,8 @@
+azure-core-tracing-opentelemetry
+azure-identity
+azure-kusto-data
+azure-kusto-ingest
+azure-monitor-opentelemetry
+azure-monitor-opentelemetry-exporter
+azure-search-documents
+azure-storage-blob

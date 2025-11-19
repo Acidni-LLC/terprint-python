@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Distributed;
 
@@ -8,7 +9,9 @@ namespace Terprint.Web.Services
     public class RedisCacheService : ICacheService
     {
         private readonly IDistributedCache _cache;
-        private readonly JsonSerializerOptions _jsonOptions = new() { PropertyNameCaseInsensitive = true };
+        private readonly JsonSerializerOptions _jsonOptions = new() { 
+            PropertyNameCaseInsensitive = true, 
+        };
 
         public RedisCacheService(IDistributedCache cache)
         {
@@ -41,3 +44,4 @@ namespace Terprint.Web.Services
         public Task RemoveAsync(string key) => _cache.RemoveAsync(key);
     }
 }
+
