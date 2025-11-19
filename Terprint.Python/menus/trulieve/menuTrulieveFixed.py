@@ -423,7 +423,7 @@ def collect_all_trulieve_data_browser_format():
     
     for i, config in enumerate(STORE_CATEGORY_CONFIG, 1):
         store_id, category_id = config.split(":")
-        
+         
         print(f"\n[{i}/{len(STORE_CATEGORY_CONFIG)}] {config}")
         print("-" * 50)
         

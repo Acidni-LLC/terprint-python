@@ -1,12 +1,23 @@
 import json
 import pandas as pd
-from azure.kusto.data import KustoConnectionStringBuilder
-from azure.kusto.ingest import QueuedIngestClient, IngestionProperties, DataFormat, IngestionMapping, IngestionMappingKind
-from azureDataLake.azure_config import AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET, USE_AZURE_CLI, validate_config
+from azure.kusto.data import KustoConnectionStringBuilder, DataFormat
+from azure.kusto.ingest import (
+    QueuedIngestClient,
+    IngestionProperties,
+    IngestionMappingKind,
+    ColumnMapping,
+)
+from azure_config import (
+    AZURE_TENANT_ID,
+    AZURE_CLIENT_ID,
+    AZURE_CLIENT_SECRET,
+    USE_AZURE_CLI,
+    validate_config,
+)
 
 def send_json_to_eventhouse(
     json_data,
-    cluster="solareventhouse",
+    cluster="trd-vdf84t56eet09mgd66.z5",
     database="terprinteventhouse", 
     table="onelakejsonparser",
     column="data"
@@ -34,8 +45,9 @@ def send_json_to_eventhouse(
     # Create DataFrame with the JSON string
     df = pd.DataFrame({column: [json_string]})
     
-    # Build connection string using configured authentication method
-    cluster_uri = f"https://{cluster}.kusto.windows.net"
+    # Build connection string for Fabric Eventhouse
+    # Format: https://<eventhouse-name>.<workspace-id>.kusto.fabric.microsoft.com
+    cluster_uri = f"https://{cluster}.kusto.fabric.microsoft.com"
     
     if USE_AZURE_CLI:
         print("Using Azure CLI authentication...")
@@ -48,20 +60,27 @@ def send_json_to_eventhouse(
     
     # Create ingest client
     ingest_client = QueuedIngestClient(kcsb)
-    
-    # Define ingestion mapping for JSON format
-    ingestion_mapping = IngestionMapping(
-        kind=IngestionMappingKind.JSON,
-        ingestion_mapping={"Column": column, "DataType": "string", "Properties": {"path": f"$.{column}"}}
-    )
-    
-    # Set ingestion properties
+
+    # Define ingestion mapping for JSON format using simple dicts
+    column_mappings = [
+        ColumnMapping(
+            column_name=column,
+            column_type="dynamic",
+        )
+    ]
+
+    # Set ingestion properties with inline JSON mapping
     ingestion_properties = IngestionProperties(
         database=database,
         table=table,
         data_format=DataFormat.JSON,
-        ingestion_mapping=ingestion_mapping
     )
+    
+    # Set the mapping using the internal property (if needed)
+    ingestion_properties.ingestion_mapping = [
+        {"column": column, "path": "$", "datatype": "dynamic"}
+    ]
+    ingestion_properties.ingestion_mapping_kind = IngestionMappingKind.JSON
     
     # Perform the ingestion
     ingest_client.ingest_from_dataframe(df, ingestion_properties)

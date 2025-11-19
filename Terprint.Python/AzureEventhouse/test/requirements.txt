@@ -6,3 +6,5 @@ azure-monitor-opentelemetry
 azure-monitor-opentelemetry-exporter
 azure-search-documents
 azure-storage-blob
+numpy
+pandas
