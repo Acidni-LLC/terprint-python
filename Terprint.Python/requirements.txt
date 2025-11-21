@@ -1,0 +1,43 @@
+# Core dependencies
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+python-dateutil>=2.8.0
+
+# Azure services
+azure-storage-file-datalake>=12.22.0
+azure-identity>=1.25.0
+azure-storage-blob>=12.27.0
+azure-core>=1.36.0
+azure-eventhub>=5.11.0
+azure-kusto-data>=4.0.0
+azure-kusto-ingest>=4.0.0
+
+# Data processing
+pandas>=2.0.0
+
+# Authentication
+msal>=1.30.0
+msal-extensions>=1.2.0
+
+# Database
+pyodbc>=5.0.0
+python-dotenv>=1.0.0
+
+# Web scraping & automation
+selenium>=4.0.0
+webdriver-manager>=4.0.0
+requests-html>=0.10.0
+
+# PDF processing
+PyMuPDF>=1.23.0
+pdfplumber>=0.10.0
+camelot-py>=0.11.0
+tabula-py>=2.9.0
+
+# Optional Power BI
+# pbipy>=1.0.0
+
+# Development tools (optional)
+# pytest>=7.0.0
+# black>=23.0.0
+# flake8>=6.0.0

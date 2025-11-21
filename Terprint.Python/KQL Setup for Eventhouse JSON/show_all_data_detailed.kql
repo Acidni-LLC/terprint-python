@@ -1,0 +1,16 @@
+// Detailed query to show all JSON data with metadata
+onelakejsonparser
+| extend
+    // Extract metadata if present
+    upload_metadata = data._upload_metadata,
+    filename = data._upload_metadata.source_file,
+    dispensary = data._upload_metadata.dispensary,
+    upload_timestamp = data._upload_metadata.upload_timestamp
+| project-away data._upload_metadata  // Remove metadata from display
+| order by ingestion_time() desc
+| project
+    ingestion_time = ingestion_time(),
+    filename,
+    dispensary,
+    upload_timestamp,
+    data  // The full JSON data

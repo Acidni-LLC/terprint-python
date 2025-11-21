@@ -1,0 +1,18 @@
+// KQL script to delete all tables containing "trulieve" in the name
+// This script will drop all tables with "trulieve" in their name
+
+// First, show all tables with "trulieve" in the name
+.show tables
+| where TableName contains "trulieve"
+| project TableName
+
+// Then drop each table (uncomment the lines below to actually drop)
+// .drop table trulieve_table_name_1 ifexists
+// .drop table trulieve_table_name_2 ifexists
+// .drop table trulieve_table_name_3 ifexists
+
+// Dynamic drop script (run this to generate drop commands for all matching tables)
+.show tables
+| where TableName contains "trulieve"
+| project drop_command = strcat(".drop table ", TableName, " ifexists")
+| project drop_command

@@ -1,0 +1,64 @@
+// ========================================
+// MÜV Data Backfill Script
+// ========================================
+// This script populates the MÜV tables with existing data from onelakejsonparser
+// Update policies only process NEW data, so this backfills historical records
+
+.execute database script <|
+
+// 1. Backfill Metadata Table
+.set-or-append muv_menu_metadata with (distributed=true) <| 
+muv_menu_metadata_expand();
+
+// 2. Backfill Products Table
+.set-or-append muv_products with (distributed=true) <| 
+muv_products_expand();
+
+// 3. Backfill Variants Table
+.set-or-append muv_variants with (distributed=true) <| 
+muv_variants_expand();
+
+// 4. Backfill Promotions Table
+.set-or-append muv_promotions with (distributed=true) <| 
+muv_promotions_expand();
+
+// 5. Backfill Variant Promotions Table
+.set-or-append muv_variant_promotions with (distributed=true) <| 
+muv_variant_promotions_expand();
+
+// 6. Backfill Filters Table
+.set-or-append muv_filters with (distributed=true) <| 
+muv_filters_expand()
+
+|>
+
+// ========================================
+// Verify Backfill Results
+// ========================================
+// Run these queries after backfill completes to verify data
+
+// Check row counts
+muv_menu_metadata | count
+
+muv_products | count
+
+muv_variants | count
+
+muv_promotions | count
+
+muv_variant_promotions | count
+
+muv_filters | count
+
+// Sample data from each table
+muv_menu_metadata | take 5
+
+muv_products | take 5
+
+muv_variants | take 5
+
+muv_promotions | take 5
+
+muv_variant_promotions | take 5
+
+muv_filters | take 5

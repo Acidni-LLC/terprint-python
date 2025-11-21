@@ -7,6 +7,7 @@ import os
 import sys
 from datetime import datetime
 from typing import List, Dict, Tuple, Optional
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Add parent directories to path for imports
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -22,6 +23,9 @@ class MuvDownloader:
         self.output_dir = output_dir
         self.store_ids = store_ids or ['298']
         self.dispensary_name = 'MÜV'
+        # Create muv subdirectory
+        self.muv_dir = os.path.join(output_dir, 'muv')
+        os.makedirs(self.muv_dir, exist_ok=True)
         
     def download(self) -> List[Tuple[str, Dict]]:
         """Download MÜV dispensary data"""
@@ -33,7 +37,8 @@ class MuvDownloader:
             
             results = []
             
-            for store_id in self.store_ids:
+            def download_store(store_id):
+                """Download data for a single store"""
                 try:
                     print(f"   Downloading {self.dispensary_name} store {store_id}...")
                     
@@ -44,7 +49,7 @@ class MuvDownloader:
                         # Create filename with timestamp
                         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                         filename = f"muv_products_store_{store_id}_{timestamp}.json"
-                        filepath = os.path.join(self.output_dir, filename)
+                        filepath = os.path.join(self.muv_dir, filename)
                         
                         # Add metadata
                         data_with_metadata = {
@@ -65,7 +70,7 @@ class MuvDownloader:
                         file_size = os.path.getsize(filepath)
                         print(f"   SUCCESS: {self.dispensary_name} store {store_id}: {data_with_metadata['product_count']} products downloaded ({file_size:,} bytes)")
                         print(f"      Saved to: {filename}")
-                        results.append((filepath, data_with_metadata))
+                        return (filepath, data_with_metadata)
                         
                     else:
                         error_msg = f"{self.dispensary_name} store {store_id}: No data received from API"
@@ -76,6 +81,27 @@ class MuvDownloader:
                     error_msg = f"{self.dispensary_name} store {store_id}: {str(e)}"
                     print(f"   ERROR: {error_msg}")
                     raise Exception(error_msg)
+            
+            # Process stores in parallel if there are multiple stores
+            if len(self.store_ids) > 1:
+                print(f"   Processing {len(self.store_ids)} stores in parallel...")
+                with ThreadPoolExecutor(max_workers=min(5, len(self.store_ids))) as executor:
+                    future_to_store = {executor.submit(download_store, store_id): store_id 
+                                      for store_id in self.store_ids}
+                    
+                    for future in as_completed(future_to_store):
+                        store_id = future_to_store[future]
+                        try:
+                            result = future.result()
+                            results.append(result)
+                        except Exception as e:
+                            print(f"   ERROR processing store {store_id}: {e}")
+                            raise
+            else:
+                # Single store - no need for parallel processing
+                for store_id in self.store_ids:
+                    result = download_store(store_id)
+                    results.append(result)
             
             return results
             

@@ -1,0 +1,285 @@
+
+// Trulieve Fabric / ADX setup script
+// Creates tables and update policies that parse JSON from onelakejsonparser(data)
+// Filters where dispensary == "trulieve"
+
+//====================
+// ROOT TABLE
+//====================
+.create table TrulieveMenus (
+    source_hash: string,
+    source_timestamp: string,
+    download_time: datetime,
+    dispensary: string,
+    store_id: string,
+    category_id: string,
+    config: string,
+    downloader_version: string,
+    download_method: string,
+    products_count: int,
+    total_available: int,
+    ingestion_time_utc: datetime
+)
+
+//====================
+// PRODUCTS TABLE
+//====================
+.create table TrulieveProducts (
+    source_hash: string,
+    source_timestamp: string,
+    store_id: string,
+    category_id: string,
+    product_typename: string,
+    product_id: long,
+    product_name: string,
+    available_quantity: int,
+    stock_status: string,
+    last_chance: bool,
+    promo_id: string,
+    promo_name: string,
+    sku: string,
+    url_key: string,
+    small_image_url: string,
+    min_regular_price: real,
+    min_final_price: real,
+    min_discount_amount_off: real,
+    ingestion_time_utc: datetime
+)
+
+//====================
+// PRODUCT ATTRIBUTES TABLE
+//====================
+.create table TrulieveProductAttributes (
+    source_hash: string,
+    source_timestamp: string,
+    store_id: string,
+    category_id: string,
+    product_id: long,
+    attribute_code: string,
+    attribute_label: string,
+    attribute_value: string,
+    ingestion_time_utc: datetime
+)
+
+//====================
+// PRODUCT CATEGORIES TABLE
+//====================
+.create table TrulieveProductCategories (
+    source_hash: string,
+    source_timestamp: string,
+    store_id: string,
+    category_id: string,
+    product_id: long,
+    category_name: string,
+    category_path: string,
+    ingestion_time_utc: datetime
+)
+
+//====================
+// PRODUCT OPTION VALUES TABLE
+//====================
+.create table TrulieveProductOptionValues (
+    source_hash: string,
+    source_timestamp: string,
+    store_id: string,
+    category_id: string,
+    product_id: long,
+    option_code: string,
+    option_label: string,
+    value_index: long,
+    value_label: string,
+    value_uid: string,
+    swatch_text: string,
+    ingestion_time_utc: datetime
+)
+
+//====================
+// VARIANTS TABLE
+//====================
+.create table TrulieveProductVariants (
+    source_hash: string,
+    source_timestamp: string,
+    store_id: string,
+    category_id: string,
+    parent_product_id: long,
+    variant_sku: string,
+    variant_stock_status: string,
+    thc_percentage_idx: string,
+    dominant_terpene: string,
+    dominant_terpene_percentage: string,
+    secondary_terpene: string,
+    secondary_terpene_percentage: string,
+    terciary_terpene: string,
+    terciary_terpene_percentage: string,
+    total_terpene_percentage: string,
+    variant_image_url: string,
+    ingestion_time_utc: datetime
+)
+
+//====================
+// VARIANT ATTRIBUTES TABLE
+//====================
+.create table TrulieveVariantAttributes (
+    source_hash: string,
+    source_timestamp: string,
+    store_id: string,
+    category_id: string,
+    parent_product_id: long,
+    variant_sku: string,
+    attribute_code: string,
+    value_index: long,
+    attribute_label: string,
+    attribute_uid: string,
+    ingestion_time_utc: datetime
+)
+
+//====================
+// VARIANT PRICES TABLE
+//====================
+.create table TrulieveVariantPrices (
+    source_hash: string,
+    source_timestamp: string,
+    store_id: string,
+    category_id: string,
+    parent_product_id: long,
+    variant_sku: string,
+    min_regular_price: real,
+    min_final_price: real,
+    min_discount_amount_off: real,
+    ingestion_time_utc: datetime
+)
+
+//====================
+// UPDATE POLICIES
+//====================
+.alter table TrulieveMenus policy update
+@'
+[
+  {
+    "IsEnabled": true,
+    "Source": "onelakejsonparser",
+    "Query": "onelakejsonparser
+| extend parsed = parse_json(data)
+| where tostring(parsed.dispensary) == "trulieve"
+| project source_hash = hash_sha256(tostring(data)), source_timestamp = tostring(parsed.timestamp), download_time = todatetime(parsed.download_time), dispensary = tostring(parsed.dispensary), store_id = tostring(parsed.store_id), category_id = tostring(parsed.category_id), config = tostring(parsed.config), downloader_version = tostring(parsed.downloader_version), download_method = tostring(parsed.download_method), products_count = toint(parsed.products_count), total_available = toint(parsed.total_available), ingestion_time_utc = ingestion_time()"
+  }
+]
+'
+
+.alter table TrulieveProducts policy update
+@'
+[
+  {
+    "IsEnabled": true,
+    "Source": "onelakejsonparser",
+    "Query": "onelakejsonparser
+| extend parsed = parse_json(data)
+| where tostring(parsed.dispensary) == "trulieve"
+| mv-expand product = parsed.products to typeof(dynamic)
+| project source_hash = hash_sha256(tostring(data)), source_timestamp = tostring(parsed.timestamp), store_id = tostring(parsed.store_id), category_id = tostring(parsed.category_id), product_typename = tostring(product.__typename), product_id = tolong(product.id), product_name = tostring(product.name), available_quantity = toint(product.available_quantity), stock_status = tostring(product.stock_status), last_chance = tobool(product.last_chance), promo_id = tostring(product.opps_promo.promo_id), promo_name = tostring(product.opps_promo.promo_name), sku = tostring(product.sku), url_key = tostring(product.url_key), small_image_url = tostring(product.small_image.url), min_regular_price = todouble(product.price_range.minimum_price.regular_price.value), min_final_price = todouble(product.price_range.minimum_price.final_price.value), min_discount_amount_off = todouble(product.price_range.minimum_price.discount.amount_off), ingestion_time_utc = ingestion_time()"
+  }
+]
+'
+
+.alter table TrulieveProductAttributes policy update
+@'
+[
+  {
+    "IsEnabled": true,
+    "Source": "onelakejsonparser",
+    "Query": "onelakejsonparser
+| extend parsed = parse_json(data)
+| where tostring(parsed.dispensary) == "trulieve"
+| mv-expand product = parsed.products to typeof(dynamic)
+| mv-expand kind=array_nullable attr = product.custom_attributes_product to typeof(dynamic)
+| project source_hash = hash_sha256(tostring(data)), source_timestamp = tostring(parsed.timestamp), store_id = tostring(parsed.store_id), category_id = tostring(parsed.category_id), product_id = tolong(product.id), attribute_code = tostring(attr.code), attribute_label = tostring(attr.label), attribute_value = tostring(attr.value), ingestion_time_utc = ingestion_time()"
+  }
+]
+'
+
+.alter table TrulieveProductCategories policy update
+@'
+[
+  {
+    "IsEnabled": true,
+    "Source": "onelakejsonparser",
+    "Query": "onelakejsonparser
+| extend parsed = parse_json(data)
+| where tostring(parsed.dispensary) == "trulieve"
+| mv-expand product = parsed.products to typeof(dynamic)
+| mv-expand kind=array_nullable cat = product.categories to typeof(dynamic)
+| project source_hash = hash_sha256(tostring(data)), source_timestamp = tostring(parsed.timestamp), store_id = tostring(parsed.store_id), category_id = tostring(parsed.category_id), product_id = tolong(product.id), category_name = tostring(cat.name), category_path = tostring(cat.url_path), ingestion_time_utc = ingestion_time()"
+  }
+]
+'
+
+.alter table TrulieveProductOptionValues policy update
+@'
+[
+  {
+    "IsEnabled": true,
+    "Source": "onelakejsonparser",
+    "Query": "onelakejsonparser
+| extend parsed = parse_json(data)
+| where tostring(parsed.dispensary) == \"trulieve\"
+| mv-expand product = parsed.products to typeof(dynamic)
+| mv-expand kind=array_nullable opt = product.configurable_options to typeof(dynamic)
+| mv-expand kind=array_nullable val = opt.values to typeof(dynamic)
+| project source_hash = hash_sha256(tostring(data)), source_timestamp = tostring(parsed.timestamp), store_id = tostring(parsed.store_id), category_id = tostring(parsed.category_id), product_id = tolong(product.id), option_code = tostring(opt.attribute_code), option_label = tostring(opt.label), value_index = tolong(val.value_index), value_label = tostring(val.label), value_uid = tostring(val.uid), swatch_text = tostring(val.swatch_data.value), ingestion_time_utc = ingestion_time()"
+  }
+]
+'
+
+.alter table TrulieveProductVariants policy update
+@'
+[
+  {
+    "IsEnabled": true,
+    "Source": "onelakejsonparser",
+    "Query": "onelakejsonparser
+| extend parsed = parse_json(data)
+| where tostring(parsed.dispensary) == \"trulieve\"
+| mv-expand product = parsed.products to typeof(dynamic)
+| mv-expand kind=array_nullable var = product.variants to typeof(dynamic)
+| project source_hash = hash_sha256(tostring(data)), source_timestamp = tostring(parsed.timestamp), store_id = tostring(parsed.store_id), category_id = tostring(parsed.category_id), parent_product_id = tolong(product.id), variant_sku = tostring(var.sku), variant_stock_status = tostring(var.stock_status), thc_percentage_idx = tostring(var.thc_percentage), dominant_terpene = tostring(var.dominant_terpene), dominant_terpene_percentage = tostring(var.dominant_terpene_percentage), secondary_terpene = tostring(var.secondary_terpene), secondary_terpene_percentage = tostring(var.secondary_terpene_percentage), terciary_terpene = tostring(var.terciary_terpene), terciary_terpene_percentage = tostring(var.terciary_terpene_percentage), total_terpene_percentage = tostring(var.total_terpene_percentage), variant_image_url = tostring(var.product.small_image.url), ingestion_time_utc = ingestion_time()"
+  }
+]
+'
+
+.alter table TrulieveVariantAttributes policy update
+@'
+[
+  {
+    "IsEnabled": true,
+    "Source": "onelakejsonparser",
+    "Query": "onelakejsonparser
+| extend parsed = parse_json(data)
+| where tostring(parsed.dispensary) == \"trulieve\"
+| mv-expand product = parsed.products to typeof(dynamic)
+| mv-expand kind=array_nullable var = product.variants to typeof(dynamic)
+| mv-expand kind=array_nullable vattr = var.attributes to typeof(dynamic)
+| project source_hash = hash_sha256(tostring(data)), source_timestamp = tostring(parsed.timestamp), store_id = tostring(parsed.store_id), category_id = tostring(parsed.category_id), parent_product_id = tolong(product.id), variant_sku = tostring(var.sku), attribute_code = tostring(vattr.code), value_index = tolong(vattr.value_index), attribute_label = tostring(vattr.label), attribute_uid = tostring(vattr.uid), ingestion_time_utc = ingestion_time()"
+  }
+]
+'
+
+.alter table TrulieveVariantPrices policy update
+@'
+[
+  {
+    "IsEnabled": true,
+    "Source": "onelakejsonparser",
+    "Query": "onelakejsonparser
+| extend parsed = parse_json(data)
+| where tostring(parsed.dispensary) == \"trulieve\"
+| mv-expand product = parsed.products to typeof(dynamic)
+| mv-expand kind=array_nullable var = product.variants to typeof(dynamic)
+| project source_hash = hash_sha256(tostring(data)), source_timestamp = tostring(parsed.timestamp), store_id = tostring(parsed.store_id), category_id = tostring(parsed.category_id), parent_product_id = tolong(product.id), variant_sku = tostring(var.sku), min_regular_price = todouble(var.product.price_range.minimum_price.regular_price.value), min_final_price = todouble(var.product.price_range.minimum_price.final_price.value), min_discount_amount_off = todouble(var.product.price_range.minimum_price.discount.amount_off), ingestion_time_utc = ingestion_time()"
+  }
+]
+'
+
+//====================
+// OPTIONAL: Historical backfill (uncomment and run once if needed)
+// .set-or-append commands as provided earlier
+//====================

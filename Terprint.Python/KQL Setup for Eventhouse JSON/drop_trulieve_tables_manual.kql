@@ -1,0 +1,21 @@
+// KQL script to delete all tables containing "trulieve" in the name
+// WARNING: This will permanently delete tables and their data!
+
+// Step 1: List all tables with "trulieve" in the name
+.show tables
+| where TableName contains "trulieve"
+| project TableName, DatabaseName
+
+// Step 2: Generate drop commands (copy and run these manually)
+// Uncomment and modify the lines below based on the table names found above
+
+// .drop table ["database_name"]["table_name_with_trulieve"] ifexists
+// .drop table ["database_name"]["another_table_with_trulieve"] ifexists
+
+// Example drop commands (replace with actual table names):
+// .drop table ["terprinteventhouse"]["trulieve_products"] ifexists
+// .drop table ["terprinteventhouse"]["trulieve_stores"] ifexists
+
+// To verify tables are gone:
+.show tables
+| where TableName contains "trulieve"

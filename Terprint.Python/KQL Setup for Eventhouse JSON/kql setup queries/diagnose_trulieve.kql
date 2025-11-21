@@ -1,0 +1,52 @@
+// ========================================
+// Diagnose Trulieve Data Issues
+// ========================================
+
+// 1. Check if onelakejsonparser has ANY data
+onelakejsonparser
+| take 10
+
+// 2. Check if onelakejsonparser has Trulieve data
+onelakejsonparser
+| where data.dispensary == "trulieve"
+| take 10
+
+// 3. Check data structure
+onelakejsonparser
+| where data.dispensary == "trulieve"
+| take 1
+| project data
+
+// 4. Test metadata expand function
+trulieve_menu_metadata_expand()
+| take 10
+
+// 5. Test products expand function
+trulieve_products_expand()
+| take 10
+
+// 6. Check if products array exists
+onelakejsonparser
+| where data.dispensary == "trulieve"
+| take 1
+| project products = data.products
+| mv-expand products
+| take 10
+
+// 7. Check custom_attributes_product structure
+onelakejsonparser
+| where data.dispensary == "trulieve"
+| take 1
+| mv-expand product = data.products
+| take 1
+| project custom_attrs = product.custom_attributes_product
+
+// 8. Test variant expansion
+onelakejsonparser
+| where data.dispensary == "trulieve"
+| take 1
+| mv-expand product = data.products
+| take 1
+| project variants = product.variants
+| mv-expand variants
+| take 10

@@ -1,0 +1,30 @@
+// Test each function individually to see which one fails
+
+// Test 1: Metadata expand
+trulieve_menu_metadata_expand()
+| count
+
+// Test 2: Products expand  
+trulieve_products_expand()
+| count
+
+// Test 3: Variants expand
+trulieve_variants_expand()
+| count
+
+// Test 4: Configurable options expand
+trulieve_configurable_options_expand()
+| count
+
+// Test 5: Categories expand
+trulieve_product_categories_expand()
+| count
+
+// If any return 0, check the actual data structure:
+onelakejsonparser
+| where data.dispensary == "trulieve"
+| take 1
+| project 
+    has_products = isnotnull(data.products),
+    products_count = array_length(data.products),
+    sample_product = data.products[0]

@@ -5,6 +5,117 @@ All notable changes to the Dispensary Data Orchestrator project will be document
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2025-11-19
+
+### Added
+
+#### Azure Event Hub Integration
+- **NEW**: `sendDataAzureEventhouse.py` - Ingest JSON data into Azure Eventhouse (Kusto)
+- **NEW**: Support for Azure CLI and Service Principal authentication methods
+- **NEW**: Comprehensive logging with file and console output
+- **NEW**: Robust error handling for Azure Eventhouse ingestion
+- **NEW**: Configuration management via `azure_config.py`
+
+#### PowerShell Tooling
+- **NEW**: `move_dirs.ps1` - Automated directory migration to new GitHub repositories
+- **ENHANCED**: GitHub CLI installation script with improved error handling
+- **ENHANCED**: Better fallback mechanisms and user guidance
+
+### Changed
+
+#### Redis Cache Enhancement
+- **IMPROVED**: Redis configuration in `Program.cs` with multi-tier fallback
+- **ENHANCED**: Support for Aspire-managed Redis connections
+- **ENHANCED**: Manual Redis connection with connection string fallback
+- **ENHANCED**: Automatic fallback to in-memory caching when Redis unavailable
+
+#### Azure Data Lake Configuration
+- **IMPROVED**: Centralized configuration management in `azure_config.py`
+- **ENHANCED**: Authentication options (Azure CLI, Service Principal)
+- **ENHANCED**: File organization settings with configurable paths
+- **ENHANCED**: Comprehensive logging configuration
+
+#### Model Improvements
+- **REFACTORED**: `Batch.cs` - Improved serialization handling
+- **REFACTORED**: `Grower.cs` - Simplified constructors with property initializers
+- **IMPROVED**: Better JSON handling and data model consistency
+
+### Removed
+
+#### Project Cleanup
+- **REMOVED**: Legacy C# web projects (`Terprint.Web`, `Terprint.WebOld2`, `Terprint 3.Web`)
+- **REMOVED**: Obsolete SQL Server scripts
+- **REMOVED**: Unused .NET service projects (`Terprint.ApiService`, `Terprint.ServiceDefaults`)
+- **REMOVED**: Old PowerBI report files from repository
+- **REMOVED**: Deprecated test projects and configurations
+- **REMOVED**: Unused static web assets and JavaScript libraries
+
+### Technical Improvements
+
+#### Azure Integration
+- **ENHANCED**: Azure Event Hub client implementation
+- **IMPROVED**: Connection string management and validation
+- **ENHANCED**: Retry logic for Azure operations
+- **IMPROVED**: Authentication flow with multiple credential types
+
+#### Configuration Management
+- **IMPROVED**: Centralized Azure configuration with validation
+- **ENHANCED**: Environment-based settings support
+- **IMPROVED**: Secure credential handling
+- **ENHANCED**: Logging configuration with structured output
+
+#### Code Quality
+- **REFACTORED**: Improved code organization and readability
+- **ENHANCED**: Better separation of concerns in models
+- **IMPROVED**: Consistent error handling patterns
+- **ENHANCED**: Type safety and null handling improvements
+
+### Dependencies
+
+#### New Python Packages
+- Azure Event Hub SDK packages
+- Updated Azure storage and identity packages
+- Enhanced logging and configuration libraries
+
+#### .NET Package Updates
+- Redis caching libraries
+- Azure SDK updates
+- Identity and authentication packages
+
+### Infrastructure
+
+#### Repository Structure
+- **CLEANED**: Removed 372 obsolete files
+- **IMPROVED**: Cleaner project structure
+- **ENHANCED**: Better organization of Python scripts
+- **STREAMLINED**: Focused on active components only
+
+### Integration Points
+
+#### Azure Services
+- **INTEGRATED**: Azure Eventhouse (Kusto) for data ingestion
+- **INTEGRATED**: Redis Cache with fallback strategies
+- **INTEGRATED**: Enhanced Azure Data Lake operations
+- **IMPROVED**: Connection management across services
+
+#### Data Pipeline
+- **ENHANCED**: JSON data flow to Azure Eventhouse
+- **IMPROVED**: Error handling in data ingestion pipeline
+- **ENHANCED**: Logging and monitoring capabilities
+
+### Known Issues & Limitations
+- None identified in this release
+
+### Migration Notes
+
+#### From 1.0.0 to 1.0.1
+- **NON-BREAKING**: All changes are backward compatible
+- **RECOMMENDED**: Update Redis configuration to use new fallback mechanism
+- **OPTIONAL**: Migrate to new Azure Event Hub integration if needed
+- **NOTE**: Removed C# projects do not affect Python orchestrator functionality
+
+---
+
 ## [1.0.0] - 2025-11-18
 
 ### Added

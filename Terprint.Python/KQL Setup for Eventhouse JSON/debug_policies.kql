@@ -1,0 +1,51 @@
+// Check if source table has ANY data
+onelakejsonparser
+| take 10
+
+// Check the data column structure
+onelakejsonparser
+| take 1
+| project data
+
+// Check what dispensary values exist
+onelakejsonparser
+| extend dispensary_value = tostring(data.dispensary)
+| summarize count() by dispensary_value
+
+// Try different case variations
+onelakejsonparser
+| extend dispensary_lower = tolower(tostring(data.dispensary))
+| where dispensary_lower == "trulieve"
+| take 10
+
+// Check if data is a string that needs parsing
+onelakejsonparser
+| take 1
+| extend data_type = gettype(data)
+| project data_type, data
+
+// Check update policies are enabled
+.show table trulieve_menu_metadata policy update
+
+.show table trulieve_products policy update
+
+.show table trulieve_variants policy update
+
+.show table trulieve_configurable_options policy update
+
+.show table trulieve_product_categories policy update
+
+// Test the metadata expand function directly
+trulieve_menu_metadata_expand()
+| take 10
+
+// Test the products expand function directly
+trulieve_products_expand()
+| take 10
+
+// Check for any errors in the update policy processing
+.show commands
+| where StartedOn > ago(1h)
+| where Text contains "trulieve"
+| project StartedOn, CommandType, Text, State, FailureReason
+| order by StartedOn desc

@@ -21,6 +21,9 @@ class SunburnDownloader:
     def __init__(self, output_dir: str):
         self.output_dir = output_dir
         self.dispensary_name = 'Sunburn'
+        # Create sunburn subdirectory
+        self.sunburn_dir = os.path.join(output_dir, 'sunburn')
+        os.makedirs(self.sunburn_dir, exist_ok=True)
         
     def download(self) -> List[Tuple[str, Dict]]:
         """Download Sunburn dispensary data"""
@@ -44,7 +47,7 @@ class SunburnDownloader:
                 # Create filename with timestamp
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                 filename = f"sunburn_products_{timestamp}.json"
-                filepath = os.path.join(self.output_dir, filename)
+                filepath = os.path.join(self.sunburn_dir, filename)
                 
                 # Add metadata
                 data_with_metadata = {

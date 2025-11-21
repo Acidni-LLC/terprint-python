@@ -3,7 +3,7 @@ Azure Data Lake Configuration for Terprint
 Update these values with your actual Azure information
 """
 
-# Storage Account Information
+# Storage Account Information for azure data lake storage
 AZURE_STORAGE_ACCOUNT_NAME = "storageacidnidatamover"  # e.g., "terprintdatalake"
 AZURE_CONTAINER_NAME = "jsonfiles"             # e.g., "raw-data" or "json-files"
 
