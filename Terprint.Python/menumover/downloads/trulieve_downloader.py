@@ -19,13 +19,18 @@ sys.path.extend([current_dir, parent_dir, grandparent_dir,
 class TrulieveDownloader:
     """Trulieve dispensary data downloader using menuTrulieveFixed"""
     
-    def __init__(self, output_dir: str):
+    def __init__(self, output_dir: str, dev_mode: bool = False):
         self.output_dir = output_dir
         self.dispensary_name = 'Trulieve'
+        self.dev_mode = dev_mode
+        # Create trulieve subdirectory
+        self.trulieve_dir = os.path.join(output_dir, 'trulieve')
+        os.makedirs(self.trulieve_dir, exist_ok=True)
         
     def download(self) -> List[Tuple[str, Dict]]:
-        """Download Trulieve dispensary data using ONLY the working menuTrulieveFixed function"""
-        print(f"Starting {self.dispensary_name} download...")
+        """Download Trulieve dispensary data and split into separate files by store and category"""
+        mode_name = "DEVELOPMENT" if self.dev_mode else "PRODUCTION"
+        print(f"Starting {self.dispensary_name} download ({mode_name} mode)...")
         
         try:
             # Import ONLY the working collection function - no fallbacks, no other methods
@@ -35,9 +40,9 @@ class TrulieveDownloader:
             
             results = []
             
-            # Call ONLY the working function - no TrulieveAPIClient, no other methods
-            print(f"   Calling collect_all_trulieve_data_browser_format()...")
-            all_data = collect_all_trulieve_data_browser_format()
+            # Call ONLY the working function with dev_mode parameter
+            print(f"   Calling collect_all_trulieve_data_browser_format(dev_mode={self.dev_mode})...")
+            all_data = collect_all_trulieve_data_browser_format(dev_mode=self.dev_mode)
             print(f"   ✓ Function call completed")
             
             # Check if we got valid data
@@ -53,67 +58,79 @@ class TrulieveDownloader:
             print(f"   ✓ Received data with {total_products} total products")
             
             if total_products > 0:
-                # Create output file
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                filename = f"trulieve_complete_data_{timestamp}.json"
-                filepath = os.path.join(self.output_dir, filename)
                 
-                # Create enhanced data structure for orchestrator compatibility
-                enhanced_data = {
-                    # Orchestrator metadata
+                # Create separate files for each store/category combination
+                stores_data = all_data.get('stores', {})
+                print(f"   Creating separate files for {len(stores_data)} store/category combinations...")
+                
+                for config, store_data in stores_data.items():
+                    if not store_data.get('success', False):
+                        continue
+                    
+                    store_id = store_data.get('store_id', 'unknown')
+                    category_id = store_data.get('category_id', 'unknown')
+                    products = store_data.get('products', [])
+                    
+                    if not products:
+                        continue
+                    
+                    # Create filename: trulieve_products_store-{name}_cat-{id}_{timestamp}.json
+                    filename = f"trulieve_products_store-{store_id}_cat-{category_id}_{timestamp}.json"
+                    filepath = os.path.join(self.trulieve_dir, filename)
+                    
+                    # Create file data structure
+                    file_data = {
+                        'timestamp': timestamp,
+                        'dispensary': 'trulieve',
+                        'store_id': store_id,
+                        'category_id': category_id,
+                        'config': config,
+                        'download_time': datetime.now().isoformat(),
+                        'downloader_version': '1.0',
+                        'download_method': 'menuTrulieveFixed_browser_format',
+                        'products_count': len(products),
+                        'total_available': store_data.get('total_available', len(products)),
+                        'products': products
+                    }
+                    
+                    # Save to file
+                    with open(filepath, 'w', encoding='utf-8') as f:
+                        json.dump(file_data, f, indent=2, ensure_ascii=False)
+                    
+                    file_size = os.path.getsize(filepath)
+                    print(f"      ✓ {config}: {len(products)} products saved ({file_size:,} bytes)")
+                    
+                    results.append((filepath, file_data))
+                
+                # Also create a summary file with metadata
+                summary_filename = f"trulieve_products_summary_{timestamp}.json"
+                summary_filepath = os.path.join(self.trulieve_dir, summary_filename)
+                
+                summary_data = {
                     'timestamp': timestamp,
                     'dispensary': 'trulieve',
                     'download_time': datetime.now().isoformat(),
                     'downloader_version': '1.0',
                     'download_method': 'menuTrulieveFixed_browser_format',
-                    
-                    # Summary data for compatibility
                     'total_products': total_products,
                     'successful_stores': summary.get('successful_stores', 0),
                     'failed_stores': summary.get('failed_stores', 0),
                     'working_configurations': summary.get('working_configurations', []),
                     'failed_configurations': summary.get('failed_configurations', []),
-                    
-                    # Main products data
-                    'products': all_data.get('combined_products', []),
-                    
-                    # Store breakdown
-                    'stores': all_data.get('stores', {}),
-                    
-                    # For backward compatibility
-                    'store_categories': summary.get('working_configurations', []),
-                    
-                    # Include ALL original data
-                    'original_data': all_data
+                    'files_created': len(results),
+                    'collection_timestamp': all_data.get('collection_timestamp')
                 }
                 
-                # Save to file
-                print(f"   Saving to: {filename}")
-                with open(filepath, 'w', encoding='utf-8') as f:
-                    json.dump(enhanced_data, f, indent=2, ensure_ascii=False)
+                with open(summary_filepath, 'w', encoding='utf-8') as f:
+                    json.dump(summary_data, f, indent=2, ensure_ascii=False)
                 
-                file_size = os.path.getsize(filepath)
-                print(f"   SUCCESS: {self.dispensary_name}: {enhanced_data['total_products']} products from {enhanced_data['successful_stores']} stores downloaded ({file_size:,} bytes)")
-                print(f"      Saved to: {filename}")
+                print(f"   ✓ Summary saved to: {summary_filename}")
+                results.append((summary_filepath, summary_data))
                 
-                # Show breakdown
-                working_configs = enhanced_data['working_configurations']
-                failed_configs = enhanced_data['failed_configurations']
+                print(f"   SUCCESS: {self.dispensary_name}: {len(results)-1} store/category files + 1 summary file created")
+                print(f"      Total products: {total_products} from {summary.get('successful_stores', 0)} store/category combinations")
                 
-                if working_configs:
-                    print(f"      Working configurations: {len(working_configs)}")
-                    # Show first few
-                    for config in working_configs[:3]:
-                        store_data = enhanced_data['stores'].get(config, {})
-                        product_count = store_data.get('products_count', 0)
-                        print(f"         {config}: {product_count} products")
-                    if len(working_configs) > 3:
-                        print(f"         ... and {len(working_configs) - 3} more")
-                
-                if failed_configs:
-                    print(f"      Failed configurations: {len(failed_configs)}")
-                
-                results.append((filepath, enhanced_data))
                 return results
                 
             else:

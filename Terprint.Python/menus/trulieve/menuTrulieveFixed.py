@@ -3,6 +3,8 @@ import json
 import os
 import urllib.parse
 from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from threading import Lock
 
 class TrulieveAPIClient:
     """Automated Trulieve API client using working browser request format"""
@@ -311,7 +313,20 @@ class TrulieveAPIClient:
         return all_products
 
 # Store configurations from your config file
-STORE_CATEGORY_CONFIG = [
+# Set DEV_MODE = True to use only test stores, False for all stores
+DEV_MODE = os.getenv('TRULIEVE_DEV_MODE', 'false').lower() == 'true'
+
+# Development test stores (for faster testing)
+DEV_STORE_CATEGORY_CONFIG = [
+    "palatka:MjA4",
+    "palm_coast_sr100:MjA4"
+    "palm_coast:MjA4",
+    "st_augustine_a1a:MjA4",
+    "st_augustine_two:MjA4"
+]
+
+# Production - all store configurations
+PROD_STORE_CATEGORY_CONFIG = [
     "palatka:MjA4",
     "palm_coast:MjA4", 
     "st_augustine_a1a:MjA4",
@@ -347,6 +362,9 @@ STORE_CATEGORY_CONFIG = [
     "port_orange:MjM3",
     "oakland_park:MjM3"
 ]
+
+# Select configuration based on mode
+STORE_CATEGORY_CONFIG = DEV_STORE_CATEGORY_CONFIG if DEV_MODE else PROD_STORE_CATEGORY_CONFIG
 
 def test_browser_format():
     """Test using the exact browser request format"""
@@ -393,11 +411,26 @@ def test_browser_format():
         print("❌ Failed to get products with browser format")
         return False
 
-def collect_all_trulieve_data_browser_format():
-    """Collect data using the browser request format"""
+def collect_all_trulieve_data_browser_format(dev_mode=None):
+    """Collect data using the browser request format
+    
+    Args:
+        dev_mode: Override DEV_MODE setting. True for dev stores only, False for all stores, None to use env setting
+    """
     
     print("🚀 COLLECTING TRULIEVE DATA (BROWSER FORMAT)")
     print("="*60)
+    
+    # Determine which config to use
+    if dev_mode is not None:
+        use_dev = dev_mode
+        config_list = DEV_STORE_CATEGORY_CONFIG if dev_mode else PROD_STORE_CATEGORY_CONFIG
+    else:
+        use_dev = DEV_MODE
+        config_list = STORE_CATEGORY_CONFIG
+    
+    mode_name = "DEVELOPMENT" if use_dev else "PRODUCTION"
+    print(f"📋 MODE: {mode_name} ({len(config_list)} store/category combinations)")
     
     client = TrulieveAPIClient()
     
@@ -419,17 +452,31 @@ def collect_all_trulieve_data_browser_format():
         }
     }
     
-    print(f"\n🏪 Testing {len(STORE_CATEGORY_CONFIG)} store configurations...")
+    print(f"\n🏪 Processing {len(config_list)} store configurations in parallel...")
     
-    for i, config in enumerate(STORE_CATEGORY_CONFIG, 1):
+    # Thread-safe lock for updating shared data
+    data_lock = Lock()
+    
+    def process_store_category(config, index):
+        """Process a single store/category combination"""
         store_id, category_id = config.split(":")
-         
-        print(f"\n[{i}/{len(STORE_CATEGORY_CONFIG)}] {config}")
+        
+        # Create a separate client for this thread
+        thread_client = TrulieveAPIClient()
+        
+        print(f"\n[{index}/{len(config_list)}] {config}")
         print("-" * 50)
+        
+        result = {
+            'config': config,
+            'store_id': store_id,
+            'category_id': category_id,
+            'success': False
+        }
         
         try:
             # Test with a small request first
-            test_products = client.get_products_url_encoded(
+            test_products = thread_client.get_products_url_encoded(
                 store_id=store_id,
                 category_uid=category_id,
                 page_size=50,  # Small test size
@@ -444,7 +491,7 @@ def collect_all_trulieve_data_browser_format():
                     print(f"  ✅ Working! Found {total_count} products, got {len(items)} items")
                     
                     # Get more products for this store/category
-                    all_products = client.get_all_products_for_store(store_id, category_id)
+                    all_products = thread_client.get_all_products_for_store(store_id, category_id)
                     
                     if all_products:
                         # Add store info to each product
@@ -455,56 +502,78 @@ def collect_all_trulieve_data_browser_format():
                                 "config": config
                             }
                         
-                        all_store_data['stores'][config] = {
-                            "store_id": store_id,
-                            "category_id": category_id,
-                            "success": True,
-                            "products_count": len(all_products),
-                            "total_available": total_count,
-                            "products": all_products
-                        }
-                        
-                        all_store_data['combined_products'].extend(all_products)
-                        all_store_data['summary']['total_products'] += len(all_products)
-                        all_store_data['summary']['successful_stores'] += 1
-                        all_store_data['summary']['working_configurations'].append(config)
+                        result.update({
+                            'success': True,
+                            'products_count': len(all_products),
+                            'total_available': total_count,
+                            'products': all_products
+                        })
                         
                         print(f"  ✅ Collected {len(all_products)} products")
                     else:
                         print(f"  ⚠️ Test worked but full collection failed")
-                        all_store_data['summary']['failed_stores'] += 1
-                        all_store_data['summary']['failed_configurations'].append(config)
+                        result['error'] = 'Full collection failed'
                 else:
                     print(f"  ⚠️ No products found (total: {total_count}, items: {len(items)})")
-                    all_store_data['stores'][config] = {
-                        "store_id": store_id,
-                        "category_id": category_id,
-                        "success": False,
-                        "error": f"No products found"
-                    }
-                    all_store_data['summary']['failed_stores'] += 1
-                    all_store_data['summary']['failed_configurations'].append(config)
+                    result['error'] = 'No products found'
             else:
                 print(f"  ❌ Invalid response: {test_products}")
-                all_store_data['stores'][config] = {
-                    "store_id": store_id,
-                    "category_id": category_id,
-                    "success": False,
-                    "error": f"Invalid response"
-                }
-                all_store_data['summary']['failed_stores'] += 1
-                all_store_data['summary']['failed_configurations'].append(config)
+                result['error'] = 'Invalid response'
                 
         except Exception as e:
             print(f"  ❌ Error: {e}")
-            all_store_data['stores'][config] = {
-                "store_id": store_id,
-                "category_id": category_id,
-                "success": False,
-                "error": str(e)
-            }
-            all_store_data['summary']['failed_stores'] += 1
-            all_store_data['summary']['failed_configurations'].append(config)
+            result['error'] = str(e)
+        
+        return result
+    
+    # Process all store/category combinations in parallel
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        # Submit all tasks
+        future_to_config = {
+            executor.submit(process_store_category, config, i): config 
+            for i, config in enumerate(config_list, 1)
+        }
+        
+        # Collect results as they complete
+        for future in as_completed(future_to_config):
+            config = future_to_config[future]
+            try:
+                result = future.result()
+                
+                # Thread-safe update of shared data structure
+                with data_lock:
+                    all_store_data['stores'][config] = {
+                        "store_id": result['store_id'],
+                        "category_id": result['category_id'],
+                        "success": result['success']
+                    }
+                    
+                    if result['success']:
+                        all_store_data['stores'][config].update({
+                            "products_count": result['products_count'],
+                            "total_available": result['total_available'],
+                            "products": result['products']
+                        })
+                        all_store_data['combined_products'].extend(result['products'])
+                        all_store_data['summary']['total_products'] += result['products_count']
+                        all_store_data['summary']['successful_stores'] += 1
+                        all_store_data['summary']['working_configurations'].append(config)
+                    else:
+                        all_store_data['stores'][config]['error'] = result.get('error', 'Unknown error')
+                        all_store_data['summary']['failed_stores'] += 1
+                        all_store_data['summary']['failed_configurations'].append(config)
+                        
+            except Exception as e:
+                print(f"  ❌ Exception processing {config}: {e}")
+                with data_lock:
+                    all_store_data['stores'][config] = {
+                        "store_id": config.split(':')[0],
+                        "category_id": config.split(':')[1],
+                        "success": False,
+                        "error": str(e)
+                    }
+                    all_store_data['summary']['failed_stores'] += 1
+                    all_store_data['summary']['failed_configurations'].append(config)
     
     return all_store_data
 

@@ -1,0 +1,5 @@
+// Simple query to show just the raw JSON data
+onelakejsonparser
+| order by ingestion_time() desc
+| project data
+| take 100  // Limit to first 100 records for performance

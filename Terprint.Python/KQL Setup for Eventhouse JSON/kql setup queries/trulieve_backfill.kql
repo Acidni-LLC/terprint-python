@@ -1,0 +1,56 @@
+// ========================================
+// Trulieve Data Backfill Script
+// ========================================
+// This script populates the Trulieve tables with existing data from onelakejsonparser
+// Update policies only process NEW data, so this backfills historical records
+
+.execute database script <|
+
+// 1. Backfill Metadata Table
+.set-or-append trulieve_menu_metadata with (distributed=true) <| 
+trulieve_menu_metadata_expand();
+
+// 2. Backfill Products Table
+.set-or-append trulieve_products with (distributed=true) <| 
+trulieve_products_expand();
+
+// 3. Backfill Variants Table
+.set-or-append trulieve_variants with (distributed=true) <| 
+trulieve_variants_expand();
+
+// 4. Backfill Configurable Options Table
+.set-or-append trulieve_configurable_options with (distributed=true) <| 
+trulieve_configurable_options_expand();
+
+// 5. Backfill Product Categories Table
+.set-or-append trulieve_product_categories with (distributed=true) <| 
+trulieve_product_categories_expand()
+
+|>
+
+// ========================================
+// Verify Backfill Results
+// ========================================
+// Run these queries after backfill completes to verify data
+
+// Check row counts
+trulieve_menu_metadata | count
+
+trulieve_products | count
+
+trulieve_variants | count
+
+trulieve_configurable_options | count
+
+trulieve_product_categories | count
+
+// Sample data from each table
+trulieve_menu_metadata | take 5
+
+trulieve_products | take 5
+
+trulieve_variants | take 5
+
+trulieve_configurable_options | take 5
+
+trulieve_product_categories | take 5

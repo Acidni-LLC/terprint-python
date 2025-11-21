@@ -1,0 +1,392 @@
+// ========================================
+// Trulieve Dispensary Menu Data - Complete KQL Setup
+// ========================================
+// This script creates all tables, update policies, and ingestion mappings
+// for parsing Trulieve dispensary menu JSON data from onelakejsonparser
+
+.execute database script <|
+// ========================================
+// 1. METADATA TABLE
+// ========================================
+.create-merge table trulieve_menu_metadata (
+    ingestion_time: datetime,
+    timestamp: string,
+    dispensary: string,
+    store_id: string,
+    category_id: string,
+    config: string,
+    download_time: datetime,
+    downloader_version: string,
+    download_method: string,
+    products_count: int,
+    total_available: int,
+    filename: string,
+    upload_timestamp: datetime
+);
+
+.create-or-alter table trulieve_menu_metadata ingestion json mapping 'trulieve_metadata_mapping' '[{"column":"timestamp","path":"$.data.timestamp","datatype":"string"},{"column":"dispensary","path":"$.data.dispensary","datatype":"string"},{"column":"store_id","path":"$.data.store_id","datatype":"string"},{"column":"category_id","path":"$.data.category_id","datatype":"string"},{"column":"config","path":"$.data.config","datatype":"string"},{"column":"download_time","path":"$.data.download_time","datatype":"datetime"},{"column":"downloader_version","path":"$.data.downloader_version","datatype":"string"},{"column":"download_method","path":"$.data.download_method","datatype":"string"},{"column":"products_count","path":"$.data.products_count","datatype":"int"},{"column":"total_available","path":"$.data.total_available","datatype":"int"},{"column":"filename","path":"$.data.filename","datatype":"string"},{"column":"upload_timestamp","path":"$.data.upload_timestamp","datatype":"datetime"}]'
+
+// ========================================
+// 2. PRODUCTS TABLE (Main Product Info)
+// ========================================
+.create-merge table trulieve_products (
+    ingestion_time: datetime,
+    store_id: string,
+    category_id: string,
+    download_time: datetime,
+    product_id: long,
+    product_name: string,
+    sku: string,
+    stock_status: string,
+    available_quantity: int,
+    regular_price: real,
+    final_price: real,
+    discount_amount: real,
+    image_url: string,
+    url_key: string,
+    last_chance: bool,
+    opps_promo_id: string,
+    opps_promo_name: string,
+    brand: string,
+    strain_type: string,
+    strain_name: string,
+    weight: string,
+    product_display_name: string,
+    strain_description: string,
+    hide_thc_range: string,
+    news_from_date: string,
+    categories: dynamic,
+    configurable_options: dynamic
+);
+
+.create-or-alter table trulieve_products ingestion json mapping 'trulieve_products_mapping' '[{"column":"store_id","path":"$.data.store_id","datatype":"string"},{"column":"category_id","path":"$.data.category_id","datatype":"string"},{"column":"download_time","path":"$.data.download_time","datatype":"datetime"},{"column":"product_id","path":"$.data.products[0].id","datatype":"long"},{"column":"product_name","path":"$.data.products[0].name","datatype":"string"},{"column":"sku","path":"$.data.products[0].sku","datatype":"string"},{"column":"stock_status","path":"$.data.products[0].stock_status","datatype":"string"},{"column":"available_quantity","path":"$.data.products[0].available_quantity","datatype":"int"},{"column":"regular_price","path":"$.data.products[0].price_range.minimum_price.regular_price.value","datatype":"real"},{"column":"final_price","path":"$.data.products[0].price_range.minimum_price.final_price.value","datatype":"real"},{"column":"discount_amount","path":"$.data.products[0].price_range.minimum_price.discount.amount_off","datatype":"real"},{"column":"image_url","path":"$.data.products[0].small_image.url","datatype":"string"},{"column":"url_key","path":"$.data.products[0].url_key","datatype":"string"},{"column":"last_chance","path":"$.data.products[0].last_chance","datatype":"bool"},{"column":"opps_promo_id","path":"$.data.products[0].opps_promo.promo_id","datatype":"string"},{"column":"opps_promo_name","path":"$.data.products[0].opps_promo.promo_name","datatype":"string"},{"column":"categories","path":"$.data.products[0].categories","datatype":"dynamic"},{"column":"configurable_options","path":"$.data.products[0].configurable_options","datatype":"dynamic"}]' 
+
+// ========================================
+// 3. VARIANTS TABLE (Batch/THC Variations)
+// ========================================
+.create-merge table trulieve_variants (
+    ingestion_time: datetime,
+    store_id: string,
+    category_id: string,
+    download_time: datetime,
+    product_id: long,
+    product_name: string,
+    product_sku: string,
+    variant_id: long,
+    variant_sku: string,
+    stock_status: string,
+    thc_percentage: string,
+    batch_code: string,
+    dominant_terpene: string,
+    dominant_terpene_percentage: string,
+    secondary_terpene: string,
+    secondary_terpene_percentage: string,
+    terciary_terpene: string,
+    terciary_terpene_percentage: string,
+    total_terpene_percentage: string,
+    regular_price: real,
+    final_price: real,
+    discount_amount: real,
+    image_url: string,
+    attribute_uid: string
+);
+
+// ========================================
+// 4. CONFIGURABLE OPTIONS TABLE (THC & Batch Options)
+// ========================================
+.create-merge table trulieve_configurable_options (
+    ingestion_time: datetime,
+    store_id: string,
+    category_id: string,
+    download_time: datetime,
+    product_id: long,
+    product_sku: string,
+    option_label: string,
+    option_code: string,
+    value_label: string,
+    value_index: int,
+    value_uid: string,
+    swatch_value: string
+);
+
+// ========================================
+// 5. PRODUCT CATEGORIES TABLE (Many-to-Many)
+// ========================================
+.create-merge table trulieve_product_categories (
+    ingestion_time: datetime,
+    store_id: string,
+    category_id: string,
+    download_time: datetime,
+    product_id: long,
+    product_sku: string,
+    category_name: string,
+    category_url_path: string
+);
+
+// ========================================
+// UPDATE POLICY: Parse Metadata
+// ========================================
+.create-or-alter function trulieve_menu_metadata_expand() {
+    onelakejsonparser
+    | extend parsed_data = parse_json(data)
+    | where tostring(parsed_data.dispensary) == "trulieve"
+    | extend
+        timestamp = tostring(parsed_data.timestamp),
+        dispensary = tostring(parsed_data.dispensary),
+        store_id = tostring(parsed_data.store_id),
+        category_id = tostring(parsed_data.category_id),
+        config = tostring(parsed_data.config),
+        download_time = todatetime(parsed_data.download_time),
+        downloader_version = tostring(parsed_data.downloader_version),
+        download_method = tostring(parsed_data.download_method),
+        products_count = toint(parsed_data.products_count),
+        total_available = toint(parsed_data.total_available),
+        filename = tostring(parsed_data.filename),
+        upload_timestamp = todatetime(parsed_data.upload_timestamp)
+    | project
+        ingestion_time = ingestion_time(),
+        timestamp,
+        dispensary,
+        store_id,
+        category_id,
+        config,
+        download_time,
+        downloader_version,
+        download_method,
+        products_count,
+        total_available,
+        filename,
+        upload_timestamp
+}
+
+.create-or-alter table trulieve_menu_metadata policy update
+@'[{"Source": "onelakejsonparser", "Query": "trulieve_menu_metadata_expand()", "IsEnabled": true, "IsTransactional": false}]'
+
+// ========================================
+// UPDATE POLICY: Parse Products
+// ========================================
+.create-or-alter function trulieve_products_expand() {
+    onelakejsonparser
+    | extend parsed_data = parse_json(data)
+    | where tostring(parsed_data.dispensary) == "trulieve"
+    | extend
+        store_id = tostring(parsed_data.store_id),
+        category_id = tostring(parsed_data.category_id),
+        download_time = todatetime(parsed_data.download_time)
+    | mv-expand product = parsed_data.products
+    | extend
+        product_id = tolong(product.id),
+        product_name = tostring(product.name),
+        sku = tostring(product.sku),
+        stock_status = tostring(product.stock_status),
+        available_quantity = toint(product.available_quantity),
+        regular_price = toreal(product.price_range.minimum_price.regular_price.value),
+        final_price = toreal(product.price_range.minimum_price.final_price.value),
+        discount_amount = toreal(product.price_range.minimum_price.discount.amount_off),
+        image_url = tostring(product.small_image.url),
+        url_key = tostring(product.url_key),
+        last_chance = tobool(product.last_chance),
+        opps_promo_id = tostring(product.opps_promo.promo_id),
+        opps_promo_name = tostring(product.opps_promo.promo_name),
+        categories = product.categories,
+        configurable_options = product.configurable_options
+    | mv-apply custom_attr = product.custom_attributes_product on (
+        summarize 
+            brand = maxif(tostring(custom_attr.value), tostring(custom_attr.code) == "brand"),
+            strain_type = maxif(tostring(custom_attr.value), tostring(custom_attr.code) == "strain_type"),
+            strain_name = maxif(tostring(custom_attr.value), tostring(custom_attr.code) == "strain"),
+            weight = maxif(tostring(custom_attr.value), tostring(custom_attr.code) == "units"),
+            product_display_name = maxif(tostring(custom_attr.value), tostring(custom_attr.code) == "product_display_name"),
+            strain_description = maxif(tostring(custom_attr.value), tostring(custom_attr.code) == "strain_description"),
+            hide_thc_range = maxif(tostring(custom_attr.value), tostring(custom_attr.code) == "hide_thc_range"),
+            news_from_date = maxif(tostring(custom_attr.value), tostring(custom_attr.code) == "news_from_date")
+    )
+    | project
+        ingestion_time = ingestion_time(),
+        store_id,
+        category_id,
+        download_time,
+        product_id,
+        product_name,
+        sku,
+        stock_status,
+        available_quantity,
+        regular_price,
+        final_price,
+        discount_amount,
+        image_url,
+        url_key,
+        last_chance,
+        opps_promo_id,
+        opps_promo_name,
+        brand,
+        strain_type,
+        strain_name,
+        weight,
+        product_display_name,
+        strain_description,
+        hide_thc_range,
+        news_from_date,
+        categories,
+        configurable_options
+}
+
+.create-or-alter table trulieve_products policy update
+@'[{"Source": "onelakejsonparser", "Query": "trulieve_products_expand()", "IsEnabled": true, "IsTransactional": false}]'
+
+// ========================================
+// UPDATE POLICY: Parse Variants
+// ========================================
+.create-or-alter function trulieve_variants_expand() {
+    onelakejsonparser
+    | extend parsed_data = parse_json(data)
+    | where tostring(parsed_data.dispensary) == "trulieve"
+    | extend
+        store_id = tostring(parsed_data.store_id),
+        category_id = tostring(parsed_data.category_id),
+        download_time = todatetime(parsed_data.download_time)
+    | mv-expand product = parsed_data.products
+    | extend
+        product_id = tolong(product.id),
+        product_name = tostring(product.name),
+        product_sku = tostring(product.sku)
+    | mv-expand variant = product.variants
+    | extend
+        variant_id = tolong(variant.product.id),
+        variant_sku = tostring(variant.product.sku),
+        stock_status = tostring(variant.product.stock_status),
+        regular_price = toreal(variant.product.price_range.minimum_price.regular_price.value),
+        final_price = toreal(variant.product.price_range.minimum_price.final_price.value),
+        discount_amount = toreal(variant.product.price_range.minimum_price.discount.amount_off),
+        image_url = tostring(variant.product.small_image.url),
+        dominant_terpene = tostring(variant.product.dominant_terpene),
+        dominant_terpene_percentage = tostring(variant.product.dominant_terpene_percentage),
+        secondary_terpene = tostring(variant.product.secondary_terpene),
+        secondary_terpene_percentage = tostring(variant.product.secondary_terpene_percentage),
+        terciary_terpene = tostring(variant.product.terciary_terpene),
+        terciary_terpene_percentage = tostring(variant.product.terciary_terpene_percentage),
+        total_terpene_percentage = tostring(variant.product.total_terpene_percentage)
+    | mv-apply attr = variant.attributes on (
+        summarize 
+            thc_percentage = maxif(tostring(attr.label), tostring(attr.code) == "thc_percentage"),
+            batch_code = maxif(tostring(attr.label), tostring(attr.code) == "batch_codes"),
+            attribute_uid = maxif(tostring(attr.uid), tostring(attr.code) == "thc_percentage")
+    )
+    | project
+        ingestion_time = ingestion_time(),
+        store_id,
+        category_id,
+        download_time,
+        product_id,
+        product_name,
+        product_sku,
+        variant_id,
+        variant_sku,
+        stock_status,
+        thc_percentage,
+        batch_code,
+        dominant_terpene,
+        dominant_terpene_percentage,
+        secondary_terpene,
+        secondary_terpene_percentage,
+        terciary_terpene,
+        terciary_terpene_percentage,
+        total_terpene_percentage,
+        regular_price,
+        final_price,
+        discount_amount,
+        image_url,
+        attribute_uid
+}
+
+.create-or-alter table trulieve_variants policy update
+@'[{"Source": "onelakejsonparser", "Query": "trulieve_variants_expand()", "IsEnabled": true, "IsTransactional": false}]'
+
+// ========================================
+// UPDATE POLICY: Parse Configurable Options
+// ========================================
+.create-or-alter function trulieve_configurable_options_expand() {
+    onelakejsonparser
+    | extend parsed_data = parse_json(data)
+    | where tostring(parsed_data.dispensary) == "trulieve"
+    | extend
+        store_id = tostring(parsed_data.store_id),
+        category_id = tostring(parsed_data.category_id),
+        download_time = todatetime(parsed_data.download_time)
+    | mv-expand product = parsed_data.products
+    | extend
+        product_id = tolong(product.id),
+        product_sku = tostring(product.sku)
+    | mv-expand option = product.configurable_options
+    | extend
+        option_label = tostring(option.label),
+        option_code = tostring(option.attribute_code)
+    | mv-expand value = option.values
+    | extend
+        value_label = tostring(value.label),
+        value_index = toint(value.value_index),
+        value_uid = tostring(value.uid),
+        swatch_value = tostring(value.swatch_data.value)
+    | project
+        ingestion_time = ingestion_time(),
+        store_id,
+        category_id,
+        download_time,
+        product_id,
+        product_sku,
+        option_label,
+        option_code,
+        value_label,
+        value_index,
+        value_uid,
+        swatch_value
+}
+
+.create-or-alter table trulieve_configurable_options policy update
+@'[{"Source": "onelakejsonparser", "Query": "trulieve_configurable_options_expand()", "IsEnabled": true, "IsTransactional": false}]'
+
+// ========================================
+// UPDATE POLICY: Parse Product Categories (Many-to-Many)
+// ========================================
+.create-or-alter function trulieve_product_categories_expand() {
+    onelakejsonparser
+    | extend parsed_data = parse_json(data)
+    | where tostring(parsed_data.dispensary) == "trulieve"
+    | extend
+        store_id = tostring(parsed_data.store_id),
+        category_id = tostring(parsed_data.category_id),
+        download_time = todatetime(parsed_data.download_time)
+    | mv-expand product = parsed_data.products
+    | extend
+        product_id = tolong(product.id),
+        product_sku = tostring(product.sku)
+    | mv-expand category = product.categories
+    | extend
+        category_name = tostring(category.name),
+        category_url_path = tostring(category.url_path)
+    | project
+        ingestion_time = ingestion_time(),
+        store_id,
+        category_id,
+        download_time,
+        product_id,
+        product_sku,
+        category_name,
+        category_url_path
+}
+
+.create-or-alter table trulieve_product_categories policy update
+@'[{"Source": "onelakejsonparser", "Query": "trulieve_product_categories_expand()", "IsEnabled": true, "IsTransactional": false}]'
+
+// ========================================
+// ENABLE STREAMING INGESTION
+// ========================================
+.alter table trulieve_menu_metadata policy streamingingestion enable;
+.alter table trulieve_products policy streamingingestion enable;
+.alter table trulieve_variants policy streamingingestion enable;
+.alter table trulieve_configurable_options policy streamingingestion enable;
+.alter table trulieve_product_categories policy streamingingestion enable;
+
+|>
+
+*** End Patch

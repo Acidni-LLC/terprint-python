@@ -1,0 +1,482 @@
+// ========================================
+// MÜV Dispensary Menu Data - Complete KQL Setup
+// ========================================
+// This script creates all tables, update policies, and ingestion mappings
+// for parsing MÜV dispensary menu JSON data from onelakejsonparser
+
+.execute database script <|
+// ========================================
+// 1. METADATA TABLE
+// ========================================
+.create-merge table muv_menu_metadata (
+    ingestion_time: datetime,
+    timestamp: string,
+    dispensary: string,
+    store_id: string,
+    download_time: datetime,
+    product_count: int,
+    raw_response_size: int,
+    downloader_version: string,
+    filename: string,
+    upload_timestamp: datetime,
+    total_products: int,
+    page: int,
+    pageSize: int
+);
+
+// ========================================
+// 2. PRODUCTS TABLE (Main Product Info)
+// ========================================
+.create-merge table muv_products (
+    ingestion_time: datetime,
+    store_id: string,
+    download_time: datetime,
+    product_id: long,
+    product_name: string,
+    description: string,
+    category_id: long,
+    category_name: string,
+    subcategory_id: long,
+    subcategory_name: string,
+    brand_name: string,
+    brand_filter: string,
+    brand_tagId: long,
+    strain_name: string,
+    strain_prevalence: string,
+    custom_name: string,
+    quality_line: string,
+    product_type: string,
+    images: dynamic,
+    tags: dynamic,
+    effects: dynamic,
+    flavors: dynamic,
+    terpenes: dynamic
+);
+
+// ========================================
+// 3. VARIANTS TABLE (SKUs, Pricing, Inventory)
+// ========================================
+.create-merge table muv_variants (
+    ingestion_time: datetime,
+    store_id: string,
+    download_time: datetime,
+    product_id: long,
+    product_name: string,
+    variant_id: long,
+    variant_name: string,
+    sku: string,
+    sale_type: string,
+    available_qty: real,
+    unit_size_value: real,
+    unit_size_abbr: string,
+    units_in_package: int,
+    price: real,
+    promo_price: real,
+    discount: real,
+    strength_level: string,
+    thc_percent: dynamic,
+    cbd_percent: dynamic,
+    display_thc: string,
+    is_packed: bool,
+    qty_step_size: real,
+    stock_type: string,
+    tier_price_preset_id: long,
+    tier_pricing: dynamic,
+    reminder_status: string,
+    images: dynamic
+);
+
+// ========================================
+// 4. PROMOTIONS TABLE
+// ========================================
+.create-merge table muv_promotions (
+    ingestion_time: datetime,
+    store_id: string,
+    download_time: datetime,
+    promo_id: long,
+    promo_name: string,
+    description: string,
+    short_name: string,
+    is_bogo: bool,
+    start_date: datetime,
+    end_date: datetime,
+    interval: string,
+    banner_url: string,
+    mobile_banner_url: string,
+    display_in_upsell_modal: bool,
+    display_in_catalog: bool,
+    display_in_discount_menu: bool,
+    is_conditional: bool,
+    application_mode: string,
+    discount_amount: real,
+    discount_percent: real,
+    min_cart_amount: real,
+    min_cart_amount_needed: real,
+    is_active_by_schedule: bool,
+    schedule_range_type: string,
+    schedule_days: string,
+    schedule_date_part: string,
+    schedule_time_part: string,
+    schedule_full: string,
+    product_images: dynamic,
+    filter: dynamic,
+    fulfilment_types: dynamic,
+    promo_wizard_generation: string,
+    shop_in_shop: string
+);
+
+// ========================================
+// 5. VARIANT PROMOTIONS TABLE (Many-to-Many)
+// ========================================
+.create-merge table muv_variant_promotions (
+    ingestion_time: datetime,
+    store_id: string,
+    download_time: datetime,
+    product_id: long,
+    variant_id: long,
+    promo_id: long,
+    promo_short_name: string
+);
+
+// ========================================
+// 6. FILTERS TABLE
+// ========================================
+.create-merge table muv_filters (
+    ingestion_time: datetime,
+    store_id: string,
+    download_time: datetime,
+    filter_key: string,
+    filter_type: string,
+    ui_label: string,
+    expanded_by_default: bool,
+    presentation: string,
+    options: dynamic
+);
+
+// ========================================
+// UPDATE POLICY: Parse Metadata
+// ========================================
+.create-or-alter function muv_menu_metadata_expand() {
+    onelakejsonparser
+    | extend parsed_data = parse_json(data)
+    | where tostring(parsed_data.dispensary) == "muv"
+    | extend
+        timestamp = tostring(parsed_data.timestamp),
+        dispensary = tostring(parsed_data.dispensary),
+        store_id = tostring(parsed_data.store_id),
+        download_time = todatetime(parsed_data.download_time),
+        product_count = toint(parsed_data.product_count),
+        raw_response_size = toint(parsed_data.raw_response_size),
+        downloader_version = tostring(parsed_data.downloader_version),
+        filename = tostring(parsed_data.filename),
+        upload_timestamp = todatetime(parsed_data.upload_timestamp),
+        total_products = toint(parsed_data.products.total),
+        page = toint(parsed_data.products.page),
+        pageSize = toint(parsed_data.products.pageSize)
+    | project
+        ingestion_time = ingestion_time(),
+        timestamp,
+        dispensary,
+        store_id,
+        download_time,
+        product_count,
+        raw_response_size,
+        downloader_version,
+        filename,
+        upload_timestamp,
+        total_products,
+        page,
+        pageSize
+}
+
+.alter table muv_menu_metadata policy update
+@'[{"Source": "onelakejsonparser", "Query": "muv_menu_metadata_expand()", "IsEnabled": true, "IsTransactional": false}]'
+
+// ========================================
+// UPDATE POLICY: Parse Products
+// ========================================
+.create-or-alter function muv_products_expand() {
+    onelakejsonparser
+    | extend parsed_data = parse_json(data)
+    | where tostring(parsed_data.dispensary) == "muv"
+    | extend
+        store_id = tostring(parsed_data.store_id),
+        download_time = todatetime(parsed_data.download_time)
+    | mv-expand product = parsed_data.products.list
+    | extend
+        product_id = tolong(product.id),
+        product_name = tostring(product.name),
+        description = tostring(product.description),
+        category_id = tolong(product.category.id),
+        category_name = tostring(product.category.name),
+        subcategory_id = tolong(product.subcategory.id),
+        subcategory_name = tostring(product.subcategory.name),
+        brand_name = tostring(product.brand.name),
+        brand_filter = tostring(product.brand.filter),
+        brand_tagId = tolong(product.brand.tagId),
+        strain_name = tostring(product.strain.name),
+        strain_prevalence = tostring(product.strain.prevalence.name),
+        custom_name = tostring(product.customName),
+        quality_line = tostring(product.qualityLine),
+        product_type = tostring(product.productType),
+        images = product.images,
+        tags = product.tags,
+        effects = product.effects,
+        flavors = product.strain.flavors,
+        terpenes = product.strain.terpenes
+    | project
+        ingestion_time = ingestion_time(),
+        store_id,
+        download_time,
+        product_id,
+        product_name,
+        description,
+        category_id,
+        category_name,
+        subcategory_id,
+        subcategory_name,
+        brand_name,
+        brand_filter,
+        brand_tagId,
+        strain_name,
+        strain_prevalence,
+        custom_name,
+        quality_line,
+        product_type,
+        images,
+        tags,
+        effects,
+        flavors,
+        terpenes
+}
+
+.alter table muv_products policy update
+@'[{"Source": "onelakejsonparser", "Query": "muv_products_expand()", "IsEnabled": true, "IsTransactional": false}]'
+
+// ========================================
+// UPDATE POLICY: Parse Variants
+// ========================================
+.create-or-alter function muv_variants_expand() {
+    onelakejsonparser
+    | extend parsed_data = parse_json(data)
+    | where tostring(parsed_data.dispensary) == "muv"
+    | extend
+        store_id = tostring(parsed_data.store_id),
+        download_time = todatetime(parsed_data.download_time)
+    | mv-expand product = parsed_data.products.list
+    | extend
+        product_id = tolong(product.id),
+        product_name = tostring(product.name)
+    | mv-expand variant = product.variants
+    | extend
+        variant_id = tolong(variant.id),
+        variant_name = tostring(variant.name),
+        sku = tostring(variant.sku),
+        sale_type = tostring(variant.saleType),
+        available_qty = toreal(variant.availableQty),
+        unit_size_value = toreal(variant.unitSize.value),
+        unit_size_abbr = tostring(variant.unitSize.unitAbbr),
+        units_in_package = toint(variant.unitsInPackage),
+        price = toreal(variant.price),
+        promo_price = toreal(variant.promoPrice),
+        discount = toreal(variant.discount),
+        strength_level = tostring(variant.strengthLevel),
+        thc_percent = variant.labTests.thc.value,
+        cbd_percent = variant.labTests.cbd.value,
+        display_thc = tostring(variant.labTests.displayThc),
+        is_packed = tobool(variant.isPacked),
+        qty_step_size = toreal(variant.qtyStepSize),
+        stock_type = tostring(variant.stockType),
+        tier_price_preset_id = tolong(variant.tierPricePresetId),
+        tier_pricing = variant.tierPricing,
+        reminder_status = tostring(variant.reminderStatus),
+        images = variant.images
+    | project
+        ingestion_time = ingestion_time(),
+        store_id,
+        download_time,
+        product_id,
+        product_name,
+        variant_id,
+        variant_name,
+        sku,
+        sale_type,
+        available_qty,
+        unit_size_value,
+        unit_size_abbr,
+        units_in_package,
+        price,
+        promo_price,
+        discount,
+        strength_level,
+        thc_percent,
+        cbd_percent,
+        display_thc,
+        is_packed,
+        qty_step_size,
+        stock_type,
+        tier_price_preset_id,
+        tier_pricing,
+        reminder_status,
+        images
+}
+
+.alter table muv_variants policy update
+@'[{"Source": "onelakejsonparser", "Query": "muv_variants_expand()", "IsEnabled": true, "IsTransactional": false}]'
+
+// ========================================
+// UPDATE POLICY: Parse Promotions (from products.discounts)
+// ========================================
+.create-or-alter function muv_promotions_expand() {
+    onelakejsonparser
+    | extend parsed_data = parse_json(data)
+    | where tostring(parsed_data.dispensary) == "muv"
+    | extend
+        store_id = tostring(parsed_data.store_id),
+        download_time = todatetime(parsed_data.download_time)
+    | mv-expand promo = parsed_data.products.promos
+    | extend
+        promo_id = tolong(promo.id),
+        promo_name = tostring(promo.name),
+        description = tostring(promo.description),
+        short_name = tostring(promo.shortName),
+        is_bogo = tobool(promo.isBogo),
+        start_date = todatetime(promo.startDate),
+        end_date = todatetime(promo.endDate),
+        interval = tostring(promo.interval),
+        banner_url = tostring(promo.bannerUrl),
+        mobile_banner_url = tostring(promo.mobileBannerUrl),
+        display_in_upsell_modal = tobool(promo.displayInUpsellModal),
+        display_in_catalog = tobool(promo.displayInCatalog),
+        display_in_discount_menu = tobool(promo.displayInDiscountMenu),
+        is_conditional = tobool(promo.isConditional),
+        application_mode = tostring(promo.applicationMode),
+        discount_amount = toreal(promo.discountAmount),
+        discount_percent = toreal(promo.discountPercent),
+        min_cart_amount = toreal(promo.minCartAmount),
+        min_cart_amount_needed = toreal(promo.minCartAmountNeeded),
+        is_active_by_schedule = tobool(promo.isActiveBySchedule),
+        schedule_range_type = tostring(promo.scheduleDisplayText.rangeType),
+        schedule_days = tostring(promo.scheduleDisplayText.days),
+        schedule_date_part = tostring(promo.scheduleDisplayText.datePart),
+        schedule_time_part = tostring(promo.scheduleDisplayText.timePart),
+        schedule_full = tostring(promo.scheduleDisplayText.full),
+        product_images = promo.productImages,
+        filter = promo.filter,
+        fulfilment_types = promo.fulfilmentTypes,
+        promo_wizard_generation = tostring(promo.promoWizardGeneration),
+        shop_in_shop = tostring(promo.shopInShop)
+    | summarize arg_max(ingestion_time(), *) by promo_id, store_id, download_time
+    | project
+        ingestion_time = ingestion_time_,
+        store_id,
+        download_time,
+        promo_id,
+        promo_name,
+        description,
+        short_name,
+        is_bogo,
+        start_date,
+        end_date,
+        interval,
+        banner_url,
+        mobile_banner_url,
+        display_in_upsell_modal,
+        display_in_catalog,
+        display_in_discount_menu,
+        is_conditional,
+        application_mode,
+        discount_amount,
+        discount_percent,
+        min_cart_amount,
+        min_cart_amount_needed,
+        is_active_by_schedule,
+        schedule_range_type,
+        schedule_days,
+        schedule_date_part,
+        schedule_time_part,
+        schedule_full,
+        product_images,
+        filter,
+        fulfilment_types,
+        promo_wizard_generation,
+        shop_in_shop
+}
+
+.alter table muv_promotions policy update
+@'[{"Source": "onelakejsonparser", "Query": "muv_promotions_expand()", "IsEnabled": true, "IsTransactional": false}]'
+
+// ========================================
+// UPDATE POLICY: Parse Variant Promotions (Many-to-Many)
+// ========================================
+.create-or-alter function muv_variant_promotions_expand() {
+    onelakejsonparser
+    | extend parsed_data = parse_json(data)
+    | where tostring(parsed_data.dispensary) == "muv"
+    | extend
+        store_id = tostring(parsed_data.store_id),
+        download_time = todatetime(parsed_data.download_time)
+    | mv-expand product = parsed_data.products.list
+    | extend product_id = tolong(product.id)
+    | mv-expand variant = product.variants
+    | extend variant_id = tolong(variant.id)
+    | mv-expand promo = variant.promos
+    | extend
+        promo_id = tolong(promo.id),
+        promo_short_name = tostring(promo.shortName)
+    | project
+        ingestion_time = ingestion_time(),
+        store_id,
+        download_time,
+        product_id,
+        variant_id,
+        promo_id,
+        promo_short_name
+}
+
+.alter table muv_variant_promotions policy update
+@'[{"Source": "onelakejsonparser", "Query": "muv_variant_promotions_expand()", "IsEnabled": true, "IsTransactional": false}]'
+
+// ========================================
+// UPDATE POLICY: Parse Filters
+// ========================================
+.create-or-alter function muv_filters_expand() {
+    onelakejsonparser
+    | extend parsed_data = parse_json(data)
+    | where tostring(parsed_data.dispensary) == "muv"
+    | extend
+        store_id = tostring(parsed_data.store_id),
+        download_time = todatetime(parsed_data.download_time)
+    | mv-expand filter = parsed_data.products.filters
+    | extend
+        filter_key = tostring(filter.key),
+        filter_type = tostring(filter.type),
+        ui_label = tostring(filter.uiLabel),
+        expanded_by_default = tobool(filter.expandedByDefault),
+        presentation = tostring(filter.presentation),
+        options = filter.options
+    | project
+        ingestion_time = ingestion_time(),
+        store_id,
+        download_time,
+        filter_key,
+        filter_type,
+        ui_label,
+        expanded_by_default,
+        presentation,
+        options
+}
+
+.alter table muv_filters policy update
+@'[{"Source": "onelakejsonparser", "Query": "muv_filters_expand()", "IsEnabled": true, "IsTransactional": false}]'
+
+// ========================================
+// ENABLE STREAMING INGESTION (if needed)
+// ========================================
+.alter table muv_menu_metadata policy streamingingestion enable;
+.alter table muv_products policy streamingingestion enable;
+.alter table muv_variants policy streamingingestion enable;
+.alter table muv_promotions policy streamingingestion enable;
+.alter table muv_variant_promotions policy streamingingestion enable;
+.alter table muv_filters policy streamingingestion enable;
+|>

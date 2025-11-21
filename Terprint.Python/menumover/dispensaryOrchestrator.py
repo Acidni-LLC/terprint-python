@@ -1,6 +1,6 @@
 """
 Dispensary Data Orchestrator
-Automatically downloads data from multiple dispensaries and uploads to Azure Data Lake
+Automatically downloads data from multiple dispensaries and uploads to Azure Event House
 """
 import os
 import sys
@@ -61,8 +61,9 @@ if sys.platform == 'win32':
 class DispensaryOrchestrator:
     """Main orchestrator for dispensary data collection and upload"""
     
-    def __init__(self, output_dir: Optional[str] = None):
+    def __init__(self, output_dir: Optional[str] = None, dev_mode: bool = False):
         self.output_dir = output_dir or os.path.join(current_dir, "downloads")
+        self.dev_mode = dev_mode
         self.ensure_output_dir()
         
         # Results tracking
@@ -108,7 +109,8 @@ class DispensaryOrchestrator:
                 'name': 'Trulieve',
                 'enabled': True,
                 'downloader': TrulieveDownloader(
-                    output_dir=self.output_dir
+                    output_dir=self.output_dir,
+                    dev_mode=self.dev_mode
                 )
             }
             
@@ -213,47 +215,41 @@ class DispensaryOrchestrator:
         return download_results
     
     def upload_to_azure(self, download_results: Dict[str, List[Tuple[str, Dict]]]) -> bool:
-        """Upload downloaded files to Azure Data Lake"""
-        logger.info("\nSTARTING AZURE DATA LAKE UPLOAD")
+        """Upload downloaded files to Azure Event House"""
+        logger.info("\nSTARTING AZURE EVENT HOUSE UPLOAD")
         logger.info("=" * 60)
         
         try:
-            # Import Azure modules here to avoid early import issues
-            from saveJsonToAzureDataLake import AzureDataLakeManager, get_credential_from_service_principal
+            # Import Event House uploader
+            from uploadToEventhouse import EventHouseUploader
             
             # Validate configuration
             if not validate_config():
                 logger.error("Azure configuration validation failed")
                 return False
             
-            # Create credential
-            if USE_AZURE_CLI:
-                logger.info("Using Azure CLI authentication...")
-                credential = None
-            else:
-                logger.info("Using Service Principal authentication...")
-                credential = get_credential_from_service_principal(
-                    tenant_id=AZURE_TENANT_ID,
-                    client_id=AZURE_CLIENT_ID,
-                    client_secret=AZURE_CLIENT_SECRET
-                )
+            # Initialize Event House uploader
+            logger.info(f"Connecting to Event House: {EVENTHOUSE_CLUSTER}")
+            logger.info(f"Database: {EVENTHOUSE_DATABASE}, Table: {EVENTHOUSE_TABLE}")
             
-            # Initialize Data Lake manager
-            logger.info(f"Connecting to: {AZURE_STORAGE_ACCOUNT_NAME}")
-            dl_manager = AzureDataLakeManager(
-                account_name=AZURE_STORAGE_ACCOUNT_NAME,
-                container_name=AZURE_CONTAINER_NAME,
-                credential=credential
+            uploader = EventHouseUploader(
+                cluster=EVENTHOUSE_CLUSTER,
+                database=EVENTHOUSE_DATABASE,
+                table=EVENTHOUSE_TABLE,
+                tenant_id=AZURE_TENANT_ID,
+                client_id=AZURE_CLIENT_ID,
+                client_secret=AZURE_CLIENT_SECRET,
+                use_azure_cli=USE_AZURE_CLI,
+                column_name=EVENTHOUSE_COLUMN
             )
             
             # Test connection
-            logger.info("Testing Azure connection...")
-            container_info = dl_manager.get_container_info()
-            if not container_info:
-                logger.error("Could not connect to Azure container")
+            logger.info("Testing Event House connection...")
+            if not uploader.test_connection():
+                logger.error("Could not connect to Event House")
                 return False
             
-            logger.info(f"Connected to container: {container_info['name']}")
+            logger.info("Connected to Event House successfully")
             
             # Upload files for each dispensary
             upload_success = True
@@ -266,70 +262,36 @@ class DispensaryOrchestrator:
                     continue
                 
                 logger.info(f"Uploading {dispensary_id} files...")
-                dispensary_results = {'success': True, 'files': []}
                 
                 for filepath, data in files:
                     try:
                         total_uploads += 1
-                        
-                        # Generate Azure path
                         filename = os.path.basename(filepath)
-                        azure_path = get_file_path(filename, dispensary_id)
                         
-                        logger.info(f"   Uploading {filename} to {azure_path}")
+                        logger.info(f"   Uploading {filename} to Event House...")
                         
-                        # Ensure directory exists
-                        directory_path = "/".join(azure_path.split("/")[:-1])
-                        if directory_path:
-                            dl_manager.ensure_directory_exists(directory_path)
+                        # Add source metadata
+                        source_info = {
+                            'dispensary': dispensary_id,
+                            'filename': filename,
+                            'local_path': filepath,
+                            'file_size': os.path.getsize(filepath) if os.path.exists(filepath) else 0
+                        }
                         
-                        # Upload file
-                        success = dl_manager.save_json_to_data_lake(data, azure_path)
+                        # Upload to Event House
+                        success = uploader.upload_json(data, source_info)
                         
                         if success:
                             successful_uploads += 1
-                            
-                            # Set content type
-                            try:
-                                dl_manager.set_content_properties(azure_path, "application/json")
-                            except Exception as e:
-                                logger.warning(f"Could not set content type for {azure_path}: {e}")
-                            
-                            # Get file size for logging
-                            file_size = os.path.getsize(filepath)
-                            logger.info(f"   SUCCESS: {filename} uploaded successfully ({file_size:,} bytes)")
-                            
-                            dispensary_results['files'].append({
-                                'filename': filename,
-                                'azure_path': azure_path,
-                                'local_path': filepath,
-                                'file_size': file_size,
-                                'success': True
-                            })
+                            file_size = source_info['file_size']
+                            logger.info(f"   SUCCESS: {filename} queued for ingestion ({file_size:,} bytes)")
                         else:
                             logger.error(f"   ERROR: Failed to upload {filename}")
-                            dispensary_results['files'].append({
-                                'filename': filename,
-                                'azure_path': azure_path,
-                                'local_path': filepath,
-                                'success': False,
-                                'error': 'Upload failed'
-                            })
-                            dispensary_results['success'] = False
                             upload_success = False
                             
                     except Exception as e:
                         logger.error(f"   ERROR: Error uploading {os.path.basename(filepath)}: {e}")
-                        dispensary_results['files'].append({
-                            'filename': os.path.basename(filepath),
-                            'local_path': filepath,
-                            'success': False,
-                            'error': str(e)
-                        })
-                        dispensary_results['success'] = False
                         upload_success = False
-                
-                self.results['uploads'][dispensary_id] = dispensary_results
             
             # Upload summary
             logger.info(f"\nUPLOAD SUMMARY:")
@@ -352,8 +314,10 @@ class DispensaryOrchestrator:
         """Run the complete dispensary data pipeline"""
         start_time = time.time()
         
+        mode_name = "DEVELOPMENT" if self.dev_mode else "PRODUCTION"
         logger.info("DISPENSARY DATA ORCHESTRATOR")
         logger.info("=" * 60)
+        logger.info(f"Mode: {mode_name}")
         logger.info(f"Start time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         logger.info(f"Output directory: {self.output_dir}")
         logger.info(f"Parallel downloads: {parallel_downloads}")
@@ -402,15 +366,73 @@ class DispensaryOrchestrator:
         return self.results
     
     def _save_results(self):
-        """Save orchestrator results to JSON file"""
+        """Save orchestrator results to JSON files - overall and per dispensary/category"""
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        
+        # Save overall results
         results_filename = f"orchestrator_results_{timestamp}.json"
         results_filepath = os.path.join(self.output_dir, results_filename)
         
         with open(results_filepath, 'w', encoding='utf-8') as f:
             json.dump(self.results, f, indent=2, ensure_ascii=False)
         
-        logger.info(f"Results saved to: {results_filename}")
+        logger.info(f"Overall results saved to: {results_filename}")
+        
+        # Save separate files for each category
+        categories = {
+            'downloads': f"orchestrator_downloads_{timestamp}.json",
+            'uploads': f"orchestrator_uploads_{timestamp}.json",
+            'errors': f"orchestrator_errors_{timestamp}.json",
+            'summary': f"orchestrator_summary_{timestamp}.json"
+        }
+        
+        for category, filename in categories.items():
+            if category in self.results and self.results[category]:
+                filepath = os.path.join(self.output_dir, filename)
+                category_data = {
+                    'timestamp': self.results['timestamp'],
+                    'category': category,
+                    'data': self.results[category]
+                }
+                
+                with open(filepath, 'w', encoding='utf-8') as f:
+                    json.dump(category_data, f, indent=2, ensure_ascii=False)
+                
+                logger.info(f"{category.capitalize()} results saved to: {filename}")
+        
+        # Save individual files per dispensary and category
+        for dispensary_id in self.downloaders.keys():
+            # Save downloads for this dispensary
+            if dispensary_id in self.results.get('downloads', {}):
+                download_filename = f"{dispensary_id}_downloads_{timestamp}.json"
+                download_filepath = os.path.join(self.output_dir, download_filename)
+                download_data = {
+                    'timestamp': self.results['timestamp'],
+                    'dispensary': dispensary_id,
+                    'category': 'downloads',
+                    'data': self.results['downloads'][dispensary_id]
+                }
+                
+                with open(download_filepath, 'w', encoding='utf-8') as f:
+                    json.dump(download_data, f, indent=2, ensure_ascii=False)
+                
+                logger.info(f"   {dispensary_id} downloads saved to: {download_filename}")
+            
+            # Save uploads for this dispensary
+            if dispensary_id in self.results.get('uploads', {}):
+                upload_filename = f"{dispensary_id}_uploads_{timestamp}.json"
+                upload_filepath = os.path.join(self.output_dir, upload_filename)
+                upload_data = {
+                    'timestamp': self.results['timestamp'],
+                    'dispensary': dispensary_id,
+                    'category': 'uploads',
+                    'data': self.results['uploads'][dispensary_id]
+                }
+                
+                with open(upload_filepath, 'w', encoding='utf-8') as f:
+                    json.dump(upload_data, f, indent=2, ensure_ascii=False)
+                
+                logger.info(f"   {dispensary_id} uploads saved to: {upload_filename}")
     
     def _print_summary(self):
         """Print final summary"""
@@ -473,6 +495,8 @@ def main():
                        help='Run only specific dispensary')
     parser.add_argument('--list-dispensaries', action='store_true', help='List available dispensaries')
     parser.add_argument('--download-only', action='store_true', help='Download only, skip Azure upload')
+    parser.add_argument('--dev', '--dev-mode', action='store_true', dest='dev_mode',
+                       help='Development mode - use only test stores for Trulieve (faster testing)')
     
     args = parser.parse_args()
     
@@ -484,8 +508,13 @@ def main():
             print(f"   - {config['name']} ({dispensary_id}): {status}")
         return
     
+    # Show mode
+    if args.dev_mode:
+        print("🔧 DEVELOPMENT MODE - Using test stores only")
+        print("   Trulieve: port_orange and oakland_park only")
+    
     # Create orchestrator
-    orchestrator = DispensaryOrchestrator(args.output_dir)
+    orchestrator = DispensaryOrchestrator(args.output_dir, dev_mode=args.dev_mode)
     
     # Check if we have working downloaders
     if not orchestrator.downloaders:

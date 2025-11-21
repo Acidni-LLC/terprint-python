@@ -1,0 +1,4 @@
+// Query to show all JSON data from Event House table
+onelakejsonparser
+| order by ingestion_time() desc
+| project data

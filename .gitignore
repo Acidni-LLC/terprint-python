@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+
+# Downloaded dispensary data files
+# Exclude all JSON files in the menumover downloads directory
+Terprint.Python/menumover/downloads/*.json
+Terprint.Python/menumover/downloads/muv/*.json
+Terprint.Python/menumover/downloads/trulieve/*.json
+Terprint.Python/menumover/downloads/sunburn/*.json
+
+# Sample/test data files
+**/sample kql*.json
+**/sample kql*.lql
+
+# Root level downloaded data files
+muv_products.json
+batches.csv
+crca4_favoriteses.json
+dutchie*.json
+dutchie*.json.txt
+modern_canna_*.json
+
+# OS
+.DS_Store
+Thumbs.db

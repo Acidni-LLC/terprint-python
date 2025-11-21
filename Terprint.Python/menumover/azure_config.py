@@ -16,6 +16,13 @@ AZURE_CLIENT_SECRET = "LIl8Q~6L-aNMJFU1tGMCqe-ifcYOWAxfN1clebHI"                
 # Just run 'az login' and set USE_AZURE_CLI = True
 USE_AZURE_CLI = False  # Set to True if using Azure CLI authentication
 
+# Event House Configuration
+EVENTHOUSE_CLUSTER = "trd-vdf84t56eet09mgd66.z5"      # Event House cluster name
+EVENTHOUSE_DATABASE = "terprinteventhouse"             # Event House database name
+EVENTHOUSE_TABLE = "onelakejsonparser"                 # Event House table name
+EVENTHOUSE_COLUMN = "data"                             # Column name for JSON data
+USE_EVENTHOUSE = True                                  # Use Event House instead of Data Lake
+
 # File paths and naming conventions
 BASE_PATH = "dispensaries"                                # Base folder in container
 MUV_PATH = f"{BASE_PATH}/muv"                           # MÜV specific folder
