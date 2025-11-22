@@ -14,5 +14,10 @@
     "output_dir": "muv_menus",
     "save_summary": true,
     "indent": 2
+  },
+  "trulieve_settings": {
+    "store_ids_csv": "trulieve storeids.csv",
+    "category_ids": ["MjA4", "MjM3"],
+    "dev_stores": ["palm_coast", "oakland_park", "port_orange"]
   }
 }

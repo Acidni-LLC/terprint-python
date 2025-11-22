@@ -129,12 +129,44 @@ class DispensaryOrchestrator:
             
             # Trulieve Downloader  
             logger.info("Initializing Trulieve downloader...")
+            
+            # Load Trulieve config from menu_config.json
+            trulieve_store_ids = None
+            trulieve_category_ids = None
+            try:
+                config_path = os.path.join(parent_dir, "menus", "menu_config.json")
+                if os.path.exists(config_path):
+                    with open(config_path, 'r') as f:
+                        config = json.load(f)
+                    
+                    trulieve_settings = config.get('trulieve_settings', {})
+                    trulieve_store_ids_csv = trulieve_settings.get('store_ids_csv')
+                    trulieve_category_ids = trulieve_settings.get('category_ids', [])
+                    
+                    if trulieve_store_ids_csv and os.path.exists(trulieve_store_ids_csv):
+                        import csv
+                        with open(trulieve_store_ids_csv, 'r') as csvfile:
+                            reader = csv.reader(csvfile)
+                            next(reader, None)  # Skip header
+                            trulieve_store_ids = [row[0] for row in reader if row]
+                        
+                        logger.info(f"Trulieve: Loaded {len(trulieve_store_ids)} store IDs from CSV")
+                        logger.info(f"Trulieve: Using {len(trulieve_category_ids)} category IDs from config")
+                    else:
+                        logger.warning("Trulieve: Could not load store IDs from CSV or config")
+                else:
+                    logger.warning("Trulieve: menu_config.json not found")
+            except Exception as e:
+                logger.error(f"Trulieve: Error loading config: {e}")
+            
             downloaders['trulieve'] = {
                 'name': 'Trulieve',
                 'enabled': True,
                 'downloader': TrulieveDownloader(
                     output_dir=self.output_dir,
-                    dev_mode=self.dev_mode
+                    dev_mode=self.dev_mode,
+                    store_ids=trulieve_store_ids if not self.dev_mode else None,
+                    category_ids=trulieve_category_ids if not self.dev_mode else None
                 )
             }
             

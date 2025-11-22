@@ -5,7 +5,7 @@ import urllib.parse
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from threading import Lock
-from typing import Dict
+from typing import Dict, List
 
 # Load configuration
 def load_config(config_path: str = None) -> Dict:
@@ -39,6 +39,47 @@ def load_config(config_path: str = None) -> Dict:
 
 # Load config at module level
 CONFIG = load_config()
+
+def load_trulieve_store_ids(csv_path: str = None) -> List[str]:
+    """Load Trulieve store IDs from CSV file"""
+    if csv_path is None:
+        # Use path relative to this file
+        csv_path = os.path.join(os.path.dirname(__file__), "..", "menumover", "trulieve storeids.csv")
+    
+    stores = []
+    try:
+        with open(csv_path, 'r', encoding='utf-8') as f:
+            # Skip header
+            next(f)
+            for line in f:
+                store_id = line.strip()
+                if store_id:  # Skip empty lines
+                    stores.append(store_id)
+        print(f"Loaded {len(stores)} Trulieve store IDs from {csv_path}")
+    except Exception as e:
+        print(f"Failed to load Trulieve store IDs from {csv_path}: {e}")
+        # Fallback to some default stores
+        stores = ["palm_coast", "oakland_park", "port_orange"]
+    
+    return stores
+
+def get_trulieve_store_category_configs(dev_mode: bool = False) -> List[str]:
+    """Generate store:category configurations from config and CSV"""
+    trulieve_config = CONFIG.get("trulieve_settings", {})
+    category_ids = trulieve_config.get("category_ids", ["MjA4", "MjM3"])
+    dev_stores = trulieve_config.get("dev_stores", ["palm_coast", "oakland_park", "port_orange"])
+    
+    if dev_mode:
+        store_ids = dev_stores
+    else:
+        store_ids = load_trulieve_store_ids()
+    
+    configs = []
+    for store_id in store_ids:
+        for category_id in category_ids:
+            configs.append(f"{store_id}:{category_id}")
+    
+    return configs
 
 class TrulieveAPIClient:
     """Automated Trulieve API client using working browser request format"""
@@ -363,52 +404,11 @@ class TrulieveAPIClient:
 # Set DEV_MODE = True to use only test stores, False for all stores
 DEV_MODE = os.getenv('TRULIEVE_DEV_MODE', 'false').lower() == 'true'
 
-# Development test stores (for faster testing)
-DEV_STORE_CATEGORY_CONFIG = [
-    "palatka:MjA4",
-    "palm_coast_sr100:MjA4"
-    "palm_coast:MjA4",
-    "st_augustine_a1a:MjA4",
-    "st_augustine_two:MjA4"
-]
+# Development test stores (for faster testing) - now loaded from config
+DEV_STORE_CATEGORY_CONFIG = get_trulieve_store_category_configs(dev_mode=True)
 
-# Production - all store configurations
-PROD_STORE_CATEGORY_CONFIG = [
-    "palatka:MjA4",
-    "palm_coast:MjA4", 
-    "st_augustine_a1a:MjA4",
-    "st_augustine_two:MjA4",
-    "palm_coast_sr100:MjA4",
-    "palatka:MjA4",
-    "palm_coast:MjA4",
-    "st_augustine_a1a:MjA4",
-    "st_augustine_two:MjA4",
-    "palm_coast_sr100:MjA4",
-    "jacksonville_southside:MjA4",
-    "jacksonville_beach:MjA4",
-    "jacksonville_arrowhead:MjA4",
-    "jacksonville_baymeadows:MjA4",
-    "daytona_beach:MjA4",
-    "port_orange:MjA4",
-    "oakland_park:MjA4",
-    "palatka:MjM3",
-    "palm_coast:MjM3", 
-    "st_augustine_a1a:MjM3",
-    "st_augustine_two:MjM3",
-    "palm_coast_sr100:MjM3",
-    "palatka:MjM3",
-    "palm_coast:MjM3",
-    "st_augustine_a1a:MjM3",
-    "st_augustine_two:MjM3",
-    "palm_coast_sr100:MjM3",
-    "jacksonville_southside:MjM3",
-    "jacksonville_beach:MjM3",
-    "jacksonville_arrowhead:MjM3",
-    "jacksonville_baymeadows:MjM3",
-    "daytona_beach:MjM3",
-    "port_orange:MjM3",
-    "oakland_park:MjM3"
-]
+# Production - all store configurations - now loaded from CSV and config
+PROD_STORE_CATEGORY_CONFIG = get_trulieve_store_category_configs(dev_mode=False)
 
 # Select configuration based on mode
 STORE_CATEGORY_CONFIG = DEV_STORE_CATEGORY_CONFIG if DEV_MODE else PROD_STORE_CATEGORY_CONFIG
@@ -458,7 +458,7 @@ def test_browser_format():
         print("❌ Failed to get products with browser format")
         return False
 
-def collect_all_trulieve_data_browser_format(dev_mode=None):
+def collect_all_trulieve_data_browser_format(dev_mode=None, store_ids=None, category_ids=None):
     """Collect data using the browser request format
     
     Args:
@@ -469,14 +469,20 @@ def collect_all_trulieve_data_browser_format(dev_mode=None):
     print("="*60)
     
     # Determine which config to use
-    if dev_mode is not None:
+    if store_ids is not None and category_ids is not None:
+        # Use provided store_ids and category_ids
+        config_list = get_trulieve_store_category_configs(store_ids, category_ids)
+        use_dev = False  # Not relevant when custom lists provided
+        mode_name = f"CUSTOM ({len(store_ids)} stores × {len(category_ids)} categories = {len(config_list)} combinations)"
+    elif dev_mode is not None:
         use_dev = dev_mode
         config_list = DEV_STORE_CATEGORY_CONFIG if dev_mode else PROD_STORE_CATEGORY_CONFIG
+        mode_name = "DEVELOPMENT" if dev_mode else "PRODUCTION"
     else:
         use_dev = DEV_MODE
         config_list = STORE_CATEGORY_CONFIG
+        mode_name = "CONFIG-BASED"
     
-    mode_name = "DEVELOPMENT" if use_dev else "PRODUCTION"
     print(f"📋 MODE: {mode_name} ({len(config_list)} store/category combinations)")
     
     client = TrulieveAPIClient()

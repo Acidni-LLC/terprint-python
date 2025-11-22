@@ -19,10 +19,12 @@ sys.path.extend([current_dir, parent_dir, grandparent_dir,
 class TrulieveDownloader:
     """Trulieve dispensary data downloader using menuTrulieveFixed"""
     
-    def __init__(self, output_dir: str, dev_mode: bool = False):
+    def __init__(self, output_dir: str, dev_mode: bool = False, store_ids: List[str] = None, category_ids: List[str] = None):
         self.output_dir = output_dir
         self.dispensary_name = 'Trulieve'
         self.dev_mode = dev_mode
+        self.store_ids = store_ids
+        self.category_ids = category_ids
         # Create trulieve subdirectory
         self.trulieve_dir = os.path.join(output_dir, 'trulieve')
         os.makedirs(self.trulieve_dir, exist_ok=True)
@@ -41,8 +43,8 @@ class TrulieveDownloader:
             results = []
             
             # Call ONLY the working function with dev_mode parameter
-            print(f"   Calling collect_all_trulieve_data_browser_format(dev_mode={self.dev_mode})...")
-            all_data = collect_all_trulieve_data_browser_format(dev_mode=self.dev_mode)
+            print(f"   Calling collect_all_trulieve_data_browser_format(dev_mode={self.dev_mode}, store_ids={self.store_ids}, category_ids={self.category_ids})...")
+            all_data = collect_all_trulieve_data_browser_format(dev_mode=self.dev_mode, store_ids=self.store_ids, category_ids=self.category_ids)
             print(f"   ✓ Function call completed")
             
             # Check if we got valid data
