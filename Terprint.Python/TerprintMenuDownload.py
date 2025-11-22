@@ -12,12 +12,23 @@ from COA_ModernCanna01 import ModernCanna_COA
 
 from sqlConnection import insertcannabinoids, insertterpenes, checkTerpene, checkCannabinoid, insertBatch
 from bcolors import bcolors
+import re
 
 #from downloadFile import downloadfile
 
+def sanitize_terpene_name(name):
+    """Remove leading/trailing whitespace and ensure name starts with alphanumeric character."""
+    if not name:
+        return name
+    # Strip whitespace, newlines, and other whitespace characters
+    name = name.strip()
+    # Remove leading non-alphanumeric characters
+    name = re.sub(r'^[^a-zA-Z0-9]+', '', name)
+    return name
+
 separator ="|"
 redownload = 0
-my_list = ["88373_0007976197","84605_0007838588","83537_0007771994","82049_0007871793","76757_0007641641","81283_0007616623","79080_0007757408","80205_0007584617","71223_0007917546","76505_0007734157","75785_0007429590","75781_0007812531","75838_0007826259","75084_0007768280","74556_0007815392","74576_0007826214","73727_0007745861","71320_0007905682","72985_0007653554","72984_0007745899","71209_0007803305","70912_0007630058","71029_0007584610","67988_0007828086","68186_0007653750","68682_0007452924","68673_0007771213","68677_0007976196","68686_0007861609","67990_0007782363","59725_0007630100","59721_0007916123","67194_0007614543","67192_0007530233","67342_0007849586","67340_0007562321","67325_0007871796","67236_0007861610","18347_0007653567","66760_0007519756","64809_0007616625","63549_0007673675","58739_0007927439","58723_0007826261","56975_0007814983","50657_0007514205","49447_0007541022","46768_0007965176","24134_0007313363","18275_0007463761","82803_0007917542","84573_0007746218","83537_0007563272","81283_0007689754","79080_0007861679","80205_0007848631","76505_0007771991","75785_0007487330","75084_0007937997","71320_0007770949","72986_0007616857","69669_0007917621","70912_0007771215","69353_0007598101","68187_0007451732","68686_0007711509","59721_0007848417","67342_0007861293","67340_0007673898","67325_0007745914","63868_0007562376","61123_0007246497","59664_0007965308","58723_0007541012","56976_0007917548","56974_0007917544","50657_0007540652","49447_0007803309","46768_0007927735","84573_0007814969","83537_0007746082","82049_0007674240","80205_0007563253","79099_0007475608","76505_0007722540","75785_0007290685","75838_0007792608","75567_0007939541","73983_0007782311","71320_0007848413","72985_0007530225","72984_0007541011","69669_0007816069","71029_0007509347","68679_0007575046","69353_0007514153","67988_0007916422","68673_0007905940","68686_0007894512","59710_0007509349","67990_0007746016","59721_0007575033","59814_0007353476","67194_0007584970","67236_0007895791","67065_0007860767","59663_0007453562","58739_0007711502","58723_0007426355","46768_0007826447","43670_0007313365","18275_0007429612","80205_0007616847","75084_0007562476","69661_0007861700","68679_0007616627","67988_0007616849","68673_0007953957","59725_0007687418","67325_0007892809","18275_0007976638","81283_0007538669","67194_0007541009","79112_0007861686","83537_0007927819","81312_0007614538","76505_0007734156","75781_0007848428","75838_0007848659","18363_0007530174","84605_0007768331","82049_0007905680","79099_0007629764","71218_0007815394","76505_0007757622","75838_0007769182","74556_0007605467","71030_0007354228","67988_0007514131","68682_0007861296","59703_0007828047","61129_0007450580","56976_0007814985","82462_0007768510","59814_0007366578","67342_0007509324","63534_0007519748","46768_0007838611","41839_0007673539","76757_0007768507","75792_0007519660","74576_0007771989","69669_0007711628","68186_0007814913","59680_0007685956","50657_0007564075","69665_0007861694","66760_0007403890","58723_0007442383","18275_0007450575","61129_0007424983","59814_0007803308","67342_0007641508","58739_0007861611","50657_0007220619","18329_0007630532","74556_0007711608","71320_0007892812","68186_0007378049","68686_0007848415","59721_0007475993","67342_0007641487","57901_0007813111"]
+my_list = ["82567_0007966288","82559_0007966220","82057_0007827833","82115_0007827419","82455_0007572734","78715_0007966137","76555_0007938946","76692_0007927817","70485_0007814456","70475_0007552442","70455_0007896376","70483_0007895795","74941_0007782358","74940_0007749037","73345_0007487585","66469_0007827816","41743_0006970031","35471_0007782246","35163_0007723031","17699_0007247919","17611_0007773276","17552_0007365581","17551_0007937998","17550_0007324717","17496_0007723032","75262_0007952331","76555_0007965309","70475_0007826257","70483_0007896426","74941_0007826258","74940_0007803301","47993_0007425018","35471_0007723033","35163_0007812537","17551_0007585074","17496_0007782247","77129_0007942104","74853_0007916432","77125_0007916180","76555_0007849441","76692_0007326955","70485_0007746233","70455_0007840147","74941_0007641946","35163_0007774147","17611_0007353100","17552_0007838248","70485_0007816170","70475_0007757083","70483_0007942181","74940_0007826256","17550_0007653493","81867_0007511894","76692_0007605476","78022_0006993920","70478_0007091371","74940_0007745817","17550_0006945103","76692_0007838379","74941_0007653489","73881_0007916126","80356_0007828495","70475_0007489472","17611_0007997455","17551_0007086534","70483_0007987223","74941_0007838378","70485_0007815066","70455_0007850495","17699_0007563884","17611_0007641949","70475_0007290332","74941_0007757087","67357_0007162123","70475_0007529648","17552_0007261921","75265_0007848664","77008_0007825590","73997_0007630961","77047_0007771193","77106_0007329103","77124_0007275926","74863_0007277906","77132_0007248959","73994_0007223617","77614_0007209427","76692_0007595523","77078_0007313346","70477_0007136957","70475_0007162134","70455_0007803246","70483_0007208801","70478_0007023639","74940_0007732801","17611_0007137975"]
 #my_list = ["47993_0006162867"]
 dispensary="Trulieve"
 dispensaryid=1      
@@ -55,8 +66,11 @@ for item in my_list:
         #url = "https://mete.labdrive.net/s/g47exX3f769D7Np"
         local_filename = batch+".pdf"  # Replace with your desired local filename
         
-        local_path ='C:/Users/JamiesonGill/source/repos/Acidni-LLC/Terprint/Terprint.Python/files/test_output'
+        local_path ='C:/Users/JamiesonGill/source/repos/Acidni-LLC/terprint-python/Terprint.Python/files/test_output'
         local_pathandPDFfile = local_path +'/'+ local_filename
+        
+        # Ensure directory exists
+        os.makedirs(local_path, exist_ok=True)
         if os.path.exists(local_pathandPDFfile):
             print(f"File '{local_pathandPDFfile}' already exists.")
         # continue
@@ -85,8 +99,8 @@ for item in my_list:
 
 
         #https://www.trulieve.com/content/dam/trulieve/en/lab-reports/84573_0007311573.pdf?download=true
-        backslashpath = "C:\\Users\\JamiesonGill\\source\\repos\\Acidni-LLC\\Terprint\\Terprint.Python\\files\\test_output\\"
-        pdf_path = "C:\\Users\\JamiesonGill\\source\\repos\\Acidni-LLC\\Terprint\\Terprint.Python\\files\\test_output\\"+batch+".pdf"
+        backslashpath = "C:\\Users\\JamiesonGill\\source\\repos\\Acidni-LLC\\terprint-python\\Terprint.Python\\files\\test_output\\"
+        pdf_path = "C:\\Users\\JamiesonGill\\source\\repos\\Acidni-LLC\\terprint-python\\Terprint.Python\\files\\test_output\\"+batch+".pdf"
        # pdf_path = local_path
         def extract_text_from_pdf(local_pathandfile):
             print("extracting text from " +pdf_path)
@@ -163,7 +177,8 @@ for item in my_list:
                 for line in coa.terpenes:    
                     
                     
-                        outputline =  batch + "|"+str(index)+"|" + line.name + "|" + str(line.result_mg_per_g) + "|" + str(line.result_percent)
+                        terpene_name = sanitize_terpene_name(line.name)
+                        outputline =  batch + "|" +str(index)+"|" + terpene_name + "|" + str(line.result_mg_per_g) + "|" + str(line.result_percent)
                         
                         # print("-----\n")
                         # print (outputline+"\n")
@@ -288,8 +303,8 @@ for item in my_list:
                 for line in coa2.terpenes:    
                     outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"Percent\n"
                     
-                                            
-                    outputline = batch + "|" + str(index)+"|" + line.name + "|" + str(line.percent)
+                    terpene_name = sanitize_terpene_name(line.name)                        
+                    outputline = batch + "|" + str(index)+"|" + terpene_name + "|" + str(line.percent)
                     insertterpenes(
                                     outputline.split(separator)[0],
                                     outputline.split(separator)[1],
@@ -412,7 +427,8 @@ for item in my_list:
                 outputlines ="Batch"+separator+"Index"+separator+"Terpene"+separator+"(ug/g)"+separator+"Percent\n"
                 for terp in coa3.terpenes:
                     outputline = ""
-                    outputline =  batch +"_"+ batchin +separator+  str(index) + separator+ terp.name + separator + str(terp.result_ug_per_g) + separator + str(terp.percent) +    "\n"
+                    terpene_name = sanitize_terpene_name(terp.name)
+                    outputline =  batch +"_"+ batchin +separator+  str(index) + separator+ terpene_name + separator + str(terp.result_ug_per_g) + separator + str(terp.percent) +    "\n"
                     # print(terp.name + " " + str(terp.ug_per_g) + " " + str(terp.percent_of_total))
                     
                     print ("+++++++++++++++++++++++++++++++++++++++++++++++\n")
@@ -497,8 +513,9 @@ for item in my_list:
                 percent=""
                 setheader = True
                 for line in coa4.terpenes :   
-                                          
-                    outputline = batch + "|"+str(index)+"|" +line.name + "|" + str(line.percent)+"\n"
+                    
+                    terpene_name = sanitize_terpene_name(line.name)                      
+                    outputline = batch + "|" +str(index)+"|" +terpene_name + "|" + str(line.percent)+"\n"
                     
                     outputlines = outputlines + outputline
                 

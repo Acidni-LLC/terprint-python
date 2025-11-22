@@ -48,11 +48,28 @@ class ModernCannaAnalyte:
     percent: Optional[float] = None
     mg: Optional[float] = None
 
+def _sanitize_name(name: str) -> str:
+    """Remove leading/trailing whitespace and ensure name starts with alphanumeric character."""
+    if not name:
+        return name
+    # Strip whitespace, newlines, and other whitespace characters
+    name = name.strip()
+    # Don't strip leading parentheses for specific terpene names
+    if name.startswith('(+/-)-') or name.startswith('(R)-(+)-') or name.startswith('(S)-(-)-'):
+        return name
+    # Remove leading non-alphanumeric characters
+    name = re.sub(r'^[^a-zA-Z0-9]+', '', name)
+    return name
+
 @dataclass
 class ModernCannaTerpene:
     """Individual terpene result from Modern Canna."""
     name: str
     percent: Optional[float] = None
+    
+    def __post_init__(self):
+        """Sanitize name after initialization."""
+        self.name = _sanitize_name(self.name)
 
 @dataclass
 class ModernCannaTestStatus:

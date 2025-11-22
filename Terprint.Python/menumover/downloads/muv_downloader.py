@@ -21,7 +21,21 @@ class MuvDownloader:
     
     def __init__(self, output_dir: str, store_ids: Optional[List[str]] = None):
         self.output_dir = output_dir
-        self.store_ids = store_ids or ['298']
+        if store_ids is None:
+            # Default to all known MÜV store IDs
+            self.store_ids = [
+                '298', '299', '300', '301', '302', '303', '304', '305', '306', '307',
+                '308', '309', '310', '311', '312', '313', '314', '315', '316', '317',
+                '318', '319', '320', '321', '322', '323', '324', '325', '326', '327',
+                '328', '329', '330', '331', '332', '333', '334', '335', '336', '337',
+                '338', '339', '340', '341', '342', '343', '344', '345', '346', '347',
+                '348', '349', '350', '351', '352', '353', '354', '355', '356', '357',
+                '358', '359', '360', '361', '362', '363', '364', '365', '366', '367',
+                '368', '369', '370', '371', '372', '373', '374', '375', '376', '377',
+                '378', '379', '380', '381', '382', '383'
+            ]
+        else:
+            self.store_ids = store_ids
         self.dispensary_name = 'MÜV'
         # Create muv subdirectory
         self.muv_dir = os.path.join(output_dir, 'muv')
@@ -78,9 +92,15 @@ class MuvDownloader:
                         raise Exception(error_msg)
                         
                 except Exception as e:
+                    # Log the per-store error but do NOT raise. We want the
+                    # overall downloader to continue and return any successful
+                    # store downloads so later upload logic can process them.
                     error_msg = f"{self.dispensary_name} store {store_id}: {str(e)}"
                     print(f"   ERROR: {error_msg}")
-                    raise Exception(error_msg)
+                    # Return None to indicate this store failed; the caller
+                    # will skip None results and continue processing other
+                    # stores.
+                    return None
             
             # Process stores in parallel if there are multiple stores
             if len(self.store_ids) > 1:
@@ -93,15 +113,24 @@ class MuvDownloader:
                         store_id = future_to_store[future]
                         try:
                             result = future.result()
-                            results.append(result)
+                            if result:
+                                results.append(result)
+                            else:
+                                print(f"   WARNING: {self.dispensary_name} store {store_id} failed and returned no result")
                         except Exception as e:
+                            # Avoid failing the entire downloader if one store
+                            # raised an exception at runtime — just record and
+                            # continue so other stores still return their data.
                             print(f"   ERROR processing store {store_id}: {e}")
-                            raise
+                            continue
             else:
                 # Single store - no need for parallel processing
                 for store_id in self.store_ids:
                     result = download_store(store_id)
-                    results.append(result)
+                    if result:
+                        results.append(result)
+                    else:
+                        print(f"   WARNING: {self.dispensary_name} store {store_id} failed and returned no result (continuing)")
             
             return results
             

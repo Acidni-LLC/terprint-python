@@ -1,0 +1,18 @@
+{
+  "download_settings": {
+    "max_workers": 20,
+    "timeout": 30,
+    "retry_attempts": 3,
+    "retry_delay": 2
+  },
+  "api_settings": {
+    "page_size": 100,
+    "sorting_method_id": 7,
+    "platform_os": "web"
+  },
+  "output_settings": {
+    "output_dir": "muv_menus",
+    "save_summary": true,
+    "indent": 2
+  }
+}

@@ -4,11 +4,50 @@ import os
 import time
 import urllib.parse
 from datetime import datetime
+from typing import Dict
+
+# Load configuration
+def load_config(config_path: str = None) -> Dict:
+    """Load configuration from JSON file"""
+    if config_path is None:
+        config_path = os.path.join(os.path.dirname(__file__), "menu_config.json")
+    
+    try:
+        with open(config_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print(f"Config file not found at {config_path}, using defaults")
+        return {
+            "download_settings": {
+                "max_workers": 10,
+                "timeout": 30,
+                "retry_attempts": 3,
+                "retry_delay": 2
+            },
+            "api_settings": {
+                "page_size": 100,
+                "sorting_method_id": 7,
+                "platform_os": "web"
+            },
+            "output_settings": {
+                "output_dir": "muv_menus",
+                "save_summary": True,
+                "indent": 2
+            }
+        }
+
+# Load config at module level
+CONFIG = load_config()
 
 class SunburnAPIClient:
     """API client for Sunburn dispensary data with multiple request methods"""
     
-    def __init__(self):
+    def __init__(self, config: Dict = None):
+        if config is None:
+            config = CONFIG
+        self.config = config
+        self.download_settings = config.get("download_settings", {})
+        self.timeout = self.download_settings.get("timeout", 30)
         self.base_url = "https://sunburn-jacksonvillebeach.dispensary.shop"
         self.session = requests.Session()
         
@@ -36,7 +75,7 @@ class SunburnAPIClient:
         url = self.base_url + relative_path
         
         try:
-            response = self.session.get(url, timeout=30)
+            response = self.session.get(url, timeout=self.timeout)
             print(f"   Status: {response.status_code}")
             
             if response.status_code == 200:
@@ -76,8 +115,8 @@ class SunburnAPIClient:
             relative_path = f"/catalog/search?category={category}&medrec={medrec}&order_by=name&order_dir=asc&page={page}&_data=routes%2Fcatalog.search"
             url = self.base_url + relative_path
             
-            response = self.session.get(url, timeout=30)
-            print(f"   API status: {response.status_code}")
+            response = self.session.get(url, timeout=self.timeout)
+            print(f"   Status: {response.status_code}")
             
             if response.status_code == 200:
                 return response.json()
@@ -98,13 +137,13 @@ class SunburnAPIClient:
             # Step 1: Visit the catalog page
             catalog_url = f"{self.base_url}/catalog"
             print(f"   Step 1: Visiting catalog page...")
-            catalog_response = self.session.get(catalog_url, timeout=30)
-            print(f"   Catalog status: {catalog_response.status_code}")
+            catalog_response = self.session.get(catalog_url, timeout=self.timeout)
+            print(f"   Catalog page status: {catalog_response.status_code}")
             
             # Step 2: Visit category-specific page
             category_url = f"{self.base_url}/catalog?category={category}&medrec={medrec}"
             print(f"   Step 2: Visiting category page...")
-            category_response = self.session.get(category_url, timeout=30)
+            category_response = self.session.get(category_url, timeout=self.timeout)
             print(f"   Category status: {category_response.status_code}")
             
             # Step 3: Update headers for API call
@@ -160,7 +199,7 @@ class SunburnAPIClient:
             
             # Make POST request
             url = f"{self.base_url}/catalog/search"
-            response = self.session.post(url, data=data, timeout=30)
+            response = self.session.post(url, data=data, timeout=self.timeout)
             print(f"   POST status: {response.status_code}")
             
             if response.status_code == 200:
@@ -181,7 +220,7 @@ class SunburnAPIClient:
         try:
             # Step 1: Visit main page and wait
             print("   Visiting main page...")
-            self.session.get(self.base_url, timeout=30)
+            self.session.get(self.base_url, timeout=self.timeout)
             time.sleep(2)  # Wait like a human would
             
             # Step 2: Visit catalog with search params
@@ -256,7 +295,7 @@ class SunburnAPIClient:
                 url = self.base_url + endpoint
                 print(f"   Trying: {endpoint}")
                 
-                response = self.session.get(url, timeout=15)
+                response = self.session.get(url, timeout=self.timeout)
                 print(f"   Status: {response.status_code}")
                 
                 if response.status_code == 200:

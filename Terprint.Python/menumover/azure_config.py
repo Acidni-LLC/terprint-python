@@ -81,6 +81,21 @@ def validate_config():
         if AZURE_CLIENT_SECRET == "your-client-secret":
             errors.append("AZURE_CLIENT_SECRET must be updated when using Service Principal")
     
+    # Check Event House settings if using Event House
+    if USE_EVENTHOUSE:
+        if EVENTHOUSE_CLUSTER == "your-cluster-name":
+            errors.append("EVENTHOUSE_CLUSTER must be updated when using Event House")
+        
+        if EVENTHOUSE_DATABASE == "your-database-name":
+            errors.append("EVENTHOUSE_DATABASE must be updated when using Event House")
+        
+        if EVENTHOUSE_TABLE == "your-table-name":
+            errors.append("EVENTHOUSE_TABLE must be updated when using Event House")
+        
+        if not USE_AZURE_CLI:
+            if AZURE_TENANT_ID == "your-tenant-id":
+                errors.append("AZURE_TENANT_ID must be updated when using Event House with Service Principal")
+    
     # Check format validity
     try:
         from datetime import datetime
