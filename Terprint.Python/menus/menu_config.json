@@ -1,0 +1,23 @@
+{
+  "download_settings": {
+    "max_workers": 20,
+    "timeout": 30,
+    "retry_attempts": 3,
+    "retry_delay": 2
+  },
+  "api_settings": {
+    "page_size": 100,
+    "sorting_method_id": 7,
+    "platform_os": "web"
+  },
+  "output_settings": {
+    "output_dir": "muv_menus",
+    "save_summary": true,
+    "indent": 2
+  },
+  "trulieve_settings": {
+    "store_ids_csv": "trulieve storeids.csv",
+    "category_ids": ["MjA4", "MjM3"],
+    "dev_stores": ["palm_coast", "oakland_park", "port_orange"]
+  }
+}

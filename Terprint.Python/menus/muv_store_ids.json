@@ -1,0 +1,593 @@
+{
+  "timestamp": "2025-11-21 17:50:34",
+  "total_locations": 83,
+  "successful": 82,
+  "failed": 1,
+  "store_ids": [
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336",
+    "336"
+  ],
+  "store_mapping": {
+    "bradenton-75th-west": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/bradenton-75th-west",
+      "store_slug": "bradenton-75th-west",
+      "status": "success"
+    },
+    "boynton-beach": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/boynton-beach",
+      "store_slug": "boynton-beach",
+      "status": "success"
+    },
+    "bonita-springs": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/bonita-springs",
+      "store_slug": "bonita-springs",
+      "status": "success"
+    },
+    "apopka": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/apopka",
+      "store_slug": "apopka",
+      "status": "success"
+    },
+    "brandon": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/brandon",
+      "store_slug": "brandon",
+      "status": "success"
+    },
+    "apollo-beach": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/apollo-beach",
+      "store_slug": "apollo-beach",
+      "status": "success"
+    },
+    "clearwater": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/clearwater",
+      "store_slug": "clearwater",
+      "status": "success"
+    },
+    "bradenton": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/bradenton",
+      "store_slug": "bradenton",
+      "status": "success"
+    },
+    "cape-coral": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/cape-coral",
+      "store_slug": "cape-coral",
+      "status": "success"
+    },
+    "clearwater-roosevelt": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/clearwater-roosevelt",
+      "store_slug": "clearwater-roosevelt",
+      "status": "success"
+    },
+    "crystal-river": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/crystal-river",
+      "store_slug": "crystal-river",
+      "status": "success"
+    },
+    "auburndale": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/auburndale",
+      "store_slug": "auburndale",
+      "status": "success"
+    },
+    "deerfield": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/deerfield",
+      "store_slug": "deerfield",
+      "status": "success"
+    },
+    "fort-myers-beach": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/fort-myers-beach",
+      "store_slug": "fort-myers-beach",
+      "status": "success"
+    },
+    "ft-myers": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/ft-myers",
+      "store_slug": "ft-myers",
+      "status": "success"
+    },
+    "fort-pierce": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/fort-pierce",
+      "store_slug": "fort-pierce",
+      "status": "success"
+    },
+    "jax-beach": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/jax-beach",
+      "store_slug": "jax-beach",
+      "status": "success"
+    },
+    "hobe-sound": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/hobe-sound",
+      "store_slug": "hobe-sound",
+      "status": "success"
+    },
+    "fort-myers-cypress": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/fort-myers-cypress",
+      "store_slug": "fort-myers-cypress",
+      "status": "success"
+    },
+    "gainesville": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/gainesville",
+      "store_slug": "gainesville",
+      "status": "success"
+    },
+    "jacksonville": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/jacksonville",
+      "store_slug": "jacksonville",
+      "status": "success"
+    },
+    "key-west": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/key-west",
+      "store_slug": "key-west",
+      "status": "success"
+    },
+    "haines-city": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/haines-city",
+      "store_slug": "haines-city",
+      "status": "success"
+    },
+    "hollywood": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/hollywood",
+      "store_slug": "hollywood",
+      "status": "success"
+    },
+    "lake-city": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/lake-city",
+      "store_slug": "lake-city",
+      "status": "success"
+    },
+    "lakeland": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/lakeland",
+      "store_slug": "lakeland",
+      "status": "success"
+    },
+    "jacksonville-skymarks": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/jacksonville-skymarks",
+      "store_slug": "jacksonville-skymarks",
+      "status": "success"
+    },
+    "lady-lake": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/lady-lake",
+      "store_slug": "lady-lake",
+      "status": "success"
+    },
+    "lutz": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/lutz",
+      "store_slug": "lutz",
+      "status": "success"
+    },
+    "longwood": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/longwood",
+      "store_slug": "longwood",
+      "status": "success"
+    },
+    "new-smyrna-beach": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/new-smyrna-beach",
+      "store_slug": "new-smyrna-beach",
+      "status": "success"
+    },
+    "merritt-island": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/merritt-island",
+      "store_slug": "merritt-island",
+      "status": "success"
+    },
+    "melbourne": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/melbourne",
+      "store_slug": "melbourne",
+      "status": "success"
+    },
+    "ocala": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/ocala",
+      "store_slug": "ocala",
+      "status": "success"
+    },
+    "marco-island": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/marco-island",
+      "store_slug": "marco-island",
+      "status": "success"
+    },
+    "miami-kendall": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/miami-kendall",
+      "store_slug": "miami-kendall",
+      "status": "success"
+    },
+    "naranja": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/naranja",
+      "store_slug": "naranja",
+      "status": "success"
+    },
+    "navarre": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/navarre",
+      "store_slug": "navarre",
+      "status": "success"
+    },
+    "north-port": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/north-port",
+      "store_slug": "north-port",
+      "status": "success"
+    },
+    "okeechobee": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/okeechobee",
+      "store_slug": "okeechobee",
+      "status": "success"
+    },
+    "north-miami": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/north-miami",
+      "store_slug": "north-miami",
+      "status": "success"
+    },
+    "north-miami-beach": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/north-miami-beach",
+      "store_slug": "north-miami-beach",
+      "status": "success"
+    },
+    "new-tampa": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/new-tampa",
+      "store_slug": "new-tampa",
+      "status": "success"
+    },
+    "orange-park": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/orange-park",
+      "store_slug": "orange-park",
+      "status": "success"
+    },
+    "orange-city": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/orange-city",
+      "store_slug": "orange-city",
+      "status": "success"
+    },
+    "orlando-vineland": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/orlando-vineland",
+      "store_slug": "orlando-vineland",
+      "status": "success"
+    },
+    "orlando-colonial": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/orlando-colonial",
+      "store_slug": "orlando-colonial",
+      "status": "success"
+    },
+    "ormond-beach": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/ormond-beach",
+      "store_slug": "ormond-beach",
+      "status": "success"
+    },
+    "palatka": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/palatka",
+      "store_slug": "palatka",
+      "status": "success"
+    },
+    "orlando": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/orlando",
+      "store_slug": "orlando",
+      "status": "success"
+    },
+    "pensacola": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/pensacola",
+      "store_slug": "pensacola",
+      "status": "success"
+    },
+    "port-st-lucie": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/port-st-lucie",
+      "store_slug": "port-st-lucie",
+      "status": "success"
+    },
+    "port-orange": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/port-orange",
+      "store_slug": "port-orange",
+      "status": "success"
+    },
+    "port-richey": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/port-richey",
+      "store_slug": "port-richey",
+      "status": "success"
+    },
+    "panama-city-beach": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/panama-city-beach",
+      "store_slug": "panama-city-beach",
+      "status": "success"
+    },
+    "pinellas-park": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/pinellas-park",
+      "store_slug": "pinellas-park",
+      "status": "success"
+    },
+    "port-charlotte": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/port-charlotte",
+      "store_slug": "port-charlotte",
+      "status": "success"
+    },
+    "sarasota": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/sarasota",
+      "store_slug": "sarasota",
+      "status": "success"
+    },
+    "sarasota-main": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/sarasota-main",
+      "store_slug": "sarasota-main",
+      "status": "success"
+    },
+    "satellite-beach": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/satellite-beach",
+      "store_slug": "satellite-beach",
+      "status": "success"
+    },
+    "shalimar": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/shalimar",
+      "store_slug": "shalimar",
+      "status": "success"
+    },
+    "sebastian": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/sebastian",
+      "store_slug": "sebastian",
+      "status": "success"
+    },
+    "sebring": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/sebring",
+      "store_slug": "sebring",
+      "status": "success"
+    },
+    "st-petersburg": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/st-petersburg",
+      "store_slug": "st-petersburg",
+      "status": "success"
+    },
+    "spring-hill": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/spring-hill",
+      "store_slug": "spring-hill",
+      "status": "success"
+    },
+    "tallahassee": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/tallahassee",
+      "store_slug": "tallahassee",
+      "status": "success"
+    },
+    "st-augustine": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/st-augustine",
+      "store_slug": "st-augustine",
+      "status": "success"
+    },
+    "tamarac": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/tamarac",
+      "store_slug": "tamarac",
+      "status": "success"
+    },
+    "tampa-himes": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/tampa-himes",
+      "store_slug": "tampa-himes",
+      "status": "success"
+    },
+    "stuart": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/stuart",
+      "store_slug": "stuart",
+      "status": "success"
+    },
+    "tampa": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/tampa",
+      "store_slug": "tampa",
+      "status": "success"
+    },
+    "tampa-west-kennedy": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/tampa-west-kennedy",
+      "store_slug": "tampa-west-kennedy",
+      "status": "success"
+    },
+    "titusville": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/titusville",
+      "store_slug": "titusville",
+      "status": "success"
+    },
+    "venice": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/venice",
+      "store_slug": "venice",
+      "status": "success"
+    },
+    "winter-haven": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/winter-haven",
+      "store_slug": "winter-haven",
+      "status": "success"
+    },
+    "west-melbourne": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/west-melbourne",
+      "store_slug": "west-melbourne",
+      "status": "success"
+    },
+    "west-palm-okeechobee": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/west-palm-okeechobee",
+      "store_slug": "west-palm-okeechobee",
+      "status": "success"
+    },
+    "wellington": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/wellington",
+      "store_slug": "wellington",
+      "status": "success"
+    },
+    "zephyrhills": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/zephyrhills",
+      "store_slug": "zephyrhills",
+      "status": "success"
+    },
+    "west-palm-beach": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/west-palm-beach",
+      "store_slug": "west-palm-beach",
+      "status": "success"
+    },
+    "winter-springs": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/winter-springs",
+      "store_slug": "winter-springs",
+      "status": "success"
+    },
+    "yulee": {
+      "store_id": "336",
+      "store_url": "https://muvfl.com/locations/yulee",
+      "store_slug": "yulee",
+      "status": "success"
+    }
+  },
+  "failed_stores": {
+    "deltona": {
+      "store_id": null,
+      "store_url": "https://muvfl.com/locations/deltona",
+      "store_slug": "deltona",
+      "status": "failed",
+      "error": "Request failed: 404 Client Error: Not Found for url: https://muvfl.com/locations/deltona/menu/menu?filters=%7B%22category%22%3A%5B425003%5D%7D"
+    }
+  }
+}

@@ -3,17 +3,29 @@ Upload JSON data to Azure Event House (Kusto)
 """
 import os
 import json
+import io
 import logging
 import pandas as pd
 from typing import Dict, Any, Optional
 from datetime import datetime
-from azure.kusto.data import KustoConnectionStringBuilder, DataFormat
-from azure.kusto.ingest import (
-    QueuedIngestClient,
-    IngestionProperties,
-    IngestionMappingKind,
-    ColumnMapping,
-)
+# azure-kusto imports may not be available in all environments. Guard them so
+# consumers can import this module (e.g., to parse docs or run tests) even when
+# the packages are missing. If the azure packages aren't present, the module
+# will still import successfully but attempting to initialize EventHouseUploader
+# will raise a clear ImportError with the underlying cause.
+try:
+    from azure.kusto.data import KustoConnectionStringBuilder, DataFormat
+    from azure.kusto.ingest import (
+        QueuedIngestClient,
+        IngestionProperties,
+        IngestionMappingKind,
+        ColumnMapping,
+    )
+    _KUSTO_AVAILABLE = True
+    _KUSTO_IMPORT_ERROR = None
+except Exception as _e:  # pragma: no cover - environment specific
+    _KUSTO_AVAILABLE = False
+    _KUSTO_IMPORT_ERROR = _e
 
 logger = logging.getLogger(__name__)
 
@@ -51,6 +63,15 @@ class EventHouseUploader:
         self.column_name = column_name
         self.cluster_uri = f"https://{cluster}.kusto.fabric.microsoft.com"
         
+        # Check azure-kusto availability
+        if not _KUSTO_AVAILABLE:
+            # Fail fast with a helpful error. The original import failure is
+            # attached to the exception to aid troubleshooting.
+            raise ImportError(
+                "Required package `azure-kusto-data` / `azure-kusto-ingest` is not available. "
+                "Install with `pip install azure-kusto-data azure-kusto-ingest` or set use_azure_cli accordingly. "
+            ) from _KUSTO_IMPORT_ERROR
+
         # Build connection string
         if use_azure_cli:
             logger.info("Using Azure CLI authentication for Event House...")
@@ -98,30 +119,33 @@ class EventHouseUploader:
                         **source_info,
                         'upload_timestamp': datetime.now().isoformat()
                     }
-            
-            # Store as dict/list directly without JSON serialization
-            # This avoids escape characters - Kusto will handle the dynamic column
+
+            # Normalize input into a JSON-serializable object
             if not isinstance(json_data, (dict, list)):
-                # If it's a string, try to parse it as JSON
                 if isinstance(json_data, str):
                     try:
                         json_data = json.loads(json_data)
                     except json.JSONDecodeError:
-                        # If not valid JSON, wrap it in a dict
                         json_data = {"raw_data": json_data}
-            
-            # Create DataFrame with the raw Python object (not JSON string)
-            df = pd.DataFrame({self.column_name: [json_data]})
-            
-            # Ingest data
-            logger.debug(f"Ingesting data to Event House...")
-            self.ingest_client.ingest_from_dataframe(df, self.ingestion_properties)
-            
-            logger.info(f"Successfully queued data for ingestion to {self.table}")
+                else:
+                    # Wrap non-serializable scalars
+                    json_data = {"raw_data": json_data}
+
+            # Serialize to bytes and ingest using a stream. This is more reliable
+            # for JSON ingestion than stuffing Python objects into a DataFrame.
+            payload = json.dumps(json_data, ensure_ascii=False).encode('utf-8')
+            stream = io.BytesIO(payload)
+
+            logger.debug("Ingesting JSON stream to Event House...")
+            # Use ingest_from_stream which accepts a file-like object
+            self.ingest_client.ingest_from_stream(stream, self.ingestion_properties)
+
+            logger.info(f"Successfully queued JSON stream for ingestion to {self.table}")
             return True
-            
-        except Exception as e:
-            logger.error(f"Failed to upload to Event House: {e}")
+
+        except Exception:
+            # Log full traceback to help diagnose authentication/ingest errors
+            logger.exception("Failed to upload to Event House")
             return False
     
     def upload_file(self, filepath: str, dispensary_id: Optional[str] = None) -> bool:
